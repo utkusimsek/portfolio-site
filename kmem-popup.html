@@ -9,9 +9,29 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="style.css"/>
   <link rel="stylesheet" href="project.css"/>
+  <script src="splash.js"></script>
   <script defer src="i18n.js"></script>
 </head>
 <body data-i18n-pagetitle="pageTitle.kmem">
+
+  <!-- ─── SPLASH ─── -->
+  <div id="splash" aria-hidden="true">
+    <div class="splash-inner">
+      <svg class="splash-logo" viewBox="0 0 196 196" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="splashGrad" x1="-21.5" y1="10" x2="194" y2="177" gradientUnits="userSpaceOnUse">
+            <stop offset="0.015" stop-color="#fff" stop-opacity="0"/>
+            <stop offset="0.51"  stop-color="#fff" stop-opacity="0.95"/>
+            <stop offset="1"     stop-color="#fff" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <path class="splash-p splash-p1" d="M50.6351 2.81087C50.6351 2.08199 49.8516 1.62163 49.2149 1.97636L19.9038 18.3053C16.8766 19.9917 15 23.1853 15 26.6505V148.52C15 152.175 17.085 155.509 20.3708 157.109L84.228 188.202C85.0859 188.619 85.9587 187.66 85.4616 186.845L52.7328 133.215C51.3609 130.967 50.6351 128.384 50.6351 125.751V2.81087Z" fill="url(#splashGrad)"/>
+        <path class="splash-p splash-p2" d="M145.365 2.81087C145.365 2.08199 146.148 1.62163 146.785 1.97636L176.096 18.3053C179.123 19.9917 181 23.1853 181 26.6505V148.52C181 152.175 178.915 155.509 175.629 157.109L111.772 188.202C110.914 188.619 110.041 187.66 110.538 186.845L143.267 133.215C144.639 130.967 145.365 128.384 145.365 125.751V2.81087Z" fill="url(#splashGrad)"/>
+        <path class="splash-p splash-p3" d="M137.706 0C138.385 0 138.847 0.688298 138.591 1.31672L115.721 57.2663C114.314 60.7083 113.59 64.3912 113.59 68.1097V122.704C113.59 124.201 113.414 125.693 113.066 127.149L98.4836 188.116C98.2498 189.093 96.8593 189.093 96.6255 188.116L82.0429 127.149C81.6947 125.693 81.5188 124.201 81.5188 122.704V67.8047C81.5188 64.2842 80.8701 60.7938 79.6052 57.5083L57.965 1.29849C57.7241 0.672737 58.186 0 58.8565 0L137.706 0Z" fill="url(#splashGrad)"/>
+      </svg>
+      <div class="splash-line"></div>
+    </div>
+  </div>
 
   <!-- ── Nav ── -->
   <nav id="nav">

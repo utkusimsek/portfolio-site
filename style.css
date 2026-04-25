@@ -378,6 +378,65 @@ body.cursor-hover #cursor-follower { opacity: 0; }
 body.light .theme-icon-dark  { display: none; }
 body.light .theme-icon-light { display: flex; }
 
+/* ═══════════════════════════════════════════════════════════════
+   SPLASH SCREEN — brief, professional logo intro
+═══════════════════════════════════════════════════════════════ */
+#splash {
+  position: fixed; inset: 0;
+  z-index: 9999;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--bg);
+  pointer-events: auto;
+  transition: opacity .55s cubic-bezier(0.65,0,0.35,1),
+              visibility 0s linear .55s;
+}
+#splash.splash-out {
+  opacity: 0;
+  visibility: hidden;
+}
+.splash-inner {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 28px;
+}
+.splash-logo {
+  width: 96px; height: auto;
+  transform: scale(.92);
+  filter: drop-shadow(0 0 32px rgba(255,255,255,.06));
+  animation: splashScale 1.4s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+.splash-p {
+  opacity: 0;
+  animation: splashFade .8s cubic-bezier(0.4,0,0.2,1) forwards;
+}
+.splash-p1 { animation-delay: .12s; }
+.splash-p2 { animation-delay: .26s; }
+.splash-p3 { animation-delay: .40s; }
+
+.splash-line {
+  width: 80px; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.35), transparent);
+  opacity: 0;
+  animation: splashFade .9s cubic-bezier(0.4,0,0.2,1) .55s forwards;
+}
+body.light .splash-line {
+  background: linear-gradient(90deg, transparent, rgba(0,0,0,.25), transparent);
+}
+
+@keyframes splashScale { to { transform: scale(1); } }
+@keyframes splashFade  { to { opacity: 1; } }
+
+/* Light mode splash uses the same bg (--bg already swaps) */
+body.light .splash-logo { filter: drop-shadow(0 0 24px rgba(0,0,0,.08)); }
+
+/* Synchronous early hint for light theme (set on <html> by splash.js before
+   <body> arrives) — prevents a dark flash on first paint for light-mode users */
+html.pre-light #splash { background: #f0ede8; }
+
+/* Reduce motion — skip animations, just fade out */
+@media (prefers-reduced-motion: reduce) {
+  .splash-logo, .splash-p, .splash-line { animation: none !important; opacity: 1 !important; transform: none !important; }
+}
+
 /* ── Language Toggle — adapts to theme, smooth animated text flip ── */
 .lang-toggle {
   position: relative;
