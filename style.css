@@ -378,6 +378,30 @@ body.cursor-hover #cursor-follower { opacity: 0; }
 body.light .theme-icon-dark  { display: none; }
 body.light .theme-icon-light { display: flex; }
 
+/* ── Language Toggle — same glass style, shows TR/EN label ── */
+.lang-toggle {
+  display: inline-flex; align-items: center; justify-content: center;
+  height: 38px; min-width: 44px; padding: 0 12px;
+  border-radius: 19px;
+  border: 1px solid var(--glass-border);
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur-sm);
+  -webkit-backdrop-filter: var(--glass-blur-sm);
+  color: var(--text-muted);
+  cursor: none;
+  box-shadow: var(--glass-shadow);
+  font-family: var(--font-sans);
+  font-size: .78rem; font-weight: 600; letter-spacing: .08em;
+  transition: border-color .3s, color .3s, background .3s, box-shadow .3s, transform .2s !important;
+}
+.lang-toggle:hover {
+  border-color: rgba(201,169,110,.5);
+  color: var(--accent);
+  background: var(--glass-bg-hover);
+  box-shadow: 0 8px 24px rgba(201,169,110,.18), inset 0 1px 0 rgba(255,255,255,.1);
+}
+.lang-current { line-height: 1; }
+
 /* ═══════════════════════════════════════════════════════════════
    BUTTONS
 ═══════════════════════════════════════════════════════════════ */

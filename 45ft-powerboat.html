@@ -9,20 +9,24 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="style.css"/>
   <link rel="stylesheet" href="project.css"/>
+  <script defer src="i18n.js"></script>
 </head>
-<body>
+<body data-i18n-pagetitle="pageTitle.pb">
 
   <!-- ── Nav ── -->
   <nav id="nav">
     <div class="nav-inner">
       <a href="index.html" class="nav-logo"><img src="assets/logo.png" alt="HUŞ Logo" class="site-logo-img"/></a>
       <div class="nav-links">
-        <a href="index.html#work">Projeler</a>
-        <a href="index.html#about">Hakkımda</a>
-        <a href="index.html#contact">İletişim</a>
+        <a href="index.html#work" data-i18n="nav.projects">Projeler</a>
+        <a href="index.html#about" data-i18n="nav.about">Hakkımda</a>
+        <a href="index.html#contact" data-i18n="nav.contact">İletişim</a>
       </div>
       <div class="nav-right">
-        <button class="theme-toggle" id="themeToggle" aria-label="Tema değiştir">
+        <button class="lang-toggle" id="langToggle" data-i18n-aria="nav.langAria" aria-label="Dil değiştir">
+          <span class="lang-current">EN</span>
+        </button>
+        <button class="theme-toggle" id="themeToggle" data-i18n-aria="nav.themeAria" aria-label="Tema değiştir">
           <span class="theme-icon theme-icon-dark">
             <svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M10 2v2M10 16v2M2 10h2M16 10h2M4.22 4.22l1.42 1.42M14.36 14.36l1.42 1.42M4.22 15.78l1.42-1.42M14.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
           </span>
@@ -43,23 +47,23 @@
     </div>
     <div class="proj-hero-content reveal-up">
       <div class="proj-breadcrumb">
-        <a href="index.html">Ana Sayfa</a>
+        <a href="index.html" data-i18n="proj_detail.breadcrumbHome">Ana Sayfa</a>
         <span>›</span>
-        <a href="index.html#work">Projeler</a>
+        <a href="index.html#work" data-i18n="proj_detail.breadcrumbProjects">Projeler</a>
         <span>›</span>
-        <span>45ft Powerboat</span>
+        <span data-i18n="pb.breadcrumb">45ft Powerboat</span>
       </div>
       <div class="proj-badge-row">
-        <span class="proj-badge">Diploma Projesi</span>
-        <span class="proj-badge-year">2023 · KLAN Studio</span>
+        <span class="proj-badge" data-i18n="pb.badge">Diploma Projesi</span>
+        <span class="proj-badge-year" data-i18n="pb.year">2023 · KLAN Studio</span>
       </div>
-      <h1 class="proj-title">45ft Multi<br/>Hardtop Powerboat</h1>
+      <h1 class="proj-title" data-i18n="pb.title">45ft Multi<br/>Hardtop Powerboat</h1>
       <div class="proj-tags">
         <span>Rhino 3D</span><span>V-Ray</span><span>AutoCAD</span><span>Naval Architecture</span>
       </div>
     </div>
     <div class="proj-scroll-hint">
-      <span>Aşağı Kaydır</span>
+      <span data-i18n="proj_detail.scroll">Aşağı Kaydır</span>
       <div class="proj-scroll-line"></div>
     </div>
   </section>
@@ -68,18 +72,18 @@
   <section class="proj-section">
     <div class="proj-container">
       <div class="proj-overview reveal-up">
-        <div class="proj-overview-label">Proje Özeti</div>
-        <p class="proj-overview-text">
-          Klan Studio tarafından tasarlanan <strong>45ft Multi Hardtop</strong>, hafta sonlarını denizde geçirmeyi seven kullanıcılar için geliştirilmiş, yüksek performanslı ve konfor odaklı 14 metre uzunluğunda bir tender tipi powerboat konseptidir. Değişen hava koşullarına hızla uyum sağlamak amacıyla elektrikli lineer aktuatörler ile hareket eden bir hardtop ve yukarı kalkan yan camlar kullanılarak istendiğinde tamamen izole bir iç mekan yaratılabilmektedir. Tasarım bütünlüğünü korumak adına dıştan takma motorlar arka güneşlenme alanının altına gizlenmiş ve tekneye gizlenebilir bir çapa sistemi entegre edilmiştir. Ana güvertede hamak seçeneği sunan modüler kıç platform, sörf tahtası gibi eşyaların zahmetsizce yüklenmesini sağlayan hareketli rollbar ve yatağa dönüşebilen teleskobik masa gibi çok yönlü donanımlar yer alırken, alt güvertede yer alan master kabin, banyo ve mutfak alanı ile deniz üzerindeki konaklama ihtiyaçları eksiksiz bir şekilde karşılanmaktadır.
+        <div class="proj-overview-label" data-i18n="proj_detail.overviewLabel">Proje Özeti</div>
+        <p class="proj-overview-text" data-i18n="pb.overview">
+          Klan Studio tarafından tasarlanan <strong>45ft Multi Hardtop</strong>, hafta sonlarını denizde geçirmeyi seven kullanıcılar için geliştirilmiş, yüksek performanslı ve konfor odaklı 14 metre uzunluğunda bir tender tipi powerboat konseptidir.
         </p>
       </div>
 
       <!-- Stats row -->
       <div class="proj-stats reveal-up">
-        <div class="proj-stat"><span class="proj-stat-num">45</span><span class="proj-stat-label">Feet / 14m</span></div>
-        <div class="proj-stat"><span class="proj-stat-num">2</span><span class="proj-stat-label">Güverte</span></div>
-        <div class="proj-stat"><span class="proj-stat-num">8</span><span class="proj-stat-label">Kişi Kapasitesi</span></div>
-        <div class="proj-stat"><span class="proj-stat-num">40+</span><span class="proj-stat-label">Knot Hız</span></div>
+        <div class="proj-stat"><span class="proj-stat-num">45</span><span class="proj-stat-label" data-i18n="pb.stat1">Feet / 14m</span></div>
+        <div class="proj-stat"><span class="proj-stat-num">2</span><span class="proj-stat-label" data-i18n="pb.stat2">Güverte</span></div>
+        <div class="proj-stat"><span class="proj-stat-num">8</span><span class="proj-stat-label" data-i18n="pb.stat3">Kişi Kapasitesi</span></div>
+        <div class="proj-stat"><span class="proj-stat-num">40+</span><span class="proj-stat-label" data-i18n="pb.stat4">Knot Hız</span></div>
       </div>
     </div>
   </section>
@@ -102,7 +106,7 @@
         </div>
         <div class="gallery-item gallery-bg-dark">
           <img src="assets/pb-exploded.png" alt="Patlak görünüm"/>
-          <div class="gallery-caption">Patlak Görünüm — Bileşen Analizi</div>
+          <div class="gallery-caption" data-i18n="pb.capExploded">Patlak Görünüm — Bileşen Analizi</div>
         </div>
       </div>
 
@@ -110,11 +114,11 @@
       <div class="gallery-row gallery-half reveal-up">
         <div class="gallery-item gallery-bg-light">
           <img src="assets/pb-side1.png" alt="Yan profil — cam kapalı"/>
-          <div class="gallery-caption">Yan Profil — Cam Kapalı</div>
+          <div class="gallery-caption" data-i18n="pb.capSide1">Yan Profil — Cam Kapalı</div>
         </div>
         <div class="gallery-item gallery-bg-light">
           <img src="assets/pb-side2.png" alt="Yan profil — spor"/>
-          <div class="gallery-caption">Yan Profil — Spor Konfigürasyon</div>
+          <div class="gallery-caption" data-i18n="pb.capSide2">Yan Profil — Spor Konfigürasyon</div>
         </div>
       </div>
 
@@ -122,11 +126,11 @@
       <div class="gallery-row gallery-half reveal-up">
         <div class="gallery-item gallery-bg-light">
           <img src="assets/pb-deck-open.png" alt="Güverte planı — açık"/>
-          <div class="gallery-caption gallery-caption-dark">Ana Güverte — Açık Konfigürasyon</div>
+          <div class="gallery-caption gallery-caption-dark" data-i18n="pb.capDeckOpen">Ana Güverte — Açık Konfigürasyon</div>
         </div>
         <div class="gallery-item gallery-bg-light">
           <img src="assets/pb-deck-cabin.png" alt="Güverte planı — kapalı kabin"/>
-          <div class="gallery-caption gallery-caption-dark">Alt Güverte — Kabin</div>
+          <div class="gallery-caption gallery-caption-dark" data-i18n="pb.capDeckCabin">Alt Güverte — Kabin</div>
         </div>
       </div>
 
@@ -136,27 +140,27 @@
   <!-- ── Key features ── -->
   <section class="proj-section proj-features-section">
     <div class="proj-container">
-      <h2 class="proj-section-title reveal-up">Tasarım Özellikleri</h2>
+      <h2 class="proj-section-title reveal-up" data-i18n="proj_detail.featuresTitle">Tasarım Özellikleri</h2>
       <div class="proj-features reveal-up">
         <div class="proj-feature">
           <div class="proj-feature-icon">⚡</div>
-          <h4>Elektrikli Hardtop</h4>
-          <p>Lineer aktuatörlerle çalışan hareketli çatı ve yukarı kalkan yan camlar; hava koşullarına göre saniyeler içinde tam kapalı veya tam açık konfigürasyon.</p>
+          <h4 data-i18n="pb.f1Title">Elektrikli Hardtop</h4>
+          <p data-i18n="pb.f1Desc">Lineer aktuatörlerle çalışan hareketli çatı ve yukarı kalkan yan camlar; hava koşullarına göre saniyeler içinde tam kapalı veya tam açık konfigürasyon.</p>
         </div>
         <div class="proj-feature">
           <div class="proj-feature-icon">⚓</div>
-          <h4>Gizli Motor & Çapa</h4>
-          <p>Dıştan takma motorlar arka güneşlenme alanı altına entegre edilmiş; temiz silüet korunurken operasyonel yetkinlik tam olarak sağlanmıştır.</p>
+          <h4 data-i18n="pb.f2Title">Gizli Motor & Çapa</h4>
+          <p data-i18n="pb.f2Desc">Dıştan takma motorlar arka güneşlenme alanı altına entegre edilmiş; temiz silüet korunurken operasyonel yetkinlik tam olarak sağlanmıştır.</p>
         </div>
         <div class="proj-feature">
           <div class="proj-feature-icon">🛹</div>
-          <h4>Modüler Kıç Platform</h4>
-          <p>Hamak, sörf tahtası bağlantısı ve hareketli rollbar ile donatılmış çok amaçlı aft platform; her aktiviteye uyum sağlar.</p>
+          <h4 data-i18n="pb.f3Title">Modüler Kıç Platform</h4>
+          <p data-i18n="pb.f3Desc">Hamak, sörf tahtası bağlantısı ve hareketli rollbar ile donatılmış çok amaçlı aft platform; her aktiviteye uyum sağlar.</p>
         </div>
         <div class="proj-feature">
           <div class="proj-feature-icon">🛏</div>
-          <h4>Tam Donanımlı Alt Güverte</h4>
-          <p>Yatağa dönüşen teleskobik masa, master kabin, banyo ve mutfak alanı ile konaklamayı mümkün kılan kapsamlı iç mekan organizasyonu.</p>
+          <h4 data-i18n="pb.f4Title">Tam Donanımlı Alt Güverte</h4>
+          <p data-i18n="pb.f4Desc">Yatağa dönüşen teleskobik masa, master kabin, banyo ve mutfak alanı ile konaklamayı mümkün kılan kapsamlı iç mekan organizasyonu.</p>
         </div>
       </div>
     </div>
@@ -165,7 +169,7 @@
   <!-- ── Back link ── -->
   <section class="proj-back-section">
     <div class="proj-container">
-      <a href="index.html#work" class="proj-back-btn reveal-up">← Tüm Projelere Dön</a>
+      <a href="index.html#work" class="proj-back-btn reveal-up" data-i18n="proj_detail.back">← Tüm Projelere Dön</a>
     </div>
   </section>
 
@@ -173,7 +177,7 @@
   <footer class="footer">
     <div class="footer-inner">
       <img src="assets/logo.png" alt="HUŞ Logo" class="site-logo-img footer-logo-img"/>
-      <p>© 2024 Halil Utku Şimşek — Tüm hakları saklıdır.</p>
+      <p data-i18n="proj_detail.footer">© 2024 Halil Utku Şimşek — Tüm hakları saklıdır.</p>
     </div>
   </footer>
 

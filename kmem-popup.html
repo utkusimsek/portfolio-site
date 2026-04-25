@@ -9,20 +9,24 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="style.css"/>
   <link rel="stylesheet" href="project.css"/>
+  <script defer src="i18n.js"></script>
 </head>
-<body>
+<body data-i18n-pagetitle="pageTitle.kmem">
 
   <!-- ── Nav ── -->
   <nav id="nav">
     <div class="nav-inner">
       <a href="index.html" class="nav-logo"><img src="assets/logo.png" alt="HUŞ Logo" class="site-logo-img"/></a>
       <div class="nav-links">
-        <a href="index.html#work">Projeler</a>
-        <a href="index.html#about">Hakkımda</a>
-        <a href="index.html#contact">İletişim</a>
+        <a href="index.html#work" data-i18n="nav.projects">Projeler</a>
+        <a href="index.html#about" data-i18n="nav.about">Hakkımda</a>
+        <a href="index.html#contact" data-i18n="nav.contact">İletişim</a>
       </div>
       <div class="nav-right">
-        <button class="theme-toggle" id="themeToggle" aria-label="Tema değiştir">
+        <button class="lang-toggle" id="langToggle" data-i18n-aria="nav.langAria" aria-label="Dil değiştir">
+          <span class="lang-current">EN</span>
+        </button>
+        <button class="theme-toggle" id="themeToggle" data-i18n-aria="nav.themeAria" aria-label="Tema değiştir">
           <span class="theme-icon theme-icon-dark">
             <svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M10 2v2M10 16v2M2 10h2M16 10h2M4.22 4.22l1.42 1.42M14.36 14.36l1.42 1.42M4.22 15.78l1.42-1.42M14.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
           </span>
@@ -43,23 +47,23 @@
     </div>
     <div class="proj-hero-content reveal-up">
       <div class="proj-breadcrumb">
-        <a href="index.html">Ana Sayfa</a>
+        <a href="index.html" data-i18n="proj_detail.breadcrumbHome">Ana Sayfa</a>
         <span>›</span>
-        <a href="index.html#work">Projeler</a>
+        <a href="index.html#work" data-i18n="proj_detail.breadcrumbProjects">Projeler</a>
         <span>›</span>
-        <span>KMEM Pop-up Mağaza</span>
+        <span data-i18n="kmem.breadcrumb">KMEM Pop-up Mağaza</span>
       </div>
       <div class="proj-badge-row">
-        <span class="proj-badge">Perakende Tasarımı</span>
-        <span class="proj-badge-year">2022 · Kamusal Alan</span>
+        <span class="proj-badge" data-i18n="kmem.badge">Perakende Tasarımı</span>
+        <span class="proj-badge-year" data-i18n="kmem.year">2022 · Kamusal Alan</span>
       </div>
-      <h1 class="proj-title">Kurukahveci Mehmet Efendi<br/>Pop-up Mağaza</h1>
+      <h1 class="proj-title" data-i18n="kmem.title">Kurukahveci Mehmet Efendi<br/>Pop-up Mağaza</h1>
       <div class="proj-tags">
         <span>Rhino</span><span>V-Ray</span><span>Marka Tasarımı</span><span>Perakende</span>
       </div>
     </div>
     <div class="proj-scroll-hint">
-      <span>Aşağı Kaydır</span>
+      <span data-i18n="proj_detail.scroll">Aşağı Kaydır</span>
       <div class="proj-scroll-line"></div>
     </div>
   </section>
@@ -68,18 +72,18 @@
   <section class="proj-section">
     <div class="proj-container">
       <div class="proj-overview reveal-up">
-        <div class="proj-overview-label">Proje Özeti</div>
-        <p class="proj-overview-text">
-          <strong>Kurukahveci Mehmet Efendi</strong> için tasarlanan bu pop-up mağaza, markanın geleneksel kahve kültürünü modern ve deneyim odaklı bir perakende anlayışıyla yeniden yorumlar. Dairesel formu sayesinde farklı yönlerden erişim sağlayarak açık hava AVM'lerde maksimum görünürlük sunar. Sıcak malzeme paleti, güçlü marka dili ve sürdürülebilir detaylarla desteklenen tasarım; kullanıcıya sadece bir ürün değil, etkileşimli ve akılda kalıcı bir kahve deneyimi sunmayı hedefler.
+        <div class="proj-overview-label" data-i18n="proj_detail.overviewLabel">Proje Özeti</div>
+        <p class="proj-overview-text" data-i18n="kmem.overview">
+          <strong>Kurukahveci Mehmet Efendi</strong> için tasarlanan bu pop-up mağaza, markanın geleneksel kahve kültürünü modern ve deneyim odaklı bir perakende anlayışıyla yeniden yorumlar.
         </p>
       </div>
 
       <!-- Stats row -->
       <div class="proj-stats reveal-up">
-        <div class="proj-stat"><span class="proj-stat-num">360°</span><span class="proj-stat-label">Dairesel Erişim</span></div>
-        <div class="proj-stat"><span class="proj-stat-num">4</span><span class="proj-stat-label">Yön / Cephe</span></div>
-        <div class="proj-stat"><span class="proj-stat-num">2022</span><span class="proj-stat-label">Konsept Yılı</span></div>
-        <div class="proj-stat"><span class="proj-stat-num">100%</span><span class="proj-stat-label">Modüler Kurulum</span></div>
+        <div class="proj-stat"><span class="proj-stat-num">360°</span><span class="proj-stat-label" data-i18n="kmem.stat1">Dairesel Erişim</span></div>
+        <div class="proj-stat"><span class="proj-stat-num">4</span><span class="proj-stat-label" data-i18n="kmem.stat2">Yön / Cephe</span></div>
+        <div class="proj-stat"><span class="proj-stat-num">2022</span><span class="proj-stat-label" data-i18n="kmem.stat3">Konsept Yılı</span></div>
+        <div class="proj-stat"><span class="proj-stat-num">100%</span><span class="proj-stat-label" data-i18n="kmem.stat4">Modüler Kurulum</span></div>
       </div>
     </div>
   </section>
@@ -92,7 +96,7 @@
       <div class="gallery-row gallery-full reveal-up">
         <div class="gallery-item">
           <img src="assets/kmem-cover.png" alt="KMEM Pop-up Mağaza — Taksim"/>
-          <div class="gallery-caption">Tarihi Doku İçinde — Taksim</div>
+          <div class="gallery-caption" data-i18n="kmem.capCover">Tarihi Doku İçinde — Taksim</div>
         </div>
       </div>
 
@@ -100,7 +104,7 @@
       <div class="gallery-row gallery-full reveal-up">
         <div class="gallery-item">
           <img src="assets/kmem-urban.png" alt="KMEM Pop-up Mağaza — Açık Hava AVM"/>
-          <div class="gallery-caption">Açık Hava AVM — Kullanıcı Deneyimi</div>
+          <div class="gallery-caption" data-i18n="kmem.capUrban">Açık Hava AVM — Kullanıcı Deneyimi</div>
         </div>
       </div>
 
@@ -108,7 +112,7 @@
       <div class="gallery-row gallery-full reveal-up">
         <div class="gallery-item gallery-bg-dark">
           <img src="assets/kmem-tech.png" alt="KMEM Pop-up Mağaza — Teknik Görünümler"/>
-          <div class="gallery-caption">Teknik Görünümler — Cephe ve Kesit</div>
+          <div class="gallery-caption" data-i18n="kmem.capTech">Teknik Görünümler — Cephe ve Kesit</div>
         </div>
       </div>
 
@@ -118,27 +122,27 @@
   <!-- ── Key features ── -->
   <section class="proj-section proj-features-section">
     <div class="proj-container">
-      <h2 class="proj-section-title reveal-up">Tasarım Özellikleri</h2>
+      <h2 class="proj-section-title reveal-up" data-i18n="proj_detail.featuresTitle">Tasarım Özellikleri</h2>
       <div class="proj-features reveal-up">
         <div class="proj-feature">
           <div class="proj-feature-icon">◯</div>
-          <h4>Dairesel Form</h4>
-          <p>360° erişilebilir geometri, açık hava AVM'lerde her yönden eşit görünürlük ve akış sağlayan dinamik bir sirkülasyon üretir.</p>
+          <h4 data-i18n="kmem.f1Title">Dairesel Form</h4>
+          <p data-i18n="kmem.f1Desc">360° erişilebilir geometri, açık hava AVM'lerde her yönden eşit görünürlük ve akış sağlayan dinamik bir sirkülasyon üretir.</p>
         </div>
         <div class="proj-feature">
           <div class="proj-feature-icon">☕</div>
-          <h4>Deneyim Odaklı Perakende</h4>
-          <p>Merkezdeki barista istasyonu, müşteriyi hazırlık sürecine dahil ederek markayla etkileşimli, akılda kalıcı bir buluşma noktası kurgular.</p>
+          <h4 data-i18n="kmem.f2Title">Deneyim Odaklı Perakende</h4>
+          <p data-i18n="kmem.f2Desc">Merkezdeki barista istasyonu, müşteriyi hazırlık sürecine dahil ederek markayla etkileşimli, akılda kalıcı bir buluşma noktası kurgular.</p>
         </div>
         <div class="proj-feature">
           <div class="proj-feature-icon">✦</div>
-          <h4>Güçlü Marka Dili</h4>
-          <p>Geleneksel Kurukahveci kimliği; sıcak ahşap tonları, altın aksanlar ve özel tipografi ile çağdaş perakende diline yeniden aktarılır.</p>
+          <h4 data-i18n="kmem.f3Title">Güçlü Marka Dili</h4>
+          <p data-i18n="kmem.f3Desc">Geleneksel Kurukahveci kimliği; sıcak ahşap tonları, altın aksanlar ve özel tipografi ile çağdaş perakende diline yeniden aktarılır.</p>
         </div>
         <div class="proj-feature">
           <div class="proj-feature-icon">♻</div>
-          <h4>Sürdürülebilir Detaylar</h4>
-          <p>Modüler yapı, söküp taşınabilir kurulum ve geri dönüştürülebilir malzeme seçimleri; pop-up formatına uygun düşük izli bir üretim önerir.</p>
+          <h4 data-i18n="kmem.f4Title">Sürdürülebilir Detaylar</h4>
+          <p data-i18n="kmem.f4Desc">Modüler yapı, söküp taşınabilir kurulum ve geri dönüştürülebilir malzeme seçimleri; pop-up formatına uygun düşük izli bir üretim önerir.</p>
         </div>
       </div>
     </div>
@@ -147,7 +151,7 @@
   <!-- ── Back link ── -->
   <section class="proj-back-section">
     <div class="proj-container">
-      <a href="index.html#work" class="proj-back-btn reveal-up">← Tüm Projelere Dön</a>
+      <a href="index.html#work" class="proj-back-btn reveal-up" data-i18n="proj_detail.back">← Tüm Projelere Dön</a>
     </div>
   </section>
 
@@ -155,7 +159,7 @@
   <footer class="footer">
     <div class="footer-inner">
       <img src="assets/logo.png" alt="HUŞ Logo" class="site-logo-img footer-logo-img"/>
-      <p>© 2024 Halil Utku Şimşek — Tüm hakları saklıdır.</p>
+      <p data-i18n="proj_detail.footer">© 2024 Halil Utku Şimşek — Tüm hakları saklıdır.</p>
     </div>
   </footer>
 

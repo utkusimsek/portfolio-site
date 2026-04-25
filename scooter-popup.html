@@ -20,20 +20,24 @@
       .proj-gallery .gallery-full .gallery-item { aspect-ratio: 4/3; }
     }
   </style>
+  <script defer src="i18n.js"></script>
 </head>
-<body>
+<body data-i18n-pagetitle="pageTitle.scoot">
 
   <!-- ── Nav ── -->
   <nav id="nav">
     <div class="nav-inner">
       <a href="index.html" class="nav-logo"><img src="assets/logo.png" alt="HUŞ Logo" class="site-logo-img"/></a>
       <div class="nav-links">
-        <a href="index.html#work">Projeler</a>
-        <a href="index.html#about">Hakkımda</a>
-        <a href="index.html#contact">İletişim</a>
+        <a href="index.html#work" data-i18n="nav.projects">Projeler</a>
+        <a href="index.html#about" data-i18n="nav.about">Hakkımda</a>
+        <a href="index.html#contact" data-i18n="nav.contact">İletişim</a>
       </div>
       <div class="nav-right">
-        <button class="theme-toggle" id="themeToggle" aria-label="Tema değiştir">
+        <button class="lang-toggle" id="langToggle" data-i18n-aria="nav.langAria" aria-label="Dil değiştir">
+          <span class="lang-current">EN</span>
+        </button>
+        <button class="theme-toggle" id="themeToggle" data-i18n-aria="nav.themeAria" aria-label="Tema değiştir">
           <span class="theme-icon theme-icon-dark">
             <svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M10 2v2M10 16v2M2 10h2M16 10h2M4.22 4.22l1.42 1.42M14.36 14.36l1.42 1.42M4.22 15.78l1.42-1.42M14.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
           </span>
@@ -54,23 +58,23 @@
     </div>
     <div class="proj-hero-content reveal-up">
       <div class="proj-breadcrumb">
-        <a href="index.html">Ana Sayfa</a>
+        <a href="index.html" data-i18n="proj_detail.breadcrumbHome">Ana Sayfa</a>
         <span>›</span>
-        <a href="index.html#work">Projeler</a>
+        <a href="index.html#work" data-i18n="proj_detail.breadcrumbProjects">Projeler</a>
         <span>›</span>
-        <span>Scooter Port</span>
+        <span data-i18n="scoot.breadcrumb">Scooter Port</span>
       </div>
       <div class="proj-badge-row">
-        <span class="proj-badge">Ulaşım / Kentsel</span>
-        <span class="proj-badge-year">2023 · Akıllı Şehir</span>
+        <span class="proj-badge" data-i18n="scoot.badge">Ulaşım / Kentsel</span>
+        <span class="proj-badge-year" data-i18n="scoot.year">2023 · Akıllı Şehir</span>
       </div>
-      <h1 class="proj-title">Scooter Port<br/><em>Şarj İstasyonu</em></h1>
+      <h1 class="proj-title" data-i18n="scoot.title">Scooter Port<br/><em>Şarj İstasyonu</em></h1>
       <div class="proj-tags">
         <span>Rhino</span><span>Twinmotion</span><span>IoT</span><span>UX/UI</span>
       </div>
     </div>
     <div class="proj-scroll-hint">
-      <span>Aşağı Kaydır</span>
+      <span data-i18n="proj_detail.scroll">Aşağı Kaydır</span>
       <div class="proj-scroll-line"></div>
     </div>
   </section>
@@ -79,18 +83,18 @@
   <section class="proj-section">
     <div class="proj-container">
       <div class="proj-overview reveal-up">
-        <div class="proj-overview-label">Proje Özeti</div>
-        <p class="proj-overview-text">
-          <strong>Scooter Port</strong>, şehir içi mikromobiliteyi daha erişilebilir ve sürdürülebilir hale getirmek için tasarlanmış akıllı bir scooter istasyonudur. Mobil uygulama ve QR/RFID entegrasyonu sayesinde kullanıcılar hızlıca scooter kiralayabilirken, güneş enerjisi destekli altyapısı ile çevre dostu bir çözüm sunar. Modüler yapısı, reklam panosu entegrasyonu ve dayanıklı malzeme seçimi ile hem işlevsel hem de kentsel mekâna değer katan yenilikçi bir tasarım yaklaşımı sunar.
+        <div class="proj-overview-label" data-i18n="proj_detail.overviewLabel">Proje Özeti</div>
+        <p class="proj-overview-text" data-i18n="scoot.overview">
+          <strong>Scooter Port</strong>, şehir içi mikromobiliteyi daha erişilebilir ve sürdürülebilir hale getirmek için tasarlanmış akıllı bir scooter istasyonudur.
         </p>
       </div>
 
       <!-- Stats row -->
       <div class="proj-stats reveal-up">
-        <div class="proj-stat"><span class="proj-stat-num">100%</span><span class="proj-stat-label">Güneş Enerjili</span></div>
-        <div class="proj-stat"><span class="proj-stat-num">IoT</span><span class="proj-stat-label">Akıllı Kilit</span></div>
-        <div class="proj-stat"><span class="proj-stat-num">2023</span><span class="proj-stat-label">Konsept Yılı</span></div>
-        <div class="proj-stat"><span class="proj-stat-num">Modüler</span><span class="proj-stat-label">Yerleşim</span></div>
+        <div class="proj-stat"><span class="proj-stat-num">100%</span><span class="proj-stat-label" data-i18n="scoot.stat1">Güneş Enerjili</span></div>
+        <div class="proj-stat"><span class="proj-stat-num">IoT</span><span class="proj-stat-label" data-i18n="scoot.stat2">Akıllı Kilit</span></div>
+        <div class="proj-stat"><span class="proj-stat-num">2023</span><span class="proj-stat-label" data-i18n="scoot.stat3">Konsept Yılı</span></div>
+        <div class="proj-stat"><span class="proj-stat-num">Modüler</span><span class="proj-stat-label" data-i18n="scoot.stat4">Yerleşim</span></div>
       </div>
     </div>
   </section>
@@ -103,7 +107,7 @@
       <div class="gallery-row gallery-full reveal-up">
         <div class="gallery-item gallery-cover">
           <img src="assets/scooter-site.png" alt="Scooter Port — Sahil Yerleşimi"/>
-          <div class="gallery-caption">Sahil Yerleşimi — Akıllı Şehir Bağlamı</div>
+          <div class="gallery-caption" data-i18n="scoot.capSite">Sahil Yerleşimi — Akıllı Şehir Bağlamı</div>
         </div>
       </div>
 
@@ -111,11 +115,11 @@
       <div class="gallery-row gallery-half reveal-up">
         <div class="gallery-item gallery-bg-dark">
           <img src="assets/scooter-render.png" alt="Scooter Port — Render"/>
-          <div class="gallery-caption">Şarj İstasyonu — Genel Render</div>
+          <div class="gallery-caption" data-i18n="scoot.capRender">Şarj İstasyonu — Genel Render</div>
         </div>
         <div class="gallery-item gallery-bg-dark">
           <img src="assets/scooter-front.png" alt="Scooter Port — Önden Görünüm"/>
-          <div class="gallery-caption">Önden Görünüm — Çift Yön Şarj</div>
+          <div class="gallery-caption" data-i18n="scoot.capFront">Önden Görünüm — Çift Yön Şarj</div>
         </div>
       </div>
 
@@ -123,7 +127,7 @@
       <div class="gallery-row gallery-full reveal-up">
         <div class="gallery-item gallery-bg-dark">
           <img src="assets/scooter-tech.png" alt="Scooter Port — Teknik Görünüm"/>
-          <div class="gallery-caption">Teknik Görünüm — Sistem Bileşenleri</div>
+          <div class="gallery-caption" data-i18n="scoot.capTech">Teknik Görünüm — Sistem Bileşenleri</div>
         </div>
       </div>
 
@@ -133,27 +137,27 @@
   <!-- ── Key features ── -->
   <section class="proj-section proj-features-section">
     <div class="proj-container">
-      <h2 class="proj-section-title reveal-up">Tasarım Özellikleri</h2>
+      <h2 class="proj-section-title reveal-up" data-i18n="proj_detail.featuresTitle">Tasarım Özellikleri</h2>
       <div class="proj-features reveal-up">
         <div class="proj-feature">
           <div class="proj-feature-icon">☀</div>
-          <h4>Güneş Enerjili</h4>
-          <p>Üst panele entegre monokristal güneş hücreleri, istasyonun kendi kendine yetebilmesini sağlar; şehir şebekesine yük bindirmeden temiz enerji üretir.</p>
+          <h4 data-i18n="scoot.f1Title">Güneş Enerjili</h4>
+          <p data-i18n="scoot.f1Desc">Üst panele entegre monokristal güneş hücreleri, istasyonun kendi kendine yetebilmesini sağlar; şehir şebekesine yük bindirmeden temiz enerji üretir.</p>
         </div>
         <div class="proj-feature">
           <div class="proj-feature-icon">⌬</div>
-          <h4>Modüler Yerleşim</h4>
-          <p>Çift yönlü şarj yuvası ve modüler taşıyıcı kolon yapısı sayesinde farklı kentsel mekânlara — sahil, park, AVM çevresi — kolayca uyarlanabilir.</p>
+          <h4 data-i18n="scoot.f2Title">Modüler Yerleşim</h4>
+          <p data-i18n="scoot.f2Desc">Çift yönlü şarj yuvası ve modüler taşıyıcı kolon yapısı sayesinde farklı kentsel mekânlara — sahil, park, AVM çevresi — kolayca uyarlanabilir.</p>
         </div>
         <div class="proj-feature">
           <div class="proj-feature-icon">⌖</div>
-          <h4>Akıllı Kilit & RFID</h4>
-          <p>OK/RFID ekranı ve uygulama entegrasyonu ile temassız kilit ve kullanıcı doğrulama; ödeme ve kullanım geçmişi mobil uygulama üzerinden takip edilir.</p>
+          <h4 data-i18n="scoot.f3Title">Akıllı Kilit & RFID</h4>
+          <p data-i18n="scoot.f3Desc">OK/RFID ekranı ve uygulama entegrasyonu ile temassız kilit ve kullanıcı doğrulama; ödeme ve kullanım geçmişi mobil uygulama üzerinden takip edilir.</p>
         </div>
         <div class="proj-feature">
           <div class="proj-feature-icon">◐</div>
-          <h4>Reklam &amp; Bilgi Paneli</h4>
-          <p>Tempered cam reklam yüzeyi ve çift yön bilgi LED'i; istasyonu sadece bir şarj noktası değil, kentsel iletişim ve yön bulma altyapısının parçası yapar.</p>
+          <h4 data-i18n="scoot.f4Title">Reklam &amp; Bilgi Paneli</h4>
+          <p data-i18n="scoot.f4Desc">Tempered cam reklam yüzeyi ve çift yön bilgi LED'i; istasyonu sadece bir şarj noktası değil, kentsel iletişim ve yön bulma altyapısının parçası yapar.</p>
         </div>
       </div>
     </div>
@@ -162,7 +166,7 @@
   <!-- ── Back link ── -->
   <section class="proj-back-section">
     <div class="proj-container">
-      <a href="index.html#work" class="proj-back-btn reveal-up">← Tüm Projelere Dön</a>
+      <a href="index.html#work" class="proj-back-btn reveal-up" data-i18n="proj_detail.back">← Tüm Projelere Dön</a>
     </div>
   </section>
 
@@ -170,7 +174,7 @@
   <footer class="footer">
     <div class="footer-inner">
       <img src="assets/logo.png" alt="HUŞ Logo" class="site-logo-img footer-logo-img"/>
-      <p>© 2024 Halil Utku Şimşek — Tüm hakları saklıdır.</p>
+      <p data-i18n="proj_detail.footer">© 2024 Halil Utku Şimşek — Tüm hakları saklıdır.</p>
     </div>
   </footer>
 
