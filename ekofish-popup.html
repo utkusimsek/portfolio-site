@@ -18,6 +18,21 @@
     @media (max-width: 768px) {
       .proj-gallery .gallery-full .gallery-item { aspect-ratio: 4/3; }
     }
+
+    /* Long multi-paragraph overview — left-align for readability */
+    .proj-overview { text-align: left; max-width: 880px; }
+    .proj-overview-label { text-align: center; }
+    .proj-overview-text { font-size: 1rem; line-height: 1.8; }
+    .proj-overview-text > strong:first-child {
+      display: block;
+      font-family: var(--font-serif);
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--white);
+      text-align: center;
+      margin-bottom: 28px;
+      letter-spacing: .005em;
+    }
   </style>
   <script defer src="i18n.js"></script>
 </head>
