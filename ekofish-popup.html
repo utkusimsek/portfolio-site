@@ -10,13 +10,21 @@
   <link rel="stylesheet" href="style.css"/>
   <link rel="stylesheet" href="project.css"/>
   <style>
-    /* Ekofish gallery — landscape diagrams need friendlier ratios */
-    .proj-gallery .gallery-full .gallery-item { aspect-ratio: 16/9; }
-    .proj-gallery .gallery-item.gallery-bg-light img,
-    .proj-gallery .gallery-item.gallery-bg-dark img { object-fit: contain; padding: 14px; }
-    .proj-gallery .gallery-item.gallery-cover img { object-fit: cover; padding: 0; }
-    @media (max-width: 768px) {
-      .proj-gallery .gallery-full .gallery-item { aspect-ratio: 4/3; }
+    /* Ekofish gallery — all source images are 5:3 (1.67), so we match exactly:
+       no cropping, no letterboxing — pixel-perfect fit. */
+    .proj-gallery .gallery-item,
+    .proj-gallery .gallery-full .gallery-item { aspect-ratio: 5/3; }
+    .proj-gallery .gallery-item img { object-fit: cover; padding: 0; }
+
+    /* Slightly more breathing room between rows for a calmer rhythm */
+    .proj-gallery .gallery-row { gap: 18px; margin-bottom: 18px; }
+
+    /* Captions: keep readable but a hair softer (images already have their own
+       on-image titles, so caption is just a subtle context label) */
+    .proj-gallery .gallery-caption {
+      background: linear-gradient(transparent, rgba(0,0,0,.65));
+      font-size: .82rem;
+      letter-spacing: .04em;
     }
 
     /* Long multi-paragraph overview — left-align for readability */
@@ -117,9 +125,9 @@
   <section class="proj-gallery">
     <div class="proj-container">
 
-      <!-- Full-width hero render -->
+      <!-- Hero render -->
       <div class="gallery-row gallery-full reveal-up">
-        <div class="gallery-item gallery-cover">
+        <div class="gallery-item">
           <img src="assets/eko-cover.png" alt="Ekofish 200ft — Render"/>
           <div class="gallery-caption" data-i18n="eko.capCover">Genel Render — 60.9m Trol Gemisi</div>
         </div>
@@ -127,7 +135,7 @@
 
       <!-- Top-down components diagram -->
       <div class="gallery-row gallery-full reveal-up">
-        <div class="gallery-item gallery-bg-dark">
+        <div class="gallery-item">
           <img src="assets/eko-top.jpg" alt="Ekofish 200ft — Üstten Görünüm"/>
           <div class="gallery-caption" data-i18n="eko.capTop">Üstten Görünüm — Sistem Bileşenleri</div>
         </div>
@@ -135,19 +143,23 @@
 
       <!-- Underwater fishing process -->
       <div class="gallery-row gallery-full reveal-up">
-        <div class="gallery-item gallery-bg-dark">
+        <div class="gallery-item">
           <img src="assets/eko-process.png" alt="Avlanma Süreci"/>
           <div class="gallery-caption" data-i18n="eko.capProcess">Avlanma Süreci — Su Altı Operasyonu</div>
         </div>
       </div>
 
-      <!-- Features 4-panel + sorting steps -->
-      <div class="gallery-row gallery-half reveal-up">
-        <div class="gallery-item gallery-bg-dark">
+      <!-- System features panel — full width so 4 sub-panels are readable -->
+      <div class="gallery-row gallery-full reveal-up">
+        <div class="gallery-item">
           <img src="assets/eko-features.png" alt="Sistem Özellikleri"/>
           <div class="gallery-caption" data-i18n="eko.capFeatures">Sistem Özellikleri</div>
         </div>
-        <div class="gallery-item gallery-bg-dark">
+      </div>
+
+      <!-- Sorting sequence — full width -->
+      <div class="gallery-row gallery-full reveal-up">
+        <div class="gallery-item">
           <img src="assets/eko-sorting.png" alt="Avlama Sırası"/>
           <div class="gallery-caption" data-i18n="eko.capSorting">Avlama &amp; Ayıklama Sırası</div>
         </div>
