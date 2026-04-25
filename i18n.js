@@ -66,7 +66,7 @@ const I18N = {
       crea: {
         meta1: "2022", meta2: "Çalışma Ekipmanı",
         title: "Crea Light",
-        desc: "Uzatılabilir bilgisayar çalışma aydınlatması. Esnek kol mekanizması, farklı çalışma yüzeylerinde konumlandırılabilir tutucu sistemi ve göz yorgunluğunu azaltan difüz ışık dağılımıyla uzun süreli çalışma konforunu hedefler."
+        desc: "Uzun süreli bilgisayar kullanımında göz sağlığını korumak ve çalışma konforunu artırmak için tasarlanmış akıllı ve ergonomik masa aydınlatması. Uzayabilir form, ayarlanabilir renk sıcaklığı ve entegre kamera kapatıcısı ile çalışma alanını sadeleştirir."
       },
       scoot: {
         meta1: "2023", meta2: "Ulaşım / Kentsel",
@@ -137,7 +137,8 @@ const I18N = {
       pb:   "45ft Multi Hardtop Powerboat — Halil Utku Şimşek",
       kmem: "KMEM Pop-up Mağaza — Halil Utku Şimşek",
       scoot:"Scooter Port — Halil Utku Şimşek",
-      eko:  "Ekofish 200ft — Halil Utku Şimşek"
+      eko:  "Ekofish 200ft — Halil Utku Şimşek",
+      crea: "Crea Light — Halil Utku Şimşek"
     },
     proj_detail: {
       breadcrumbHome: "Ana Sayfa",
@@ -229,6 +230,28 @@ const I18N = {
       f3Desc: "Ayıklama düzeneği balıkları boyutlarına göre ayırır; ölçülere uymayan balıklar canlı olarak doğal ortamlarına geri bırakılır.",
       f4Title: "Ray Sistemli Havuz",
       f4Desc: "Güvertede ray sistemiyle kapatılabilen havuz, estetik ve fonksiyonelliği bir arada sunar; alanı koruma ve operasyona uygun şekilde optimize eder."
+    },
+    crea: {
+      breadcrumb: "Crea Light",
+      badge: "Çalışma Ekipmanı",
+      year: "2022 · Ergonomi",
+      title: "Crea Light<br/><em>Akıllı Çalışma Aydınlatması</em>",
+      overview: "<strong>Crea Light – Akıllı ve Ergonomik Çalışma Aydınlatması</strong><br/><br/>Crea Light, uzun süreli bilgisayar kullanımında göz sağlığını korumak ve çalışma konforunu artırmak amacıyla tasarlanmış yenilikçi bir masa aydınlatma çözümüdür. Özellikle 40 yaş ve üzeri kullanıcıların yaşadığı odaklanma ve görme zorluklarını hedef alarak geliştirilmiş, ayarlanabilir yapısı sayesinde her kullanıcıya özel bir deneyim sunar.<br/><br/>Uzayabilir formu ile farklı ekran boyutlarına ve çalışma alanlarına kolayca adapte olan Crea Light; aydınlatma açısı, renk sıcaklığı ve parlaklık ayarları ile kişiselleştirilebilir bir kullanım sağlar. Bu sayede göz yorgunluğu azaltılır, ekran karşısında geçirilen süre daha verimli ve konforlu hale getirilir.<br/><br/>Üründe kullanılan dayanıklı alüminyum gövde, uzun ömürlü kullanım sunarken estetik ve modern bir görünüm sağlar. Yüksek renk doğruluğuna sahip LED aydınlatma sistemi, çalışma ortamında dengeli ve homojen bir ışık dağılımı oluşturarak göz sağlığını destekler.<br/><br/>Entegre kamera kapatıcısı ve modüler bağlantı yapısı sayesinde kullanıcı güvenliği ve pratiklik ön planda tutulmuştur. Type-C bağlantı altyapısı ile modern cihazlarla tam uyum sağlayan ürün, kompakt ve işlevsel tasarımıyla masa düzenini sadeleştirir.<br/><br/>Crea Light, teknoloji ve ergonomiyi bir araya getirerek çalışma alanlarını daha sağlıklı, daha verimli ve daha estetik hale getiren yeni nesil bir aydınlatma çözümüdür.",
+      stat1: "Renk Sıcaklığı", stat2: "Bağlantı", stat3: "mAh Pil", stat4: "Gövde",
+      capCover: "Çalışma Ortamı — Monitör Üstü Yerleşim",
+      capRender: "3D Render — Genel Görünüm",
+      capFront: "Önden Görünüm — Kontrol Düğmeleri",
+      capSide: "Yandan — Bağlantı Mekanizması",
+      capTop: "Üstten — Kamera Kapatıcı Detayı",
+      capTech: "Patlak Görünüm — Bileşen Analizi",
+      f1Title: "Uzayabilir Form",
+      f1Desc: "Farklı ekran boyutlarına ve çalışma alanlarına uyum sağlayan teleskobik kol; genişlik kullanıcının monitörüne özel olarak ayarlanır.",
+      f2Title: "Ayarlanabilir Aydınlatma",
+      f2Desc: "2700–6500K renk sıcaklığı ve kademeli parlaklık kontrolü; göz yorgunluğunu azaltan dengeli, homojen bir ışık dağılımı sunar.",
+      f3Title: "Entegre Kamera Kapatıcı",
+      f3Desc: "Ürünün üstüne entegre edilmiş fiziksel kamera kapatıcısı; kullanıcı gizliliğini garanti altına alırken ek bir aksesuar gerektirmez.",
+      f4Title: "Alüminyum Gövde & USB-C",
+      f4Desc: "Dayanıklı alüminyum gövde uzun ömür ve premium hissiyat verir; Type-C bağlantı modern cihazlarla tam uyum sağlar."
     }
   },
 
@@ -291,7 +314,7 @@ const I18N = {
       crea: {
         meta1: "2022", meta2: "Workspace Equipment",
         title: "Crea Light",
-        desc: "An extendable computer workstation light. A flexible arm mechanism, repositionable holder system for different surfaces and a diffused light distribution that reduces eye strain support long working sessions."
+        desc: "A smart, ergonomic desk light designed to protect eye health during long computer sessions and improve working comfort. An extendable form, adjustable colour temperature and an integrated camera cover keep the workspace clean and functional."
       },
       scoot: {
         meta1: "2023", meta2: "Mobility / Urban",
@@ -361,7 +384,8 @@ const I18N = {
       pb:   "45ft Multi Hardtop Powerboat — Halil Utku Şimşek",
       kmem: "KMEM Pop-up Store — Halil Utku Şimşek",
       scoot:"Scooter Port — Halil Utku Şimşek",
-      eko:  "Ekofish 200ft — Halil Utku Şimşek"
+      eko:  "Ekofish 200ft — Halil Utku Şimşek",
+      crea: "Crea Light — Halil Utku Şimşek"
     },
     proj_detail: {
       breadcrumbHome: "Home",
@@ -453,6 +477,28 @@ const I18N = {
       f3Desc: "An on-board sorting mechanism separates fish by size; specimens below the legal threshold are returned alive to their natural habitat.",
       f4Title: "Rail-System Pool",
       f4Desc: "A deck pool that can be sealed by a rail system blends aesthetics with functionality — preserving the area and optimising it for operations."
+    },
+    crea: {
+      breadcrumb: "Crea Light",
+      badge: "Workspace Equipment",
+      year: "2022 · Ergonomics",
+      title: "Crea Light<br/><em>Smart Workstation Light</em>",
+      overview: "<strong>Crea Light — Smart and Ergonomic Workstation Lighting</strong><br/><br/>Crea Light is an innovative desk-lighting solution designed to protect eye health during long computer sessions and improve working comfort. Developed with users aged 40 and above — and the focus and vision difficulties they often experience — in mind, its adjustable structure offers a tailored experience for every user.<br/><br/>With its extendable form, Crea Light easily adapts to different screen sizes and work areas. Customisable lighting angle, colour temperature and brightness make screen time more efficient and comfortable, reducing eye strain throughout the day.<br/><br/>The durable aluminium body delivers long-term use while providing a clean, modern look. A high-CRI LED lighting system creates balanced, even light distribution across the workspace and supports eye health.<br/><br/>An integrated camera cover and modular connection structure prioritise user privacy and practicality. Full Type-C compatibility brings the product in line with modern devices, while its compact, functional design declutters the desk.<br/><br/>By bringing technology and ergonomics together, Crea Light is a next-generation lighting solution that makes workspaces healthier, more productive and more refined.",
+      stat1: "Colour Temp.", stat2: "Connector", stat3: "mAh Battery", stat4: "Body",
+      capCover: "Workspace — Above the Monitor",
+      capRender: "3D Render — General View",
+      capFront: "Front View — Control Buttons",
+      capSide: "Side View — Connection Mechanism",
+      capTop: "Top View — Camera Cover Detail",
+      capTech: "Exploded View — Component Analysis",
+      f1Title: "Extendable Form",
+      f1Desc: "A telescopic arm that adapts to different screen sizes and work areas — the width can be tuned to the user's specific monitor.",
+      f2Title: "Adjustable Lighting",
+      f2Desc: "2700–6500K colour temperature and stepped brightness control — balanced, even light distribution that reduces eye strain.",
+      f3Title: "Integrated Camera Cover",
+      f3Desc: "A physical camera cover integrated into the body guarantees user privacy without requiring an extra accessory.",
+      f4Title: "Aluminium Body & USB-C",
+      f4Desc: "A durable aluminium body delivers longevity and a premium feel; Type-C connectivity ensures full compatibility with modern devices."
     }
   }
 };
