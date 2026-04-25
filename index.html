@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Halil Utku Şimşek — Endüstriyel Tasarımcı</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ─── NAV ─── -->
+  <nav id="nav">
+    <div class="nav-inner">
+      <a class="logo" href="#"><img src="assets/logo.png" alt="HUŞ Logo" class="site-logo-img"/></a>
+      <ul class="nav-links">
+        <li><a href="#work">Projeler</a></li>
+        <li><a href="#about">Hakkımda</a></li>
+        <li><a href="#skills">Yetkinlikler</a></li>
+        <li><a href="#contact">İletişim</a></li>
+      </ul>
+      <div class="nav-right">
+        <button class="theme-toggle" id="themeToggle" aria-label="Tema değiştir">
+          <span class="theme-icon theme-icon-dark">
+            <svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M10 2v2M10 16v2M2 10h2M16 10h2M4.22 4.22l1.42 1.42M14.36 14.36l1.42 1.42M4.22 15.78l1.42-1.42M14.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </span>
+          <span class="theme-icon theme-icon-light">
+            <svg viewBox="0 0 20 20" fill="none"><path d="M17 11.5A7 7 0 1 1 8.5 3a5 5 0 0 0 8.5 8.5z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <span class="theme-label">Açık Mod</span>
+        </button>
+        <button class="burger" id="burger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ─── AI SHOWCASE — Tasarım Süreci video loop ─── -->
+  <section id="ai-showcase">
+    <div class="media-layer active">
+      <video src="assets/hero-intro.mp4" autoplay muted loop playsinline></video>
+    </div>
+
+    <div class="showcase-overlay-bottom"></div>
+    <div class="showcase-overlay-top"></div>
+
+    <div class="showcase-content">
+      <h1 class="showcase-title">
+        Hayal et.<br /><em>Tasarla.</em><br />Gerçeğe dönüştür.
+      </h1>
+    </div>
+  </section>
+
+  <!-- ─── GLOBAL PARTICLE BG (behind everything) ─── -->
+  <canvas id="particleCanvas"></canvas>
+
+  <!-- ─── HERO ─── -->
+  <section id="hero">
+    <div class="hero-content">
+      <div class="hero-tag reveal-up delay-0">Endüstriyel Tasarımcı · İzmir</div>
+      <h1 class="hero-title reveal-up delay-1">
+        Halil Utku<br /><em>Şimşek</em>
+      </h1>
+      <p class="hero-sub reveal-up delay-2">
+        Yat tasarımından endüstriyel ürünlere, kentsel mobilyadan
+        kamusal mekâna — teknik çizim ve ileri görselleştirme uzmanlığıyla
+        yenilikçi, estetik ve kullanıcı odaklı tasarımlar yaratıyorum.
+      </p>
+      <div class="hero-cta reveal-up delay-3">
+        <a href="#work" class="btn btn-primary">Projeleri Gör</a>
+        <a href="#contact" class="btn btn-ghost">İletişime Geç</a>
+      </div>
+    </div>
+    <div class="hero-scroll-hint">
+      <span>Aşağı kaydır</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ─── LOGO MARQUEE ─── -->
+  <div class="marquee-wrap text-marquee-wrap">
+    <div class="marquee-fade marquee-fade-l"></div>
+    <div class="marquee-fade marquee-fade-r"></div>
+    <div class="text-marquee-track">
+
+      <!-- SET 1 -->
+      <span class="mq-item"><img src="assets/logos/logo10.png" alt="Figma" title="Figma"/></span>
+      <span class="mq-item"><img src="assets/logos/logo01.png" alt="Twinmotion" title="Twinmotion"/></span>
+      <span class="mq-item"><img src="assets/logos/logo02.png" alt="Procreate" title="Procreate"/></span>
+      <span class="mq-item"><img src="assets/logos/logo03.png" alt="Photoshop" title="Photoshop"/></span>
+      <span class="mq-item"><img src="assets/logos/logo04.png" alt="KeyShot" title="KeyShot"/></span>
+      <span class="mq-item"><img src="assets/logos/logo05.png" alt="V-Ray" title="V-Ray"/></span>
+      <span class="mq-item"><img src="assets/logos/logo07.png" alt="3ds Max" title="3ds Max"/></span>
+      <span class="mq-item"><img src="assets/logos/logo08.png" alt="Rhino 3D" title="Rhino 3D"/></span>
+      <span class="mq-item"><img src="assets/logos/grasshopper.jpg" alt="Grasshopper" title="Grasshopper"/></span>
+      <span class="mq-item"><img src="assets/logos/logo09.png" alt="Fusion 360" title="Fusion 360"/></span>
+
+      <!-- SET 2 (duplicate for infinite loop) -->
+      <span class="mq-item"><img src="assets/logos/logo10.png" alt="Figma" title="Figma"/></span>
+      <span class="mq-item"><img src="assets/logos/logo01.png" alt="Twinmotion" title="Twinmotion"/></span>
+      <span class="mq-item"><img src="assets/logos/logo02.png" alt="Procreate" title="Procreate"/></span>
+      <span class="mq-item"><img src="assets/logos/logo03.png" alt="Photoshop" title="Photoshop"/></span>
+      <span class="mq-item"><img src="assets/logos/logo04.png" alt="KeyShot" title="KeyShot"/></span>
+      <span class="mq-item"><img src="assets/logos/logo05.png" alt="V-Ray" title="V-Ray"/></span>
+      <span class="mq-item"><img src="assets/logos/logo07.png" alt="3ds Max" title="3ds Max"/></span>
+      <span class="mq-item"><img src="assets/logos/logo08.png" alt="Rhino 3D" title="Rhino 3D"/></span>
+      <span class="mq-item"><img src="assets/logos/grasshopper.jpg" alt="Grasshopper" title="Grasshopper"/></span>
+      <span class="mq-item"><img src="assets/logos/logo09.png" alt="Fusion 360" title="Fusion 360"/></span>
+
+    </div>
+  </div>
+
+    <!-- ─── WORK ─── -->
+  <section id="work">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <span class="section-tag">Seçili Çalışmalar</span>
+        <h2 class="section-title">Projeler</h2>
+      </div>
+
+      <!-- Kategori 1: Yat Tasarımı -->
+      <div class="category-block">
+        <div class="category-label reveal-up">
+          <span class="cat-icon">⚓</span>
+          <span>Yat Tasarımı</span>
+        </div>
+        <div class="projects-grid">
+
+          <article class="project-card reveal-card wide" data-index="0" onclick="window.location='45ft-powerboat.html'" style="cursor:pointer">
+            <div class="project-visual p1" style="position:relative;overflow:hidden;">
+              <img src="assets/pb-cover.png" alt="45ft Powerboat" class="project-cover-img"/>
+              <div class="project-shape"></div>
+              <div class="project-badge">Diploma Projesi</div>
+              <div class="project-overlay"><span>Detayları Gör →</span></div>
+            </div>
+            <div class="project-info">
+              <div class="project-meta">
+                <span>2023</span><span>KLAN Studio</span>
+              </div>
+              <h3>45ft Multi Hardtop Powerboat</h3>
+              <p>Klan Studio tarafından tasarlanan 14 metre uzunluğunda tender tipi powerboat konsepti. Elektrikli hardtop, modüler güverte düzeni ve tam donanımlı alt kabin ile hafta sonu kullanıcılarına yönelik yüksek performanslı konfor çözümü.</p>
+              <div class="project-tags">
+                <span>Rhino 3D</span><span>V-Ray</span><span>AutoCAD</span><span>Naval Architecture</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card reveal-card" data-index="1">
+            <div class="project-visual p2">
+              <div class="project-shape"></div>
+              <div class="project-badge">Yarışma</div>
+              <div class="project-overlay"><span>Detayları Gör →</span></div>
+            </div>
+            <div class="project-info">
+              <div class="project-meta">
+                <span>2022</span><span>12. Ulusal Gemi &amp; Yat Tasarım Yarışması</span>
+              </div>
+              <h3>Ekofish 200ft</h3>
+              <p>Sürdürülebilir balıkçılık için tasarlanmış teknoloji odaklı 200ft
+                 araştırma ve üretim gemisi. Atık azaltımı, enerji verimliliği
+                 ve modernize edilmiş operasyon alanları.</p>
+              <div class="project-tags">
+                <span>Rhino 3D</span><span>Twinmotion</span><span>Sürdürülebilir</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card reveal-card" data-index="2">
+            <div class="project-visual p3">
+              <div class="project-shape"></div>
+              <div class="project-overlay"><span>Detayları Gör →</span></div>
+            </div>
+            <div class="project-info">
+              <div class="project-meta">
+                <span>2021–2022</span><span>Salmakis Yachts / Neta Marine</span>
+              </div>
+              <h3>42,5m Motor Yat &amp; 45m Gulet</h3>
+              <p>Salmakis Yachts için 45m Gulet eskizleri ve iç mekân kavramları.
+                 Neta Marine bünyesinde 42,5m motor yat iç mekân geliştirme
+                 çalışmaları; malzeme seçimi ve dekor planlaması.</p>
+              <div class="project-tags">
+                <span>Rhino</span><span>KeyShot</span><span>Figma</span><span>İç Mekân</span>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+
+      <!-- Kategori 2: Endüstriyel Ürün Tasarımı -->
+      <div class="category-block">
+        <div class="category-label reveal-up">
+          <span class="cat-icon">◈</span>
+          <span>Endüstriyel Ürün Tasarımı</span>
+        </div>
+        <div class="projects-grid">
+
+          <article class="project-card reveal-card" data-index="3">
+            <div class="project-visual p4">
+              <div class="project-shape"></div>
+              <div class="project-overlay"><span>Detayları Gör →</span></div>
+            </div>
+            <div class="project-info">
+              <div class="project-meta">
+                <span>2023</span><span>Aydınlatma</span>
+              </div>
+              <h3>Foldesk Lamp</h3>
+              <p>Profesyoneller için tasarlanmış katlanabilir masa lambası.
+                 Taşınabilirlik ve ergonomi önceliklendirilerek geliştirilen
+                 minimalist form dili, ayarlanabilir ışık açısı ve kompakt depolama.</p>
+              <div class="project-tags">
+                <span>Fusion 360</span><span>KeyShot</span><span>CMF</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card reveal-card" data-index="4">
+            <div class="project-visual p5">
+              <div class="project-shape"></div>
+              <div class="project-overlay"><span>Detayları Gör →</span></div>
+            </div>
+            <div class="project-info">
+              <div class="project-meta">
+                <span>2022</span><span>Alet Tasarımı</span>
+              </div>
+              <h3>Beo Minisaw</h3>
+              <p>Bang &amp; Olufsen marka kimliğine uygun lüks mini el testeresi.
+                 Skandinavya estetiği ile yüksek performanslı mühendislik
+                 çözümlerini birleştiren premium el aleti konsepti.</p>
+              <div class="project-tags">
+                <span>Rhino</span><span>V-Ray</span><span>Marka Tasarımı</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card reveal-card wide" data-index="5">
+            <div class="project-visual p6">
+              <div class="project-shape"></div>
+              <div class="project-overlay"><span>Detayları Gör →</span></div>
+            </div>
+            <div class="project-info">
+              <div class="project-meta">
+                <span>2022</span><span>Çalışma Ekipmanı</span>
+              </div>
+              <h3>Crea Light</h3>
+              <p>Uzatılabilir bilgisayar çalışma aydınlatması. Esnek kol mekanizması,
+                 farklı çalışma yüzeylerinde konumlandırılabilir tutucu sistemi ve
+                 göz yorgunluğunu azaltan difüz ışık dağılımıyla uzun süreli
+                 çalışma konforunu hedefler.</p>
+              <div class="project-tags">
+                <span>Fusion 360</span><span>KeyShot</span><span>Ergonomi</span><span>UX</span>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+
+      <!-- Kategori 3: Kentsel ve Kamusal Tasarım -->
+      <div class="category-block">
+        <div class="category-label reveal-up">
+          <span class="cat-icon">◉</span>
+          <span>Kentsel &amp; Kamusal Tasarım</span>
+        </div>
+        <div class="projects-grid">
+
+          <article class="project-card reveal-card" data-index="6" onclick="window.location='scooter-popup.html'" style="cursor:pointer">
+            <div class="project-visual p7" style="position:relative;overflow:hidden;">
+              <img src="assets/scooter-cover.png" alt="Scooter Port" class="project-cover-img"/>
+              <div class="project-shape"></div>
+              <div class="project-overlay"><span>Detayları Gör →</span></div>
+            </div>
+            <div class="project-info">
+              <div class="project-meta">
+                <span>2023</span><span>Ulaşım / Kentsel</span>
+              </div>
+              <h3>Scooter Port</h3>
+              <p>Şehir içi mikromobiliteyi daha erişilebilir ve sürdürülebilir
+                 hale getirmek için tasarlanmış akıllı bir scooter istasyonu.
+                 Mobil uygulama ve QR/RFID entegrasyonu sayesinde hızlı kiralama,
+                 güneş enerjisi destekli altyapı ile çevre dostu bir çözüm.</p>
+              <div class="project-tags">
+                <span>Rhino</span><span>Twinmotion</span><span>IoT</span><span>UX/UI</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card reveal-card" data-index="7" onclick="window.location='kmem-popup.html'" style="cursor:pointer">
+            <div class="project-visual p8" style="position:relative;overflow:hidden;">
+              <img src="assets/kmem-cover.png" alt="KMEM Pop-up Mağaza" class="project-cover-img"/>
+              <div class="project-shape"></div>
+              <div class="project-overlay"><span>Detayları Gör →</span></div>
+            </div>
+            <div class="project-info">
+              <div class="project-meta">
+                <span>2022</span><span>Perakende / Kamusal Alan</span>
+              </div>
+              <h3>KMEM Pop-up Mağaza</h3>
+              <p>Kurukahveci Mehmet Efendi için tasarlanan bu pop-up mağaza,
+                 markanın geleneksel kahve kültürünü modern ve deneyim odaklı
+                 bir perakende anlayışıyla yeniden yorumlar. Dairesel formu
+                 sayesinde farklı yönlerden erişim sağlayarak açık hava
+                 AVM'lerde maksimum görünürlük sunar. Sıcak malzeme paleti,
+                 güçlü marka dili ve sürdürülebilir detaylarla desteklenen
+                 tasarım; kullanıcıya sadece bir ürün değil, etkileşimli ve
+                 akılda kalıcı bir kahve deneyimi sunmayı hedefler.</p>
+              <div class="project-tags">
+                <span>Rhino</span><span>V-Ray</span><span>Marka Tasarımı</span>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── ABOUT ─── -->
+  <section id="about">
+    <div class="container about-inner">
+      <div class="about-visual reveal-left">
+        <div class="about-img-wrap">
+          <div class="about-img-placeholder">
+            <img src="assets/profile.png" alt="Halil Utku Şimşek — Portre" class="about-portrait"/>
+          </div>
+          <div class="about-accent"></div>
+        </div>
+        <!-- Education card -->
+        <div class="edu-card reveal-up delay-2">
+          <div class="edu-icon">🎓</div>
+          <div>
+            <strong>Yaşar Üniversitesi</strong>
+            <span>Endüstriyel Tasarım · 2023</span>
+            <span class="edu-gpa">GPA: 3.11 / 4.00</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-text reveal-right">
+        <span class="section-tag">Hakkımda</span>
+        <h2>Tasarımın dili<br /><em>her yerde</em> konuşur</h2>
+        <p>Yaşar Üniversitesi Endüstriyel Tasarım bölümünden 3.11 ortalama ile
+           mezun oldum. Disiplinlerarası çalışmaya ve kullanıcı merkezli tasarım
+           ilkelerine olan inancım, her projenin temelini oluşturuyor.</p>
+        <p>Neta Marine, Salmakis Yachts ve SKY Naval Architects bünyesinde
+           edindiğim deneyimlerle yat tasarımında güçlü bir uzmanlık geliştirdim.
+           Rhino, V-Ray ve Twinmotion gibi araçlarla hem kavramsal hem de
+           üretime yakın çözümler üretiyorum.</p>
+
+        <!-- Experience Timeline -->
+        <div class="experience-list">
+          <div class="exp-item reveal-up delay-0">
+            <div class="exp-dot"></div>
+            <div>
+              <strong>Neta Marine</strong>
+              <span>Tasarım Stajyeri · 42,5m Motor Yat iç mekân geliştirme</span>
+            </div>
+          </div>
+          <div class="exp-item reveal-up delay-1">
+            <div class="exp-dot"></div>
+            <div>
+              <strong>Salmakis Yachts</strong>
+              <span>Tasarım Stajyeri · 45m Gulet eskiz ve konsept çalışmaları</span>
+            </div>
+          </div>
+          <div class="exp-item reveal-up delay-2">
+            <div class="exp-dot"></div>
+            <div>
+              <strong>SKY Naval Architects</strong>
+              <span>Tasarım Stajyeri · Naval mimari ve teknik çizim</span>
+            </div>
+          </div>
+          <div class="exp-item reveal-up delay-3">
+            <div class="exp-dot"></div>
+            <div>
+              <strong>MegCustom Marble</strong>
+              <span>Tasarım Desteği · Malzeme ve yüzey tasarımı</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-stats">
+          <div class="stat reveal-up delay-0">
+            <span class="stat-num" data-target="8">0</span>+
+            <span class="stat-label">Tamamlanan Proje</span>
+          </div>
+          <div class="stat reveal-up delay-1">
+            <span class="stat-num" data-target="4">0</span>
+            <span class="stat-label">Staj Deneyimi</span>
+          </div>
+          <div class="stat reveal-up delay-2">
+            <span class="stat-num" data-target="3">0</span>.<span class="stat-num-dec">11</span>
+            <span class="stat-label">Mezuniyet GPA</span>
+          </div>
+          <div class="stat reveal-up delay-3">
+            <span class="stat-num" data-target="4">0</span>
+            <span class="stat-label">Sertifika</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── SKILLS ─── -->
+  <section id="skills">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <span class="section-tag">Yetkinlikler</span>
+        <h2 class="section-title">Araçlar &amp; Uzmanlık</h2>
+      </div>
+      <div class="skills-grid">
+
+        <div class="skill-block reveal-up delay-0">
+          <div class="skill-icon">
+            <svg viewBox="0 0 48 48" fill="none"><path d="M8 40L24 8l16 32" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 30h22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+          <h4>3D Modelleme</h4>
+          <ul>
+            <li>Rhino 3D <span class="bar"><span style="--w:96%"></span></span></li>
+            <li>Fusion 360 <span class="bar"><span style="--w:88%"></span></span></li>
+            <li>AutoCAD <span class="bar"><span style="--w:85%"></span></span></li>
+            <li>Grasshopper <span class="bar"><span style="--w:75%"></span></span></li>
+          </ul>
+        </div>
+
+        <div class="skill-block reveal-up delay-1">
+          <div class="skill-icon">
+            <svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="14" stroke="currentColor" stroke-width="2"/><path d="M17 31l4-8 3 5 3-3 5 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h4>Görselleştirme &amp; Render</h4>
+          <ul>
+            <li>V-Ray <span class="bar"><span style="--w:93%"></span></span></li>
+            <li>KeyShot <span class="bar"><span style="--w:90%"></span></span></li>
+            <li>Twinmotion <span class="bar"><span style="--w:85%"></span></span></li>
+            <li>Procreate <span class="bar"><span style="--w:80%"></span></span></li>
+          </ul>
+        </div>
+
+        <div class="skill-block reveal-up delay-2">
+          <div class="skill-icon">
+            <svg viewBox="0 0 48 48" fill="none"><rect x="8" y="14" width="32" height="20" rx="3" stroke="currentColor" stroke-width="2"/><path d="M18 14V10M30 14V10M12 34l6 4h12l6-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+          <h4>UI &amp; Sunum</h4>
+          <ul>
+            <li>Figma <span class="bar"><span style="--w:82%"></span></span></li>
+            <li>Adobe Photoshop <span class="bar"><span style="--w:78%"></span></span></li>
+            <li>Procreate (Sketch) <span class="bar"><span style="--w:88%"></span></span></li>
+            <li>InDesign <span class="bar"><span style="--w:70%"></span></span></li>
+          </ul>
+        </div>
+
+        <div class="skill-block reveal-up delay-3">
+          <div class="skill-icon">
+            <svg viewBox="0 0 48 48" fill="none"><path d="M24 8v10M24 30v10M8 24h10M30 24h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="24" cy="24" r="6" stroke="currentColor" stroke-width="2"/></svg>
+          </div>
+          <h4>Sertifikalar &amp; Lisanslar</h4>
+          <ul class="cert-list">
+            <li><span class="cert-badge">✓</span> Yat Tasarımı Sertifikası</li>
+            <li><span class="cert-badge">✓</span> İç Mekân Tasarımı Sertifikası</li>
+            <li><span class="cert-badge">✓</span> Grasshopper Sertifikası</li>
+            <li><span class="cert-badge">✓</span> V-Ray Uzmanlık Sertifikası</li>
+            <li><span class="cert-badge">⚓</span> Amatör Kaptan Ehliyeti</li>
+            <li><span class="cert-badge">🚗</span> B Sınıfı Sürücü Belgesi</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── TESTIMONIAL ─── -->
+  <section id="testimonial">
+    <div class="container">
+      <div class="testimonial-wrap reveal-up">
+        <blockquote>
+          <p>Yat tasarımı ile endüstriyel ürün tasarımını aynı titizlikle ele alan,
+             teknik derinliği ile estetik duyarlılığını her projede dengeleyen bir
+             tasarımcı olarak çalışmalarımda kullanıcı deneyimini her zaman merkeze alıyorum.</p>
+          <footer>
+            <strong>Halil Utku Şimşek</strong>
+            <span>Endüstriyel Tasarımcı · Yaşar Üniversitesi, 2023</span>
+          </footer>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CONTACT ─── -->
+  <section id="contact">
+    <div class="container contact-inner">
+      <div class="contact-text reveal-left">
+        <span class="section-tag">İletişim</span>
+        <h2>Birlikte bir şey<br /><em>tasarlayalım</em></h2>
+        <p>Yeni bir proje fikriniz mi var? Yat iç mekânından ürün tasarımına,
+           kentsel mobilyadan marka kimliğine — sevinçle konuşalım.</p>
+        <div class="contact-links">
+          <a href="mailto:utkusimsek65@gmail.com" class="contact-link">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="1.5"/><polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="1.5"/></svg>
+            utkusimsek65@gmail.com
+          </a>
+          <a href="#" class="contact-link">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z" stroke="currentColor" stroke-width="1.5"/><circle cx="4" cy="4" r="2" stroke="currentColor" stroke-width="1.5"/></svg>
+            LinkedIn
+          </a>
+          <a href="#" class="contact-link">
+            <svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="1.5"/><path d="M7 12h4M15 12l-2-2 2-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            Behance
+          </a>
+          <div class="contact-link location-tag">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="9" r="2.5" stroke="currentColor" stroke-width="1.5"/></svg>
+            İzmir — Bodrum
+          </div>
+        </div>
+      </div>
+      <form class="contact-form reveal-right" id="contactForm">
+        <div class="form-group">
+          <label for="name">Ad Soyad</label>
+          <input type="text" id="name" placeholder="Adınız" required />
+        </div>
+        <div class="form-group">
+          <label for="email">E-posta</label>
+          <input type="email" id="email" placeholder="email@domain.com" required />
+        </div>
+        <div class="form-group">
+          <label for="subject">Konu</label>
+          <input type="text" id="subject" placeholder="Proje veya iş birliği hakkında..." />
+        </div>
+        <div class="form-group">
+          <label for="message">Mesaj</label>
+          <textarea id="message" rows="5" placeholder="Projenizi anlatın..." required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary full-w">Mesaj Gönder</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ─── -->
+  <footer id="footer">
+    <div class="container footer-inner">
+      <div class="footer-logo"><img src="assets/logo.png" alt="HUŞ Logo" class="site-logo-img footer-logo-img"/></div>
+      <p>© 2024 Halil Utku Şimşek. Tüm hakları saklıdır.</p>
+      <div class="footer-socials">
+        <a href="#" aria-label="LinkedIn">in</a>
+        <a href="#" aria-label="Behance">Be</a>
+        <a href="mailto:utkusimsek65@gmail.com" aria-label="Email">@</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ─── CURSOR ─── -->
+  <div id="cursor"></div>
+  <div id="cursor-follower"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
