@@ -439,9 +439,17 @@ function applyLang(lang) {
   const pageTitleKey = document.body.getAttribute('data-i18n-pagetitle');
   if (pageTitleKey) document.title = t(pageTitleKey, lang);
 
-  // toggle button label
+  // toggle button label — flip animation when text changes
+  const newLabel = lang === 'tr' ? 'EN' : 'TR';
   document.querySelectorAll('.lang-toggle .lang-current').forEach(el => {
-    el.textContent = lang === 'tr' ? 'EN' : 'TR';
+    if (el.textContent === newLabel) return;
+    el.classList.add('flipping');
+    setTimeout(() => {
+      el.textContent = newLabel;
+      // Force reflow so the reverse transition kicks in cleanly
+      void el.offsetWidth;
+      el.classList.remove('flipping');
+    }, 240);
   });
 
   localStorage.setItem('lang', lang);
@@ -449,6 +457,10 @@ function applyLang(lang) {
 
 document.addEventListener('DOMContentLoaded', () => {
   const saved = localStorage.getItem('lang') || 'tr';
+  // First paint: set label without animation
+  document.querySelectorAll('.lang-toggle .lang-current').forEach(el => {
+    el.textContent = saved === 'tr' ? 'EN' : 'TR';
+  });
   applyLang(saved);
 
   document.querySelectorAll('.lang-toggle').forEach(btn => {
