@@ -46,7 +46,7 @@ const I18N = {
       eko: {
         meta1: "2022", meta2: "12. Ulusal Gemi & Yat Tasarım Yarışması",
         title: "Ekofish 200ft",
-        desc: "Sürdürülebilir balıkçılık için tasarlanmış teknoloji odaklı 200ft araştırma ve üretim gemisi. Atık azaltımı, enerji verimliliği ve modernize edilmiş operasyon alanları."
+        desc: "Deniz ekosistemine zarar vermeden balık stoklarını koruyan sürdürülebilir bir trol gemisi. İnsansız su altı araçları dip trolünü hassas kontrol ederken, güneş panelleri enerji verimliliği sağlar; ölçü dışı balıklar canlı olarak doğaya kazandırılır."
       },
       salm: {
         meta1: "2021–2022", meta2: "Salmakis Yachts / Neta Marine",
@@ -136,7 +136,8 @@ const I18N = {
       home: "Halil Utku Şimşek — Endüstriyel Tasarımcı",
       pb:   "45ft Multi Hardtop Powerboat — Halil Utku Şimşek",
       kmem: "KMEM Pop-up Mağaza — Halil Utku Şimşek",
-      scoot:"Scooter Port — Halil Utku Şimşek"
+      scoot:"Scooter Port — Halil Utku Şimşek",
+      eko:  "Ekofish 200ft — Halil Utku Şimşek"
     },
     proj_detail: {
       breadcrumbHome: "Ana Sayfa",
@@ -206,6 +207,28 @@ const I18N = {
       f3Desc: "OK/RFID ekranı ve uygulama entegrasyonu ile temassız kilit ve kullanıcı doğrulama; ödeme ve kullanım geçmişi mobil uygulama üzerinden takip edilir.",
       f4Title: "Reklam & Bilgi Paneli",
       f4Desc: "Tempered cam reklam yüzeyi ve çift yön bilgi LED'i; istasyonu sadece bir şarj noktası değil, kentsel iletişim ve yön bulma altyapısının parçası yapar."
+    },
+    eko: {
+      breadcrumb: "Ekofish 200ft",
+      badge: "Yarışma",
+      year: "2022 · 12. Ulusal Gemi & Yat Tasarım Yarışması",
+      title: "Ekofish 200ft<br/><em>Sürdürülebilir Trol</em>",
+      overview: "Bu proje, deniz ekosistemine zarar vermeden balık stoklarını koruyan sürdürülebilir bir trol gemisi geliştirmeyi hedefler. İnsansız su altı araçları, dip trolünü hassas şekilde kontrol eder, gemi ise güneş panelleriyle enerji verimliliği sağlar. Avlanan balıklar, boyutlarına göre ayrılarak, ölçülere uymayanlar canlı olarak doğal ortama kazandırılır. Bu yaklaşım, deniz ekosistemlerini koruyarak sürdürülebilir balıkçılığa katkı sunar.",
+      stat1: "Metre Boy", stat2: "Metre Genişlik", stat3: "Hassas Kontrol", stat4: "Solar Destek",
+      capCover: "Genel Render — 60.9m Trol Gemisi",
+      capTop: "Üstten Görünüm — Sistem Bileşenleri",
+      capProcess: "Avlanma Süreci — Su Altı Operasyonu",
+      capFeatures: "Sistem Özellikleri",
+      capSorting: "Avlama & Ayıklama Sırası",
+      capTech: "Teknik Çizim — Ölçek 1:300",
+      f1Title: "İnsansız Su Altı Araçları (AUV)",
+      f1Desc: "Sonar, lidar ve hidrofon sensörleriyle dip trolünü hassas şekilde kontrol eden AUV'lar; balıkları yüksek hassasiyetle tespit eder, biyolojik çeşitliliği korur.",
+      f2Title: "Güneş Paneli Sistemi",
+      f2Desc: "Üst güverteye entegre güneş panelleri, geminin enerji verimliliğini artırarak çevresel sürdürülebilirliği destekler ve işletme maliyetlerini düşürür.",
+      f3Title: "Boyuta Göre Ayıklama",
+      f3Desc: "Ayıklama düzeneği balıkları boyutlarına göre ayırır; ölçülere uymayan balıklar canlı olarak doğal ortamlarına geri bırakılır.",
+      f4Title: "Ray Sistemli Havuz",
+      f4Desc: "Güvertede ray sistemiyle kapatılabilen havuz, estetik ve fonksiyonelliği bir arada sunar; alanı koruma ve operasyona uygun şekilde optimize eder."
     }
   },
 
@@ -248,7 +271,7 @@ const I18N = {
       eko: {
         meta1: "2022", meta2: "12th National Ship & Yacht Design Competition",
         title: "Ekofish 200ft",
-        desc: "A technology-focused 200ft research and production vessel designed for sustainable fishing — emphasising waste reduction, energy efficiency and modernised operational areas."
+        desc: "A sustainable trawler that preserves fish stocks without harming the marine ecosystem. Underwater autonomous vehicles steer the bottom trawl with precision while integrated solar panels deliver energy efficiency — undersized fish are returned to the wild alive."
       },
       salm: {
         meta1: "2021–2022", meta2: "Salmakis Yachts / Neta Marine",
@@ -337,7 +360,8 @@ const I18N = {
       home: "Halil Utku Şimşek — Industrial Designer",
       pb:   "45ft Multi Hardtop Powerboat — Halil Utku Şimşek",
       kmem: "KMEM Pop-up Store — Halil Utku Şimşek",
-      scoot:"Scooter Port — Halil Utku Şimşek"
+      scoot:"Scooter Port — Halil Utku Şimşek",
+      eko:  "Ekofish 200ft — Halil Utku Şimşek"
     },
     proj_detail: {
       breadcrumbHome: "Home",
@@ -407,6 +431,28 @@ const I18N = {
       f3Desc: "OK/RFID display and app integration provide contactless locking and user verification; payment and usage history are tracked through the mobile app.",
       f4Title: "Advertising & Info Panel",
       f4Desc: "A tempered glass advertising surface and dual-sided info LEDs make the station not just a charging point but part of the city's communication and wayfinding infrastructure."
+    },
+    eko: {
+      breadcrumb: "Ekofish 200ft",
+      badge: "Competition",
+      year: "2022 · 12th National Ship & Yacht Design Competition",
+      title: "Ekofish 200ft<br/><em>Sustainable Trawler</em>",
+      overview: "This project sets out to develop a sustainable trawler that protects fish stocks without harming the marine ecosystem. Autonomous underwater vehicles steer the bottom trawl with precision while integrated solar panels deliver energy efficiency on board. Caught fish are sorted by size, and those below the legal threshold are returned alive to their natural habitat. The approach aims to safeguard marine ecosystems and support sustainable fishing.",
+      stat1: "Length (m)", stat2: "Beam (m)", stat3: "Precision Control", stat4: "Solar Support",
+      capCover: "General Render — 60.9m Trawler",
+      capTop: "Top View — System Components",
+      capProcess: "Fishing Process — Underwater Operation",
+      capFeatures: "System Features",
+      capSorting: "Fishing & Sorting Sequence",
+      capTech: "Technical Drawing — Scale 1:300",
+      f1Title: "Autonomous Underwater Vehicles (AUVs)",
+      f1Desc: "AUVs equipped with sonar, lidar and hydrophone sensors steer the bottom trawl with precision — detecting fish accurately and protecting biodiversity.",
+      f2Title: "Solar Panel System",
+      f2Desc: "Solar panels integrated into the upper deck improve the vessel's energy efficiency, supporting environmental sustainability and lowering operating costs.",
+      f3Title: "Size-Based Sorting",
+      f3Desc: "An on-board sorting mechanism separates fish by size; specimens below the legal threshold are returned alive to their natural habitat.",
+      f4Title: "Rail-System Pool",
+      f4Desc: "A deck pool that can be sealed by a rail system blends aesthetics with functionality — preserving the area and optimising it for operations."
     }
   }
 };
