@@ -155,8 +155,20 @@ button { cursor: none; border: none; background: none; font-family: inherit; }
   opacity: 0;
   transition: opacity 1s cubic-bezier(0.4,0,0.2,1);
   will-change: opacity;
-  -webkit-mask-image: linear-gradient(to bottom, #000 60%, rgba(0,0,0,.85) 80%, transparent 100%);
-          mask-image: linear-gradient(to bottom, #000 60%, rgba(0,0,0,.85) 80%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom,
+    #000 0%,
+    #000 45%,
+    rgba(0,0,0,.92) 65%,
+    rgba(0,0,0,.6) 82%,
+    rgba(0,0,0,.25) 93%,
+    transparent 100%);
+          mask-image: linear-gradient(to bottom,
+    #000 0%,
+    #000 45%,
+    rgba(0,0,0,.92) 65%,
+    rgba(0,0,0,.6) 82%,
+    rgba(0,0,0,.25) 93%,
+    transparent 100%);
 }
 .media-layer.active { opacity: 1; }
 .media-layer img,
@@ -169,11 +181,13 @@ button { cursor: none; border: none; background: none; font-family: inherit; }
 /* Overlays — bottom fades into page bg for seamless section blend */
 .showcase-overlay-bottom {
   position: absolute; bottom: -1px; left: 0; right: 0;
-  height: 70%;
+  height: 85%;
   background: linear-gradient(to top,
     var(--bg) 0%,
-    rgba(10,10,11,.85) 22%,
-    rgba(10,10,11,.45) 55%,
+    color-mix(in srgb, var(--bg) 95%, transparent) 12%,
+    color-mix(in srgb, var(--bg) 80%, transparent) 28%,
+    color-mix(in srgb, var(--bg) 55%, transparent) 48%,
+    color-mix(in srgb, var(--bg) 25%, transparent) 72%,
     transparent 100%);
   z-index: 2; pointer-events: none;
 }
@@ -431,6 +445,10 @@ body.light .splash-logo { filter: drop-shadow(0 0 24px rgba(0,0,0,.08)); }
 /* Synchronous early hint for light theme (set on <html> by splash.js before
    <body> arrives) — prevents a dark flash on first paint for light-mode users */
 html.pre-light #splash { background: #f0ede8; }
+
+/* Skip splash entirely on in-session navigations (set synchronously by splash.js).
+   `display: none` before first paint = no flash. */
+html.splash-skip #splash { display: none !important; }
 
 /* Reduce motion — skip animations, just fade out */
 @media (prefers-reduced-motion: reduce) {
