@@ -32,8 +32,8 @@
   // First load of the session — mark it so future pages skip.
   try { sessionStorage.setItem('splashShown', '1'); } catch (_) {}
 
-  var MIN_MS = 1100; // logo finishes its reveal animation around ~1.0s
-  var MAX_MS = 4000; // safety cap if window load is very slow
+  var MIN_MS = 1000; // intro finishes at ~1.0s (wipe ends at 1000ms)
+  var MAX_MS = 3500; // safety cap if window load is very slow
   var startedAt = performance.now();
   var faded = false;
 
@@ -44,7 +44,7 @@
     splash.classList.add('splash-out');
     setTimeout(function(){
       if (splash.parentNode) splash.parentNode.removeChild(splash);
-    }, 700);
+    }, 500);
   }
 
   function scheduleFade() {
