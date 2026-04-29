@@ -36,7 +36,7 @@
   <!-- ── Nav ── -->
   <nav id="nav">
     <div class="nav-inner">
-      <a href="index.html" class="nav-logo"><img src="assets/logo.png" alt="HUŞ Logo" class="site-logo-img"/></a>
+      <a href="index.html" class="nav-logo"><img src="assets/logo.webp" alt="HUŞ Logo" class="site-logo-img"></a>
       <div class="nav-links">
         <a href="index.html#work" data-i18n="nav.projects">Projeler</a>
         <a href="index.html#about" data-i18n="nav.about">Hakkımda</a>
@@ -62,7 +62,7 @@
   <!-- ── Hero ── -->
   <section class="proj-hero">
     <div class="proj-hero-img">
-      <img src="assets/kmem-cover.png" alt="KMEM Pop-up Mağaza" class="proj-cover-img"/>
+      <img src="assets/kmem-cover.webp" alt="KMEM Pop-up Mağaza" class="proj-cover-img" fetchpriority="high">
       <div class="proj-hero-overlay"></div>
     </div>
     <div class="proj-hero-content reveal-up">
@@ -115,7 +115,7 @@
       <!-- Full-width hero — Taksim render -->
       <div class="gallery-row gallery-full reveal-up">
         <div class="gallery-item">
-          <img src="assets/kmem-cover.png" alt="KMEM Pop-up Mağaza — Taksim"/>
+          <img src="assets/kmem-cover.webp" alt="KMEM Pop-up Mağaza — Taksim" loading="lazy" decoding="async">
           <div class="gallery-caption" data-i18n="kmem.capCover">Tarihi Doku İçinde — Taksim</div>
         </div>
       </div>
@@ -123,7 +123,7 @@
       <!-- Second urban render full-width -->
       <div class="gallery-row gallery-full reveal-up">
         <div class="gallery-item">
-          <img src="assets/kmem-urban.png" alt="KMEM Pop-up Mağaza — Açık Hava AVM"/>
+          <img src="assets/kmem-urban.webp" alt="KMEM Pop-up Mağaza — Açık Hava AVM" loading="lazy" decoding="async">
           <div class="gallery-caption" data-i18n="kmem.capUrban">Açık Hava AVM — Kullanıcı Deneyimi</div>
         </div>
       </div>
@@ -131,7 +131,7 @@
       <!-- Technical views — plan sheet -->
       <div class="gallery-row gallery-full reveal-up">
         <div class="gallery-item gallery-bg-dark">
-          <img src="assets/kmem-tech.png" alt="KMEM Pop-up Mağaza — Teknik Görünümler"/>
+          <img src="assets/kmem-tech.webp" alt="KMEM Pop-up Mağaza — Teknik Görünümler" loading="lazy" decoding="async">
           <div class="gallery-caption" data-i18n="kmem.capTech">Teknik Görünümler — Cephe ve Kesit</div>
         </div>
       </div>
@@ -178,7 +178,7 @@
   <!-- ── Footer ── -->
   <footer class="footer">
     <div class="footer-inner">
-      <img src="assets/logo.png" alt="HUŞ Logo" class="site-logo-img footer-logo-img"/>
+      <img src="assets/logo.webp" alt="HUŞ Logo" class="site-logo-img footer-logo-img" loading="lazy" decoding="async">
       <p data-i18n="proj_detail.footer">© 2024 Halil Utku Şimşek — Tüm hakları saklıdır.</p>
     </div>
   </footer>
@@ -217,7 +217,7 @@
       img.addEventListener('click',()=>{
         const overlay=document.createElement('div');
         overlay.className='lightbox-overlay';
-        overlay.innerHTML=`<div class="lightbox-inner"><img src="${img.src}" alt="${img.alt}"/><button class="lightbox-close">✕</button></div>`;
+        overlay.innerHTML=`<div class="lightbox-inner"><img src="${img.src}" alt="${img.alt}" loading="lazy" decoding="async"><button class="lightbox-close">✕</button></div>`;
         document.body.appendChild(overlay);
         requestAnimationFrame(()=>overlay.classList.add('active'));
         const close=()=>{ overlay.classList.remove('active'); setTimeout(()=>overlay.remove(),300); };

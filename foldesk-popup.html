@@ -66,7 +66,7 @@
   <!-- ── Nav ── -->
   <nav id="nav">
     <div class="nav-inner">
-      <a href="index.html" class="nav-logo"><img src="assets/logo.png" alt="HUŞ Logo" class="site-logo-img"/></a>
+      <a href="index.html" class="nav-logo"><img src="assets/logo.webp" alt="HUŞ Logo" class="site-logo-img"></a>
       <div class="nav-links">
         <a href="index.html#work" data-i18n="nav.projects">Projeler</a>
         <a href="index.html#about" data-i18n="nav.about">Hakkımda</a>
@@ -92,7 +92,7 @@
   <!-- ── Hero ── -->
   <section class="proj-hero">
     <div class="proj-hero-img">
-      <img src="assets/foldesk-cover.png" alt="Foldesk Lamp" class="proj-cover-img"/>
+      <img src="assets/foldesk-cover.webp" alt="Foldesk Lamp" class="proj-cover-img" fetchpriority="high">
       <div class="proj-hero-overlay"></div>
     </div>
     <div class="proj-hero-content reveal-up">
@@ -147,7 +147,7 @@
       <!-- Cinematic lifestyle render -->
       <div class="gallery-row gallery-full reveal-up">
         <div class="gallery-item gallery-cover">
-          <img src="assets/foldesk-lifestyle.png" alt="Foldesk Lamp — Çalışma Alanı"/>
+          <img src="assets/foldesk-lifestyle.webp" alt="Foldesk Lamp — Çalışma Alanı" loading="lazy" decoding="async">
           <div class="gallery-caption" data-i18n="fold.capLifestyle">Çalışma Alanı — Açık Konfigürasyon</div>
         </div>
       </div>
@@ -155,7 +155,7 @@
       <!-- Wide isometric render -->
       <div class="gallery-row gallery-full reveal-up">
         <div class="gallery-item gallery-bg-light fold-wide">
-          <img src="assets/foldesk-render.png" alt="Foldesk Lamp — Genel Render"/>
+          <img src="assets/foldesk-render.webp" alt="Foldesk Lamp — Genel Render" loading="lazy" decoding="async">
           <div class="gallery-caption gallery-caption-dark" data-i18n="fold.capRender">3D Render — Çift Kollu Konfigürasyon</div>
         </div>
       </div>
@@ -163,7 +163,7 @@
       <!-- Wide side / folded view -->
       <div class="gallery-row gallery-full reveal-up">
         <div class="gallery-item gallery-bg-light fold-wide">
-          <img src="assets/foldesk-side.png" alt="Foldesk Lamp — Yandan"/>
+          <img src="assets/foldesk-side.webp" alt="Foldesk Lamp — Yandan" loading="lazy" decoding="async">
           <div class="gallery-caption gallery-caption-dark" data-i18n="fold.capSide">Yandan — Katlanmış Kompakt Pozisyon</div>
         </div>
       </div>
@@ -171,7 +171,7 @@
       <!-- Wide controls / LED bar detail -->
       <div class="gallery-row gallery-full reveal-up">
         <div class="gallery-item gallery-bg-light fold-wide">
-          <img src="assets/foldesk-controls.png" alt="Foldesk Lamp — Kontrol Yüzeyi"/>
+          <img src="assets/foldesk-controls.webp" alt="Foldesk Lamp — Kontrol Yüzeyi" loading="lazy" decoding="async">
           <div class="gallery-caption gallery-caption-dark" data-i18n="fold.capControls">Kontrol Yüzeyi — LED Bar &amp; Düğmeler</div>
         </div>
       </div>
@@ -179,11 +179,11 @@
       <!-- Front + Top half-width -->
       <div class="gallery-row gallery-half reveal-up">
         <div class="gallery-item gallery-bg-light fold-square">
-          <img src="assets/foldesk-front.png" alt="Foldesk Lamp — Önden"/>
+          <img src="assets/foldesk-front.webp" alt="Foldesk Lamp — Önden" loading="lazy" decoding="async">
           <div class="gallery-caption gallery-caption-dark" data-i18n="fold.capFront">Önden Görünüm — LED Bar &amp; Mengene</div>
         </div>
         <div class="gallery-item gallery-bg-light fold-square">
-          <img src="assets/foldesk-top.png" alt="Foldesk Lamp — Üstten"/>
+          <img src="assets/foldesk-top.webp" alt="Foldesk Lamp — Üstten" loading="lazy" decoding="async">
           <div class="gallery-caption gallery-caption-dark" data-i18n="fold.capTop">Üstten — Katlanmış Form</div>
         </div>
       </div>
@@ -191,7 +191,7 @@
       <!-- Hinge / mechanism detail -->
       <div class="gallery-row gallery-full reveal-up">
         <div class="gallery-item gallery-bg-dark">
-          <img src="assets/foldesk-tech.png" alt="Foldesk Lamp — Menteşe Mekanizması"/>
+          <img src="assets/foldesk-tech.webp" alt="Foldesk Lamp — Menteşe Mekanizması" loading="lazy" decoding="async">
           <div class="gallery-caption" data-i18n="fold.capTech">Menteşe Mekanizması — Çok Eksenli Eklem Sistemi</div>
         </div>
       </div>
@@ -238,7 +238,7 @@
   <!-- ── Footer ── -->
   <footer class="footer">
     <div class="footer-inner">
-      <img src="assets/logo.png" alt="HUŞ Logo" class="site-logo-img footer-logo-img"/>
+      <img src="assets/logo.webp" alt="HUŞ Logo" class="site-logo-img footer-logo-img" loading="lazy" decoding="async">
       <p data-i18n="proj_detail.footer">© 2024 Halil Utku Şimşek — Tüm hakları saklıdır.</p>
     </div>
   </footer>
@@ -277,7 +277,7 @@
       img.addEventListener('click',()=>{
         const overlay=document.createElement('div');
         overlay.className='lightbox-overlay';
-        overlay.innerHTML=`<div class="lightbox-inner"><img src="${img.src}" alt="${img.alt}"/><button class="lightbox-close">✕</button></div>`;
+        overlay.innerHTML=`<div class="lightbox-inner"><img src="${img.src}" alt="${img.alt}" loading="lazy" decoding="async"><button class="lightbox-close">✕</button></div>`;
         document.body.appendChild(overlay);
         requestAnimationFrame(()=>overlay.classList.add('active'));
         const close=()=>{ overlay.classList.remove('active'); setTimeout(()=>overlay.remove(),300); };

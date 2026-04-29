@@ -24,31 +24,6 @@
   });
 })();
 
-/* ── Custom Cursor ── */
-const cursor         = document.getElementById('cursor');
-const cursorFollower = document.getElementById('cursor-follower');
-let mouseX = 0, mouseY = 0;
-let followerX = 0, followerY = 0;
-
-document.addEventListener('mousemove', e => {
-  mouseX = e.clientX; mouseY = e.clientY;
-  cursor.style.left = mouseX + 'px';
-  cursor.style.top  = mouseY + 'px';
-});
-
-(function animateCursor() {
-  followerX += (mouseX - followerX) * 0.12;
-  followerY += (mouseY - followerY) * 0.12;
-  cursorFollower.style.left = followerX + 'px';
-  cursorFollower.style.top  = followerY + 'px';
-  requestAnimationFrame(animateCursor);
-})();
-
-document.querySelectorAll('a, button, .project-card').forEach(el => {
-  el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
-  el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
-});
-
 /* ── Nav scroll state ── */
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => {
@@ -70,86 +45,110 @@ navLinks.querySelectorAll('a').forEach(a => {
   });
 });
 
-/* ── Global Particle Canvas — behind entire page ── */
+/* ── Global Particle Canvas — behind entire page ──
+   Skip on small screens / reduced-motion to save CPU.
+   Pause via IntersectionObserver when canvas is offscreen. */
 const canvas = document.getElementById('particleCanvas');
-const ctx    = canvas.getContext('2d');
-let W, H, particles = [];
-const DPR = Math.min(window.devicePixelRatio || 1, 2);
-const LINE_DIST = 160;
+const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const isSmallScreen = window.innerWidth < 768;
 
-function resize() {
-  W = window.innerWidth;
-  H = window.innerHeight;
-  canvas.width  = W * DPR;
-  canvas.height = H * DPR;
-  canvas.style.width  = W + 'px';
-  canvas.style.height = H + 'px';
-  ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
-}
-window.addEventListener('resize', resize, { passive: true });
-resize();
+if (canvas && !reduceMotion && !isSmallScreen) {
+  const ctx    = canvas.getContext('2d');
+  let W, H, particles = [];
+  let isVisible = true;
+  let rafId = 0;
+  const DPR = Math.min(window.devicePixelRatio || 1, 2);
+  const LINE_DIST = 160;
+  const LINE_DIST_SQ = LINE_DIST * LINE_DIST;
 
-class Particle {
-  constructor() { this.reset(true); }
-  reset(initial) {
-    this.x  = Math.random() * W;
-    this.y  = Math.random() * H;
-    this.vx = (Math.random() - .5) * .45;
-    this.vy = (Math.random() - .5) * .45;
-    this.r  = Math.random() * 1.8 + .6;
-    this.a  = Math.random() * .6 + .4;
-    this.pulseOffset = Math.random() * Math.PI * 2;
+  function resize() {
+    W = window.innerWidth;
+    H = window.innerHeight;
+    canvas.width  = W * DPR;
+    canvas.height = H * DPR;
+    canvas.style.width  = W + 'px';
+    canvas.style.height = H + 'px';
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
   }
-  update(t) {
-    this.x += this.vx;
-    this.y += this.vy;
-    if (this.x < -20) this.x = W + 20;
-    if (this.x > W + 20) this.x = -20;
-    if (this.y < -20) this.y = H + 20;
-    if (this.y > H + 20) this.y = -20;
-    this.pulse = 0.7 + 0.3 * Math.sin(t * 0.001 + this.pulseOffset);
-  }
-  draw() {
-    ctx.beginPath();
-    ctx.arc(this.x, this.y, this.r * this.pulse, 0, Math.PI * 2);
-    ctx.fillStyle = `rgba(201,169,110,${this.a * this.pulse})`;
-    ctx.shadowBlur = 10;
-    ctx.shadowColor = 'rgba(201,169,110,.6)';
-    ctx.fill();
-    ctx.shadowBlur = 0;
-  }
-}
+  window.addEventListener('resize', resize, { passive: true });
+  resize();
 
-/* Higher particle density */
-const COUNT = Math.min(150, Math.max(60, Math.floor(W * H / 12000)));
-for (let i = 0; i < COUNT; i++) particles.push(new Particle());
+  class Particle {
+    constructor() { this.reset(); }
+    reset() {
+      this.x  = Math.random() * W;
+      this.y  = Math.random() * H;
+      this.vx = (Math.random() - .5) * .45;
+      this.vy = (Math.random() - .5) * .45;
+      this.r  = Math.random() * 1.8 + .6;
+      this.a  = Math.random() * .6 + .4;
+      this.pulseOffset = Math.random() * Math.PI * 2;
+    }
+    update(t) {
+      this.x += this.vx;
+      this.y += this.vy;
+      if (this.x < -20) this.x = W + 20;
+      if (this.x > W + 20) this.x = -20;
+      if (this.y < -20) this.y = H + 20;
+      if (this.y > H + 20) this.y = -20;
+      this.pulse = 0.7 + 0.3 * Math.sin(t * 0.001 + this.pulseOffset);
+    }
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.r * this.pulse, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(201,169,110,${this.a * this.pulse})`;
+      ctx.fill();
+    }
+  }
 
-function drawLines() {
-  for (let i = 0; i < particles.length; i++) {
-    for (let j = i + 1; j < particles.length; j++) {
-      const dx = particles[i].x - particles[j].x;
-      const dy = particles[i].y - particles[j].y;
-      const d  = Math.sqrt(dx * dx + dy * dy);
-      if (d < LINE_DIST) {
-        const alpha = (1 - d / LINE_DIST) * 0.28;
-        ctx.beginPath();
-        ctx.moveTo(particles[i].x, particles[i].y);
-        ctx.lineTo(particles[j].x, particles[j].y);
-        ctx.strokeStyle = `rgba(201,169,110,${alpha})`;
-        ctx.lineWidth   = 0.9;
-        ctx.stroke();
+  /* Lighter particle density — tuned for performance */
+  const COUNT = Math.min(70, Math.max(30, Math.floor(W * H / 28000)));
+  for (let i = 0; i < COUNT; i++) particles.push(new Particle());
+
+  function drawLines() {
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const dSq = dx * dx + dy * dy;
+        if (dSq < LINE_DIST_SQ) {
+          const d = Math.sqrt(dSq);
+          const alpha = (1 - d / LINE_DIST) * 0.28;
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.strokeStyle = `rgba(201,169,110,${alpha})`;
+          ctx.lineWidth   = 0.9;
+          ctx.stroke();
+        }
       }
     }
   }
-}
 
-function animateParticles(t) {
-  ctx.clearRect(0, 0, W, H);
-  particles.forEach(p => { p.update(t || 0); p.draw(); });
-  drawLines();
-  requestAnimationFrame(animateParticles);
+  function animateParticles(t) {
+    if (!isVisible) { rafId = 0; return; }
+    ctx.clearRect(0, 0, W, H);
+    particles.forEach(p => { p.update(t || 0); p.draw(); });
+    drawLines();
+    rafId = requestAnimationFrame(animateParticles);
+  }
+  rafId = requestAnimationFrame(animateParticles);
+
+  /* Pause animation when canvas is offscreen (saves CPU during scrolling away). */
+  const visObserver = new IntersectionObserver(entries => {
+    isVisible = entries[0].isIntersecting;
+    if (isVisible && !rafId) rafId = requestAnimationFrame(animateParticles);
+  });
+  visObserver.observe(canvas);
+
+  /* Pause when tab is hidden. */
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) { isVisible = false; }
+    else { isVisible = true; if (!rafId) rafId = requestAnimationFrame(animateParticles); }
+  });
+} else if (canvas) {
+  canvas.style.display = 'none';
 }
-animateParticles();
 
 /* ── Scroll Reveal (IntersectionObserver) ── */
 const revealEls = document.querySelectorAll(

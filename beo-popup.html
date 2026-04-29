@@ -66,7 +66,7 @@
   <!-- ── Nav ── -->
   <nav id="nav">
     <div class="nav-inner">
-      <a href="index.html" class="nav-logo"><img src="assets/logo.png" alt="HUŞ Logo" class="site-logo-img"/></a>
+      <a href="index.html" class="nav-logo"><img src="assets/logo.webp" alt="HUŞ Logo" class="site-logo-img"></a>
       <div class="nav-links">
         <a href="index.html#work" data-i18n="nav.projects">Projeler</a>
         <a href="index.html#about" data-i18n="nav.about">Hakkımda</a>
@@ -92,7 +92,7 @@
   <!-- ── Hero ── -->
   <section class="proj-hero">
     <div class="proj-hero-img">
-      <img src="assets/beo-cover.png" alt="Beo Minisaw" class="proj-cover-img"/>
+      <img src="assets/beo-cover.webp" alt="Beo Minisaw" class="proj-cover-img" fetchpriority="high">
       <div class="proj-hero-overlay"></div>
     </div>
     <div class="proj-hero-content reveal-up">
@@ -148,7 +148,7 @@
       <!-- Cinematic dock render -->
       <div class="gallery-row gallery-full reveal-up">
         <div class="gallery-item gallery-cover">
-          <img src="assets/beo-dock.png" alt="Beo Minisaw — Şarj İstasyonu"/>
+          <img src="assets/beo-dock.webp" alt="Beo Minisaw — Şarj İstasyonu" loading="lazy" decoding="async">
           <div class="gallery-caption" data-i18n="beo.capDock">Şarj İstasyonunda — Premium Yerleşim</div>
         </div>
       </div>
@@ -156,7 +156,7 @@
       <!-- Wide product render with control panel -->
       <div class="gallery-row gallery-full reveal-up">
         <div class="gallery-item gallery-bg-light beo-wide">
-          <img src="assets/beo-render.png" alt="Beo Minisaw — Kontrol Paneli"/>
+          <img src="assets/beo-render.webp" alt="Beo Minisaw — Kontrol Paneli" loading="lazy" decoding="async">
           <div class="gallery-caption gallery-caption-dark" data-i18n="beo.capRender">Kontrol Paneli — Entegre Arayüz</div>
         </div>
       </div>
@@ -164,7 +164,7 @@
       <!-- Side view with chain -->
       <div class="gallery-row gallery-full reveal-up">
         <div class="gallery-item gallery-bg-light beo-wide">
-          <img src="assets/beo-side.png" alt="Beo Minisaw — Yandan Görünüm"/>
+          <img src="assets/beo-side.webp" alt="Beo Minisaw — Yandan Görünüm" loading="lazy" decoding="async">
           <div class="gallery-caption gallery-caption-dark" data-i18n="beo.capSide">Yandan — Zincir Mekanizması Açık</div>
         </div>
       </div>
@@ -172,11 +172,11 @@
       <!-- Top + Controls half-width -->
       <div class="gallery-row gallery-half reveal-up">
         <div class="gallery-item gallery-bg-light beo-square">
-          <img src="assets/beo-top.png" alt="Beo Minisaw — Üstten"/>
+          <img src="assets/beo-top.webp" alt="Beo Minisaw — Üstten" loading="lazy" decoding="async">
           <div class="gallery-caption gallery-caption-dark" data-i18n="beo.capTop">Üstten — Tutuş Detayı</div>
         </div>
         <div class="gallery-item gallery-bg-light beo-square">
-          <img src="assets/beo-controls.png" alt="Beo Minisaw — Kontrol Yüzeyi"/>
+          <img src="assets/beo-controls.webp" alt="Beo Minisaw — Kontrol Yüzeyi" loading="lazy" decoding="async">
           <div class="gallery-caption gallery-caption-dark" data-i18n="beo.capControls">Kontrol Yüzeyi — Hız &amp; Mod Seçimi</div>
         </div>
       </div>
@@ -184,7 +184,7 @@
       <!-- Exploded technical view -->
       <div class="gallery-row gallery-full reveal-up">
         <div class="gallery-item gallery-bg-dark">
-          <img src="assets/beo-tech.png" alt="Beo Minisaw — Patlak Görünüm"/>
+          <img src="assets/beo-tech.webp" alt="Beo Minisaw — Patlak Görünüm" loading="lazy" decoding="async">
           <div class="gallery-caption" data-i18n="beo.capTech">Patlak Görünüm — Modüler Bileşen Analizi</div>
         </div>
       </div>
@@ -231,7 +231,7 @@
   <!-- ── Footer ── -->
   <footer class="footer">
     <div class="footer-inner">
-      <img src="assets/logo.png" alt="HUŞ Logo" class="site-logo-img footer-logo-img"/>
+      <img src="assets/logo.webp" alt="HUŞ Logo" class="site-logo-img footer-logo-img" loading="lazy" decoding="async">
       <p data-i18n="proj_detail.footer">© 2024 Halil Utku Şimşek — Tüm hakları saklıdır.</p>
     </div>
   </footer>
@@ -270,7 +270,7 @@
       img.addEventListener('click',()=>{
         const overlay=document.createElement('div');
         overlay.className='lightbox-overlay';
-        overlay.innerHTML=`<div class="lightbox-inner"><img src="${img.src}" alt="${img.alt}"/><button class="lightbox-close">✕</button></div>`;
+        overlay.innerHTML=`<div class="lightbox-inner"><img src="${img.src}" alt="${img.alt}" loading="lazy" decoding="async"><button class="lightbox-close">✕</button></div>`;
         document.body.appendChild(overlay);
         requestAnimationFrame(()=>overlay.classList.add('active'));
         const close=()=>{ overlay.classList.remove('active'); setTimeout(()=>overlay.remove(),300); };

@@ -36,7 +36,7 @@
   <!-- ── Nav ── -->
   <nav id="nav">
     <div class="nav-inner">
-      <a href="index.html" class="nav-logo"><img src="assets/logo.png" alt="HUŞ Logo" class="site-logo-img"/></a>
+      <a href="index.html" class="nav-logo"><img src="assets/logo.webp" alt="HUŞ Logo" class="site-logo-img"></a>
       <div class="nav-links">
         <a href="index.html#work" data-i18n="nav.projects">Projeler</a>
         <a href="index.html#about" data-i18n="nav.about">Hakkımda</a>
@@ -62,7 +62,7 @@
   <!-- ── Hero ── -->
   <section class="proj-hero">
     <div class="proj-hero-img">
-      <img src="assets/pb-cover.png" alt="45ft Multi Hardtop Powerboat" class="proj-cover-img"/>
+      <img src="assets/pb-cover.webp" alt="45ft Multi Hardtop Powerboat" class="proj-cover-img" fetchpriority="high">
       <div class="proj-hero-overlay"></div>
     </div>
     <div class="proj-hero-content reveal-up">
@@ -115,17 +115,17 @@
       <!-- Full-width cover — two boats aerial -->
       <div class="gallery-row gallery-full reveal-up">
         <div class="gallery-item">
-          <img src="assets/pb-cover.png" alt="İki tekne — havadan"/>
+          <img src="assets/pb-cover.webp" alt="İki tekne — havadan" loading="lazy" decoding="async">
         </div>
       </div>
 
       <!-- Aerial close-up + exploded view -->
       <div class="gallery-row gallery-half reveal-up">
         <div class="gallery-item">
-          <img src="assets/pb-aerial.png" alt="Havadan yakın çekim"/>
+          <img src="assets/pb-aerial.webp" alt="Havadan yakın çekim" loading="lazy" decoding="async">
         </div>
         <div class="gallery-item gallery-bg-dark">
-          <img src="assets/pb-exploded.png" alt="Patlak görünüm"/>
+          <img src="assets/pb-exploded.webp" alt="Patlak görünüm" loading="lazy" decoding="async">
           <div class="gallery-caption" data-i18n="pb.capExploded">Patlak Görünüm — Bileşen Analizi</div>
         </div>
       </div>
@@ -133,11 +133,11 @@
       <!-- Two side profiles (white bg) -->
       <div class="gallery-row gallery-half reveal-up">
         <div class="gallery-item gallery-bg-light">
-          <img src="assets/pb-side1.png" alt="Yan profil — cam kapalı"/>
+          <img src="assets/pb-side1.webp" alt="Yan profil — cam kapalı" loading="lazy" decoding="async">
           <div class="gallery-caption" data-i18n="pb.capSide1">Yan Profil — Cam Kapalı</div>
         </div>
         <div class="gallery-item gallery-bg-light">
-          <img src="assets/pb-side2.png" alt="Yan profil — spor"/>
+          <img src="assets/pb-side2.webp" alt="Yan profil — spor" loading="lazy" decoding="async">
           <div class="gallery-caption" data-i18n="pb.capSide2">Yan Profil — Spor Konfigürasyon</div>
         </div>
       </div>
@@ -145,11 +145,11 @@
       <!-- Two deck plans (white bg) -->
       <div class="gallery-row gallery-half reveal-up">
         <div class="gallery-item gallery-bg-light">
-          <img src="assets/pb-deck-open.png" alt="Güverte planı — açık"/>
+          <img src="assets/pb-deck-open.webp" alt="Güverte planı — açık" loading="lazy" decoding="async">
           <div class="gallery-caption gallery-caption-dark" data-i18n="pb.capDeckOpen">Ana Güverte — Açık Konfigürasyon</div>
         </div>
         <div class="gallery-item gallery-bg-light">
-          <img src="assets/pb-deck-cabin.png" alt="Güverte planı — kapalı kabin"/>
+          <img src="assets/pb-deck-cabin.webp" alt="Güverte planı — kapalı kabin" loading="lazy" decoding="async">
           <div class="gallery-caption gallery-caption-dark" data-i18n="pb.capDeckCabin">Alt Güverte — Kabin</div>
         </div>
       </div>
@@ -196,7 +196,7 @@
   <!-- ── Footer ── -->
   <footer class="footer">
     <div class="footer-inner">
-      <img src="assets/logo.png" alt="HUŞ Logo" class="site-logo-img footer-logo-img"/>
+      <img src="assets/logo.webp" alt="HUŞ Logo" class="site-logo-img footer-logo-img" loading="lazy" decoding="async">
       <p data-i18n="proj_detail.footer">© 2024 Halil Utku Şimşek — Tüm hakları saklıdır.</p>
     </div>
   </footer>
@@ -235,7 +235,7 @@
       img.addEventListener('click',()=>{
         const overlay=document.createElement('div');
         overlay.className='lightbox-overlay';
-        overlay.innerHTML=`<div class="lightbox-inner"><img src="${img.src}" alt="${img.alt}"/><button class="lightbox-close">✕</button></div>`;
+        overlay.innerHTML=`<div class="lightbox-inner"><img src="${img.src}" alt="${img.alt}" loading="lazy" decoding="async"><button class="lightbox-close">✕</button></div>`;
         document.body.appendChild(overlay);
         requestAnimationFrame(()=>overlay.classList.add('active'));
         const close=()=>{ overlay.classList.remove('active'); setTimeout(()=>overlay.remove(),300); };

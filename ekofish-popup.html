@@ -69,7 +69,7 @@
   <!-- ── Nav ── -->
   <nav id="nav">
     <div class="nav-inner">
-      <a href="index.html" class="nav-logo"><img src="assets/logo.png" alt="HUŞ Logo" class="site-logo-img"/></a>
+      <a href="index.html" class="nav-logo"><img src="assets/logo.webp" alt="HUŞ Logo" class="site-logo-img"></a>
       <div class="nav-links">
         <a href="index.html#work" data-i18n="nav.projects">Projeler</a>
         <a href="index.html#about" data-i18n="nav.about">Hakkımda</a>
@@ -95,7 +95,7 @@
   <!-- ── Hero ── -->
   <section class="proj-hero">
     <div class="proj-hero-img">
-      <img src="assets/eko-cover.png" alt="Ekofish 200ft" class="proj-cover-img"/>
+      <img src="assets/eko-cover.webp" alt="Ekofish 200ft" class="proj-cover-img" fetchpriority="high">
       <div class="proj-hero-overlay"></div>
     </div>
     <div class="proj-hero-content reveal-up">
@@ -148,7 +148,7 @@
       <!-- Hero render -->
       <div class="gallery-row gallery-full reveal-up">
         <div class="gallery-item">
-          <img src="assets/eko-cover.png" alt="Ekofish 200ft — Render"/>
+          <img src="assets/eko-cover.webp" alt="Ekofish 200ft — Render" loading="lazy" decoding="async">
           <div class="gallery-caption" data-i18n="eko.capCover">Genel Render — 60.9m Trol Gemisi</div>
         </div>
       </div>
@@ -156,7 +156,7 @@
       <!-- Top-down components diagram -->
       <div class="gallery-row gallery-full reveal-up">
         <div class="gallery-item">
-          <img src="assets/eko-top.jpg" alt="Ekofish 200ft — Üstten Görünüm"/>
+          <img src="assets/eko-top.webp" alt="Ekofish 200ft — Üstten Görünüm" loading="lazy" decoding="async">
           <div class="gallery-caption" data-i18n="eko.capTop">Üstten Görünüm — Sistem Bileşenleri</div>
         </div>
       </div>
@@ -164,7 +164,7 @@
       <!-- Underwater fishing process -->
       <div class="gallery-row gallery-full reveal-up">
         <div class="gallery-item">
-          <img src="assets/eko-process.png" alt="Avlanma Süreci"/>
+          <img src="assets/eko-process.webp" alt="Avlanma Süreci" loading="lazy" decoding="async">
           <div class="gallery-caption" data-i18n="eko.capProcess">Avlanma Süreci — Su Altı Operasyonu</div>
         </div>
       </div>
@@ -172,7 +172,7 @@
       <!-- System features panel — full width so 4 sub-panels are readable -->
       <div class="gallery-row gallery-full reveal-up">
         <div class="gallery-item">
-          <img src="assets/eko-features.png" alt="Sistem Özellikleri"/>
+          <img src="assets/eko-features.webp" alt="Sistem Özellikleri" loading="lazy" decoding="async">
           <div class="gallery-caption" data-i18n="eko.capFeatures">Sistem Özellikleri</div>
         </div>
       </div>
@@ -180,7 +180,7 @@
       <!-- Sorting sequence — full width -->
       <div class="gallery-row gallery-full reveal-up">
         <div class="gallery-item">
-          <img src="assets/eko-sorting.png" alt="Avlama Sırası"/>
+          <img src="assets/eko-sorting.webp" alt="Avlama Sırası" loading="lazy" decoding="async">
           <div class="gallery-caption" data-i18n="eko.capSorting">Avlama &amp; Ayıklama Sırası</div>
         </div>
       </div>
@@ -188,7 +188,7 @@
       <!-- Technical line drawing -->
       <div class="gallery-row gallery-full reveal-up">
         <div class="gallery-item gallery-bg-light">
-          <img src="assets/eko-tech.png" alt="Teknik Çizim"/>
+          <img src="assets/eko-tech.webp" alt="Teknik Çizim" loading="lazy" decoding="async">
           <div class="gallery-caption gallery-caption-dark" data-i18n="eko.capTech">Teknik Çizim — Ölçek 1:300</div>
         </div>
       </div>
@@ -235,7 +235,7 @@
   <!-- ── Footer ── -->
   <footer class="footer">
     <div class="footer-inner">
-      <img src="assets/logo.png" alt="HUŞ Logo" class="site-logo-img footer-logo-img"/>
+      <img src="assets/logo.webp" alt="HUŞ Logo" class="site-logo-img footer-logo-img" loading="lazy" decoding="async">
       <p data-i18n="proj_detail.footer">© 2024 Halil Utku Şimşek — Tüm hakları saklıdır.</p>
     </div>
   </footer>
@@ -274,7 +274,7 @@
       img.addEventListener('click',()=>{
         const overlay=document.createElement('div');
         overlay.className='lightbox-overlay';
-        overlay.innerHTML=`<div class="lightbox-inner"><img src="${img.src}" alt="${img.alt}"/><button class="lightbox-close">✕</button></div>`;
+        overlay.innerHTML=`<div class="lightbox-inner"><img src="${img.src}" alt="${img.alt}" loading="lazy" decoding="async"><button class="lightbox-close">✕</button></div>`;
         document.body.appendChild(overlay);
         requestAnimationFrame(()=>overlay.classList.add('active'));
         const close=()=>{ overlay.classList.remove('active'); setTimeout(()=>overlay.remove(),300); };

@@ -47,7 +47,7 @@
   <!-- ── Nav ── -->
   <nav id="nav">
     <div class="nav-inner">
-      <a href="index.html" class="nav-logo"><img src="assets/logo.png" alt="HUŞ Logo" class="site-logo-img"/></a>
+      <a href="index.html" class="nav-logo"><img src="assets/logo.webp" alt="HUŞ Logo" class="site-logo-img"></a>
       <div class="nav-links">
         <a href="index.html#work" data-i18n="nav.projects">Projeler</a>
         <a href="index.html#about" data-i18n="nav.about">Hakkımda</a>
@@ -73,7 +73,7 @@
   <!-- ── Hero ── -->
   <section class="proj-hero">
     <div class="proj-hero-img">
-      <img src="assets/scooter-cover.png" alt="Scooter Port" class="proj-cover-img"/>
+      <img src="assets/scooter-cover.webp" alt="Scooter Port" class="proj-cover-img" fetchpriority="high">
       <div class="proj-hero-overlay"></div>
     </div>
     <div class="proj-hero-content reveal-up">
@@ -126,7 +126,7 @@
       <!-- Full-width site / context render — uses cover crop (landscape-ish) -->
       <div class="gallery-row gallery-full reveal-up">
         <div class="gallery-item gallery-cover">
-          <img src="assets/scooter-site.png" alt="Scooter Port — Sahil Yerleşimi"/>
+          <img src="assets/scooter-site.webp" alt="Scooter Port — Sahil Yerleşimi" loading="lazy" decoding="async">
           <div class="gallery-caption" data-i18n="scoot.capSite">Sahil Yerleşimi — Akıllı Şehir Bağlamı</div>
         </div>
       </div>
@@ -134,11 +134,11 @@
       <!-- General render + Front view side by side, contained -->
       <div class="gallery-row gallery-half reveal-up">
         <div class="gallery-item gallery-bg-dark">
-          <img src="assets/scooter-render.png" alt="Scooter Port — Render"/>
+          <img src="assets/scooter-render.webp" alt="Scooter Port — Render" loading="lazy" decoding="async">
           <div class="gallery-caption" data-i18n="scoot.capRender">Şarj İstasyonu — Genel Render</div>
         </div>
         <div class="gallery-item gallery-bg-dark">
-          <img src="assets/scooter-front.png" alt="Scooter Port — Önden Görünüm"/>
+          <img src="assets/scooter-front.webp" alt="Scooter Port — Önden Görünüm" loading="lazy" decoding="async">
           <div class="gallery-caption" data-i18n="scoot.capFront">Önden Görünüm — Çift Yön Şarj</div>
         </div>
       </div>
@@ -146,7 +146,7 @@
       <!-- Tech / annotated view full-width, contained -->
       <div class="gallery-row gallery-full reveal-up">
         <div class="gallery-item gallery-bg-dark">
-          <img src="assets/scooter-tech.png" alt="Scooter Port — Teknik Görünüm"/>
+          <img src="assets/scooter-tech.webp" alt="Scooter Port — Teknik Görünüm" loading="lazy" decoding="async">
           <div class="gallery-caption" data-i18n="scoot.capTech">Teknik Görünüm — Sistem Bileşenleri</div>
         </div>
       </div>
@@ -193,7 +193,7 @@
   <!-- ── Footer ── -->
   <footer class="footer">
     <div class="footer-inner">
-      <img src="assets/logo.png" alt="HUŞ Logo" class="site-logo-img footer-logo-img"/>
+      <img src="assets/logo.webp" alt="HUŞ Logo" class="site-logo-img footer-logo-img" loading="lazy" decoding="async">
       <p data-i18n="proj_detail.footer">© 2024 Halil Utku Şimşek — Tüm hakları saklıdır.</p>
     </div>
   </footer>
@@ -232,7 +232,7 @@
       img.addEventListener('click',()=>{
         const overlay=document.createElement('div');
         overlay.className='lightbox-overlay';
-        overlay.innerHTML=`<div class="lightbox-inner"><img src="${img.src}" alt="${img.alt}"/><button class="lightbox-close">✕</button></div>`;
+        overlay.innerHTML=`<div class="lightbox-inner"><img src="${img.src}" alt="${img.alt}" loading="lazy" decoding="async"><button class="lightbox-close">✕</button></div>`;
         document.body.appendChild(overlay);
         requestAnimationFrame(()=>overlay.classList.add('active'));
         const close=()=>{ overlay.classList.remove('active'); setTimeout(()=>overlay.remove(),300); };
