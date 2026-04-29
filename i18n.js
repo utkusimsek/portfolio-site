@@ -54,9 +54,9 @@ const I18N = {
         desc: "Salmakis Yachts için 45m Gulet eskizleri ve iç mekân kavramları. Neta Marine bünyesinde 42,5m motor yat iç mekân geliştirme çalışmaları; malzeme seçimi ve dekor planlaması."
       },
       fold: {
-        meta1: "2023", meta2: "Aydınlatma",
+        meta1: "2023", meta2: "Katlanabilir Aydınlatma",
         title: "Foldesk Lamp",
-        desc: "Profesyoneller için tasarlanmış katlanabilir masa lambası. Taşınabilirlik ve ergonomi önceliklendirilerek geliştirilen minimalist form dili, ayarlanabilir ışık açısı ve kompakt depolama."
+        desc: "Dar çalışma alanları için geliştirilen, katlanabilir mekanizmaya sahip kompakt bir masa aydınlatma çözümü. Lineer LED ışık barı, ayarlanabilir başlık ve çok eksenli menteşe sistemi ile mimar, mühendis ve tasarımcılar için ergonomik ve verimli bir çalışma deneyimi sunar."
       },
       beo: {
         meta1: "2022", meta2: "Bang & Olufsen",
@@ -139,7 +139,8 @@ const I18N = {
       scoot:"Scooter Port — Halil Utku Şimşek",
       eko:  "Ekofish 200ft — Halil Utku Şimşek",
       crea: "Crea Light — Halil Utku Şimşek",
-      beo:  "Beo Minisaw — Halil Utku Şimşek"
+      beo:  "Beo Minisaw — Halil Utku Şimşek",
+      fold: "Foldesk Lamp — Halil Utku Şimşek"
     },
     proj_detail: {
       breadcrumbHome: "Ana Sayfa",
@@ -275,6 +276,29 @@ const I18N = {
       f3Desc: "Kesim hattını aydınlatan LED ön ışık ve dokunmatik kontrol paneli; hız, mod ve durum bilgileri ergonomik bir ara yüzde toplanarak güvenli, hassas kullanım sağlar.",
       f4Title: "Ergonomik & Güvenli Tutuş",
       f4Desc: "Yumuşak grip dokusu, dengeli ağırlık dağılımı ve parmak koruyucu yapı; uzun süreli kullanımda yorulmayı azaltır ve hem profesyonel hem bireysel kullanıcılar için güvenli operasyon sunar."
+    },
+    fold: {
+      breadcrumb: "Foldesk Lamp",
+      badge: "Aydınlatma",
+      year: "2023 · Katlanabilir Form",
+      title: "Foldesk Lamp<br/><em>Katlanabilir Çalışma Aydınlatması</em>",
+      overview: "<strong>Foldesk Lamp — Katlanabilir Kompakt Çalışma Aydınlatması</strong><br/><br/>Foldesk Lamp, dar çalışma alanları için geliştirilen, katlanabilir mekanizmaya sahip kompakt bir masa aydınlatma çözümüdür. Lineer LED ışık barı ve ayarlanabilir başlık yapısı sayesinde homojen ve odaklı ışık dağılımı sunarken, çok eksenli menteşe sistemi ile farklı çalışma senaryolarına kolayca uyum sağlar.<br/><br/>Metal gövde ve hassas ray mekanizması, hem dayanıklılığı hem de akıcı hareket kabiliyetini destekler. Katlandığında minimum yer kaplayan tasarım, açıldığında geniş bir aydınlatma yüzeyi oluşturarak özellikle mimar, mühendis ve tasarımcılar için ergonomik ve verimli bir çalışma deneyimi sağlar.",
+      stat1: "LED Işık Barı", stat2: "Kompakt Form", stat3: "Menteşe Sistemi", stat4: "Gövde & Ray",
+      capLifestyle: "Çalışma Alanı — Açık Konfigürasyon",
+      capRender: "3D Render — Çift Kollu Konfigürasyon",
+      capSide: "Yandan — Katlanmış Kompakt Pozisyon",
+      capControls: "Kontrol Yüzeyi — LED Bar & Düğmeler",
+      capFront: "Önden Görünüm — LED Bar & Mengene",
+      capTop: "Üstten — Katlanmış Form",
+      capTech: "Menteşe Mekanizması — Çok Eksenli Eklem Sistemi",
+      f1Title: "Lineer LED Işık Barı",
+      f1Desc: "Çalışma yüzeyi boyunca uzanan lineer LED dizgesi, gölgesiz ve homojen bir aydınlatma alanı yaratır; ek başlık yapısıyla odaklanmış ışığa geçişi mümkün kılar.",
+      f2Title: "Çok Eksenli Menteşe Sistemi",
+      f2Desc: "Birden fazla eksende dönen menteşe yapısı, lambanın okuma, çizim ve detay çalışması gibi farklı senaryolara saniyeler içinde uyum sağlamasını sağlar.",
+      f3Title: "Katlanabilir Kompakt Form",
+      f3Desc: "Katlandığında masada minimum yer kaplayan ince profil; açıldığında geniş bir aydınlatma yüzeyine dönüşerek dar çalışma alanlarında bile esneklik sunar.",
+      f4Title: "Metal Gövde & Hassas Ray",
+      f4Desc: "Metal gövde uzun ömürlü kullanım sunarken, hassas ray mekanizması başlık konumunun yumuşak ve titreşimsiz şekilde değiştirilmesine olanak tanır."
     }
   },
 
@@ -325,9 +349,9 @@ const I18N = {
         desc: "Sketches and interior concepts for a 45m Gulet at Salmakis Yachts. Interior development for a 42.5m motor yacht at Neta Marine — material selection and decor planning."
       },
       fold: {
-        meta1: "2023", meta2: "Lighting",
+        meta1: "2023", meta2: "Foldable Lighting",
         title: "Foldesk Lamp",
-        desc: "A foldable desk lamp designed for professionals. Portability and ergonomics drive a minimalist form language, with adjustable light angle and compact storage."
+        desc: "A compact desk-lighting solution with a foldable mechanism, developed for narrow workspaces. A linear LED bar, adjustable head and multi-axis hinge system deliver an ergonomic, productive experience tailored to architects, engineers and designers."
       },
       beo: {
         meta1: "2022", meta2: "Bang & Olufsen",
@@ -409,7 +433,8 @@ const I18N = {
       scoot:"Scooter Port — Halil Utku Şimşek",
       eko:  "Ekofish 200ft — Halil Utku Şimşek",
       crea: "Crea Light — Halil Utku Şimşek",
-      beo:  "Beo Minisaw — Halil Utku Şimşek"
+      beo:  "Beo Minisaw — Halil Utku Şimşek",
+      fold: "Foldesk Lamp — Halil Utku Şimşek"
     },
     proj_detail: {
       breadcrumbHome: "Home",
@@ -545,6 +570,29 @@ const I18N = {
       f3Desc: "An LED front light illuminates the cutting line while a touch control panel consolidates speed, mode and status information into a single ergonomic interface for safe, precise operation.",
       f4Title: "Ergonomic & Safe Grip",
       f4Desc: "A soft grip texture, balanced weight distribution and finger-guard structure reduce fatigue over long sessions and deliver safe operation for both professional and individual users."
+    },
+    fold: {
+      breadcrumb: "Foldesk Lamp",
+      badge: "Lighting",
+      year: "2023 · Foldable Form",
+      title: "Foldesk Lamp<br/><em>Foldable Workstation Light</em>",
+      overview: "<strong>Foldesk Lamp — Foldable Compact Workstation Lighting</strong><br/><br/>Foldesk Lamp is a compact desk-lighting solution with a foldable mechanism, developed for narrow workspaces. Its linear LED light bar and adjustable head deliver even, focused light distribution, while a multi-axis hinge system adapts effortlessly to different working scenarios.<br/><br/>A metal body and precision rail mechanism support both durability and fluid motion. The design takes minimal space when folded and opens up to a wide lighting surface — providing an ergonomic, productive experience tailored to architects, engineers and designers.",
+      stat1: "LED Light Bar", stat2: "Compact Form", stat3: "Hinge System", stat4: "Body & Rail",
+      capLifestyle: "Workspace — Open Configuration",
+      capRender: "3D Render — Dual-Arm Configuration",
+      capSide: "Side View — Folded Compact Position",
+      capControls: "Control Surface — LED Bar & Buttons",
+      capFront: "Front View — LED Bar & Clamp",
+      capTop: "Top View — Folded Form",
+      capTech: "Hinge Mechanism — Multi-Axis Joint System",
+      f1Title: "Linear LED Light Bar",
+      f1Desc: "A linear LED array running along the work surface produces a shadow-free, even lighting field; the auxiliary head allows quick switching to focused, task-oriented light.",
+      f2Title: "Multi-Axis Hinge System",
+      f2Desc: "Hinges that rotate on multiple axes let the lamp adapt within seconds to reading, drafting and detail-work scenarios.",
+      f3Title: "Foldable Compact Form",
+      f3Desc: "A slim profile that takes minimal desk space when folded opens out into a wide lighting surface — offering flexibility even in narrow workspaces.",
+      f4Title: "Metal Body & Precision Rail",
+      f4Desc: "The metal body delivers long-term durability, while the precision rail mechanism allows the head position to be adjusted smoothly and without vibration."
     }
   }
 };
