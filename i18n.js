@@ -59,14 +59,14 @@ const I18N = {
         desc: "Profesyoneller için tasarlanmış katlanabilir masa lambası. Taşınabilirlik ve ergonomi önceliklendirilerek geliştirilen minimalist form dili, ayarlanabilir ışık açısı ve kompakt depolama."
       },
       beo: {
-        meta1: "2022", meta2: "Alet Tasarımı",
+        meta1: "2022", meta2: "Bang & Olufsen",
         title: "Beo Minisaw",
-        desc: "Bang & Olufsen marka kimliğine uygun lüks mini el testeresi. Skandinavya estetiği ile yüksek performanslı mühendislik çözümlerini birleştiren premium el aleti konsepti."
+        desc: "Bang & Olufsen'in premium tasarım diliyle yeniden yorumlanan, kompakt ve yüksek performanslı bir mini elektrikli testere konsepti. Modüler yapısı, entegre aydınlatma ve kontrol paneli ile bakım kolaylığı ve üst düzey kullanıcı deneyimi sunar."
       },
       crea: {
-        meta1: "2022", meta2: "Çalışma Ekipmanı",
+        meta1: "2022", meta2: "Çalışma Aydınlatması",
         title: "Crea Light",
-        desc: "Uzun süreli bilgisayar kullanımında göz sağlığını korumak ve çalışma konforunu artırmak için tasarlanmış akıllı ve ergonomik masa aydınlatması. Uzayabilir form, ayarlanabilir renk sıcaklığı ve entegre kamera kapatıcısı ile çalışma alanını sadeleştirir."
+        desc: "Uzun süreli bilgisayar kullanımında göz sağlığını korumak ve çalışma konforunu artırmak için tasarlanmış akıllı ve ergonomik masa aydınlatması. Uzayabilir form, 2700–6500K ayarlanabilir renk sıcaklığı, yüksek CRI LED ve entegre kamera kapatıcısı ile çalışma alanını sadeleştirir."
       },
       scoot: {
         meta1: "2023", meta2: "Ulaşım / Kentsel",
@@ -138,7 +138,8 @@ const I18N = {
       kmem: "KMEM Pop-up Mağaza — Halil Utku Şimşek",
       scoot:"Scooter Port — Halil Utku Şimşek",
       eko:  "Ekofish 200ft — Halil Utku Şimşek",
-      crea: "Crea Light — Halil Utku Şimşek"
+      crea: "Crea Light — Halil Utku Şimşek",
+      beo:  "Beo Minisaw — Halil Utku Şimşek"
     },
     proj_detail: {
       breadcrumbHome: "Ana Sayfa",
@@ -233,25 +234,47 @@ const I18N = {
     },
     crea: {
       breadcrumb: "Crea Light",
-      badge: "Çalışma Ekipmanı",
+      badge: "Çalışma Aydınlatması",
       year: "2022 · Ergonomi",
-      title: "Crea Light<br/><em>Akıllı Çalışma Aydınlatması</em>",
-      overview: "<strong>Crea Light – Akıllı ve Ergonomik Çalışma Aydınlatması</strong><br/><br/>Crea Light, uzun süreli bilgisayar kullanımında göz sağlığını korumak ve çalışma konforunu artırmak amacıyla tasarlanmış yenilikçi bir masa aydınlatma çözümüdür. Özellikle 40 yaş ve üzeri kullanıcıların yaşadığı odaklanma ve görme zorluklarını hedef alarak geliştirilmiş, ayarlanabilir yapısı sayesinde her kullanıcıya özel bir deneyim sunar.<br/><br/>Uzayabilir formu ile farklı ekran boyutlarına ve çalışma alanlarına kolayca adapte olan Crea Light; aydınlatma açısı, renk sıcaklığı ve parlaklık ayarları ile kişiselleştirilebilir bir kullanım sağlar. Bu sayede göz yorgunluğu azaltılır, ekran karşısında geçirilen süre daha verimli ve konforlu hale getirilir.<br/><br/>Üründe kullanılan dayanıklı alüminyum gövde, uzun ömürlü kullanım sunarken estetik ve modern bir görünüm sağlar. Yüksek renk doğruluğuna sahip LED aydınlatma sistemi, çalışma ortamında dengeli ve homojen bir ışık dağılımı oluşturarak göz sağlığını destekler.<br/><br/>Entegre kamera kapatıcısı ve modüler bağlantı yapısı sayesinde kullanıcı güvenliği ve pratiklik ön planda tutulmuştur. Type-C bağlantı altyapısı ile modern cihazlarla tam uyum sağlayan ürün, kompakt ve işlevsel tasarımıyla masa düzenini sadeleştirir.<br/><br/>Crea Light, teknoloji ve ergonomiyi bir araya getirerek çalışma alanlarını daha sağlıklı, daha verimli ve daha estetik hale getiren yeni nesil bir aydınlatma çözümüdür.",
-      stat1: "Renk Sıcaklığı", stat2: "Bağlantı", stat3: "mAh Pil", stat4: "Gövde",
+      title: "Crea Light<br/><em>Akıllı ve Ergonomik Çalışma Aydınlatması</em>",
+      overview: "<strong>Crea Light – Akıllı ve Ergonomik Çalışma Aydınlatması</strong><br/><br/>Crea Light, uzun süreli bilgisayar kullanımında göz sağlığını korumak ve çalışma konforunu artırmak amacıyla tasarlanmış yenilikçi bir masa aydınlatma çözümüdür. Özellikle 40 yaş ve üzeri kullanıcıların yaşadığı odaklanma ve görme zorluklarını hedef alarak geliştirilmiş; ayarlanabilir yapısı sayesinde her kullanıcıya özel bir deneyim sunar.<br/><br/>Uzayabilir formu ile farklı ekran boyutlarına ve çalışma alanlarına kolayca adapte olan Crea Light; aydınlatma açısı, renk sıcaklığı ve parlaklık ayarları ile kişiselleştirilebilir bir kullanım sağlar. Bu sayede göz yorgunluğu azaltılır, ekran karşısında geçirilen süre daha verimli ve konforlu hale getirilir.<br/><br/>Üründe kullanılan dayanıklı alüminyum gövde, uzun ömürlü kullanım sunarken estetik ve modern bir görünüm sağlar. Yüksek renk doğruluğuna sahip LED aydınlatma sistemi, çalışma ortamında dengeli ve homojen bir ışık dağılımı oluşturarak göz sağlığını destekler.<br/><br/>Entegre kamera kapatıcısı ve modüler bağlantı yapısı sayesinde kullanıcı güvenliği ve pratiklik ön planda tutulmuştur. Type-C bağlantı altyapısı ile modern cihazlarla tam uyum sağlayan ürün, kompakt ve işlevsel tasarımıyla masa düzenini sadeleştirir.<br/><br/>Crea Light, teknoloji ve ergonomiyi bir araya getirerek çalışma alanlarını daha sağlıklı, daha verimli ve daha estetik hale getiren yeni nesil bir aydınlatma çözümüdür.",
+      stat1: "Renk Sıcaklığı", stat2: "Bağlantı", stat3: "LED Renk Doğruluğu", stat4: "Gövde Malzemesi",
       capCover: "Çalışma Ortamı — Monitör Üstü Yerleşim",
       capRender: "3D Render — Genel Görünüm",
       capFront: "Önden Görünüm — Kontrol Düğmeleri",
-      capSide: "Yandan — Bağlantı Mekanizması",
+      capSide: "Yandan — Modüler Bağlantı Mekanizması",
       capTop: "Üstten — Kamera Kapatıcı Detayı",
       capTech: "Patlak Görünüm — Bileşen Analizi",
-      f1Title: "Uzayabilir Form",
-      f1Desc: "Farklı ekran boyutlarına ve çalışma alanlarına uyum sağlayan teleskobik kol; genişlik kullanıcının monitörüne özel olarak ayarlanır.",
-      f2Title: "Ayarlanabilir Aydınlatma",
-      f2Desc: "2700–6500K renk sıcaklığı ve kademeli parlaklık kontrolü; göz yorgunluğunu azaltan dengeli, homojen bir ışık dağılımı sunar.",
-      f3Title: "Entegre Kamera Kapatıcı",
-      f3Desc: "Ürünün üstüne entegre edilmiş fiziksel kamera kapatıcısı; kullanıcı gizliliğini garanti altına alırken ek bir aksesuar gerektirmez.",
-      f4Title: "Alüminyum Gövde & USB-C",
-      f4Desc: "Dayanıklı alüminyum gövde uzun ömür ve premium hissiyat verir; Type-C bağlantı modern cihazlarla tam uyum sağlar."
+      f1Title: "Uzayabilir & Ayarlanabilir Form",
+      f1Desc: "Teleskobik kol farklı ekran boyutlarına ve çalışma alanlarına kolayca adapte olur; aydınlatma açısı kullanıcının ergonomisine göre kişiselleştirilebilir.",
+      f2Title: "40+ Kullanıcıya Özel Aydınlatma",
+      f2Desc: "2700–6500K renk sıcaklığı ve kademeli parlaklık kontrolü; özellikle 40 yaş üstü kullanıcıların odaklanma ve görme konforunu artıracak şekilde ayarlanır.",
+      f3Title: "Yüksek CRI LED Sistemi",
+      f3Desc: "Yüksek renk doğruluğuna sahip LED aydınlatma; çalışma yüzeyinde dengeli ve homojen ışık dağılımı oluşturarak göz yorgunluğunu azaltır.",
+      f4Title: "Kamera Kapatıcı, Alüminyum Gövde & USB-C",
+      f4Desc: "Entegre fiziksel kamera kapatıcı kullanıcı gizliliğini güvence altına alır; dayanıklı alüminyum gövde ve Type-C modüler bağlantı, modern cihazlarla tam uyumlu kompakt bir tasarım sunar."
+    },
+    beo: {
+      breadcrumb: "Beo Minisaw",
+      badge: "Alet Tasarımı",
+      year: "2022 · Bang & Olufsen",
+      title: "Beo Minisaw<br/><em>Premium Mini Elektrikli Testere</em>",
+      overview: "<strong>Beo Minisaw — Bang & Olufsen Premium Mini Elektrikli Testere</strong><br/><br/>Beo Minisaw, Bang & Olufsen'in premium tasarım diliyle yeniden yorumlanan, kompakt ve yüksek performanslı bir mini elektrikli testere konseptidir. Minimal formu, ergonomik tutuşu ve rafine malzeme kullanımıyla hem profesyonel hem de bireysel kullanıcılar için konforlu ve güvenli bir kullanım sunar.<br/><br/>Modüler yapısı sayesinde bakım ve parça değişimi kolaylaştırılırken, entegre aydınlatma ve kontrol paneli ile kullanıcı deneyimi üst seviyeye taşınır.<br/><br/>Güç, estetik ve fonksiyonelliği bir araya getiren Beo Minisaw, modern yaşamın ihtiyaçlarına şık ve yenilikçi bir çözüm getirir.",
+      stat1: "Marka Kimliği", stat2: "Bakım & Parça", stat3: "Aydınlatma & Panel", stat4: "Malzeme & Form",
+      capLifestyle: "Lifestyle — Bang & Olufsen Marka Dünyası",
+      capRender: "Kontrol Paneli — Entegre Arayüz",
+      capSide: "Yandan — Zincir Mekanizması Açık",
+      capTop: "Üstten — Tutuş Detayı",
+      capControls: "Kontrol Yüzeyi — Hız & Mod Seçimi",
+      capTech: "Patlak Görünüm — Modüler Bileşen Analizi",
+      f1Title: "Premium B&O Estetik",
+      f1Desc: "Bang & Olufsen'in minimal form dili, alüminyum ve cam dokunuşu, sade renk paleti ile premium bir el aleti deneyimi; ürün, yerleştirildiği her ortama doğal biçimde dahil olur.",
+      f2Title: "Modüler Yapı",
+      f2Desc: "Sökülebilir gövde grupları ve hızlı değişim noktaları ile bakım, batarya ve testere zinciri değişimi kullanıcı tarafından kolayca yapılabilir; ürün ömrü uzar, atık azalır.",
+      f3Title: "Entegre Aydınlatma & Panel",
+      f3Desc: "Kesim hattını aydınlatan LED ön ışık ve dokunmatik kontrol paneli; hız, mod ve durum bilgileri ergonomik bir ara yüzde toplanarak güvenli, hassas kullanım sağlar.",
+      f4Title: "Ergonomik & Güvenli Tutuş",
+      f4Desc: "Yumuşak grip dokusu, dengeli ağırlık dağılımı ve parmak koruyucu yapı; uzun süreli kullanımda yorulmayı azaltır ve hem profesyonel hem bireysel kullanıcılar için güvenli operasyon sunar."
     }
   },
 
@@ -307,14 +330,14 @@ const I18N = {
         desc: "A foldable desk lamp designed for professionals. Portability and ergonomics drive a minimalist form language, with adjustable light angle and compact storage."
       },
       beo: {
-        meta1: "2022", meta2: "Tool Design",
+        meta1: "2022", meta2: "Bang & Olufsen",
         title: "Beo Minisaw",
-        desc: "A premium mini handsaw aligned with Bang & Olufsen brand identity. Scandinavian aesthetics meet high-performance engineering in a refined hand-tool concept."
+        desc: "A compact, high-performance mini electric saw concept reinterpreted through Bang & Olufsen's premium design language. Its modular structure, integrated lighting and control panel deliver effortless maintenance and an elevated user experience."
       },
       crea: {
-        meta1: "2022", meta2: "Workspace Equipment",
+        meta1: "2022", meta2: "Workstation Lighting",
         title: "Crea Light",
-        desc: "A smart, ergonomic desk light designed to protect eye health during long computer sessions and improve working comfort. An extendable form, adjustable colour temperature and an integrated camera cover keep the workspace clean and functional."
+        desc: "A smart, ergonomic desk light designed to protect eye health during long computer sessions and improve working comfort. An extendable form, 2700–6500K adjustable colour temperature, high-CRI LED and an integrated camera cover keep the workspace clean and functional."
       },
       scoot: {
         meta1: "2023", meta2: "Mobility / Urban",
@@ -385,7 +408,8 @@ const I18N = {
       kmem: "KMEM Pop-up Store — Halil Utku Şimşek",
       scoot:"Scooter Port — Halil Utku Şimşek",
       eko:  "Ekofish 200ft — Halil Utku Şimşek",
-      crea: "Crea Light — Halil Utku Şimşek"
+      crea: "Crea Light — Halil Utku Şimşek",
+      beo:  "Beo Minisaw — Halil Utku Şimşek"
     },
     proj_detail: {
       breadcrumbHome: "Home",
@@ -480,25 +504,47 @@ const I18N = {
     },
     crea: {
       breadcrumb: "Crea Light",
-      badge: "Workspace Equipment",
+      badge: "Workstation Lighting",
       year: "2022 · Ergonomics",
-      title: "Crea Light<br/><em>Smart Workstation Light</em>",
+      title: "Crea Light<br/><em>Smart & Ergonomic Workstation Lighting</em>",
       overview: "<strong>Crea Light — Smart and Ergonomic Workstation Lighting</strong><br/><br/>Crea Light is an innovative desk-lighting solution designed to protect eye health during long computer sessions and improve working comfort. Developed with users aged 40 and above — and the focus and vision difficulties they often experience — in mind, its adjustable structure offers a tailored experience for every user.<br/><br/>With its extendable form, Crea Light easily adapts to different screen sizes and work areas. Customisable lighting angle, colour temperature and brightness make screen time more efficient and comfortable, reducing eye strain throughout the day.<br/><br/>The durable aluminium body delivers long-term use while providing a clean, modern look. A high-CRI LED lighting system creates balanced, even light distribution across the workspace and supports eye health.<br/><br/>An integrated camera cover and modular connection structure prioritise user privacy and practicality. Full Type-C compatibility brings the product in line with modern devices, while its compact, functional design declutters the desk.<br/><br/>By bringing technology and ergonomics together, Crea Light is a next-generation lighting solution that makes workspaces healthier, more productive and more refined.",
-      stat1: "Colour Temp.", stat2: "Connector", stat3: "mAh Battery", stat4: "Body",
+      stat1: "Colour Temp.", stat2: "Connector", stat3: "LED Colour Accuracy", stat4: "Body Material",
       capCover: "Workspace — Above the Monitor",
       capRender: "3D Render — General View",
       capFront: "Front View — Control Buttons",
-      capSide: "Side View — Connection Mechanism",
+      capSide: "Side View — Modular Connection Mechanism",
       capTop: "Top View — Camera Cover Detail",
       capTech: "Exploded View — Component Analysis",
-      f1Title: "Extendable Form",
-      f1Desc: "A telescopic arm that adapts to different screen sizes and work areas — the width can be tuned to the user's specific monitor.",
-      f2Title: "Adjustable Lighting",
-      f2Desc: "2700–6500K colour temperature and stepped brightness control — balanced, even light distribution that reduces eye strain.",
-      f3Title: "Integrated Camera Cover",
-      f3Desc: "A physical camera cover integrated into the body guarantees user privacy without requiring an extra accessory.",
-      f4Title: "Aluminium Body & USB-C",
-      f4Desc: "A durable aluminium body delivers longevity and a premium feel; Type-C connectivity ensures full compatibility with modern devices."
+      f1Title: "Extendable & Adjustable Form",
+      f1Desc: "The telescopic arm adapts to different screen sizes and work areas; the lighting angle can be personalised to suit each user's ergonomic setup.",
+      f2Title: "Tailored Light for 40+ Users",
+      f2Desc: "2700–6500K colour temperature and stepped brightness — calibrated to ease the focus and vision challenges most often reported by users aged 40 and above.",
+      f3Title: "High-CRI LED System",
+      f3Desc: "A high colour-rendering LED engine creates balanced, even light across the work surface, reducing eye strain over long sessions.",
+      f4Title: "Camera Cover, Aluminium Body & USB-C",
+      f4Desc: "An integrated physical camera cover safeguards user privacy; the durable aluminium body and Type-C modular connection deliver a compact design that pairs cleanly with modern devices."
+    },
+    beo: {
+      breadcrumb: "Beo Minisaw",
+      badge: "Tool Design",
+      year: "2022 · Bang & Olufsen",
+      title: "Beo Minisaw<br/><em>Premium Mini Electric Saw</em>",
+      overview: "<strong>Beo Minisaw — Bang & Olufsen Premium Mini Electric Saw</strong><br/><br/>Beo Minisaw is a compact, high-performance mini electric saw concept reinterpreted through Bang & Olufsen's premium design language. Its minimal form, ergonomic grip and refined material palette deliver a comfortable, safe experience for both professional and individual users.<br/><br/>A modular architecture simplifies maintenance and part replacement, while integrated lighting and a control panel elevate the user experience to a new level.<br/><br/>Bringing power, aesthetics and functionality together, Beo Minisaw offers a refined, innovative answer to the needs of modern life.",
+      stat1: "Brand Identity", stat2: "Maintenance & Parts", stat3: "Lighting & Panel", stat4: "Material & Form",
+      capLifestyle: "Lifestyle — The Bang & Olufsen World",
+      capRender: "Control Panel — Integrated Interface",
+      capSide: "Side View — Chain Extended",
+      capTop: "Top View — Grip Detail",
+      capControls: "Control Surface — Speed & Mode Selection",
+      capTech: "Exploded View — Modular Component Analysis",
+      f1Title: "Premium B&O Aesthetic",
+      f1Desc: "Bang & Olufsen's minimal form language, aluminium and glass detailing and a restrained palette deliver a premium hand-tool experience that feels at home in any setting.",
+      f2Title: "Modular Architecture",
+      f2Desc: "Demountable body groups and fast-swap points make maintenance, battery and chain replacement effortless for the user — extending product life and reducing waste.",
+      f3Title: "Integrated Lighting & Panel",
+      f3Desc: "An LED front light illuminates the cutting line while a touch control panel consolidates speed, mode and status information into a single ergonomic interface for safe, precise operation.",
+      f4Title: "Ergonomic & Safe Grip",
+      f4Desc: "A soft grip texture, balanced weight distribution and finger-guard structure reduce fatigue over long sessions and deliver safe operation for both professional and individual users."
     }
   }
 };
