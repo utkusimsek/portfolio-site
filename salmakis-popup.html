@@ -10,13 +10,14 @@
   <link rel="stylesheet" href="style.css"/>
   <link rel="stylesheet" href="project.css"/>
   <style>
-    /* Salmakis gallery — yacht renders are wide, interior grid is tall */
-    .proj-gallery .gallery-item { aspect-ratio: 16/9; }
-    .proj-gallery .gallery-item.salm-portrait { aspect-ratio: 3/4; }
-    .proj-gallery .gallery-item.salm-tall { aspect-ratio: 3/4; }
-    .proj-gallery .gallery-item.salm-square { aspect-ratio: 1/1; }
-    .proj-gallery .gallery-item.salm-wide { aspect-ratio: 21/9; }
-    .proj-gallery .gallery-item img { object-fit: cover; padding: 0; }
+    /* Salmakis gallery — aspect-ratios match each image's native ratio
+       so cover-fit doesn't crop the yacht subjects. */
+    .proj-gallery .gallery-item { aspect-ratio: 16/9; }            /* default for 16:9 renders */
+    .proj-gallery .gallery-item.salm-portrait { aspect-ratio: 9/16; } /* tasarim19/20 are exactly 9:16 */
+    .proj-gallery .gallery-item.salm-tall { aspect-ratio: 3/4; }    /* interior-grid is 3:4 */
+    .proj-gallery .gallery-item.salm-medium { aspect-ratio: 5/3; }  /* gulet1 is ~5:3 */
+    .proj-gallery .gallery-item.salm-wide { aspect-ratio: 21/10; }  /* yanaci is ~21:10 */
+    .proj-gallery .gallery-item img { object-fit: cover; object-position: center; padding: 0; }
     .proj-gallery .gallery-item.gallery-bg-light img { object-fit: contain; padding: 28px; }
     .proj-gallery .gallery-row { gap: 18px; margin-bottom: 18px; }
 
@@ -44,11 +45,13 @@
     }
 
     @media (max-width: 768px) {
+      /* Most items collapse to a friendly mobile ratio */
       .proj-gallery .gallery-item,
-      .proj-gallery .gallery-item.salm-portrait,
-      .proj-gallery .gallery-item.salm-tall,
-      .proj-gallery .gallery-item.salm-square,
+      .proj-gallery .gallery-item.salm-medium,
       .proj-gallery .gallery-item.salm-wide { aspect-ratio: 4/3; }
+      /* Portrait subjects keep their portrait feel on mobile too */
+      .proj-gallery .gallery-item.salm-portrait { aspect-ratio: 3/4; }
+      .proj-gallery .gallery-item.salm-tall { aspect-ratio: 3/4; }
     }
 
     /* Long multi-paragraph overview — left-align for readability */
@@ -205,17 +208,17 @@
       <!-- ─── 45m Gulet ─── -->
       <div class="gallery-divider reveal-up" data-i18n="salm.divGulet">Salmakis · 45m Gulet</div>
 
-      <!-- Sunset hero gulet -->
+      <!-- Sunset hero gulet (16:9 native) -->
       <div class="gallery-row gallery-full reveal-up">
-        <div class="gallery-item gallery-cover salm-wide">
+        <div class="gallery-item gallery-cover">
           <img src="assets/gulet/tasarim23.png" alt="45m Gulet — Gün Batımı" loading="lazy" decoding="async">
           <div class="gallery-caption" data-i18n="salm.capGuletSunset">45m Gulet — Gün Batımında Direkler</div>
         </div>
       </div>
 
-      <!-- Gulet top-down -->
+      <!-- Gulet top-down (~5:3 native) -->
       <div class="gallery-row gallery-full reveal-up">
-        <div class="gallery-item gallery-cover">
+        <div class="gallery-item gallery-cover salm-medium">
           <img src="assets/gulet/gulet1.png" alt="45m Gulet — Üstten" loading="lazy" decoding="async">
           <div class="gallery-caption" data-i18n="salm.capGuletTop">Üstten — Direk &amp; Güverte Hatları</div>
         </div>
