@@ -60,6 +60,19 @@ body.light .contact-text h2 { color: #1a1a1a; }
 body.light .stat-num,
 body.light .stat-num-dec { color: var(--accent); }
 body.light .footer-logo { color: var(--accent); }
+body.light #footer {
+  background: rgba(240, 237, 232, 0.85);
+  border-top-color: rgba(0, 0, 0, 0.08);
+}
+body.light #footer p { color: #444; }
+body.light .footer-socials a {
+  border-color: rgba(0, 0, 0, 0.18);
+  color: #444;
+}
+body.light .footer-socials a:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
 body.light #nav.scrolled { background: rgba(240,237,232,.75); }
 body.light .nav-links a { color: #555; }
 body.light .nav-links a:hover { color: #1a1a1a; }
