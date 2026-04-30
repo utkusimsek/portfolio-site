@@ -471,13 +471,15 @@ body.light .theme-icon-light { display: flex; }
   }
 }
 
-/* Light mode splash — softer drop shadow + dark text fill */
+/* Light mode splash — softer drop shadow + dark logo & text fill */
 body.light .splash-logo { filter: drop-shadow(0 0 24px rgba(0,0,0,.10)); }
+body.light .splash-p { fill: #1a1a1a; }
 body.light .splash-text { fill: #1a1a1a; }
 
 /* Synchronous early hint for light theme (set on <html> by splash.js before
    <body> arrives) — prevents a dark flash on first paint for light-mode users */
 html.pre-light #splash { background: #f0ede8; }
+html.pre-light .splash-p { fill: #1a1a1a; }
 html.pre-light .splash-text { fill: #1a1a1a; }
 
 /* Skip splash entirely on in-session navigations (set synchronously by splash.js).
