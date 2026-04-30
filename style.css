@@ -114,12 +114,21 @@ body.light .skill-block li {
 body.light .mq-item img { filter: grayscale(100%) opacity(.85); }
 body.light .mq-item:hover img { filter: grayscale(0%) opacity(1); }
 
-/* Geçiş animasyonu */
+/* ── Tema geçişi: yumuşak, lüks his için Material standart easing ── */
 body, body * {
-  transition: background-color .4s ease, color .3s ease, border-color .4s ease;
+  transition:
+    background-color .55s cubic-bezier(0.4, 0, 0.2, 1),
+    color .5s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color .55s cubic-bezier(0.4, 0, 0.2, 1),
+    fill .5s cubic-bezier(0.4, 0, 0.2, 1),
+    stroke .5s cubic-bezier(0.4, 0, 0.2, 1),
+    filter .55s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow .55s cubic-bezier(0.4, 0, 0.2, 1);
 }
-/* Transition'ı video/canvas'a uygulama (performans) */
-canvas, video, img { transition: none !important; }
+/* Performans: video/canvas'a transition uygulama. Img'lar logo gibi
+   filter geçişine ihtiyaç duyabilir — onları engellemiyoruz; gerek
+   olmadığında zaten filter property'si değişmediği için tetiklenmez. */
+canvas, video { transition: none !important; }
 
 /* ── Reset ── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -1271,7 +1280,7 @@ blockquote span { font-size: .82rem; color: var(--text-muted); }
   display: block;
   /* Logo is white — looks great on dark mode by default */
   filter: brightness(1);
-  transition: opacity .25s;
+  transition: opacity .25s, filter .55s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .site-logo-img:hover { opacity: .75; }
 
