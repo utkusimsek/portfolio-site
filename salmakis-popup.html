@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Salmakis Yachts — Princess Melda & 45m Gulet — Halil Utku Şimşek</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="project.css"/>
+  <style>
+    /* Salmakis gallery — yacht renders are wide, interior grid is tall */
+    .proj-gallery .gallery-item { aspect-ratio: 16/9; }
+    .proj-gallery .gallery-item.salm-portrait { aspect-ratio: 3/4; }
+    .proj-gallery .gallery-item.salm-tall { aspect-ratio: 3/4; }
+    .proj-gallery .gallery-item.salm-square { aspect-ratio: 1/1; }
+    .proj-gallery .gallery-item.salm-wide { aspect-ratio: 21/9; }
+    .proj-gallery .gallery-item img { object-fit: cover; padding: 0; }
+    .proj-gallery .gallery-item.gallery-bg-light img { object-fit: contain; padding: 28px; }
+    .proj-gallery .gallery-row { gap: 18px; margin-bottom: 18px; }
+
+    /* Subtle category divider inside the gallery */
+    .gallery-divider {
+      max-width: 880px;
+      margin: 48px auto 28px;
+      text-align: center;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      font-size: .78rem;
+      color: var(--gold, #c9a96e);
+      font-weight: 600;
+    }
+    .gallery-divider::before,
+    .gallery-divider::after {
+      content: "";
+      display: inline-block;
+      width: 48px;
+      height: 1px;
+      background: currentColor;
+      vertical-align: middle;
+      margin: 0 14px;
+      opacity: .55;
+    }
+
+    @media (max-width: 768px) {
+      .proj-gallery .gallery-item,
+      .proj-gallery .gallery-item.salm-portrait,
+      .proj-gallery .gallery-item.salm-tall,
+      .proj-gallery .gallery-item.salm-square,
+      .proj-gallery .gallery-item.salm-wide { aspect-ratio: 4/3; }
+    }
+
+    /* Long multi-paragraph overview — left-align for readability */
+    .proj-overview { text-align: left; max-width: 880px; }
+    .proj-overview-label { text-align: center; }
+    .proj-overview-text { font-size: 1rem; line-height: 1.8; }
+    .proj-overview-text > strong:first-child {
+      display: block;
+      font-family: var(--font-serif);
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--white);
+      text-align: center;
+      margin-bottom: 28px;
+      letter-spacing: .005em;
+    }
+  </style>
+  <script src="splash.js"></script>
+  <script defer src="i18n.js"></script>
+</head>
+<body data-i18n-pagetitle="pageTitle.salm">
+
+  <!-- ─── SPLASH ─── -->
+  <div id="splash" aria-hidden="true">
+    <div class="splash-inner">
+      <svg class="splash-logo" viewBox="0 0 196 249" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="splashGrad" x1="-21.5" y1="10" x2="194" y2="177" gradientUnits="userSpaceOnUse">
+            <stop offset="0.015" stop-color="#fff" stop-opacity="0"/>
+            <stop offset="0.51"  stop-color="#fff" stop-opacity="0.95"/>
+            <stop offset="1"     stop-color="#fff" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <path class="splash-p splash-p1" d="M50.6351 2.81087C50.6351 2.08199 49.8516 1.62163 49.2149 1.97636L19.9038 18.3053C16.8766 19.9917 15 23.1853 15 26.6505V148.52C15 152.175 17.085 155.509 20.3708 157.109L84.228 188.202C85.0859 188.619 85.9587 187.66 85.4616 186.845L52.7328 133.215C51.3609 130.967 50.6351 128.384 50.6351 125.751V2.81087Z" fill="url(#splashGrad)"/>
+        <path class="splash-p splash-p2" d="M145.365 2.81087C145.365 2.08199 146.148 1.62163 146.785 1.97636L176.096 18.3053C179.123 19.9917 181 23.1853 181 26.6505V148.52C181 152.175 178.915 155.509 175.629 157.109L111.772 188.202C110.914 188.619 110.041 187.66 110.538 186.845L143.267 133.215C144.639 130.967 145.365 128.384 145.365 125.751V2.81087Z" fill="url(#splashGrad)"/>
+        <path class="splash-p splash-p3" d="M137.706 0C138.385 0 138.847 0.688298 138.591 1.31672L115.721 57.2663C114.314 60.7083 113.59 64.3912 113.59 68.1097V122.704C113.59 124.201 113.414 125.693 113.066 127.149L98.4836 188.116C98.2498 189.093 96.8593 189.093 96.6255 188.116L82.0429 127.149C81.6947 125.693 81.5188 124.201 81.5188 122.704V67.8047C81.5188 64.2842 80.8701 60.7938 79.6052 57.5083L57.965 1.29849C57.7241 0.672737 58.186 0 58.8565 0L137.706 0Z" fill="url(#splashGrad)"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- ── Nav ── -->
+  <nav id="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo"><img src="assets/logo.webp" alt="HUŞ Logo" class="site-logo-img"></a>
+      <div class="nav-links">
+        <a href="index.html#work" data-i18n="nav.projects">Projeler</a>
+        <a href="index.html#about" data-i18n="nav.about">Hakkımda</a>
+        <a href="index.html#contact" data-i18n="nav.contact">İletişim</a>
+      </div>
+      <div class="nav-right">
+        <button class="lang-toggle" id="langToggle" data-i18n-aria="nav.langAria" aria-label="Dil değiştir">
+          <span class="lang-current">EN</span>
+        </button>
+        <button class="theme-toggle" id="themeToggle" data-i18n-aria="nav.themeAria" aria-label="Tema değiştir">
+          <span class="theme-icon theme-icon-dark">
+            <svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M10 2v2M10 16v2M2 10h2M16 10h2M4.22 4.22l1.42 1.42M14.36 14.36l1.42 1.42M4.22 15.78l1.42-1.42M14.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </span>
+          <span class="theme-icon theme-icon-light">
+            <svg viewBox="0 0 20 20" fill="none"><path d="M17 11.5A7 7 0 1 1 8.5 3a5 5 0 0 0 8.5 8.5z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <span class="theme-label">Açık Mod</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ── Hero ── -->
+  <section class="proj-hero">
+    <div class="proj-hero-img">
+      <img src="assets/gulet/melda2.png" alt="Princess Melda — 42,5m Motor Yat" class="proj-cover-img" fetchpriority="high">
+      <div class="proj-hero-overlay"></div>
+    </div>
+    <div class="proj-hero-content reveal-up">
+      <div class="proj-breadcrumb">
+        <a href="index.html" data-i18n="proj_detail.breadcrumbHome">Ana Sayfa</a>
+        <span>›</span>
+        <a href="index.html#work" data-i18n="proj_detail.breadcrumbProjects">Projeler</a>
+        <span>›</span>
+        <span data-i18n="salm.breadcrumb">Salmakis Yachts</span>
+      </div>
+      <div class="proj-badge-row">
+        <span class="proj-badge" data-i18n="salm.badge">Yat Tasarımı</span>
+        <span class="proj-badge-year" data-i18n="salm.year">2021–2022 · Salmakis Yachts / Neta Marine</span>
+      </div>
+      <h1 class="proj-title" data-i18n="salm.heroTitle">42,5m Motor Yat &amp; 45m Gulet<br/><em>Princess Melda</em></h1>
+      <div class="proj-tags">
+        <span>Rhino</span><span>KeyShot</span><span>Figma</span><span>İç Mekân</span>
+      </div>
+    </div>
+    <div class="proj-scroll-hint">
+      <span data-i18n="proj_detail.scroll">Aşağı Kaydır</span>
+      <div class="proj-scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ── Overview ── -->
+  <section class="proj-section">
+    <div class="proj-container">
+      <div class="proj-overview reveal-up">
+        <div class="proj-overview-label" data-i18n="proj_detail.overviewLabel">Proje Özeti</div>
+        <p class="proj-overview-text" data-i18n="salm.overview">
+          <strong>Salmakis Yachts — 42,5 Metre Motor Yat | Princess Melda</strong><br/><br/>
+          Staj sürecimde, lüks yat tasarımı ve üretim süreçlerini bütüncül bir bakış açısıyla deneyimleme fırsatı buldum. 42,5 metre motor yat projesi kapsamında; konsept geliştirme, 3D modelleme, iç mekân kurgusu ve görselleştirme aşamalarında aktif rol aldım.<br/><br/>
+          Projede, modern yat tasarımının gerektirdiği estetik ve fonksiyonelliği bir araya getirerek; dış form dilinden iç mekân detaylarına kadar kullanıcı deneyimini ön planda tutan çözümler geliştirdim. Güverte planlaması, yaşam alanlarının organizasyonu ve malzeme seçimleri gibi kritik konularda tasarım kararlarına katkı sağladım.<br/><br/>
+          Aynı zamanda yüksek kaliteli render ve sunum görselleri üreterek projenin görsel anlatımını güçlendirdim. Bu süreç, teknik bilgi ile tasarım estetiğini birleştirme ve gerçek üretim koşullarına uygun çözümler geliştirme açısından önemli bir deneyim kazandırdı.
+        </p>
+      </div>
+
+      <!-- Stats row -->
+      <div class="proj-stats reveal-up">
+        <div class="proj-stat"><span class="proj-stat-num">42,5m</span><span class="proj-stat-label" data-i18n="salm.stat1">Motor Yat Boyu</span></div>
+        <div class="proj-stat"><span class="proj-stat-num">45m</span><span class="proj-stat-label" data-i18n="salm.stat2">Gulet Konsepti</span></div>
+        <div class="proj-stat"><span class="proj-stat-num">3D</span><span class="proj-stat-label" data-i18n="salm.stat3">Modelleme &amp; Render</span></div>
+        <div class="proj-stat"><span class="proj-stat-num">Lüks</span><span class="proj-stat-label" data-i18n="salm.stat4">İç Mekân Kurgusu</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Gallery grid ── -->
+  <section class="proj-gallery">
+    <div class="proj-container">
+
+      <!-- ─── Princess Melda (42,5m Motor Yat) ─── -->
+      <div class="gallery-divider reveal-up" data-i18n="salm.divMelda">Princess Melda · 42,5m Motor Yat</div>
+
+      <!-- Cinematic 3/4 angle render -->
+      <div class="gallery-row gallery-full reveal-up">
+        <div class="gallery-item gallery-cover salm-wide">
+          <img src="assets/gulet/yanaci.png" alt="Princess Melda — Yan Açı" loading="lazy" decoding="async">
+          <div class="gallery-caption" data-i18n="salm.capYanAci">Princess Melda — Yan Açı</div>
+        </div>
+      </div>
+
+      <!-- Top + Front 3/4 half-width -->
+      <div class="gallery-row gallery-half reveal-up">
+        <div class="gallery-item gallery-cover">
+          <img src="assets/gulet/melda1.png" alt="Princess Melda — Üstten" loading="lazy" decoding="async">
+          <div class="gallery-caption" data-i18n="salm.capMeldaTop">Üstten — Güverte Planlaması</div>
+        </div>
+        <div class="gallery-item gallery-cover">
+          <img src="assets/gulet/melda8.png" alt="Princess Melda — Ön 3/4" loading="lazy" decoding="async">
+          <div class="gallery-caption" data-i18n="salm.capMelda8">Ön 3/4 — Form Çalışması</div>
+        </div>
+      </div>
+
+      <!-- Interior collage (tall) -->
+      <div class="gallery-row gallery-full reveal-up">
+        <div class="gallery-item gallery-cover salm-tall">
+          <img src="assets/gulet/interior-grid.png" alt="Princess Melda — İç Mekân Kurgusu" loading="lazy" decoding="async">
+          <div class="gallery-caption" data-i18n="salm.capInterior">İç Mekân Kurgusu — Kabinler, Salon &amp; Köprü</div>
+        </div>
+      </div>
+
+      <!-- ─── 45m Gulet ─── -->
+      <div class="gallery-divider reveal-up" data-i18n="salm.divGulet">Salmakis · 45m Gulet</div>
+
+      <!-- Sunset hero gulet -->
+      <div class="gallery-row gallery-full reveal-up">
+        <div class="gallery-item gallery-cover salm-wide">
+          <img src="assets/gulet/tasarim23.png" alt="45m Gulet — Gün Batımı" loading="lazy" decoding="async">
+          <div class="gallery-caption" data-i18n="salm.capGuletSunset">45m Gulet — Gün Batımında Direkler</div>
+        </div>
+      </div>
+
+      <!-- Gulet top-down -->
+      <div class="gallery-row gallery-full reveal-up">
+        <div class="gallery-item gallery-cover">
+          <img src="assets/gulet/gulet1.png" alt="45m Gulet — Üstten" loading="lazy" decoding="async">
+          <div class="gallery-caption" data-i18n="salm.capGuletTop">Üstten — Direk &amp; Güverte Hatları</div>
+        </div>
+      </div>
+
+      <!-- ─── Konsept Çalışmaları & Eskizler ─── -->
+      <div class="gallery-divider reveal-up" data-i18n="salm.divConcept">Konsept &amp; Eskiz Çalışmaları</div>
+
+      <!-- Modern motor yacht concept variants -->
+      <div class="gallery-row gallery-half reveal-up">
+        <div class="gallery-item gallery-cover salm-portrait">
+          <img src="assets/gulet/tasarim19.png" alt="Konsept — Modern Motor Yat 3/4" loading="lazy" decoding="async">
+          <div class="gallery-caption" data-i18n="salm.capConcept1">Konsept Varyasyonu — 3/4 Görünüm</div>
+        </div>
+        <div class="gallery-item gallery-cover salm-portrait">
+          <img src="assets/gulet/tasarim20.png" alt="Konsept — Modern Motor Yat Yandan" loading="lazy" decoding="async">
+          <div class="gallery-caption" data-i18n="salm.capConcept2">Konsept Varyasyonu — Yandan</div>
+        </div>
+      </div>
+
+      <!-- Sketches half-width (light bg, contained) -->
+      <div class="gallery-row gallery-half reveal-up">
+        <div class="gallery-item gallery-bg-light">
+          <img src="assets/gulet/sketch-motor.png" alt="Eskiz — Motor Yat" loading="lazy" decoding="async">
+          <div class="gallery-caption gallery-caption-dark" data-i18n="salm.capSketchMotor">Eskiz — Motor Yat Form Arayışı</div>
+        </div>
+        <div class="gallery-item gallery-bg-light">
+          <img src="assets/gulet/sketch-gulet.png" alt="Eskiz — Gulet" loading="lazy" decoding="async">
+          <div class="gallery-caption gallery-caption-dark" data-i18n="salm.capSketchGulet">Eskiz — Gulet Silüet Çalışması</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── Key features ── -->
+  <section class="proj-section proj-features-section">
+    <div class="proj-container">
+      <h2 class="proj-section-title reveal-up" data-i18n="proj_detail.featuresTitle">Tasarım Özellikleri</h2>
+      <div class="proj-features reveal-up">
+        <div class="proj-feature">
+          <div class="proj-feature-icon">◇</div>
+          <h4 data-i18n="salm.f1Title">Konsept &amp; 3D Modelleme</h4>
+          <p data-i18n="salm.f1Desc">Form arayışından detaylı 3D modele kadar tüm geliştirme aşamalarında aktif rol; Rhino tabanlı yüzey çalışmaları ile üretime uygun, rafine bir dış form dili.</p>
+        </div>
+        <div class="proj-feature">
+          <div class="proj-feature-icon">◧</div>
+          <h4 data-i18n="salm.f2Title">İç Mekân Kurgusu</h4>
+          <p data-i18n="salm.f2Desc">Kabinler, salon, köprü ve teknik hacimlerin organizasyonu; yaşam alanlarının ergonomik dizilimi, sirkülasyon ve doğal ışık dengesinin gözetildiği iç plan.</p>
+        </div>
+        <div class="proj-feature">
+          <div class="proj-feature-icon">⊙</div>
+          <h4 data-i18n="salm.f3Title">Malzeme &amp; Dekor Planlaması</h4>
+          <p data-i18n="salm.f3Desc">Doğal ahşap, açık tonlu döşemeler ve metal aksamların ölçülü buluşması; lüks yat estetiğinin gerçek üretim koşullarıyla uyumlu, dayanıklı ve şık bir paletle yorumlanması.</p>
+        </div>
+        <div class="proj-feature">
+          <div class="proj-feature-icon">⌗</div>
+          <h4 data-i18n="salm.f4Title">Render &amp; Sunum Görselleri</h4>
+          <p data-i18n="salm.f4Desc">KeyShot ve Figma ile üretilmiş yüksek kaliteli render ve sunum görselleri; projenin görsel anlatımını güçlendirerek karar süreçlerini hızlandıran sinematik kareler.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Back link ── -->
+  <section class="proj-back-section">
+    <div class="proj-container">
+      <a href="index.html#work" class="proj-back-btn reveal-up" data-i18n="proj_detail.back">← Tüm Projelere Dön</a>
+    </div>
+  </section>
+
+  <!-- ── Footer ── -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <img src="assets/logo.webp" alt="HUŞ Logo" class="site-logo-img footer-logo-img" loading="lazy" decoding="async">
+      <p data-i18n="proj_detail.footer">© 2024 Halil Utku Şimşek — Tüm hakları saklıdır.</p>
+    </div>
+  </footer>
+
+  <script>
+    /* Cover img Ken Burns */
+    const coverImg = document.querySelector('.proj-cover-img');
+    if(coverImg){ coverImg.addEventListener('load',()=>coverImg.classList.add('loaded')); if(coverImg.complete) coverImg.classList.add('loaded'); }
+
+    /* Theme */
+    (function(){
+      const btn   = document.getElementById('themeToggle');
+      const label = btn.querySelector('.theme-label');
+      const saved = localStorage.getItem('theme');
+      if(saved==='light'){ document.body.classList.add('light'); label.textContent='Koyu Mod'; }
+      btn.addEventListener('click',()=>{
+        const isLight = document.body.classList.toggle('light');
+        label.textContent = isLight ? 'Koyu Mod' : 'Açık Mod';
+        localStorage.setItem('theme', isLight ? 'light' : 'dark');
+      });
+    })();
+
+    /* Nav scroll */
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>40),{passive:true});
+
+    /* Scroll reveal */
+    const io = new IntersectionObserver(entries=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in-view'); io.unobserve(e.target); }});
+    },{ threshold:0.1, rootMargin:'0px 0px -50px 0px' });
+    document.querySelectorAll('.reveal-up').forEach(el=>io.observe(el));
+
+    /* Gallery lightbox */
+    document.querySelectorAll('.gallery-item img').forEach(img=>{
+      img.style.cursor='zoom-in';
+      img.addEventListener('click',()=>{
+        const overlay=document.createElement('div');
+        overlay.className='lightbox-overlay';
+        overlay.innerHTML=`<div class="lightbox-inner"><img src="${img.src}" alt="${img.alt}" loading="lazy" decoding="async"><button class="lightbox-close">✕</button></div>`;
+        document.body.appendChild(overlay);
+        requestAnimationFrame(()=>overlay.classList.add('active'));
+        const close=()=>{ overlay.classList.remove('active'); setTimeout(()=>overlay.remove(),300); };
+        overlay.querySelector('.lightbox-close').addEventListener('click',close);
+        overlay.addEventListener('click',e=>{ if(e.target===overlay) close(); });
+      });
+    });
+  </script>
+</body>
+</html>

@@ -51,7 +51,7 @@ const I18N = {
       salm: {
         meta1: "2021–2022", meta2: "Salmakis Yachts / Neta Marine",
         title: "42,5m Motor Yat & 45m Gulet",
-        desc: "Salmakis Yachts için 45m Gulet eskizleri ve iç mekân kavramları. Neta Marine bünyesinde 42,5m motor yat iç mekân geliştirme çalışmaları; malzeme seçimi ve dekor planlaması."
+        desc: "Salmakis Yachts bünyesinde Princess Melda 42,5m motor yat ve 45m Gulet projeleri kapsamında konsept geliştirme, 3D modelleme, iç mekân kurgusu ve render üretiminde aktif rol aldığım staj dönemi çalışmaları."
       },
       fold: {
         meta1: "2023", meta2: "Katlanabilir Aydınlatma",
@@ -140,7 +140,8 @@ const I18N = {
       eko:  "Ekofish 200ft — Halil Utku Şimşek",
       crea: "Crea Light — Halil Utku Şimşek",
       beo:  "Beo Minisaw — Halil Utku Şimşek",
-      fold: "Foldesk Lamp — Halil Utku Şimşek"
+      fold: "Foldesk Lamp — Halil Utku Şimşek",
+      salm: "Salmakis Yachts — Princess Melda & 45m Gulet — Halil Utku Şimşek"
     },
     proj_detail: {
       breadcrumbHome: "Ana Sayfa",
@@ -299,6 +300,35 @@ const I18N = {
       f3Desc: "Katlandığında masada minimum yer kaplayan ince profil; açıldığında geniş bir aydınlatma yüzeyine dönüşerek dar çalışma alanlarında bile esneklik sunar.",
       f4Title: "Metal Gövde & Hassas Ray",
       f4Desc: "Metal gövde uzun ömürlü kullanım sunarken, hassas ray mekanizması başlık konumunun yumuşak ve titreşimsiz şekilde değiştirilmesine olanak tanır."
+    },
+    salm: {
+      breadcrumb: "Salmakis Yachts",
+      badge: "Yat Tasarımı",
+      year: "2021–2022 · Salmakis Yachts / Neta Marine",
+      heroTitle: "42,5m Motor Yat &amp; 45m Gulet<br/><em>Princess Melda</em>",
+      overview: "<strong>Salmakis Yachts — 42,5 Metre Motor Yat | Princess Melda</strong><br/><br/>Staj sürecimde, lüks yat tasarımı ve üretim süreçlerini bütüncül bir bakış açısıyla deneyimleme fırsatı buldum. 42,5 metre motor yat projesi kapsamında; konsept geliştirme, 3D modelleme, iç mekân kurgusu ve görselleştirme aşamalarında aktif rol aldım.<br/><br/>Projede, modern yat tasarımının gerektirdiği estetik ve fonksiyonelliği bir araya getirerek; dış form dilinden iç mekân detaylarına kadar kullanıcı deneyimini ön planda tutan çözümler geliştirdim. Güverte planlaması, yaşam alanlarının organizasyonu ve malzeme seçimleri gibi kritik konularda tasarım kararlarına katkı sağladım.<br/><br/>Aynı zamanda yüksek kaliteli render ve sunum görselleri üreterek projenin görsel anlatımını güçlendirdim. Bu süreç, teknik bilgi ile tasarım estetiğini birleştirme ve gerçek üretim koşullarına uygun çözümler geliştirme açısından önemli bir deneyim kazandırdı.",
+      stat1: "Motor Yat Boyu", stat2: "Gulet Konsepti", stat3: "Modelleme & Render", stat4: "İç Mekân Kurgusu",
+      divMelda: "Princess Melda · 42,5m Motor Yat",
+      divGulet: "Salmakis · 45m Gulet",
+      divConcept: "Konsept &amp; Eskiz Çalışmaları",
+      capYanAci: "Princess Melda — Yan Açı",
+      capMeldaTop: "Üstten — Güverte Planlaması",
+      capMelda8: "Ön 3/4 — Form Çalışması",
+      capInterior: "İç Mekân Kurgusu — Kabinler, Salon &amp; Köprü",
+      capGuletSunset: "45m Gulet — Gün Batımında Direkler",
+      capGuletTop: "Üstten — Direk &amp; Güverte Hatları",
+      capConcept1: "Konsept Varyasyonu — 3/4 Görünüm",
+      capConcept2: "Konsept Varyasyonu — Yandan",
+      capSketchMotor: "Eskiz — Motor Yat Form Arayışı",
+      capSketchGulet: "Eskiz — Gulet Silüet Çalışması",
+      f1Title: "Konsept &amp; 3D Modelleme",
+      f1Desc: "Form arayışından detaylı 3D modele kadar tüm geliştirme aşamalarında aktif rol; Rhino tabanlı yüzey çalışmaları ile üretime uygun, rafine bir dış form dili.",
+      f2Title: "İç Mekân Kurgusu",
+      f2Desc: "Kabinler, salon, köprü ve teknik hacimlerin organizasyonu; yaşam alanlarının ergonomik dizilimi, sirkülasyon ve doğal ışık dengesinin gözetildiği iç plan.",
+      f3Title: "Malzeme &amp; Dekor Planlaması",
+      f3Desc: "Doğal ahşap, açık tonlu döşemeler ve metal aksamların ölçülü buluşması; lüks yat estetiğinin gerçek üretim koşullarıyla uyumlu, dayanıklı ve şık bir paletle yorumlanması.",
+      f4Title: "Render &amp; Sunum Görselleri",
+      f4Desc: "KeyShot ve Figma ile üretilmiş yüksek kaliteli render ve sunum görselleri; projenin görsel anlatımını güçlendirerek karar süreçlerini hızlandıran sinematik kareler."
     }
   },
 
@@ -346,7 +376,7 @@ const I18N = {
       salm: {
         meta1: "2021–2022", meta2: "Salmakis Yachts / Neta Marine",
         title: "42.5m Motor Yacht & 45m Gulet",
-        desc: "Sketches and interior concepts for a 45m Gulet at Salmakis Yachts. Interior development for a 42.5m motor yacht at Neta Marine — material selection and decor planning."
+        desc: "Internship work at Salmakis Yachts on the Princess Melda 42.5m motor yacht and a 45m Gulet — active involvement in concept development, 3D modelling, interior design and render production."
       },
       fold: {
         meta1: "2023", meta2: "Foldable Lighting",
@@ -434,7 +464,8 @@ const I18N = {
       eko:  "Ekofish 200ft — Halil Utku Şimşek",
       crea: "Crea Light — Halil Utku Şimşek",
       beo:  "Beo Minisaw — Halil Utku Şimşek",
-      fold: "Foldesk Lamp — Halil Utku Şimşek"
+      fold: "Foldesk Lamp — Halil Utku Şimşek",
+      salm: "Salmakis Yachts — Princess Melda & 45m Gulet — Halil Utku Şimşek"
     },
     proj_detail: {
       breadcrumbHome: "Home",
@@ -593,6 +624,35 @@ const I18N = {
       f3Desc: "A slim profile that takes minimal desk space when folded opens out into a wide lighting surface — offering flexibility even in narrow workspaces.",
       f4Title: "Metal Body & Precision Rail",
       f4Desc: "The metal body delivers long-term durability, while the precision rail mechanism allows the head position to be adjusted smoothly and without vibration."
+    },
+    salm: {
+      breadcrumb: "Salmakis Yachts",
+      badge: "Yacht Design",
+      year: "2021–2022 · Salmakis Yachts / Neta Marine",
+      heroTitle: "42.5m Motor Yacht &amp; 45m Gulet<br/><em>Princess Melda</em>",
+      overview: "<strong>Salmakis Yachts — 42.5 Metre Motor Yacht | Princess Melda</strong><br/><br/>During my internship I had the opportunity to experience luxury yacht design and production processes from a holistic perspective. As part of the 42.5-metre motor yacht project, I took an active role in concept development, 3D modelling, interior design and visualisation.<br/><br/>Bringing together the aesthetics and functionality demanded by modern yacht design, I developed solutions that placed user experience at the centre — from the exterior form language to interior details. I contributed to design decisions on critical topics such as deck planning, the organisation of living spaces, and material selection.<br/><br/>I also produced high-quality render and presentation imagery to strengthen the project's visual narrative. The process was a valuable experience in combining technical knowledge with design aesthetics and developing solutions suited to real production conditions.",
+      stat1: "Motor Yacht Length", stat2: "Gulet Concept", stat3: "Modelling & Render", stat4: "Interior Design",
+      divMelda: "Princess Melda · 42.5m Motor Yacht",
+      divGulet: "Salmakis · 45m Gulet",
+      divConcept: "Concept &amp; Sketch Studies",
+      capYanAci: "Princess Melda — 3/4 Side Angle",
+      capMeldaTop: "Top View — Deck Planning",
+      capMelda8: "Front 3/4 — Form Study",
+      capInterior: "Interior Design — Cabins, Salon &amp; Bridge",
+      capGuletSunset: "45m Gulet — Masts at Sunset",
+      capGuletTop: "Top View — Mast &amp; Deck Lines",
+      capConcept1: "Concept Variant — 3/4 View",
+      capConcept2: "Concept Variant — Side Profile",
+      capSketchMotor: "Sketch — Motor Yacht Form Exploration",
+      capSketchGulet: "Sketch — Gulet Silhouette Study",
+      f1Title: "Concept &amp; 3D Modelling",
+      f1Desc: "Active involvement across every development stage from form exploration to detailed 3D models; Rhino-based surface work delivering a refined exterior language ready for production.",
+      f2Title: "Interior Design",
+      f2Desc: "Organisation of cabins, salon, bridge and technical volumes; an interior plan attentive to ergonomic flow, circulation and the balance of natural light.",
+      f3Title: "Material &amp; Decor Planning",
+      f3Desc: "Measured pairing of natural wood, light-toned upholstery and metal hardware — interpreting luxury yacht aesthetics through a durable, refined palette aligned with real production conditions.",
+      f4Title: "Render &amp; Presentation Imagery",
+      f4Desc: "High-quality renders and presentation visuals produced in KeyShot and Figma; cinematic frames that strengthen the project's visual narrative and accelerate decision-making."
     }
   }
 };
