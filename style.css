@@ -23,14 +23,14 @@
   --nav-h: 72px;
 
   /* ── Glass system ── */
-  --glass-bg:        rgba(255,255,255,.04);
-  --glass-bg-hover:  rgba(255,255,255,.07);
-  --glass-border:    rgba(255,255,255,.1);
-  --glass-border-hi: rgba(255,255,255,.18);
-  --glass-blur:      blur(24px) saturate(180%);
-  --glass-blur-sm:   blur(12px) saturate(160%);
-  --glass-shadow:    0 8px 32px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.06);
-  --glass-shadow-lg: 0 20px 60px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.08);
+  --glass-bg:        rgba(255,255,255,.025);
+  --glass-bg-hover:  rgba(255,255,255,.05);
+  --glass-border:    rgba(255,255,255,.07);
+  --glass-border-hi: rgba(255,255,255,.14);
+  --glass-blur:      blur(28px) saturate(180%);
+  --glass-blur-sm:   blur(14px) saturate(160%);
+  --glass-shadow:    0 8px 32px rgba(0,0,0,.32), inset 0 1px 0 rgba(255,255,255,.05);
+  --glass-shadow-lg: 0 20px 60px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.06);
 }
 
 /* ── Light mode overrides ── */
@@ -42,12 +42,12 @@ body.light {
   --text:            #1a1a1a;
   --text-muted:      #666;
   --white:           #1a1a1a;
-  --glass-bg:        rgba(255,255,255,.55);
-  --glass-bg-hover:  rgba(255,255,255,.72);
-  --glass-border:    rgba(255,255,255,.8);
-  --glass-border-hi: rgba(255,255,255,.95);
-  --glass-shadow:    0 8px 32px rgba(0,0,0,.12), inset 0 1px 0 rgba(255,255,255,.9);
-  --glass-shadow-lg: 0 20px 60px rgba(0,0,0,.18), inset 0 1px 0 rgba(255,255,255,.95);
+  --glass-bg:        rgba(255,255,255,.40);
+  --glass-bg-hover:  rgba(255,255,255,.55);
+  --glass-border:    rgba(255,255,255,.65);
+  --glass-border-hi: rgba(255,255,255,.85);
+  --glass-shadow:    0 8px 32px rgba(0,0,0,.10), inset 0 1px 0 rgba(255,255,255,.75);
+  --glass-shadow-lg: 0 20px 60px rgba(0,0,0,.14), inset 0 1px 0 rgba(255,255,255,.85);
 }
 body.light ::-webkit-scrollbar-track { background: var(--bg); }
 body.light .hero-title { color: #1a1a1a; }
