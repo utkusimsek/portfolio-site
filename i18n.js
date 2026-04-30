@@ -155,7 +155,7 @@ const I18N = {
       badge: "Diploma Projesi",
       year: "2023 · KLAN Studio",
       title: "45ft Multi<br/>Hardtop Powerboat",
-      overview: "Klan Studio tarafından tasarlanan <strong>45ft Multi Hardtop</strong>, hafta sonlarını denizde geçirmeyi seven kullanıcılar için geliştirilmiş, yüksek performanslı ve konfor odaklı 14 metre uzunluğunda bir tender tipi powerboat konseptidir. Değişen hava koşullarına hızla uyum sağlamak amacıyla elektrikli lineer aktuatörler ile hareket eden bir hardtop ve yukarı kalkan yan camlar kullanılarak istendiğinde tamamen izole bir iç mekan yaratılabilmektedir. Tasarım bütünlüğünü korumak adına dıştan takma motorlar arka güneşlenme alanının altına gizlenmiş ve tekneye gizlenebilir bir çapa sistemi entegre edilmiştir. Ana güvertede hamak seçeneği sunan modüler kıç platform, sörf tahtası gibi eşyaların zahmetsizce yüklenmesini sağlayan hareketli rollbar ve yatağa dönüşebilen teleskobik masa gibi çok yönlü donanımlar yer alırken, alt güvertede yer alan master kabin, banyo ve mutfak alanı ile deniz üzerindeki konaklama ihtiyaçları eksiksiz bir şekilde karşılanmaktadır.",
+      overview: "Klan Studio tarafından tasarlanan <strong>45ft Multi Hardtop</strong>, hafta sonlarını denizde geçirmeyi seven kullanıcılar için geliştirilmiş, yüksek performanslı ve konfor odaklı 14 metre uzunluğunda bir tender tipi powerboat konseptidir. Değişen hava koşullarına hızla uyum sağlamak amacıyla elektrikli lineer aktuatörler ile hareket eden bir hardtop ve yukarı kalkan yan camlar kullanılarak istendiğinde tamamen izole bir iç mekân yaratılabilmektedir. Tasarım bütünlüğünü korumak adına dıştan takma motorlar arka güneşlenme alanının altına gizlenmiş ve tekneye gizlenebilir bir çapa sistemi entegre edilmiştir. Ana güvertede hamak seçeneği sunan modüler kıç platform, sörf tahtası gibi eşyaların zahmetsizce yüklenmesini sağlayan hareketli rollbar ve yatağa dönüşebilen teleskobik masa gibi çok yönlü donanımlar yer alırken, alt güvertede yer alan master kabin, banyo ve mutfak alanı ile deniz üzerindeki konaklama ihtiyaçları eksiksiz bir şekilde karşılanmaktadır.",
       stat1: "Feet / 14m", stat2: "Güverte", stat3: "Kişi Kapasitesi", stat4: "Knot Hız",
       capExploded: "Patlak Görünüm — Bileşen Analizi",
       capSide1: "Yan Profil — Cam Kapalı",
@@ -167,9 +167,9 @@ const I18N = {
       f2Title: "Gizli Motor & Çapa",
       f2Desc: "Dıştan takma motorlar arka güneşlenme alanı altına entegre edilmiş; temiz silüet korunurken operasyonel yetkinlik tam olarak sağlanmıştır.",
       f3Title: "Modüler Kıç Platform",
-      f3Desc: "Hamak, sörf tahtası bağlantısı ve hareketli rollbar ile donatılmış çok amaçlı aft platform; her aktiviteye uyum sağlar.",
+      f3Desc: "Hamak, sörf tahtası bağlantısı ve hareketli rollbar ile donatılmış çok amaçlı kıç platform; her aktiviteye uyum sağlar.",
       f4Title: "Tam Donanımlı Alt Güverte",
-      f4Desc: "Yatağa dönüşen teleskobik masa, master kabin, banyo ve mutfak alanı ile konaklamayı mümkün kılan kapsamlı iç mekan organizasyonu."
+      f4Desc: "Yatağa dönüşen teleskobik masa, master kabin, banyo ve mutfak alanı ile konaklamayı mümkün kılan kapsamlı iç mekân organizasyonu."
     },
     kmem: {
       breadcrumb: "KMEM Pop-up Mağaza",
@@ -206,7 +206,7 @@ const I18N = {
       f2Title: "Modüler Yerleşim",
       f2Desc: "Çift yönlü şarj yuvası ve modüler taşıyıcı kolon yapısı sayesinde farklı kentsel mekânlara — sahil, park, AVM çevresi — kolayca uyarlanabilir.",
       f3Title: "Akıllı Kilit & RFID",
-      f3Desc: "OK/RFID ekranı ve uygulama entegrasyonu ile temassız kilit ve kullanıcı doğrulama; ödeme ve kullanım geçmişi mobil uygulama üzerinden takip edilir.",
+      f3Desc: "QR/RFID ekranı ve uygulama entegrasyonu ile temassız kilit ve kullanıcı doğrulama; ödeme ve kullanım geçmişi mobil uygulama üzerinden takip edilir.",
       f4Title: "Reklam & Bilgi Paneli",
       f4Desc: "Tempered cam reklam yüzeyi ve çift yön bilgi LED'i; istasyonu sadece bir şarj noktası değil, kentsel iletişim ve yön bulma altyapısının parçası yapar."
     },
@@ -528,7 +528,7 @@ const I18N = {
       f2Title: "Modular Layout",
       f2Desc: "Dual-sided charging bays and a modular load-bearing column adapt the unit to different urban contexts — seafront, park, mall surroundings.",
       f3Title: "Smart Lock & RFID",
-      f3Desc: "OK/RFID display and app integration provide contactless locking and user verification; payment and usage history are tracked through the mobile app.",
+      f3Desc: "QR/RFID display and app integration provide contactless locking and user verification; payment and usage history are tracked through the mobile app.",
       f4Title: "Advertising & Info Panel",
       f4Desc: "A tempered glass advertising surface and dual-sided info LEDs make the station not just a charging point but part of the city's communication and wayfinding infrastructure."
     },
