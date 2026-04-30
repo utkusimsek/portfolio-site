@@ -24,18 +24,32 @@
   object-position: center;
   transform: scale(1.04);
   transition: transform 8s ease-out;
+  /* Image fades softly at its bottom edge so it bleeds into page bg */
+  -webkit-mask-image: linear-gradient(to bottom,
+    #000 0%, #000 70%,
+    rgba(0,0,0,.85) 84%,
+    rgba(0,0,0,.45) 94%,
+    transparent 100%);
+          mask-image: linear-gradient(to bottom,
+    #000 0%, #000 70%,
+    rgba(0,0,0,.85) 84%,
+    rgba(0,0,0,.45) 94%,
+    transparent 100%);
 }
 .proj-cover-img.loaded { transform: scale(1); }
 
+/* Overlay — gentle progressive fade ending exactly in --bg (no banding seam) */
 .proj-hero-overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(
     to bottom,
-    rgba(10,10,11,.15) 0%,
-    rgba(10,10,11,.1)  40%,
-    rgba(10,10,11,.7)  75%,
-    rgba(10,10,11,.95) 100%
+    rgba(10,10,11,.10) 0%,
+    rgba(10,10,11,.08) 35%,
+    color-mix(in srgb, var(--bg) 30%, transparent) 55%,
+    color-mix(in srgb, var(--bg) 60%, transparent) 75%,
+    color-mix(in srgb, var(--bg) 88%, transparent) 90%,
+    var(--bg) 100%
   );
 }
 
@@ -376,7 +390,15 @@
 
 /* ── Light mode overrides ── */
 body.light .proj-hero-overlay {
-  background: linear-gradient(to bottom, rgba(240,237,232,.1) 0%, rgba(240,237,232,.5) 70%, rgba(240,237,232,.97) 100%);
+  background: linear-gradient(
+    to bottom,
+    rgba(240,237,232,.08) 0%,
+    rgba(240,237,232,.06) 35%,
+    color-mix(in srgb, var(--bg) 28%, transparent) 55%,
+    color-mix(in srgb, var(--bg) 58%, transparent) 75%,
+    color-mix(in srgb, var(--bg) 88%, transparent) 90%,
+    var(--bg) 100%
+  );
 }
 body.light .proj-title { color: var(--text); }
 body.light .proj-tags span { border-color: rgba(0,0,0,.15); color: rgba(0,0,0,.65); }
