@@ -82,18 +82,16 @@ const I18N = {
     about: {
       tag: "Hakkımda",
       title: "Tasarımın dili<br/><em>her yerde</em> konuşur",
-      p1: "Yaşar Üniversitesi Endüstriyel Tasarım bölümünden 3.11 ortalama ile mezun oldum. Disiplinlerarası çalışmaya ve kullanıcı merkezli tasarım ilkelerine olan inancım, her projenin temelini oluşturuyor.",
+      p1: "Yaşar Üniversitesi Endüstriyel Tasarım bölümünden mezun oldum. Disiplinlerarası çalışmaya ve kullanıcı merkezli tasarım ilkelerine olan inancım, her projenin temelini oluşturuyor.",
       p2: "Neta Marine, Salmakis Yachts ve SKY Naval Architects bünyesinde edindiğim deneyimlerle yat tasarımında güçlü bir uzmanlık geliştirdim. Rhino, V-Ray ve Twinmotion gibi araçlarla hem kavramsal hem de üretime yakın çözümler üretiyorum.",
       eduUni: "Yaşar Üniversitesi",
       eduDept: "Endüstriyel Tasarım · 2023",
-      eduGpa: "GPA: 3.11 / 4.00",
       expNetaRole: "Tasarım Stajyeri · 42,5m Motor Yat iç mekân geliştirme",
       expSalmRole: "Tasarım Stajyeri · 45m Gulet eskiz ve konsept çalışmaları",
       expSkyRole: "Tasarım Stajyeri · Naval mimari ve teknik çizim",
       expMegRole: "Tasarım Desteği · Malzeme ve yüzey tasarımı",
       statProjects: "Tamamlanan Proje",
       statIntern: "Staj Deneyimi",
-      statGpa: "Mezuniyet GPA",
       statCert: "Sertifika"
     },
     skills: {
@@ -407,18 +405,16 @@ const I18N = {
     about: {
       tag: "About",
       title: "The language of design<br/>speaks <em>everywhere</em>",
-      p1: "I graduated from Yaşar University's Industrial Design programme with a 3.11 GPA. My belief in interdisciplinary work and user-centred design principles forms the foundation of every project.",
+      p1: "I graduated from Yaşar University's Industrial Design programme. My belief in interdisciplinary work and user-centred design principles forms the foundation of every project.",
       p2: "Through my time at Neta Marine, Salmakis Yachts and SKY Naval Architects I built a strong specialisation in yacht design. With tools like Rhino, V-Ray and Twinmotion I produce both conceptual and production-ready solutions.",
       eduUni: "Yaşar University",
       eduDept: "Industrial Design · 2023",
-      eduGpa: "GPA: 3.11 / 4.00",
       expNetaRole: "Design Intern · 42.5m motor yacht interior development",
       expSalmRole: "Design Intern · 45m Gulet sketch and concept work",
       expSkyRole: "Design Intern · Naval architecture & technical drafting",
       expMegRole: "Design Support · Material and surface design",
       statProjects: "Completed Projects",
       statIntern: "Internships",
-      statGpa: "Graduation GPA",
       statCert: "Certificates"
     },
     skills: {
