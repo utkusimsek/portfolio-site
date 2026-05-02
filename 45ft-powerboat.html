@@ -13,7 +13,8 @@
   <link rel="stylesheet" href="style.css"/>
   <link rel="stylesheet" href="project.css"/>
   <script src="splash.js"></script>
-  <script defer src="i18n.js"></script>
+  <!-- Cache-bust: yeni 3D viewer + i18n key'leri için -->
+  <script defer src="i18n.js?v=20260503"></script>
   <!-- Google model-viewer — interactive 3D component (~70KB, lazy) -->
   <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js" defer></script>
   <style>
@@ -59,84 +60,45 @@
       --poster-color: transparent;
       --progress-bar-color: var(--accent);
       --progress-bar-height: 2px;
-      --progress-mask: transparent;
     }
 
-    /* Poster overlay — model henüz yüklenmediğinde gösterilir.
-       reveal="interaction" sayesinde tıklamadan dosya indirilmez. */
-    .proj-3d-poster {
+    /* Yükleme overlay — model hazır olana kadar */
+    .proj-3d-loading {
       position: absolute; inset: 0;
       display: flex; flex-direction: column;
       align-items: center; justify-content: center;
       gap: 18px;
-      cursor: pointer;
-      transition: opacity .4s var(--ease-out-expo);
+      pointer-events: none;
+      background: rgba(10,10,11,.35);
+      backdrop-filter: blur(2px);
+      transition: opacity .5s var(--ease-out-expo);
+      z-index: 3;
     }
-    .proj-3d-poster img {
-      position: absolute; inset: 0;
-      width: 100%; height: 100%;
-      object-fit: cover;
-      opacity: .55;
-      filter: saturate(.85);
-      transition: opacity .4s, transform .8s var(--ease-out-expo);
-    }
-    .proj-3d-poster:hover img { opacity: .7; transform: scale(1.02); }
-    .proj-3d-poster::after {
-      content: ''; position: absolute; inset: 0;
-      background: radial-gradient(ellipse at center, transparent 0%, rgba(10,10,11,.75) 100%);
-    }
-    .proj-3d-poster-cta {
-      position: relative; z-index: 2;
-      display: flex; flex-direction: column;
-      align-items: center; gap: 10px;
-      padding: 18px 32px;
-      background: rgba(10,10,11,.55);
-      border: 1px solid rgba(201,169,110,.35);
-      border-radius: 60px;
-      backdrop-filter: blur(20px) saturate(160%);
-      -webkit-backdrop-filter: blur(20px) saturate(160%);
-      transition: border-color .3s, background .3s, transform .3s var(--ease-out-expo);
-    }
-    .proj-3d-poster:hover .proj-3d-poster-cta {
-      border-color: var(--accent);
-      background: rgba(10,10,11,.7);
-      transform: scale(1.03);
-    }
-    .proj-3d-poster-icon {
-      width: 26px; height: 26px;
+    .proj-3d-stage.loaded .proj-3d-loading { opacity: 0; }
+    .proj-3d-stage.errored .proj-3d-loading { opacity: 1; background: rgba(10,10,11,.7); }
+
+    .proj-3d-loading-spinner {
+      width: 36px; height: 36px;
+      border: 2px solid rgba(255,255,255,.1);
+      border-top-color: var(--accent);
       border-radius: 50%;
-      border: 1.5px solid var(--accent);
-      display: flex; align-items: center; justify-content: center;
-      color: var(--accent); font-size: 14px;
+      animation: proj3dSpin .9s linear infinite;
     }
-    .proj-3d-poster-text {
-      font-size: .8rem; font-weight: 600;
+    .proj-3d-stage.errored .proj-3d-loading-spinner { display: none; }
+    @keyframes proj3dSpin { to { transform: rotate(360deg); } }
+
+    .proj-3d-loading-text {
+      font-size: .78rem; font-weight: 600;
       letter-spacing: .14em; text-transform: uppercase;
       color: var(--white);
     }
-    .proj-3d-poster-hint {
-      position: relative; z-index: 2;
-      font-size: .7rem; letter-spacing: .1em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,.55);
+    .proj-3d-loading-progress {
+      font-size: .85rem; font-weight: 700;
+      color: var(--accent);
+      font-variant-numeric: tabular-nums;
+      min-width: 50px; text-align: center;
     }
-
-    /* Yüklendikten sonra poster fade out */
-    .proj-3d-stage.loaded .proj-3d-poster { opacity: 0; pointer-events: none; }
-
-    /* Loading progress bar (model-viewer'ın native progress'i ile birlikte) */
-    .proj-3d-progress {
-      position: absolute; left: 0; right: 0; bottom: 0;
-      height: 2px; background: rgba(255,255,255,.08);
-      z-index: 5; overflow: hidden;
-      opacity: 0; transition: opacity .3s;
-    }
-    .proj-3d-progress.active { opacity: 1; }
-    .proj-3d-progress-bar {
-      height: 100%; width: 0%;
-      background: linear-gradient(to right, transparent, var(--accent));
-      transition: width .25s ease-out;
-    }
+    .proj-3d-stage.errored .proj-3d-loading-progress { display: none; }
 
     /* AR butonu — model-viewer'ın slot'una yerleşir */
     .proj-3d-ar-btn {
@@ -354,37 +316,33 @@
           auto-rotate-delay="3000"
           rotation-per-second="12deg"
           interaction-prompt="none"
-          shadow-intensity="1"
+          shadow-intensity="0.9"
           shadow-softness="0.85"
           exposure="1.05"
           environment-image="neutral"
           ar
           ar-modes="webxr scene-viewer quick-look"
           ar-scale="auto"
-          reveal="interaction"
           loading="lazy"
+          reveal="auto"
           poster="assets/pb-side1.webp">
-          <!-- Tıklamadan önce gösterilen poster -->
-          <div slot="poster" class="proj-3d-poster">
-            <img src="assets/pb-side1.webp" alt="" aria-hidden="true">
-            <div class="proj-3d-poster-cta">
-              <span class="proj-3d-poster-icon">▶</span>
-              <span class="proj-3d-poster-text" data-i18n="pb.threeDLoad">3D Modeli Yükle</span>
-            </div>
-            <div class="proj-3d-poster-hint" data-i18n="pb.threeDSize">~21 MB · Tek seferlik indirme</div>
-          </div>
+
+          <!-- Native poster: model henüz hazır olmadığında gösterilir.
+               iOS Safari ile sorun yaşamamak için custom slot kullanmıyoruz. -->
 
           <!-- AR butonu (cihaz desteklerse görünür) -->
           <button slot="ar-button" class="proj-3d-ar-btn" type="button">
             <svg viewBox="0 0 24 24"><path d="M3 7l9-4 9 4v10l-9 4-9-4V7z"/><path d="M3 7l9 4 9-4M12 11v10"/></svg>
             <span data-i18n="pb.threeDAR">AR'da Gör</span>
           </button>
-
-          <!-- Loading progress -->
-          <div slot="progress-bar" class="proj-3d-progress" id="powerboat3dProgress">
-            <div class="proj-3d-progress-bar" id="powerboat3dProgressBar"></div>
-          </div>
         </model-viewer>
+
+        <!-- Yükleme ipucu — model gelene kadar gösterilir -->
+        <div class="proj-3d-loading" id="powerboat3dLoading">
+          <div class="proj-3d-loading-spinner"></div>
+          <div class="proj-3d-loading-text" data-i18n="pb.threeDLoading">3D Model Yükleniyor...</div>
+          <div class="proj-3d-loading-progress" id="powerboat3dProgressTxt">0%</div>
+        </div>
       </div>
 
       <!-- İnteraksiyon ipuçları -->
@@ -483,33 +441,42 @@
       });
     });
 
-    /* 3D Viewer — progress + load state */
+    /* 3D Viewer — progress + load state + i18n-aware error */
     (function(){
-      const stage  = document.getElementById('powerboat3dStage');
-      const viewer = document.getElementById('powerboat3d');
-      const prog   = document.getElementById('powerboat3dProgress');
-      const bar    = document.getElementById('powerboat3dProgressBar');
+      const stage   = document.getElementById('powerboat3dStage');
+      const viewer  = document.getElementById('powerboat3d');
+      const txtNode = document.getElementById('powerboat3dProgressTxt');
+      const loading = document.getElementById('powerboat3dLoading');
       if(!viewer) return;
 
-      // Yükleme yüzdesi — model-viewer 'progress' eventi (0..1)
+      const t = (key, fallback) => {
+        const lang = document.documentElement.lang === 'en' ? 'en' : 'tr';
+        const dict = (typeof I18N !== 'undefined' && I18N[lang] && I18N[lang].pb) || {};
+        return dict[key] || fallback;
+      };
+
+      // Yükleme yüzdesi
       viewer.addEventListener('progress', e => {
         const ratio = e.detail && typeof e.detail.totalProgress === 'number' ? e.detail.totalProgress : 0;
-        prog.classList.add('active');
-        bar.style.width = (ratio * 100).toFixed(1) + '%';
+        txtNode.textContent = Math.round(ratio * 100) + '%';
         if (ratio >= 1) {
-          stage.classList.add('loaded');
-          setTimeout(()=>prog.classList.remove('active'), 450);
+          // 'load' event modeli render etmeden önce fire olabilir; kısa gecikmeyle gizle
+          setTimeout(() => stage.classList.add('loaded'), 250);
         }
       });
-      // Hata durumunda kullanıcıya geri bildirim
-      viewer.addEventListener('error', () => {
+
+      // Model render edildikten sonra kesin gizleme
+      viewer.addEventListener('load', () => {
         stage.classList.add('loaded');
-        prog.classList.remove('active');
-        const err = document.createElement('div');
-        err.className = 'proj-3d-poster-hint';
-        err.style.cssText = 'position:absolute;bottom:18px;left:0;right:0;text-align:center;color:#e57373;z-index:6;';
-        err.textContent = 'Model yüklenemedi. Lütfen sayfayı yenileyin.';
-        stage.appendChild(err);
+      });
+
+      // Hata durumu — daha bilgilendirici, i18n'lı
+      viewer.addEventListener('error', (e) => {
+        const detail = e && e.detail ? (e.detail.sourceError || e.detail.type || '') : '';
+        console.error('[3D viewer] error:', detail);
+        stage.classList.add('errored');
+        loading.querySelector('.proj-3d-loading-text').textContent =
+          t('threeDError', 'Model yüklenemedi. Sayfayı yenileyin veya bir süre sonra tekrar deneyin.');
       });
     })();
   </script>
