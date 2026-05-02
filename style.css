@@ -1387,6 +1387,22 @@ body.light .site-logo-img {
 }
 .footer-socials a:hover { border-color: var(--accent); color: var(--accent); }
 
+/* Telif Hakkı link — copyright satırının yanında, sade ve kibar */
+.footer-legal {
+  font-size: .72rem;
+  font-weight: 500;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  text-decoration: none;
+  padding: 4px 12px;
+  border: 1px solid var(--border);
+  border-radius: 30px;
+  transition: border-color .3s, color .3s;
+}
+.footer-legal:hover { border-color: var(--accent); color: var(--accent); }
+body.light .footer-legal { color: #555; border-color: rgba(0,0,0,.12); }
+
 /* ═══════════════════════════════════════════════════════════════
    SCROLL REVEAL ANIMATIONS
 ═══════════════════════════════════════════════════════════════ */

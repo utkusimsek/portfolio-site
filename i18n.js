@@ -132,11 +132,48 @@ const I18N = {
       error: "Gönderilemedi. Lütfen tekrar deneyin veya doğrudan e-posta atın.",
       captchaRequired: 'Lütfen "Ben robot değilim" kutusunu işaretleyin.'
     },
-    footer: { copy: "© 2024 Halil Utku Şimşek. Tüm hakları saklıdır." },
+    footer: {
+      copy: "© 2026 Halil Utku Şimşek. Tüm hakları saklıdır.",
+      legal: "Telif Hakkı"
+    },
+    legal: {
+      pageTitle: "Telif Hakkı — Halil Utku Şimşek",
+      label: "Yasal Bilgi",
+      title: "Telif Hakkı &amp; Kullanım Koşulları",
+      updated: "Son güncelleme: 3 Mayıs 2026",
+      s1Title: "Telif Hakkı Bildirimi",
+      s1P1: "<strong>utkusimsek.com</strong> sitesinde yer alan tüm görseller, render'lar, 3D modeller, metinler, tasarım çizimleri, videolar ve diğer tüm içerikler <strong>© 2026 Halil Utku Şimşek</strong>'e aittir ve <strong>5846 sayılı Fikir ve Sanat Eserleri Kanunu</strong> ile uluslararası telif hakkı sözleşmeleri kapsamında korunmaktadır.",
+      s1P2: "Tüm hakları saklıdır. Eserlerin tamamı veya bir kısmı, yazılı izin alınmaksızın çoğaltılamaz, dağıtılamaz, türev eserlere konu edilemez, ticari veya ticari olmayan amaçlarla kullanılamaz.",
+      s2Title: "Yasaklanan Kullanımlar",
+      s2L1: "Görsellerin, render'ların veya 3D modellerin <strong>indirilmesi, kaydedilmesi veya kopyalanması</strong>",
+      s2L2: "İçeriklerin <strong>başka web sitelerinde, sosyal medyada veya basılı yayınlarda</strong> kaynak gösterilse bile izinsiz yayımlanması",
+      s2L3: "Tasarımların <strong>türev çalışmalara, eğitim materyallerine, portfolyolara</strong> dahil edilmesi",
+      s2L4: "İçeriklerin <strong>yapay zekâ modeli eğitiminde</strong> kullanılması",
+      s2L5: "<strong>Watermark, EXIF metadata veya telif bildirimlerinin</strong> kaldırılması, değiştirilmesi veya gizlenmesi",
+      s2L6: "Tasarımların <strong>üretim, prototipleme veya ticari amaçlı</strong> kullanılması",
+      s3Title: "İzin Verilen Kullanımlar",
+      s3P1: "Aşağıdaki kullanımlar izinli sayılır:",
+      s3L1: "Sitenin <strong>özgün URL'sinin</strong> (utkusimsek.com) sosyal medyada veya yazışmalarda paylaşılması",
+      s3L2: "Tarayıcının <strong>dahili önbellek (cache) sistemi</strong> aracılığıyla teknik amaçlı geçici saklama",
+      s3L3: "Akademik veya basın amaçlı <strong>tek bir görselin</strong>, açık kaynak gösterimiyle ve <strong>önceden alınan yazılı izinle</strong> kullanılması",
+      s4Title: "Lisans ve İşbirliği Talepleri",
+      s4P1: "Tasarımların kullanımı, basım, sergi, eğitim veya işbirliği talepleri için doğrudan iletişime geçin.",
+      s4Callout: "<strong>İletişim:</strong> <a href=\"mailto:utkusimsek65@gmail.com\">utkusimsek65@gmail.com</a><br/>Talebinizi mümkün olduğunca detaylı yazın (kullanım amacı, mecra, süre, ölçek). Genellikle 48 saat içinde dönüş yapılır.",
+      s5Title: "Koruma Tedbirleri",
+      s5P1: "Bu sitedeki tüm görseller aşağıdaki tedbirlerle korunmaktadır:",
+      s5L1: "<strong>Görünür filigran (watermark):</strong> Her görselde <code>©utkusimsekdesign</code> imzası bake edilmiştir",
+      s5L2: "<strong>EXIF/IPTC/XMP metadata:</strong> Her dosyada yazar, telif sahibi ve kullanım koşulları gömülüdür (silmek hukuki suç sayılır)",
+      s5L3: "<strong>Teknik koruma:</strong> Sağ tık, sürükle-bırak ve sayfa indirme engelleri aktiftir",
+      s5L4: "<strong>Hukuki koruma:</strong> İhlaller 5846 sayılı Kanun ve TBK madde 49 vd. çerçevesinde takip edilmektedir",
+      s6Title: "Hak İhlali Bildirimi",
+      s6P1: "Eserlerimin izinsiz kullanıldığını fark ederseniz veya kendiniz bir kullanım yaptıysanız ve durumu düzeltmek istiyorsanız, lütfen <a href=\"mailto:utkusimsek65@gmail.com\">utkusimsek65@gmail.com</a> adresinden bildirin. İyi niyetli düzeltme talepleri her zaman yapıcı şekilde değerlendirilir.",
+      back: "← Ana Sayfaya Dön"
+    },
 
     /* ── Project detail pages ── */
     pageTitle: {
       home: "Halil Utku Şimşek — Endüstriyel Tasarımcı",
+      legal: "Telif Hakkı — Halil Utku Şimşek",
       pb:   "45ft Multi Hardtop Powerboat — Halil Utku Şimşek",
       kmem: "KMEM Pop-up Mağaza — Halil Utku Şimşek",
       scoot:"Scooter Port — Halil Utku Şimşek",
@@ -153,7 +190,7 @@ const I18N = {
       overviewLabel: "Proje Özeti",
       featuresTitle: "Tasarım Özellikleri",
       back: "← Tüm Projelere Dön",
-      footer: "© 2024 Halil Utku Şimşek — Tüm hakları saklıdır."
+      footer: "© 2026 Halil Utku Şimşek — Tüm hakları saklıdır."
     },
     pb: {
       breadcrumb: "45ft Powerboat",
@@ -469,10 +506,47 @@ const I18N = {
       error: "Couldn't send. Please try again or email me directly.",
       captchaRequired: 'Please tick the "I\'m not a robot" box.'
     },
-    footer: { copy: "© 2024 Halil Utku Şimşek. All rights reserved." },
+    footer: {
+      copy: "© 2026 Halil Utku Şimşek. All rights reserved.",
+      legal: "Copyright"
+    },
+    legal: {
+      pageTitle: "Copyright — Halil Utku Şimşek",
+      label: "Legal Information",
+      title: "Copyright &amp; Terms of Use",
+      updated: "Last updated: 3 May 2026",
+      s1Title: "Copyright Notice",
+      s1P1: "All images, renderings, 3D models, texts, design drawings, videos and other content on <strong>utkusimsek.com</strong> are <strong>© 2026 Halil Utku Şimşek</strong> and are protected under the <strong>Turkish Law on Intellectual and Artistic Works (Law No. 5846)</strong> as well as international copyright treaties.",
+      s1P2: "All rights reserved. No part of these works may be reproduced, distributed, used in derivative works, or used for commercial or non-commercial purposes without prior written permission.",
+      s2Title: "Prohibited Uses",
+      s2L1: "<strong>Downloading, saving or copying</strong> any image, render, or 3D model",
+      s2L2: "<strong>Republishing on other websites, social media or print</strong> — even with attribution — without permission",
+      s2L3: "Including the designs in <strong>derivative works, educational materials, or portfolios</strong>",
+      s2L4: "Using the content for <strong>training AI models</strong>",
+      s2L5: "<strong>Removing, altering or hiding watermarks, EXIF metadata or copyright notices</strong>",
+      s2L6: "Using the designs for <strong>manufacturing, prototyping or commercial purposes</strong>",
+      s3Title: "Permitted Uses",
+      s3P1: "The following uses are permitted:",
+      s3L1: "Sharing the <strong>original site URL</strong> (utkusimsek.com) on social media or correspondence",
+      s3L2: "Temporary technical caching by the <strong>browser's built-in cache system</strong>",
+      s3L3: "Use of <strong>a single image</strong> for academic or press purposes, with explicit attribution and <strong>prior written permission</strong>",
+      s4Title: "Licensing &amp; Collaboration Inquiries",
+      s4P1: "For permission to use the designs, or for printing, exhibition, education or collaboration requests, please contact directly.",
+      s4Callout: "<strong>Contact:</strong> <a href=\"mailto:utkusimsek65@gmail.com\">utkusimsek65@gmail.com</a><br/>Please describe your request in as much detail as possible (intended use, medium, duration, scale). Replies typically within 48 hours.",
+      s5Title: "Protection Measures",
+      s5P1: "All images on this site are protected by the following measures:",
+      s5L1: "<strong>Visible watermark:</strong> Each image carries the baked-in <code>©utkusimsekdesign</code> signature",
+      s5L2: "<strong>EXIF/IPTC/XMP metadata:</strong> Each file embeds author, copyright holder and usage terms (removal is a legal offence)",
+      s5L3: "<strong>Technical protection:</strong> Right-click, drag-and-drop and page-save are disabled",
+      s5L4: "<strong>Legal protection:</strong> Infringements are pursued under Law No. 5846 and the Turkish Code of Obligations",
+      s6Title: "Reporting Infringement",
+      s6P1: "If you notice unauthorised use of my work — or if you yourself have used something and would like to put it right — please get in touch at <a href=\"mailto:utkusimsek65@gmail.com\">utkusimsek65@gmail.com</a>. Good-faith corrections are always handled constructively.",
+      back: "← Back to Home"
+    },
 
     pageTitle: {
       home: "Halil Utku Şimşek — Industrial Designer",
+      legal: "Copyright — Halil Utku Şimşek",
       pb:   "45ft Multi Hardtop Powerboat — Halil Utku Şimşek",
       kmem: "KMEM Pop-up Store — Halil Utku Şimşek",
       scoot:"Scooter Port — Halil Utku Şimşek",
@@ -489,7 +563,7 @@ const I18N = {
       overviewLabel: "Project Overview",
       featuresTitle: "Design Features",
       back: "← Back to all projects",
-      footer: "© 2024 Halil Utku Şimşek — All rights reserved."
+      footer: "© 2026 Halil Utku Şimşek — All rights reserved."
     },
     pb: {
       breadcrumb: "45ft Powerboat",
