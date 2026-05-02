@@ -1252,6 +1252,32 @@ blockquote span { font-size: .82rem; color: var(--text-muted); }
 }
 .form-group input::placeholder, .form-group textarea::placeholder { color: var(--text-muted); }
 
+/* reCAPTCHA widget — formla aynı görsel ritim */
+.form-captcha {
+  display: flex; justify-content: center;
+  min-height: 78px;
+}
+/* Widget yüklenirken layout shift'i önle */
+.form-captcha .g-recaptcha:empty {
+  width: 304px; height: 78px;
+  border-radius: 4px;
+  background: var(--glass-bg);
+  border: 1px dashed var(--glass-border);
+}
+
+/* Form durum mesajı (success / error) */
+.form-status {
+  margin: 0;
+  min-height: 1.2em;
+  font-size: .85rem;
+  line-height: 1.5;
+  text-align: center;
+  color: var(--text-muted);
+  transition: color .3s;
+}
+.form-status[data-state="ok"]  { color: #6dd49e; }
+.form-status[data-state="err"] { color: #e57373; }
+
 /* ═══════════════════════════════════════════════════════════════
    FOOTER
 ═══════════════════════════════════════════════════════════════ */

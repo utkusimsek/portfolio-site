@@ -10,6 +10,9 @@
   display: flex;
   align-items: flex-end;
   overflow: hidden;
+  /* Hero arka planı body ile aynı bg değişkenini taşır; tema geçişinde
+     overlay'in altıyla page bg'si tek katman gibi yumuşakça geçiş yapar. */
+  background: var(--bg);
 }
 
 .proj-hero-img {
@@ -38,7 +41,10 @@
 }
 .proj-cover-img.loaded { transform: scale(1); }
 
-/* Overlay — gentle progressive fade ending exactly in --bg (no banding seam) */
+/* Overlay — alt uç transparent'a fade eder; solid renk .proj-hero'nun
+   kendi bg'sinden gelir. Tema geçişinde gradient interpolate edilemediği
+   için solid uç var(--bg) bırakılırsa keskin bir seam oluşur — bu yüzden
+   görsel doluluğu hero bg'ye devrediyoruz. */
 .proj-hero-overlay {
   position: absolute;
   inset: 0;
@@ -48,8 +54,8 @@
     rgba(10,10,11,.08) 35%,
     color-mix(in srgb, var(--bg) 30%, transparent) 55%,
     color-mix(in srgb, var(--bg) 60%, transparent) 75%,
-    color-mix(in srgb, var(--bg) 88%, transparent) 90%,
-    var(--bg) 100%
+    color-mix(in srgb, var(--bg) 85%, transparent) 92%,
+    transparent 100%
   );
 }
 
@@ -396,8 +402,8 @@ body.light .proj-hero-overlay {
     rgba(240,237,232,.06) 35%,
     color-mix(in srgb, var(--bg) 28%, transparent) 55%,
     color-mix(in srgb, var(--bg) 58%, transparent) 75%,
-    color-mix(in srgb, var(--bg) 88%, transparent) 90%,
-    var(--bg) 100%
+    color-mix(in srgb, var(--bg) 85%, transparent) 92%,
+    transparent 100%
   );
 }
 body.light .proj-title { color: var(--text); }

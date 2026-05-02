@@ -220,20 +220,69 @@ document.querySelectorAll('.project-card').forEach(card => {
   });
 })();
 
-/* ── Contact form ── */
-document.getElementById('contactForm').addEventListener('submit', e => {
-  e.preventDefault();
-  const btn = e.target.querySelector('button[type=submit]');
-  btn.textContent = 'Gönderildi ✓';
-  btn.style.background = '#2d6a4f';
-  btn.style.color = '#fff';
-  setTimeout(() => {
-    btn.textContent = 'Mesaj Gönder';
-    btn.style.background = '';
-    btn.style.color = '';
-    e.target.reset();
-  }, 3000);
-});
+/* ── Contact form (Formspree + Cloudflare Turnstile) ── */
+(() => {
+  const form = document.getElementById('contactForm');
+  if (!form) return;
+
+  const status = document.getElementById('formStatus');
+  const btn = form.querySelector('button[type=submit]');
+  const btnDefaultText = btn.textContent;
+
+  const t = (key, fallback) => {
+    const lang = document.documentElement.lang === 'en' ? 'en' : 'tr';
+    const dict = (typeof I18N !== 'undefined' && I18N[lang] && I18N[lang].contact) || {};
+    return dict[key] || fallback;
+  };
+
+  const setStatus = (msg, type) => {
+    status.textContent = msg;
+    status.dataset.state = type || '';
+  };
+
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+
+    // reCAPTCHA token doğrulaması — kutu işaretlenmemişse gönderme
+    const token = (typeof grecaptcha !== 'undefined' && grecaptcha.getResponse) ? grecaptcha.getResponse() : '';
+    if (!token) {
+      setStatus(t('captchaRequired', 'Lütfen "Ben robot değilim" kutusunu işaretleyin.'), 'err');
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = t('sending', 'Gönderiliyor...');
+    setStatus('', '');
+
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        headers: { Accept: 'application/json' },
+        body: new FormData(form)
+      });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error((data.errors && data.errors[0] && data.errors[0].message) || res.statusText);
+      }
+      btn.textContent = t('sent', 'Gönderildi ✓');
+      btn.style.background = '#2d6a4f';
+      btn.style.color = '#fff';
+      setStatus(t('success', 'Mesajınız iletildi. En kısa sürede dönüş yapacağım.'), 'ok');
+      form.reset();
+      if (typeof grecaptcha !== 'undefined') grecaptcha.reset();
+      setTimeout(() => {
+        btn.textContent = btnDefaultText;
+        btn.style.background = '';
+        btn.style.color = '';
+        btn.disabled = false;
+      }, 3500);
+    } catch (err) {
+      btn.disabled = false;
+      btn.textContent = btnDefaultText;
+      setStatus(t('error', 'Gönderilemedi. Lütfen tekrar deneyin veya doğrudan e-posta atın.'), 'err');
+    }
+  });
+})();
 
 /* ── Smooth active link highlight ── */
 const sections = document.querySelectorAll('section[id]');

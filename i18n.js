@@ -125,7 +125,12 @@ const I18N = {
       phEmail: "email@domain.com",
       phSubject: "Proje veya iş birliği hakkında...",
       phMessage: "Projenizi anlatın...",
-      submit: "Mesaj Gönder"
+      submit: "Mesaj Gönder",
+      sending: "Gönderiliyor...",
+      sent: "Gönderildi ✓",
+      success: "Mesajınız iletildi. En kısa sürede dönüş yapacağım.",
+      error: "Gönderilemedi. Lütfen tekrar deneyin veya doğrudan e-posta atın.",
+      captchaRequired: 'Lütfen "Ben robot değilim" kutusunu işaretleyin.'
     },
     footer: { copy: "© 2024 Halil Utku Şimşek. Tüm hakları saklıdır." },
 
@@ -169,7 +174,16 @@ const I18N = {
       f3Title: "Modüler Kıç Platform",
       f3Desc: "Hamak, sörf tahtası bağlantısı ve hareketli rollbar ile donatılmış çok amaçlı kıç platform; her aktiviteye uyum sağlar.",
       f4Title: "Tam Donanımlı Alt Güverte",
-      f4Desc: "Yatağa dönüşen teleskobik masa, master kabin, banyo ve mutfak alanı ile konaklamayı mümkün kılan kapsamlı iç mekân organizasyonu."
+      f4Desc: "Yatağa dönüşen teleskobik masa, master kabin, banyo ve mutfak alanı ile konaklamayı mümkün kılan kapsamlı iç mekân organizasyonu.",
+      threeDLabel: "İnteraktif 3D Model",
+      threeDTitle: "Modeli Kendi Açından İncele",
+      threeDSubtitle: "Sürükle, döndür, yakınlaştır. Mobil cihazda <strong>AR modu</strong> ile tekneyi kendi mekânında ölçekli görüntüle.",
+      threeDLoad: "3D Modeli Yükle",
+      threeDSize: "~21 MB · Tek seferlik indirme",
+      threeDAR: "AR'da Gör",
+      threeDDrag: "Sürükle: Döndür",
+      threeDPan: "Sağ tık: Kaydır",
+      threeDZoom: "Tekerlek: Yakınlaştır"
     },
     kmem: {
       breadcrumb: "KMEM Pop-up Mağaza",
@@ -448,7 +462,12 @@ const I18N = {
       phEmail: "email@domain.com",
       phSubject: "About a project or collaboration...",
       phMessage: "Tell me about your project...",
-      submit: "Send Message"
+      submit: "Send Message",
+      sending: "Sending...",
+      sent: "Sent ✓",
+      success: "Your message has been delivered. I'll get back to you shortly.",
+      error: "Couldn't send. Please try again or email me directly.",
+      captchaRequired: 'Please tick the "I\'m not a robot" box.'
     },
     footer: { copy: "© 2024 Halil Utku Şimşek. All rights reserved." },
 
@@ -491,7 +510,16 @@ const I18N = {
       f3Title: "Modular Aft Platform",
       f3Desc: "A multi-purpose aft platform with hammock support, surfboard mount and movable rollbar — adapts to every activity.",
       f4Title: "Fully-Equipped Lower Deck",
-      f4Desc: "A telescopic table that converts into a bed, a master cabin, bathroom and galley — comprehensive interior organisation that makes overnight stays effortless."
+      f4Desc: "A telescopic table that converts into a bed, a master cabin, bathroom and galley — comprehensive interior organisation that makes overnight stays effortless.",
+      threeDLabel: "Interactive 3D Model",
+      threeDTitle: "Inspect From Any Angle",
+      threeDSubtitle: "Drag, rotate, zoom. On mobile, use <strong>AR mode</strong> to view the boat in your own space at full scale.",
+      threeDLoad: "Load 3D Model",
+      threeDSize: "~21 MB · One-time download",
+      threeDAR: "View in AR",
+      threeDDrag: "Drag: Rotate",
+      threeDPan: "Right-click: Pan",
+      threeDZoom: "Wheel: Zoom"
     },
     kmem: {
       breadcrumb: "KMEM Pop-up Store",

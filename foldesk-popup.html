@@ -13,18 +13,20 @@
   <link rel="stylesheet" href="style.css"/>
   <link rel="stylesheet" href="project.css"/>
   <style>
-    /* Foldesk gallery — product shots have varying aspects, contain with bg */
-    .proj-gallery .gallery-item { aspect-ratio: 16/9; }
-    .proj-gallery .gallery-item.fold-wide { aspect-ratio: 21/9; }
-    .proj-gallery .gallery-item.fold-square { aspect-ratio: 4/3; }
-    .proj-gallery .gallery-item img { object-fit: contain; padding: 28px; }
-    .proj-gallery .gallery-item.gallery-cover img { object-fit: cover; padding: 0; }
+    /* Foldesk gallery — proje varsayılanını kullan (koyu zemin + cover),
+       sadece nefes payı için biraz daha geniş gap. Tüm kartlar tek bir
+       sinematik dilde: 21/9 full + 16/9 yarım, koyu kart, cover img. */
     .proj-gallery .gallery-row { gap: 18px; margin-bottom: 18px; }
-    @media (max-width: 768px) {
-      .proj-gallery .gallery-item,
-      .proj-gallery .gallery-item.fold-wide,
-      .proj-gallery .gallery-item.fold-square { aspect-ratio: 4/3; }
-      .proj-gallery .gallery-item img { padding: 16px; }
+
+    /* Studio render'lar dış kenarlarında beyaz pay ile export edilmiş —
+       görseli yakınlaştırarak beyaz çerçeveyi kırp. Kalıcı çözüm: render'ları
+       beyazsız (alpha veya koyu sahne) yeniden export etmek. */
+    .proj-gallery .gallery-item img.crop-zoom {
+      transform: scale(1.45);
+      transform-origin: center center;
+    }
+    .proj-gallery .gallery-item:hover img.crop-zoom {
+      transform: scale(1.49);
     }
 
     /* Long multi-paragraph overview — left-align for readability */
@@ -157,43 +159,43 @@
 
       <!-- Wide isometric render -->
       <div class="gallery-row gallery-full reveal-up">
-        <div class="gallery-item gallery-bg-light fold-wide">
-          <img src="assets/foldesk-render.webp" alt="Foldesk Lamp — Genel Render" loading="lazy" decoding="async">
-          <div class="gallery-caption gallery-caption-dark" data-i18n="fold.capRender">3D Render — Çift Kollu Konfigürasyon</div>
+        <div class="gallery-item">
+          <img src="assets/foldesk-render.webp" alt="Foldesk Lamp — Genel Render" class="crop-zoom" loading="lazy" decoding="async">
+          <div class="gallery-caption" data-i18n="fold.capRender">3D Render — Çift Kollu Konfigürasyon</div>
         </div>
       </div>
 
       <!-- Wide side / folded view -->
       <div class="gallery-row gallery-full reveal-up">
-        <div class="gallery-item gallery-bg-light fold-wide">
-          <img src="assets/foldesk-side.webp" alt="Foldesk Lamp — Yandan" loading="lazy" decoding="async">
-          <div class="gallery-caption gallery-caption-dark" data-i18n="fold.capSide">Yandan — Katlanmış Kompakt Pozisyon</div>
+        <div class="gallery-item">
+          <img src="assets/foldesk-side.webp" alt="Foldesk Lamp — Yandan" class="crop-zoom" loading="lazy" decoding="async">
+          <div class="gallery-caption" data-i18n="fold.capSide">Yandan — Katlanmış Kompakt Pozisyon</div>
         </div>
       </div>
 
       <!-- Wide controls / LED bar detail -->
       <div class="gallery-row gallery-full reveal-up">
-        <div class="gallery-item gallery-bg-light fold-wide">
-          <img src="assets/foldesk-controls.webp" alt="Foldesk Lamp — Kontrol Yüzeyi" loading="lazy" decoding="async">
-          <div class="gallery-caption gallery-caption-dark" data-i18n="fold.capControls">Kontrol Yüzeyi — LED Bar &amp; Düğmeler</div>
+        <div class="gallery-item">
+          <img src="assets/foldesk-controls.webp" alt="Foldesk Lamp — Kontrol Yüzeyi" class="crop-zoom" loading="lazy" decoding="async">
+          <div class="gallery-caption" data-i18n="fold.capControls">Kontrol Yüzeyi — LED Bar &amp; Düğmeler</div>
         </div>
       </div>
 
       <!-- Front + Top half-width -->
       <div class="gallery-row gallery-half reveal-up">
-        <div class="gallery-item gallery-bg-light fold-square">
-          <img src="assets/foldesk-front.webp" alt="Foldesk Lamp — Önden" loading="lazy" decoding="async">
-          <div class="gallery-caption gallery-caption-dark" data-i18n="fold.capFront">Önden Görünüm — LED Bar &amp; Mengene</div>
+        <div class="gallery-item">
+          <img src="assets/foldesk-front.webp" alt="Foldesk Lamp — Önden" class="crop-zoom" loading="lazy" decoding="async">
+          <div class="gallery-caption" data-i18n="fold.capFront">Önden Görünüm — LED Bar &amp; Mengene</div>
         </div>
-        <div class="gallery-item gallery-bg-light fold-square">
-          <img src="assets/foldesk-top.webp" alt="Foldesk Lamp — Üstten" loading="lazy" decoding="async">
-          <div class="gallery-caption gallery-caption-dark" data-i18n="fold.capTop">Üstten — Katlanmış Form</div>
+        <div class="gallery-item">
+          <img src="assets/foldesk-top.webp" alt="Foldesk Lamp — Üstten" class="crop-zoom" loading="lazy" decoding="async">
+          <div class="gallery-caption" data-i18n="fold.capTop">Üstten — Katlanmış Form</div>
         </div>
       </div>
 
       <!-- Hinge / mechanism detail -->
       <div class="gallery-row gallery-full reveal-up">
-        <div class="gallery-item gallery-bg-dark">
+        <div class="gallery-item">
           <img src="assets/foldesk-tech.webp" alt="Foldesk Lamp — Menteşe Mekanizması" loading="lazy" decoding="async">
           <div class="gallery-caption" data-i18n="fold.capTech">Menteşe Mekanizması — Çok Eksenli Eklem Sistemi</div>
         </div>
