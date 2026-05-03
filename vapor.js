@@ -32,10 +32,10 @@
 
   function getBaseFontSize() {
     const w = window.innerWidth;
-    if (w < 480) return 36;
-    if (w < 768) return 50;
-    if (w < 1100) return 68;
-    return 88;
+    if (w < 480) return 48;
+    if (w < 768) return 68;
+    if (w < 1100) return 96;
+    return 140;
   }
 
   /* En uzun metin canvas'a sığsın diye dinamik ölçek.

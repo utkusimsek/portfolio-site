@@ -250,10 +250,14 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 #ai-showcase {
   position: relative;
   width: 100%;
-  height: 70vh;       /* Vapor canvas görsel olarak viewport'un ortasına gelsin */
-  min-height: 460px;
+  height: 88vh;       /* Slogan viewport'a görsel olarak ortalı dursun */
+  min-height: 560px;
   overflow: hidden;
   background: transparent; /* Particle canvas hero'da da görünsün */
+  /* Flex centering: animasyon transform ile çakışmadan dikey ortalama */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Overlay'ler kaldırıldı — particle canvas tüm sayfada kesintisiz akışı için.
@@ -261,18 +265,17 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .showcase-overlay-bottom,
 .showcase-overlay-top { display: none; }
 
-/* Content — vertical center, üstte boşluk olmasın */
+/* Content — flex center'da, animasyon translateY ile çakışma yok */
 .showcase-content {
-  position: absolute;
-  top: 50%; left: 0; right: 0;
-  transform: translateY(-50%);
+  position: relative;
+  width: 100%;
   z-index: 3; text-align: center;
   padding: 0 24px;
   animation: showcaseFadeUp .9s .2s both cubic-bezier(0.16,1,0.3,1);
 }
 @keyframes showcaseFadeUp {
-  from { opacity: 0; transform: translate(0, calc(-50% + 32px)); }
-  to   { opacity: 1; transform: translateY(-50%); }
+  from { opacity: 0; transform: translateY(32px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 .showcase-badge { display: none; }
 .showcase-sub { display: none; }
@@ -291,12 +294,12 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   line-height: 1 !important;
 }
 
-/* Vapor canvas wrapper — geniş ve net */
+/* Vapor canvas wrapper — geniş ve net, font boyutuyla orantılı */
 .vapor-wrap {
   position: relative;
   width: 100%;
-  max-width: 1100px;
-  height: clamp(140px, 18vw, 240px);
+  max-width: 1200px;
+  height: clamp(200px, 22vw, 360px);
   margin: 0 auto;
   pointer-events: none;
 }
@@ -1917,11 +1920,11 @@ body.light .footer-legal { color: #555; border-color: rgba(0,0,0,.12); }
   #hero { padding-bottom: 60px; }
 
   /* Showcase — vapor canvas viewport'a göre dengeli ortalı */
-  #ai-showcase { height: 62vh; min-height: 420px; }
+  #ai-showcase { height: 78vh; min-height: 520px; }
   .media-switcher { gap: 6px; padding: 8px; border-radius: 14px; }
   .switcher-btn { padding: 8px 12px; gap: 6px; font-size: .72rem; }
-  .showcase-content { left: 20px; right: 20px; padding: 0; }
-  .vapor-wrap { height: clamp(140px, 22vw, 220px); }
+  .showcase-content { padding: 0 20px; }
+  .vapor-wrap { height: clamp(170px, 28vw, 260px); }
 
   /* Skills */
   .skills-grid { grid-template-columns: 1fr; }
@@ -1957,6 +1960,6 @@ body.light .footer-legal { color: #555; border-color: rgba(0,0,0,.12); }
   .skills-grid { grid-template-columns: 1fr; }
   .proj-stats { grid-template-columns: repeat(2,1fr); }
   /* Showcase — dar telefon, vapor canvas merkezde */
-  #ai-showcase { height: 56vh; min-height: 380px; }
-  .vapor-wrap { height: clamp(130px, 28vw, 200px); }
+  #ai-showcase { height: 70vh; min-height: 460px; }
+  .vapor-wrap { height: clamp(150px, 32vw, 220px); }
 }
