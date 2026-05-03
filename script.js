@@ -298,47 +298,25 @@ window.addEventListener('scroll', () => {
   });
 }, { passive: true });
 
-/* ── Hero: Video-first + Spline 3D upgrade + mouse spotlight ──
-   Sayfa açılır açılmaz video oynar (anında hareket karşılaması).
-   Spline arka planda sessizce yüklenir, hazır olunca crossfade ile
-   videonun üstüne gelir ve onu kapatır. */
+/* ── Hero: Spline 3D auto-load + mouse spotlight ── */
 (function () {
   const showcase  = document.getElementById('ai-showcase');
   const viewer    = document.getElementById('splineViewer');
-  const video     = document.getElementById('splineFallbackVideo');
   const spotlight = document.getElementById('showcaseSpotlight');
   if (!showcase) return;
 
-  // Video sayfa açılır açılmaz oynar; autoplay engellenirse retry
-  if (video && video.paused) {
-    video.play().catch(() => {
-      // iOS Safari low power mode bazen autoplay'i bloklar — bir interaction
-      // bekle, ondan sonra başlat
-      const retry = () => { video.play(); document.removeEventListener('click', retry); };
-      document.addEventListener('click', retry, { once: true });
-    });
-  }
-
-  // Spline yüklendiğinde video'dan 3D'ye crossfade
   if (viewer) {
     const t0 = performance.now();
     viewer.addEventListener('load', () => {
       const t = ((performance.now() - t0) / 1000).toFixed(1);
-      console.log(`[Hero] Spline 3D yüklendi (${t}s) — video → 3D crossfade`);
+      console.log(`[Hero] Spline 3D yüklendi (${t}s)`);
       showcase.classList.add('spline-ready');
-      // Crossfade tamamlandıktan sonra video'yu durdur (CPU tasarrufu)
-      setTimeout(() => { if (video) video.pause(); }, 1400);
     });
     viewer.addEventListener('error', (e) => {
-      // Spline yüklenemezse video oynamaya devam — kullanıcı hiçbir şey kaybetmez
-      console.warn('[Hero] Spline error, video kalıyor:', e.detail || 'unknown');
+      console.warn('[Hero] Spline yüklenemedi:', e.detail || 'unknown');
+      // Hata durumunda poster gradient gösterimde kalır — boş ekran olmaz
+      showcase.classList.add('spline-ready');
     });
-    // 20s'de hâlâ load yoksa beklemeyi bırak (video zaten oynuyor)
-    setTimeout(() => {
-      if (!showcase.classList.contains('spline-ready')) {
-        console.log('[Hero] Spline 20s sonra hâlâ yüklenmedi — video ile devam');
-      }
-    }, 20000);
   }
 
   // Mouse-follow spotlight

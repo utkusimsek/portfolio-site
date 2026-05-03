@@ -81,16 +81,8 @@
       <!-- Statik poster — anında render, Spline gelene kadar gösterilir -->
       <div class="spline-poster" aria-hidden="true"></div>
 
-      <!-- Hero video: sayfa açılır açılmaz oynar. Spline yüklenirken
-           kullanıcı boş hero görmez — anında hareket karşılaması. -->
-      <video
-        class="spline-fallback-video active"
-        id="splineFallbackVideo"
-        src="assets/hero-intro.mp4"
-        autoplay muted loop playsinline preload="auto" aria-hidden="true"></video>
-
-      <!-- Spline 3D — arka planda sessizce yüklenir, hazır olunca
-           video'nun üstüne crossfade ile gelir. -->
+      <!-- Spline 3D — sayfa açılır açılmaz yüklenir.
+           Yükleme sırasında poster gradient görünür. -->
       <spline-viewer
         url="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
         loading="eager"
