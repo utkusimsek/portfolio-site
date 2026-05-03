@@ -27,24 +27,27 @@
   object-position: center;
   transform: scale(1.04);
   transition: transform 8s ease-out;
-  /* Image fades softly at its bottom edge so it bleeds into page bg */
+  /* Görüntü, alt kenarda yumuşakça soluyor.
+     Mask iki katmanlı bir geçişin yarısı; overlay (bkz. .proj-hero-overlay)
+     ile birlikte single-source-of-truth: en altta SOLID var(--bg) ile
+     mühürleniyor → bir sonraki section ile dikişsiz birleşim. */
   -webkit-mask-image: linear-gradient(to bottom,
-    #000 0%, #000 70%,
-    rgba(0,0,0,.85) 84%,
-    rgba(0,0,0,.45) 94%,
+    #000 0%, #000 65%,
+    rgba(0,0,0,.7) 82%,
+    rgba(0,0,0,.25) 94%,
     transparent 100%);
           mask-image: linear-gradient(to bottom,
-    #000 0%, #000 70%,
-    rgba(0,0,0,.85) 84%,
-    rgba(0,0,0,.45) 94%,
+    #000 0%, #000 65%,
+    rgba(0,0,0,.7) 82%,
+    rgba(0,0,0,.25) 94%,
     transparent 100%);
 }
 .proj-cover-img.loaded { transform: scale(1); }
 
-/* Overlay — alt uç transparent'a fade eder; solid renk .proj-hero'nun
-   kendi bg'sinden gelir. Tema geçişinde gradient interpolate edilemediği
-   için solid uç var(--bg) bırakılırsa keskin bir seam oluşur — bu yüzden
-   görsel doluluğu hero bg'ye devrediyoruz. */
+/* Overlay — üstte hafif koyulaşma, altta SOLID var(--bg)'ye kapanır.
+   Önemli: en alt stop transparent OLMAMALI; aksi halde 92%'deki tepe
+   koyulaşmadan sonra alt kenarda ani bir "açılma bandı" oluşur ve
+   sonraki section ile arasında görünür seam meydana gelir. */
 .proj-hero-overlay {
   position: absolute;
   inset: 0;
@@ -52,10 +55,10 @@
     to bottom,
     rgba(10,10,11,.10) 0%,
     rgba(10,10,11,.08) 35%,
-    color-mix(in srgb, var(--bg) 30%, transparent) 55%,
-    color-mix(in srgb, var(--bg) 60%, transparent) 75%,
-    color-mix(in srgb, var(--bg) 85%, transparent) 92%,
-    transparent 100%
+    color-mix(in srgb, var(--bg) 35%, transparent) 60%,
+    color-mix(in srgb, var(--bg) 70%, transparent) 80%,
+    color-mix(in srgb, var(--bg) 92%, transparent) 94%,
+    var(--bg) 100%
   );
 }
 
@@ -446,10 +449,10 @@ body.light .proj-hero-overlay {
     to bottom,
     rgba(240,237,232,.08) 0%,
     rgba(240,237,232,.06) 35%,
-    color-mix(in srgb, var(--bg) 28%, transparent) 55%,
-    color-mix(in srgb, var(--bg) 58%, transparent) 75%,
-    color-mix(in srgb, var(--bg) 85%, transparent) 92%,
-    transparent 100%
+    color-mix(in srgb, var(--bg) 30%, transparent) 60%,
+    color-mix(in srgb, var(--bg) 65%, transparent) 80%,
+    color-mix(in srgb, var(--bg) 90%, transparent) 94%,
+    var(--bg) 100%
   );
 }
 body.light .proj-title { color: var(--text); }
