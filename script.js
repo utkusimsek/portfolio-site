@@ -302,23 +302,18 @@ window.addEventListener('scroll', () => {
 (function () {
   const showcase  = document.getElementById('ai-showcase');
   const viewer    = document.getElementById('splineViewer');
-  const loadingEl = document.getElementById('splineLoading');
   const spotlight = document.getElementById('showcaseSpotlight');
   if (!showcase) return;
 
   if (viewer) {
-    // Spline load eventinde poster + spinner fade out, 3D fade in
+    // Spline load eventinde poster fade out, 3D fade in
     viewer.addEventListener('load', () => {
       showcase.classList.add('spline-ready');
     });
     viewer.addEventListener('error', () => {
       showcase.classList.add('spline-errored');
-      if (loadingEl) {
-        loadingEl.querySelector('.spline-loading-text').textContent =
-          '3D yüklenemedi — sayfa görseli ile devam ediyor';
-      }
     });
-    // Güvenlik ağı: 25 saniyede load gelmezse poster ile devam et
+    // Güvenlik ağı: 25s içinde load gelmezse poster ile devam et
     setTimeout(() => {
       if (!showcase.classList.contains('spline-ready') &&
           !showcase.classList.contains('spline-errored')) {

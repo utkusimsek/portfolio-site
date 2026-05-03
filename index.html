@@ -80,19 +80,14 @@
       <!-- Statik poster — anında render, Spline gelene kadar gösterilir -->
       <div class="spline-poster" aria-hidden="true"></div>
 
-      <!-- Spline 3D scene — sayfa açılır açılmaz yüklenir -->
+      <!-- Spline 3D scene — sayfa açılır açılmaz yüklenir.
+           Yükleme sırasında poster gradient görünür, spinner/yazı yok. -->
       <spline-viewer
         url="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
         loading="eager"
         events-target="global"
         aria-hidden="true"
         id="splineViewer"></spline-viewer>
-
-      <!-- Yükleme spinner — Spline render olana kadar görünür -->
-      <div class="spline-loading" id="splineLoading">
-        <div class="spline-loading-spinner"></div>
-        <div class="spline-loading-text" data-i18n="showcase.threeDLoading">3D Sahne Yükleniyor...</div>
-      </div>
     </div>
 
     <!-- Mouse-follow spotlight -->
