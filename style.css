@@ -1757,42 +1757,52 @@ body.light .footer-legal { color: #555; border-color: rgba(0,0,0,.12); }
   /* Let fullbleed media fill their containers */
   .media-layer img, .media-layer video { width: 100%; height: 100%; object-fit: cover; }
 
-  /* Nav — Apple iOS bar standartları (44pt min touch target, dolgun görünüm) */
+  /* Nav — Apple Liquid Glass: dolgun pill + outer halo ring */
   #nav {
-    top: 12px;
-    width: calc(100% - 20px);
+    top: 14px;
+    width: calc(100% - 24px);
     /* Mobile'da daha belirgin glass — zayıf görünmesin */
-    background: rgba(255, 255, 255, calc(0.075 + 0.030 * var(--scroll-p)));
+    background: rgba(255, 255, 255, calc(0.085 + 0.035 * var(--scroll-p)));
+    /* Apple-style outer halo: ana shadow + dış halka çerçeve (3 katman) */
+    box-shadow:
+      0 14px 40px -10px rgba(0, 0, 0, 0.40),         /* drop shadow */
+      0 0 0 1px rgba(255, 255, 255, 0.06),            /* immediate hairline */
+      0 0 0 6px rgba(255, 255, 255, 0.025);           /* outer glass frame */
   }
   body.light #nav {
     background: rgba(255, 255, 255, calc(0.72 + 0.13 * var(--scroll-p)));
+    box-shadow:
+      0 14px 40px -10px rgba(0, 0, 0, 0.20),
+      0 0 0 1px rgba(0, 0, 0, 0.04),
+      0 0 0 6px rgba(0, 0, 0, 0.025);
   }
-  .nav-inner { padding: 0 8px 0 16px; height: 52px; gap: 8px; }
-  .nav-right { gap: 8px; }
+  /* Daha dolgun bar height + breathing space */
+  .nav-inner { padding: 0 10px 0 18px; height: 58px; gap: 10px; }
+  .nav-right { gap: 10px; }
 
-  /* Logo — bar yüksekliğine orantılı */
-  .site-logo-img { height: 26px; }
+  /* Logo — bar'a orantılı (28% of bar height) */
+  .site-logo-img { height: 30px; }
 
-  /* Theme toggle — 36px height, 60px width (iOS-standart proportion) */
-  .theme-toggle { width: 60px; height: 32px; }
-  .theme-toggle::before { width: 26px; height: 26px; top: 3px; left: 3px; }
+  /* Theme toggle — 36×64 (Apple iOS Switch ratio ~1.78) */
+  .theme-toggle { width: 64px; height: 36px; }
+  .theme-toggle::before { width: 30px; height: 30px; top: 3px; left: 3px; }
   body.light .theme-toggle::before { transform: translateX(0); }
   body:not(.light) .theme-toggle::before { transform: translateX(28px); }
-  .theme-icon { width: 30px; height: 32px; }
-  .theme-icon svg { width: 14px; height: 14px; }
+  .theme-icon { width: 32px; height: 36px; }
+  .theme-icon svg { width: 15px; height: 15px; }
 
-  /* Lang toggle — orantılı circular pill */
+  /* Lang toggle — bar yüksekliğine orantılı */
   .lang-toggle {
-    height: 32px; min-width: 38px; padding: 0 12px;
-    border-radius: 16px; box-shadow: none; font-size: .72rem;
+    height: 36px; min-width: 42px; padding: 0 14px;
+    border-radius: 18px; box-shadow: none; font-size: .78rem;
   }
 
   /* Burger — daha belirgin tap target */
-  .burger { padding: 8px; }
-  .burger span { width: 22px; height: 1.8px; }
-  .burger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  .burger { padding: 10px; }
+  .burger span { width: 24px; height: 2px; }
+  .burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
   .burger.open span:nth-child(2) { opacity: 0; }
-  .burger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+  .burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
   .nav-links { display: none; }
   .nav-links.open {
     display: flex;
