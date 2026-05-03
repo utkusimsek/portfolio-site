@@ -314,25 +314,71 @@
 
 /* ── Back ── */
 .proj-back-section { padding: 80px 0; text-align: center; }
+/* Liquid Glass — site genelindeki .btn-ghost ile aynı dil */
 .proj-back-btn {
+  position: relative;
   display: inline-block;
   padding: 14px 36px;
-  border: 1px solid var(--glass-border);
-  border-radius: 40px;
+  border: 0;
+  border-radius: 100px;
   font-size: .78rem;
   font-weight: 600;
   letter-spacing: .1em;
   text-transform: uppercase;
   color: var(--text);
   text-decoration: none;
-  background: var(--glass-bg);
-  backdrop-filter: var(--glass-blur-sm);
-  transition: border-color .3s, color .3s, background .3s;
+  background: rgba(255,255,255,.05);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  isolation: isolate;
+  transition:
+    transform .35s var(--ease-out-expo),
+    background .35s var(--ease-out-expo),
+    color .3s ease,
+    box-shadow .35s var(--ease-out-expo);
+  box-shadow:
+    0 8px 28px rgba(0,0,0,.28),
+    0 2px 6px rgba(0,0,0,.12),
+    inset 3px 3px 0.5px -3px rgba(255,255,255,.85),
+    inset -3px -3px 0.5px -3px rgba(255,255,255,.65),
+    inset 1px 1px 1px -0.5px rgba(255,255,255,.6),
+    inset -1px -1px 1px -0.5px rgba(255,255,255,.4),
+    inset 0 0 6px 6px rgba(255,255,255,.06),
+    inset 0 0 0 1px rgba(255,255,255,.08);
+}
+.proj-back-btn::before {
+  content: "";
+  position: absolute; inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(180deg, rgba(255,255,255,.10) 0%, rgba(255,255,255,0) 60%);
+  pointer-events: none;
 }
 .proj-back-btn:hover {
-  border-color: var(--accent);
   color: var(--accent);
-  background: var(--glass-bg-hover);
+  transform: translateY(-2px);
+  background: rgba(201,169,110,.08);
+  box-shadow:
+    0 14px 36px rgba(0,0,0,.34),
+    0 4px 10px rgba(0,0,0,.16),
+    inset 3px 3px 0.5px -3px rgba(255,235,180,.95),
+    inset -3px -3px 0.5px -3px rgba(255,235,180,.7),
+    inset 1px 1px 1px -0.5px rgba(255,235,180,.6),
+    inset -1px -1px 1px -0.5px rgba(255,235,180,.4),
+    inset 0 0 6px 6px rgba(201,169,110,.10),
+    inset 0 0 0 1px rgba(201,169,110,.32);
+}
+body.light .proj-back-btn {
+  color: #1a1a1a;
+  background: rgba(255,255,255,.55);
+  box-shadow:
+    0 8px 28px rgba(0,0,0,.10),
+    0 2px 6px rgba(0,0,0,.06),
+    inset 3px 3px 0.5px -3px rgba(0,0,0,.20),
+    inset -3px -3px 0.5px -3px rgba(0,0,0,.14),
+    inset 1px 1px 1px -0.5px rgba(0,0,0,.10),
+    inset -1px -1px 1px -0.5px rgba(0,0,0,.07),
+    inset 0 0 6px 6px rgba(0,0,0,.03),
+    inset 0 0 0 1px rgba(0,0,0,.06);
 }
 
 /* ── Lightbox ── */

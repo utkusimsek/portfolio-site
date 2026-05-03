@@ -292,6 +292,7 @@ body.light .spline-poster {
 #ai-showcase.spline-ready spline-viewer { opacity: 1; }
 
 /* "3D Sahneyi Aktif Et" butonu — hero'nun ortasında */
+/* Liquid glass — diğer .btn-ghost ile aynı dil, sadece pozisyon farklı */
 .spline-activate-btn {
   position: absolute;
   top: 50%; left: 50%;
@@ -299,28 +300,69 @@ body.light .spline-poster {
   z-index: 4;
   display: inline-flex; align-items: center; gap: 10px;
   padding: 14px 28px;
-  background: rgba(10,10,11,.6);
-  border: 1px solid rgba(201,169,110,.4);
-  border-radius: 40px;
-  backdrop-filter: blur(20px) saturate(160%);
-  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border: 0;
+  border-radius: 100px;
+  background: rgba(255,255,255,.05);
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
   color: var(--white);
   font-family: var(--font-sans);
   font-size: .8rem; font-weight: 600;
   letter-spacing: .12em; text-transform: uppercase;
   cursor: pointer;
-  transition: all .35s cubic-bezier(0.4,0,0.2,1);
-  box-shadow: 0 8px 32px rgba(0,0,0,.35);
+  isolation: isolate;
+  transition:
+    transform .35s cubic-bezier(0.4,0,0.2,1),
+    background .35s cubic-bezier(0.4,0,0.2,1),
+    box-shadow .35s cubic-bezier(0.4,0,0.2,1),
+    color .3s ease;
+  box-shadow:
+    0 12px 40px rgba(0,0,0,.4),
+    0 2px 8px rgba(0,0,0,.18),
+    inset 3px 3px 0.5px -3px rgba(255,255,255,.85),
+    inset -3px -3px 0.5px -3px rgba(255,255,255,.65),
+    inset 1px 1px 1px -0.5px rgba(255,255,255,.6),
+    inset -1px -1px 1px -0.5px rgba(255,255,255,.4),
+    inset 0 0 6px 6px rgba(255,255,255,.06),
+    inset 0 0 0 1px rgba(201,169,110,.32);
   animation: splineCtaPulse 2.5s ease-in-out infinite;
 }
+.spline-activate-btn::before {
+  content: "";
+  position: absolute; inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(180deg, rgba(255,255,255,.10) 0%, rgba(255,255,255,0) 60%);
+  pointer-events: none;
+}
 .spline-activate-btn:hover {
-  border-color: var(--accent);
-  background: rgba(201,169,110,.18);
   transform: translate(-50%, -50%) scale(1.04);
+  background: rgba(201,169,110,.12);
+  box-shadow:
+    0 18px 50px rgba(0,0,0,.45),
+    0 4px 12px rgba(0,0,0,.22),
+    inset 3px 3px 0.5px -3px rgba(255,235,180,.95),
+    inset -3px -3px 0.5px -3px rgba(255,235,180,.7),
+    inset 1px 1px 1px -0.5px rgba(255,235,180,.6),
+    inset -1px -1px 1px -0.5px rgba(255,235,180,.4),
+    inset 0 0 6px 6px rgba(201,169,110,.10),
+    inset 0 0 0 1px rgba(201,169,110,.55);
+  color: var(--accent);
 }
 .spline-activate-btn svg { stroke: var(--accent); flex-shrink: 0; }
 .spline-activate-btn.hidden { opacity: 0; pointer-events: none; transform: translate(-50%, -50%) scale(.9); }
-body.light .spline-activate-btn { background: rgba(255,255,255,.7); color: #1a1a1a; }
+body.light .spline-activate-btn {
+  background: rgba(255,255,255,.55);
+  color: #1a1a1a;
+  box-shadow:
+    0 12px 40px rgba(0,0,0,.12),
+    0 2px 8px rgba(0,0,0,.06),
+    inset 3px 3px 0.5px -3px rgba(0,0,0,.20),
+    inset -3px -3px 0.5px -3px rgba(0,0,0,.14),
+    inset 1px 1px 1px -0.5px rgba(0,0,0,.10),
+    inset -1px -1px 1px -0.5px rgba(0,0,0,.07),
+    inset 0 0 6px 6px rgba(0,0,0,.03),
+    inset 0 0 0 1px rgba(201,169,110,.4);
+}
 
 @keyframes splineCtaPulse {
   0%, 100% { box-shadow: 0 8px 32px rgba(0,0,0,.35), 0 0 0 0 rgba(201,169,110,.4); }
@@ -760,37 +802,143 @@ body.light .lang-toggle:hover {
 /* ═══════════════════════════════════════════════════════════════
    BUTTONS
 ═══════════════════════════════════════════════════════════════ */
+/* ═══════════════════════════════════════════════════════════════
+   BUTTONS — Liquid Glass + Metallic Gold tasarım dili
+   (Apple iOS 18 / Vision OS estetiği, vanilla CSS port)
+═══════════════════════════════════════════════════════════════ */
 .btn {
+  position: relative;
   display: inline-flex; align-items: center; gap: 8px;
-  padding: 14px 32px; border-radius: 100px;
+  padding: 14px 32px;
+  border-radius: 100px;
   font-size: .875rem; font-weight: 600; letter-spacing: .06em;
-  transition: all .35s var(--ease-out-expo);
   text-transform: uppercase;
+  border: 0;
+  isolation: isolate;
+  transition:
+    transform .35s var(--ease-out-expo),
+    box-shadow .35s var(--ease-out-expo),
+    filter .25s ease,
+    color .3s ease;
+  will-change: transform;
 }
+.btn:active { transform: translateY(1px) scale(.985); transition-duration: .15s; }
+
+/* ── Primary: Metallic Gold (MetalButton port) ─────────────────────────
+   3 katmanlı yapı (wrapper, inner, button) ::before/::after ile çözüldü.
+   Multi-stop gradient + inset highlight + subtle ring + soft shadow. */
 .btn-primary {
-  background: var(--accent); color: #0a0a0b;
-  box-shadow: 0 4px 20px rgba(201,169,110,.3), inset 0 1px 0 rgba(255,255,255,.25);
+  color: #1a1410;
+  text-shadow: 0 -1px 0 rgba(178,140,2,.55);
+  background:
+    linear-gradient(180deg, #FFEBA1 0%, #E6CB7E 35%, #C9A96E 65%, #9B873F 100%);
+  box-shadow:
+    /* dış halo */
+    0 8px 24px rgba(201,169,110,.32),
+    0 2px 6px rgba(0,0,0,.18),
+    /* metalik halka — outer hairline */
+    0 0 0 1px rgba(85,68,20,.45),
+    /* inner highlights — top sheen + bottom shade */
+    inset 0 1px 0 rgba(255,253,221,.85),
+    inset 0 -1px 0 rgba(60,40,5,.30),
+    inset 0 0 0 1px rgba(255,253,221,.18);
+}
+/* Üst parlama overlay — metallic sheen */
+.btn-primary::before {
+  content: "";
+  position: absolute; inset: 1px;
+  border-radius: inherit;
+  background: linear-gradient(180deg, rgba(255,253,221,.55) 0%, rgba(255,253,221,0) 50%);
+  pointer-events: none;
+  opacity: .7;
+  transition: opacity .35s var(--ease-out-expo);
+}
+/* Alt karanlık — depth */
+.btn-primary::after {
+  content: "";
+  position: absolute; inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(180deg, transparent 60%, rgba(60,40,5,.18) 100%);
+  pointer-events: none;
+  z-index: -1;
 }
 .btn-primary:hover {
-  background: #e0c07c; transform: translateY(-3px);
-  box-shadow: 0 16px 40px rgba(201,169,110,.45), inset 0 1px 0 rgba(255,255,255,.3);
+  filter: brightness(1.06);
+  transform: translateY(-2px);
+  box-shadow:
+    0 14px 36px rgba(201,169,110,.42),
+    0 4px 10px rgba(0,0,0,.22),
+    0 0 0 1px rgba(85,68,20,.5),
+    inset 0 1px 0 rgba(255,253,221,.9),
+    inset 0 -1px 0 rgba(60,40,5,.32),
+    inset 0 0 0 1px rgba(255,253,221,.22);
 }
+.btn-primary:hover::before { opacity: .9; }
+
+/* ── Ghost: Liquid Glass (LiquidButton port) ────────────────────────────
+   Apple Vision OS / iOS 18 stili — yoğun blur + complex inset shadows
+   ile cam dokusu ve içeriden ışık dağılımı yanılsaması. */
 .btn-ghost {
-  border: 1px solid var(--glass-border);
-  background: var(--glass-bg);
-  backdrop-filter: var(--glass-blur-sm);
-  -webkit-backdrop-filter: var(--glass-blur-sm);
   color: var(--text);
-  box-shadow: var(--glass-shadow);
+  background: rgba(255,255,255,.05);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  box-shadow:
+    /* dış soft shadow + halo */
+    0 8px 28px rgba(0,0,0,.28),
+    0 2px 6px rgba(0,0,0,.12),
+    /* liquid glass core: çoklu inset shadow ile cam derinliği */
+    inset 3px 3px 0.5px -3px rgba(255,255,255,.85),
+    inset -3px -3px 0.5px -3px rgba(255,255,255,.65),
+    inset 1px 1px 1px -0.5px rgba(255,255,255,.6),
+    inset -1px -1px 1px -0.5px rgba(255,255,255,.4),
+    inset 0 0 6px 6px rgba(255,255,255,.06),
+    inset 0 0 2px 2px rgba(255,255,255,.04),
+    inset 0 0 0 1px rgba(255,255,255,.08);
+}
+.btn-ghost::before {
+  content: "";
+  position: absolute; inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(180deg, rgba(255,255,255,.10) 0%, rgba(255,255,255,0) 60%);
+  pointer-events: none;
+  opacity: .7;
+  transition: opacity .35s var(--ease-out-expo);
 }
 .btn-ghost:hover {
-  border-color: rgba(201,169,110,.5);
   color: var(--accent);
-  background: var(--glass-bg-hover);
-  transform: translateY(-3px);
-  box-shadow: 0 16px 40px rgba(0,0,0,.3), inset 0 1px 0 rgba(255,255,255,.12);
+  transform: translateY(-2px);
+  background: rgba(201,169,110,.08);
+  box-shadow:
+    0 14px 36px rgba(0,0,0,.34),
+    0 4px 10px rgba(0,0,0,.16),
+    inset 3px 3px 0.5px -3px rgba(255,235,180,.95),
+    inset -3px -3px 0.5px -3px rgba(255,235,180,.7),
+    inset 1px 1px 1px -0.5px rgba(255,235,180,.6),
+    inset -1px -1px 1px -0.5px rgba(255,235,180,.4),
+    inset 0 0 6px 6px rgba(201,169,110,.10),
+    inset 0 0 2px 2px rgba(201,169,110,.05),
+    inset 0 0 0 1px rgba(201,169,110,.32);
 }
-.full-w { width: 100%; justify-content: center; border-radius: 12px; }
+.btn-ghost:hover::before { opacity: 1; }
+
+/* Light mode — ghost butonu açık temada da okunur */
+body.light .btn-ghost {
+  color: #1a1a1a;
+  background: rgba(255,255,255,.55);
+  box-shadow:
+    0 8px 28px rgba(0,0,0,.10),
+    0 2px 6px rgba(0,0,0,.06),
+    inset 3px 3px 0.5px -3px rgba(0,0,0,.20),
+    inset -3px -3px 0.5px -3px rgba(0,0,0,.14),
+    inset 1px 1px 1px -0.5px rgba(0,0,0,.10),
+    inset -1px -1px 1px -0.5px rgba(0,0,0,.07),
+    inset 0 0 6px 6px rgba(0,0,0,.03),
+    inset 0 0 0 1px rgba(0,0,0,.06);
+}
+
+/* Full-width primary form butonu — dolu altın görünüm korunur */
+.full-w { width: 100%; justify-content: center; border-radius: 14px; }
 
 /* ═══════════════════════════════════════════════════════════════
    HERO
