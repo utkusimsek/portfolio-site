@@ -304,43 +304,162 @@ function updateActiveNavLink() {
 window.addEventListener('scroll', updateActiveNavLink, { passive: true });
 updateActiveNavLink(); // İlk yüklemede de çalıştır
 
-/* ── Hero: Spline 3D auto-load + mouse spotlight ── */
-(function () {
-  const showcase  = document.getElementById('ai-showcase');
-  const viewer    = document.getElementById('splineViewer');
-  const spotlight = document.getElementById('showcaseSpotlight');
-  if (!showcase) return;
-
-  if (viewer) {
-    const t0 = performance.now();
-    viewer.addEventListener('load', () => {
-      const t = ((performance.now() - t0) / 1000).toFixed(1);
-      console.log(`[Hero] Spline 3D yüklendi (${t}s)`);
-      showcase.classList.add('spline-ready');
-    });
-    viewer.addEventListener('error', (e) => {
-      console.warn('[Hero] Spline yüklenemedi:', e.detail || 'unknown');
-      // Hata durumunda poster gradient gösterimde kalır — boş ekran olmaz
-      showcase.classList.add('spline-ready');
-    });
+/* ─────────────────────────────────────────────────────────────────────────
+   Hero: DottedSurface — Three.js sin dalga grid animasyonu
+   React component'in vanilla JS port'u. Mobil + PC'de stabil çalışır.
+   - Tema değişimini izler (body.light), nokta renklerini günceller
+   - Mobile'da partikül sayısını ve pixel ratio'yu düşürür
+   - Section görünür değilken animasyonu duraklatır (battery save)
+   - Resize'da renderer'ı yeniden boyutlandırır
+   ───────────────────────────────────────────────────────────────────────── */
+(function initDottedSurface() {
+  const container = document.getElementById('dottedSurface');
+  if (!container) return;
+  if (typeof THREE === 'undefined') {
+    console.warn('[DottedSurface] Three.js yüklü değil — atlanıyor');
+    return;
   }
 
-  // Mouse-follow spotlight
-  if (spotlight && window.matchMedia('(pointer: fine)').matches) {
-    let rafId = null;
-    let lastX = 0, lastY = 0;
-    showcase.addEventListener('pointermove', (e) => {
-      const rect = showcase.getBoundingClientRect();
-      lastX = e.clientX - rect.left;
-      lastY = e.clientY - rect.top;
-      if (rafId) return;
-      rafId = requestAnimationFrame(() => {
-        spotlight.style.setProperty('--spot-x', lastX + 'px');
-        spotlight.style.setProperty('--spot-y', lastY + 'px');
-        rafId = null;
-      });
-    }, { passive: true });
-    showcase.addEventListener('pointerenter', () => spotlight.classList.add('active'));
-    showcase.addEventListener('pointerleave', () => spotlight.classList.remove('active'));
+  // ── Cihaza göre yoğunluk ayarı ──
+  const isMobile = window.matchMedia('(max-width: 768px)').matches;
+  const isCoarse = window.matchMedia('(pointer: coarse)').matches;
+  const SEPARATION = isMobile ? 130 : 150;
+  const AMOUNTX    = isMobile ? 22 : 40;
+  const AMOUNTY    = isMobile ? 32 : 60;
+  const DPR_CAP    = isMobile ? 1.5 : 2;
+
+  const W = () => container.clientWidth  || window.innerWidth;
+  const H = () => container.clientHeight || window.innerHeight;
+
+  // ── Scene ──
+  const scene = new THREE.Scene();
+  scene.fog = new THREE.Fog(0x000000, 2000, 10000);
+
+  const camera = new THREE.PerspectiveCamera(60, W() / H(), 1, 10000);
+  camera.position.set(0, 355, 1220);
+
+  const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: !isMobile });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, DPR_CAP));
+  renderer.setSize(W(), H());
+  renderer.setClearColor(0x000000, 0);
+  container.appendChild(renderer.domElement);
+
+  // ── Geometry + colors ──
+  const positions = [];
+  const colors    = [];
+  const total     = AMOUNTX * AMOUNTY;
+
+  for (let ix = 0; ix < AMOUNTX; ix++) {
+    for (let iy = 0; iy < AMOUNTY; iy++) {
+      const x = ix * SEPARATION - (AMOUNTX * SEPARATION) / 2;
+      const z = iy * SEPARATION - (AMOUNTY * SEPARATION) / 2;
+      positions.push(x, 0, z);
+      // Renkler theme'e göre setColors() içinde set edilir
+      colors.push(0.78, 0.78, 0.78);
+    }
   }
+
+  const geometry = new THREE.BufferGeometry();
+  geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+  geometry.setAttribute('color',    new THREE.Float32BufferAttribute(colors,    3));
+
+  const material = new THREE.PointsMaterial({
+    size: isMobile ? 6 : 8,
+    vertexColors: true,
+    transparent: true,
+    opacity: 0.8,
+    sizeAttenuation: true
+  });
+
+  const points = new THREE.Points(geometry, material);
+  scene.add(points);
+
+  // ── Tema renkleri ──
+  function applyThemeColors() {
+    const isLight = document.body.classList.contains('light');
+    const colorAttr = geometry.attributes.color;
+    const arr = colorAttr.array;
+    // Dark: açık gri (0.78), Light: koyu gri (0.10)
+    const v = isLight ? 0.10 : 0.78;
+    for (let i = 0; i < arr.length; i++) arr[i] = v;
+    colorAttr.needsUpdate = true;
+    // Light mode'da opacity biraz daha yüksek (kontrast için)
+    material.opacity = isLight ? 0.6 : 0.8;
+    material.needsUpdate = true;
+  }
+  applyThemeColors();
+
+  // body class değiştiğinde renkleri güncelle
+  const themeObserver = new MutationObserver(() => applyThemeColors());
+  themeObserver.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+
+  // ── Animation ──
+  let count = 0;
+  let animationId = null;
+  let isVisible = true;
+
+  function animate() {
+    animationId = requestAnimationFrame(animate);
+    if (!isVisible) return;
+
+    const positionAttribute = geometry.attributes.position;
+    const arr = positionAttribute.array;
+
+    let i = 0;
+    for (let ix = 0; ix < AMOUNTX; ix++) {
+      for (let iy = 0; iy < AMOUNTY; iy++) {
+        const idx = i * 3;
+        arr[idx + 1] =
+          Math.sin((ix + count) * 0.3) * 50 +
+          Math.sin((iy + count) * 0.5) * 50;
+        i++;
+      }
+    }
+    positionAttribute.needsUpdate = true;
+
+    renderer.render(scene, camera);
+    count += isMobile ? 0.07 : 0.1; // Mobile'da daha yavaş (perf + estetik)
+  }
+  animate();
+
+  // ── Görünürlük tabanlı duraklatma (battery save + perf) ──
+  const visObs = new IntersectionObserver(
+    entries => { isVisible = entries[0].isIntersecting; },
+    { threshold: 0 }
+  );
+  visObs.observe(container);
+
+  // Tab arkaplanda ise tamamen durdur
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      cancelAnimationFrame(animationId);
+      animationId = null;
+    } else if (!animationId) {
+      animate();
+    }
+  });
+
+  // ── Resize handler ──
+  let resizeTimer;
+  function handleResize() {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      camera.aspect = W() / H();
+      camera.updateProjectionMatrix();
+      renderer.setSize(W(), H());
+    }, 100);
+  }
+  window.addEventListener('resize', handleResize, { passive: true });
+
+  // Cleanup (sayfa kapatma — pratikte gerekmiyor ama temiz olsun)
+  window.addEventListener('beforeunload', () => {
+    cancelAnimationFrame(animationId);
+    geometry.dispose();
+    material.dispose();
+    renderer.dispose();
+    themeObserver.disconnect();
+    visObs.disconnect();
+  });
+
+  console.log(`[DottedSurface] ${total} nokta render ediliyor (${isMobile ? 'mobile' : 'desktop'})`);
 })();

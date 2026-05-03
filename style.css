@@ -135,7 +135,13 @@ body.light .skill-block h4 { color: #1a1a1a; }
 body.light .edu-card strong { color: #1a1a1a; }
 body.light .exp-item strong { color: #1a1a1a; }
 body.light .category-label { color: #444; }
-body.light .hero-tag { background: rgba(201,169,110,.12); color: var(--accent); border-color: rgba(201,169,110,.4); }
+body.light .hero-tag {
+  background: rgba(0,0,0,.04);
+  color: rgba(201,169,110,.95);
+  box-shadow:
+    inset 0 0.5px 0 rgba(255,255,255,.7),
+    inset 0 -0.5px 0 rgba(0,0,0,.06);
+}
 
 /* ── Light-mode mobile nav: light background + dark readable text ── */
 body.light .nav-links.open {
@@ -161,11 +167,36 @@ body.light .contact-text p,
 body.light .about-text p {
   color: #3a3a3a;
 }
-body.light .project-tags span,
 body.light .edu-card span,
 body.light .exp-item span,
 body.light .skill-block li {
   color: #444;
+}
+body.light .project-tags span {
+  background: rgba(0,0,0,.04);
+  color: rgba(0,0,0,.55);
+  box-shadow:
+    inset 0 0.5px 0 rgba(255,255,255,.7),
+    inset 0 -0.5px 0 rgba(0,0,0,.06);
+}
+body.light .project-card:hover .project-tags span {
+  background: rgba(0,0,0,.06);
+  color: rgba(0,0,0,.78);
+}
+body.light .project-badge {
+  background: rgba(255,255,255,.62);
+  color: #1a1a1a;
+  box-shadow:
+    inset 0 0.5px 0 rgba(255,255,255,.85),
+    inset 0 -0.5px 0 rgba(0,0,0,.05),
+    0 4px 14px rgba(0,0,0,.1);
+}
+body.light .project-overlay span {
+  background: rgba(255,255,255,.62);
+  color: #1a1a1a;
+  box-shadow:
+    inset 0 0.5px 0 rgba(255,255,255,.85),
+    0 6px 20px rgba(0,0,0,.1);
 }
 body.light .mq-item img { filter: grayscale(100%) opacity(.85); }
 body.light .mq-item:hover img { filter: grayscale(0%) opacity(1); }
@@ -214,7 +245,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 99px; }
 
 /* ═══════════════════════════════════════════════════════════════
-   AI SHOWCASE SECTION
+   AI SHOWCASE — DottedSurface (Three.js dalga animasyonu)
 ═══════════════════════════════════════════════════════════════ */
 #ai-showcase {
   position: relative;
@@ -223,220 +254,48 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   background: var(--bg);
 }
 
-/* Media layers — stacked, crossfade. Soft bottom mask bleeds video into page. */
-.media-layer {
+/* Three.js canvas container — section'ı tam kapsar */
+.dotted-surface {
   position: absolute; inset: 0;
-  opacity: 0;
-  transition: opacity 1s cubic-bezier(0.4,0,0.2,1);
-  will-change: opacity;
+  z-index: 0;
+  pointer-events: none;
+  /* Başlığa odak için alttan yumuşak fade */
   -webkit-mask-image: linear-gradient(to bottom,
-    #000 0%,
-    #000 45%,
-    rgba(0,0,0,.92) 65%,
-    rgba(0,0,0,.6) 82%,
-    rgba(0,0,0,.25) 93%,
+    #000 0%, #000 55%,
+    rgba(0,0,0,.85) 75%,
+    rgba(0,0,0,.4) 90%,
     transparent 100%);
           mask-image: linear-gradient(to bottom,
-    #000 0%,
-    #000 45%,
-    rgba(0,0,0,.92) 65%,
-    rgba(0,0,0,.6) 82%,
-    rgba(0,0,0,.25) 93%,
+    #000 0%, #000 55%,
+    rgba(0,0,0,.85) 75%,
+    rgba(0,0,0,.4) 90%,
     transparent 100%);
 }
-.media-layer.active { opacity: 1; }
-.media-layer img,
-.media-layer video {
-  width: 100%; height: 100%;
-  object-fit: cover;
+.dotted-surface canvas {
+  width: 100% !important;
+  height: 100% !important;
   display: block;
 }
 
-/* ── Spline 3D layer — click-to-activate yaklaşım ── */
-.media-layer-spline {
-  -webkit-mask-image: linear-gradient(to bottom,
-    #000 0%, #000 60%,
-    rgba(0,0,0,.85) 78%,
-    rgba(0,0,0,.4) 92%,
-    transparent 100%);
-          mask-image: linear-gradient(to bottom,
-    #000 0%, #000 60%,
-    rgba(0,0,0,.85) 78%,
-    rgba(0,0,0,.4) 92%,
-    transparent 100%);
-}
-/* Statik poster — sayfa açıldığında anında render olur, ağırlık 0 */
-.spline-poster {
+/* Yumuşak radyal vignette — başlığı öne çıkarır */
+.dotted-vignette {
   position: absolute; inset: 0;
-  background:
-    radial-gradient(ellipse at 30% 20%, rgba(201,169,110,.18), transparent 55%),
-    radial-gradient(ellipse at 75% 70%, rgba(123,108,246,.12), transparent 60%),
-    radial-gradient(ellipse at 50% 50%, #1a1a20 0%, #0a0a0b 75%);
-  transition: opacity .8s cubic-bezier(0.4,0,0.2,1);
-}
-#ai-showcase.spline-ready .spline-poster { opacity: 0; }
-body.light .spline-poster {
-  background:
-    radial-gradient(ellipse at 30% 20%, rgba(201,169,110,.20), transparent 55%),
-    radial-gradient(ellipse at 75% 70%, rgba(123,108,246,.10), transparent 60%),
-    radial-gradient(ellipse at 50% 50%, #f8f5f0 0%, #f0ede8 75%);
-}
-
-/* Spline 3D — başta gizli, ready olduğunda poster üstüne crossfade.
-   Yüklenirken/hata durumunda poster gradient zaten görünür durumda. */
-.media-layer-spline spline-viewer {
-  display: block;
-  width: 100%; height: 100%;
-  background: transparent;
-  opacity: 0;
-  transition: opacity 1.2s cubic-bezier(0.4,0,0.2,1);
-}
-#ai-showcase.spline-ready spline-viewer { opacity: 1; }
-
-/* "3D Sahneyi Aktif Et" butonu — hero'nun ortasında */
-/* Liquid glass — diğer .btn-ghost ile aynı dil, sadece pozisyon farklı */
-.spline-activate-btn {
-  position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 4;
-  display: inline-flex; align-items: center; gap: 10px;
-  padding: 14px 28px;
-  border: 0;
-  border-radius: 100px;
-  background: rgba(255,255,255,.05);
-  backdrop-filter: blur(28px) saturate(180%);
-  -webkit-backdrop-filter: blur(28px) saturate(180%);
-  color: var(--white);
-  font-family: var(--font-sans);
-  font-size: .8rem; font-weight: 600;
-  letter-spacing: .12em; text-transform: uppercase;
-  cursor: pointer;
-  isolation: isolate;
-  transition:
-    transform .35s cubic-bezier(0.4,0,0.2,1),
-    background .35s cubic-bezier(0.4,0,0.2,1),
-    box-shadow .35s cubic-bezier(0.4,0,0.2,1),
-    color .3s ease;
-  box-shadow:
-    0 12px 40px rgba(0,0,0,.4),
-    0 2px 8px rgba(0,0,0,.18),
-    inset 3px 3px 0.5px -3px rgba(255,255,255,.85),
-    inset -3px -3px 0.5px -3px rgba(255,255,255,.65),
-    inset 1px 1px 1px -0.5px rgba(255,255,255,.6),
-    inset -1px -1px 1px -0.5px rgba(255,255,255,.4),
-    inset 0 0 6px 6px rgba(255,255,255,.06),
-    inset 0 0 0 1px rgba(201,169,110,.32);
-  animation: splineCtaPulse 2.5s ease-in-out infinite;
-}
-.spline-activate-btn::before {
-  content: "";
-  position: absolute; inset: 0;
-  border-radius: inherit;
-  background: linear-gradient(180deg, rgba(255,255,255,.10) 0%, rgba(255,255,255,0) 60%);
+  z-index: 1;
   pointer-events: none;
+  background: radial-gradient(
+    ellipse 60% 50% at center 70%,
+    transparent 0%,
+    rgba(0,0,0,.35) 60%,
+    rgba(0,0,0,.55) 100%
+  );
 }
-.spline-activate-btn:hover {
-  transform: translate(-50%, -50%) scale(1.04);
-  background: rgba(201,169,110,.12);
-  box-shadow:
-    0 18px 50px rgba(0,0,0,.45),
-    0 4px 12px rgba(0,0,0,.22),
-    inset 3px 3px 0.5px -3px rgba(255,235,180,.95),
-    inset -3px -3px 0.5px -3px rgba(255,235,180,.7),
-    inset 1px 1px 1px -0.5px rgba(255,235,180,.6),
-    inset -1px -1px 1px -0.5px rgba(255,235,180,.4),
-    inset 0 0 6px 6px rgba(201,169,110,.10),
-    inset 0 0 0 1px rgba(201,169,110,.55);
-  color: var(--accent);
-}
-.spline-activate-btn svg { stroke: var(--accent); flex-shrink: 0; }
-.spline-activate-btn.hidden { opacity: 0; pointer-events: none; transform: translate(-50%, -50%) scale(.9); }
-body.light .spline-activate-btn {
-  background: rgba(255,255,255,.55);
-  color: #1a1a1a;
-  box-shadow:
-    0 12px 40px rgba(0,0,0,.12),
-    0 2px 8px rgba(0,0,0,.06),
-    inset 3px 3px 0.5px -3px rgba(0,0,0,.20),
-    inset -3px -3px 0.5px -3px rgba(0,0,0,.14),
-    inset 1px 1px 1px -0.5px rgba(0,0,0,.10),
-    inset -1px -1px 1px -0.5px rgba(0,0,0,.07),
-    inset 0 0 6px 6px rgba(0,0,0,.03),
-    inset 0 0 0 1px rgba(201,169,110,.4);
-}
-
-@keyframes splineCtaPulse {
-  0%, 100% { box-shadow: 0 8px 32px rgba(0,0,0,.35), 0 0 0 0 rgba(201,169,110,.4); }
-  50%      { box-shadow: 0 8px 32px rgba(0,0,0,.35), 0 0 0 12px rgba(201,169,110,0); }
-}
-
-/* Yükleme spinner + metin — kullanıcı butona bastıktan sonra */
-.spline-loading {
-  position: absolute; inset: 0;
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  gap: 16px;
-  z-index: 3;
-  pointer-events: none;
-  opacity: 1;
-  transition: opacity .6s cubic-bezier(0.4,0,0.2,1);
-}
-#ai-showcase.spline-ready .spline-loading { opacity: 0; }
-.spline-loading-spinner {
-  width: 42px; height: 42px;
-  border: 2px solid rgba(255,255,255,.08);
-  border-top-color: var(--accent);
-  border-radius: 50%;
-  animation: splineSpin 1s linear infinite;
-}
-.spline-loading-text {
-  font-size: .72rem;
-  font-weight: 600;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-}
-@keyframes splineSpin { to { transform: rotate(360deg); } }
-body.light .spline-loading-spinner { border-color: rgba(0,0,0,.08); border-top-color: var(--accent); }
-
-/* Spline viewer'ın kendi watermark'ını gizleme denemesi */
-spline-viewer::part(logo) { display: none !important; }
-
-/* ── Mouse-follow Spotlight — Aceternity tarzı, vanilla CSS ── */
-.showcase-spotlight {
-  position: absolute; inset: 0;
-  pointer-events: none;
-  z-index: 2;
-  opacity: 0;
-  transition: opacity .35s cubic-bezier(0.4,0,0.2,1);
-  background:
-    radial-gradient(
-      600px circle at var(--spot-x, 50%) var(--spot-y, 50%),
-      rgba(201,169,110,0.12),
-      rgba(201,169,110,0.06) 35%,
-      transparent 70%
-    );
-  mix-blend-mode: screen;
-}
-.showcase-spotlight.active { opacity: 1; }
-body.light .showcase-spotlight {
-  background:
-    radial-gradient(
-      600px circle at var(--spot-x, 50%) var(--spot-y, 50%),
-      rgba(201,169,110,0.18),
-      rgba(201,169,110,0.08) 35%,
-      transparent 70%
-    );
-  mix-blend-mode: multiply;
-}
-
-/* Mobilde 3D ağır olabilir — fallback statik gradient */
-@media (max-width: 640px) {
-  .media-layer-spline spline-viewer { opacity: 0.55; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .media-layer-spline spline-viewer { display: none; }
-  .media-layer-spline { background: radial-gradient(ellipse at top, #1a1a20, #0a0a0b 70%); }
+body.light .dotted-vignette {
+  background: radial-gradient(
+    ellipse 60% 50% at center 70%,
+    transparent 0%,
+    rgba(255,255,255,.25) 60%,
+    rgba(255,255,255,.45) 100%
+  );
 }
 
 /* Overlays — bottom fades into page bg for seamless section blend */
@@ -811,19 +670,12 @@ body.light .nav-links a.active {
       rgba(255,255,255,.02) 50%,
       rgba(0,0,0,.04) 100%
     );
-  backdrop-filter: blur(24px) saturate(180%);
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  backdrop-filter: blur(28px) saturate(160%);
+  -webkit-backdrop-filter: blur(28px) saturate(160%);
   box-shadow:
-    /* outer */
-    0 4px 12px rgba(0,0,0,.22),
-    0 1px 3px rgba(0,0,0,.14),
-    /* inner liquid glass */
-    inset 2px 2px 0.5px -2px rgba(255,255,255,.7),
-    inset -2px -2px 0.5px -2px rgba(255,255,255,.5),
-    inset 1px 1px 1px -0.5px rgba(255,255,255,.5),
-    inset -1px -1px 1px -0.5px rgba(255,255,255,.35),
-    inset 0 0 4px 4px rgba(255,255,255,.05),
-    inset 0 0 0 1px rgba(255,255,255,.06);
+    0 4px 14px rgba(0,0,0,.18),
+    inset 0 0.5px 0 rgba(255,255,255,.14),
+    inset 0 -0.5px 0 rgba(0,0,0,.15);
   transition:
     box-shadow .35s cubic-bezier(0.4,0,0.2,1),
     background .35s cubic-bezier(0.4,0,0.2,1) !important;
@@ -858,14 +710,9 @@ body.light .theme-toggle::before {
 
 .theme-toggle:hover {
   box-shadow:
-    0 6px 18px rgba(0,0,0,.28),
-    0 2px 4px rgba(0,0,0,.16),
-    inset 2px 2px 0.5px -2px rgba(255,235,180,.85),
-    inset -2px -2px 0.5px -2px rgba(255,235,180,.6),
-    inset 1px 1px 1px -0.5px rgba(255,235,180,.55),
-    inset -1px -1px 1px -0.5px rgba(255,235,180,.4),
-    inset 0 0 4px 4px rgba(201,169,110,.08),
-    inset 0 0 0 1px rgba(201,169,110,.25);
+    0 8px 22px rgba(0,0,0,.24),
+    inset 0 0.5px 0 rgba(255,235,180,.18),
+    inset 0 -0.5px 0 rgba(0,0,0,.18);
 }
 
 /* İki icon yan yana — hep görünür, indicator altında active olan vurgulu */
@@ -1123,66 +970,42 @@ body.light .lang-toggle:hover {
 }
 .btn-primary:hover::before { opacity: .9; }
 
-/* ── Ghost: Liquid Glass (LiquidButton port) ────────────────────────────
-   Apple Vision OS / iOS 18 stili — yoğun blur + complex inset shadows
-   ile cam dokusu ve içeriden ışık dağılımı yanılsaması. */
+/* ── Ghost: Safari pill stili — minimalist smooth glass ── */
 .btn-ghost {
   color: var(--text);
-  background: rgba(255,255,255,.05);
-  backdrop-filter: blur(24px) saturate(180%);
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  background: rgba(255,255,255,.04);
+  backdrop-filter: blur(28px) saturate(160%);
+  -webkit-backdrop-filter: blur(28px) saturate(160%);
   box-shadow:
-    /* dış soft shadow + halo */
-    0 8px 28px rgba(0,0,0,.28),
-    0 2px 6px rgba(0,0,0,.12),
-    /* liquid glass core: çoklu inset shadow ile cam derinliği */
-    inset 3px 3px 0.5px -3px rgba(255,255,255,.85),
-    inset -3px -3px 0.5px -3px rgba(255,255,255,.65),
-    inset 1px 1px 1px -0.5px rgba(255,255,255,.6),
-    inset -1px -1px 1px -0.5px rgba(255,255,255,.4),
-    inset 0 0 6px 6px rgba(255,255,255,.06),
-    inset 0 0 2px 2px rgba(255,255,255,.04),
-    inset 0 0 0 1px rgba(255,255,255,.08);
-}
-.btn-ghost::before {
-  content: "";
-  position: absolute; inset: 0;
-  border-radius: inherit;
-  background: linear-gradient(180deg, rgba(255,255,255,.10) 0%, rgba(255,255,255,0) 60%);
-  pointer-events: none;
-  opacity: .7;
-  transition: opacity .35s var(--ease-out-expo);
+    0 4px 16px rgba(0,0,0,.18),
+    inset 0 0.5px 0 rgba(255,255,255,.14),
+    inset 0 -0.5px 0 rgba(0,0,0,.15);
 }
 .btn-ghost:hover {
   color: var(--accent);
-  transform: translateY(-2px);
-  background: rgba(201,169,110,.08);
+  transform: translateY(-1px);
+  background: rgba(255,255,255,.07);
   box-shadow:
-    0 14px 36px rgba(0,0,0,.34),
-    0 4px 10px rgba(0,0,0,.16),
-    inset 3px 3px 0.5px -3px rgba(255,235,180,.95),
-    inset -3px -3px 0.5px -3px rgba(255,235,180,.7),
-    inset 1px 1px 1px -0.5px rgba(255,235,180,.6),
-    inset -1px -1px 1px -0.5px rgba(255,235,180,.4),
-    inset 0 0 6px 6px rgba(201,169,110,.10),
-    inset 0 0 2px 2px rgba(201,169,110,.05),
-    inset 0 0 0 1px rgba(201,169,110,.32);
+    0 8px 24px rgba(0,0,0,.24),
+    inset 0 0.5px 0 rgba(255,255,255,.18),
+    inset 0 -0.5px 0 rgba(0,0,0,.18);
 }
-.btn-ghost:hover::before { opacity: 1; }
 
-/* Light mode — ghost butonu açık temada da okunur */
+/* Light mode — Safari pill, açık temada okunur */
 body.light .btn-ghost {
   color: #1a1a1a;
   background: rgba(255,255,255,.55);
   box-shadow:
-    0 8px 28px rgba(0,0,0,.10),
-    0 2px 6px rgba(0,0,0,.06),
-    inset 3px 3px 0.5px -3px rgba(0,0,0,.20),
-    inset -3px -3px 0.5px -3px rgba(0,0,0,.14),
-    inset 1px 1px 1px -0.5px rgba(0,0,0,.10),
-    inset -1px -1px 1px -0.5px rgba(0,0,0,.07),
-    inset 0 0 6px 6px rgba(0,0,0,.03),
-    inset 0 0 0 1px rgba(0,0,0,.06);
+    0 4px 16px rgba(0,0,0,.08),
+    inset 0 0.5px 0 rgba(255,255,255,.85),
+    inset 0 -0.5px 0 rgba(0,0,0,.06);
+}
+body.light .btn-ghost:hover {
+  background: rgba(255,255,255,.7);
+  box-shadow:
+    0 8px 24px rgba(0,0,0,.12),
+    inset 0 0.5px 0 rgba(255,255,255,.9),
+    inset 0 -0.5px 0 rgba(0,0,0,.08);
 }
 
 /* Full-width primary form butonu — dolu altın görünüm korunur */
@@ -1228,17 +1051,19 @@ body.light .btn-ghost {
 }
 .hero-tag {
   display: inline-block;
-  font-size: .75rem; font-weight: 600;
-  letter-spacing: .2em; text-transform: uppercase;
-  color: var(--accent);
-  padding: 8px 20px;
-  border: 1px solid rgba(201,169,110,.35);
+  font-size: .68rem; font-weight: 600;
+  letter-spacing: .22em; text-transform: uppercase;
+  color: rgba(201,169,110,.85);
+  padding: 8px 18px;
+  border: none;
   border-radius: 100px;
   margin-bottom: 32px;
-  background: rgba(201,169,110,.07);
-  backdrop-filter: var(--glass-blur-sm);
-  -webkit-backdrop-filter: var(--glass-blur-sm);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.08), 0 4px 16px rgba(0,0,0,.2);
+  background: rgba(255,255,255,.04);
+  backdrop-filter: blur(28px) saturate(160%);
+  -webkit-backdrop-filter: blur(28px) saturate(160%);
+  box-shadow:
+    inset 0 0.5px 0 rgba(255,255,255,.12),
+    inset 0 -0.5px 0 rgba(0,0,0,.15);
 }
 .hero-title {
   font-family: var(--font-serif);
@@ -1361,9 +1186,9 @@ body.light .btn-ghost {
 ═══════════════════════════════════════════════════════════════ */
 .section-tag {
   display: inline-block;
-  font-size: .72rem; font-weight: 700;
-  letter-spacing: .2em; text-transform: uppercase;
-  color: var(--accent); margin-bottom: 12px;
+  font-size: .68rem; font-weight: 600;
+  letter-spacing: .22em; text-transform: uppercase;
+  color: rgba(201,169,110,.85); margin-bottom: 14px;
 }
 .section-title {
   font-family: var(--font-serif);
@@ -1384,58 +1209,45 @@ body.light .btn-ghost {
   grid-template-columns: repeat(2, 1fr);
   gap: 24px;
 }
-/* Project card — premium liquid glass (verilen reference dilinde) */
+/* Project card — Safari pill stili: minimalist smooth glass */
 .project-card {
-  background: rgba(255,255,255,.04);
+  background: rgba(255,255,255,.025);
   border: 0;
-  border-radius: 20px;
+  border-radius: 22px;
   overflow: hidden;
-  backdrop-filter: blur(28px) saturate(180%);
-  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  backdrop-filter: blur(32px) saturate(160%);
+  -webkit-backdrop-filter: blur(32px) saturate(160%);
   position: relative;
   isolation: isolate;
   box-shadow:
-    0 12px 36px rgba(0,0,0,.28),
-    0 4px 10px rgba(0,0,0,.16),
-    inset 3px 3px 0.5px -3px rgba(255,255,255,.85),
-    inset -3px -3px 0.5px -3px rgba(255,255,255,.65),
-    inset 1px 1px 1px -0.5px rgba(255,255,255,.6),
-    inset -1px -1px 1px -0.5px rgba(255,255,255,.4),
-    inset 0 0 8px 8px rgba(255,255,255,.05),
-    inset 0 0 0 1px rgba(255,255,255,.08);
-  transition: transform .45s var(--ease-out-expo), box-shadow .4s ease;
-}
-.project-card::before {
-  content: '';
-  position: absolute; top: 0; left: 0; right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,.4), transparent);
-  pointer-events: none; z-index: 1;
+    0 8px 28px rgba(0,0,0,.22),
+    inset 0 0.5px 0 rgba(255,255,255,.10),
+    inset 0 -0.5px 0 rgba(0,0,0,.18);
+  transition: transform .45s var(--ease-out-expo), box-shadow .45s ease, background .35s ease;
 }
 .project-card:hover {
-  transform: translateY(-8px) scale(1.005);
+  transform: translateY(-6px);
+  background: rgba(255,255,255,.04);
   box-shadow:
-    0 24px 60px rgba(0,0,0,.36),
-    0 8px 20px rgba(0,0,0,.20),
-    inset 3px 3px 0.5px -3px rgba(255,235,180,.95),
-    inset -3px -3px 0.5px -3px rgba(255,235,180,.7),
-    inset 1px 1px 1px -0.5px rgba(255,235,180,.6),
-    inset -1px -1px 1px -0.5px rgba(255,235,180,.4),
-    inset 0 0 8px 8px rgba(201,169,110,.08),
-    inset 0 0 0 1px rgba(201,169,110,.35),
-    0 0 80px rgba(201,169,110,.10);
+    0 18px 48px rgba(0,0,0,.32),
+    0 0 60px rgba(201,169,110,.06),
+    inset 0 0.5px 0 rgba(255,255,255,.14),
+    inset 0 -0.5px 0 rgba(0,0,0,.18);
 }
 body.light .project-card {
   background: rgba(255,255,255,.55);
   box-shadow:
-    0 12px 36px rgba(0,0,0,.12),
-    0 4px 10px rgba(0,0,0,.08),
-    inset 3px 3px 0.5px -3px rgba(0,0,0,.20),
-    inset -3px -3px 0.5px -3px rgba(0,0,0,.14),
-    inset 1px 1px 1px -0.5px rgba(0,0,0,.10),
-    inset -1px -1px 1px -0.5px rgba(0,0,0,.07),
-    inset 0 0 8px 8px rgba(0,0,0,.02),
-    inset 0 0 0 1px rgba(0,0,0,.06);
+    0 8px 28px rgba(0,0,0,.08),
+    inset 0 0.5px 0 rgba(255,255,255,.85),
+    inset 0 -0.5px 0 rgba(0,0,0,.05);
+}
+body.light .project-card:hover {
+  background: rgba(255,255,255,.7);
+  box-shadow:
+    0 16px 44px rgba(0,0,0,.12),
+    0 0 60px rgba(201,169,110,.08),
+    inset 0 0.5px 0 rgba(255,255,255,.9),
+    inset 0 -0.5px 0 rgba(0,0,0,.06);
 }
 .project-card.wide { grid-column: 1 / -1; display: flex; }
 .project-card.wide .project-visual { flex: 0 0 55%; }
@@ -1478,10 +1290,10 @@ body.light .project-card {
 .category-block:last-child { margin-bottom: 0; }
 .category-label {
   display: flex; align-items: center; gap: 12px;
-  margin-bottom: 28px;
-  font-size: .78rem; font-weight: 700;
-  letter-spacing: .18em; text-transform: uppercase;
-  color: var(--text-muted);
+  margin-bottom: 32px;
+  font-size: .68rem; font-weight: 600;
+  letter-spacing: .22em; text-transform: uppercase;
+  color: rgba(255,255,255,.45);
 }
 .category-label::after {
   content: ''; flex: 1; height: 1px;
@@ -1489,16 +1301,21 @@ body.light .project-card {
 }
 .cat-icon { font-size: 1rem; }
 
-/* Project badge */
+/* Project badge — Safari pill stilinde, kenarlıksız smooth glass */
 .project-badge {
-  position: absolute; top: 16px; left: 16px;
-  font-size: .65rem; font-weight: 700;
-  letter-spacing: .12em; text-transform: uppercase;
-  padding: 4px 12px; border-radius: 100px;
-  background: rgba(201,169,110,.15);
-  border: 1px solid rgba(201,169,110,.4);
-  color: var(--accent);
-  backdrop-filter: blur(8px);
+  position: absolute; top: 18px; left: 18px;
+  font-size: .62rem; font-weight: 600;
+  letter-spacing: .14em; text-transform: uppercase;
+  padding: 6px 14px; border-radius: 100px;
+  background: rgba(0,0,0,.42);
+  border: none;
+  color: rgba(255,255,255,.92);
+  backdrop-filter: blur(28px) saturate(160%);
+  -webkit-backdrop-filter: blur(28px) saturate(160%);
+  box-shadow:
+    inset 0 0.5px 0 rgba(255,255,255,.18),
+    inset 0 -0.5px 0 rgba(255,255,255,.04),
+    0 4px 14px rgba(0,0,0,.18);
   z-index: 2;
 }
 
@@ -1519,24 +1336,39 @@ body.light .project-card {
   66%      { border-radius: 48% 52% 76% 24% / 34% 60% 40% 66%; }
 }
 
+/* Hover overlay — sadece pill, daire kaldırıldı */
 .project-overlay {
   position: absolute; inset: 0;
-  background: rgba(0,0,0,.5);
-  display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(to top, rgba(0,0,0,.55) 0%, transparent 60%);
+  display: flex; align-items: flex-end; justify-content: center;
+  padding-bottom: 24px;
   opacity: 0;
-  transition: opacity .35s;
-  font-size: .85rem; font-weight: 600; letter-spacing: .05em;
-  color: var(--accent);
+  transition: opacity .4s cubic-bezier(0.4,0,0.2,1);
   z-index: 3;
 }
+.project-overlay span {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 9px 18px; border-radius: 100px;
+  background: rgba(0,0,0,.48);
+  backdrop-filter: blur(24px) saturate(160%);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+  font-size: .72rem; font-weight: 600; letter-spacing: .08em;
+  color: rgba(255,255,255,.95);
+  box-shadow:
+    inset 0 0.5px 0 rgba(255,255,255,.18),
+    0 6px 20px rgba(0,0,0,.25);
+  transform: translateY(8px);
+  transition: transform .45s cubic-bezier(0.16,1,0.3,1);
+}
 .project-card:hover .project-overlay { opacity: 1; }
+.project-card:hover .project-overlay span { transform: translateY(0); }
 
-.project-info { padding: 28px 32px; }
+.project-info { padding: 32px 36px; }
 .project-meta {
-  display: flex; gap: 16px;
-  font-size: .72rem; font-weight: 600;
-  letter-spacing: .1em; text-transform: uppercase;
-  color: var(--text-muted); margin-bottom: 12px;
+  display: flex; gap: 14px;
+  font-size: .65rem; font-weight: 600;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: rgba(255,255,255,.4); margin-bottom: 14px;
 }
 .project-info h3 {
   font-family: var(--font-serif);
@@ -1546,14 +1378,25 @@ body.light .project-card {
 }
 .project-card:hover .project-info h3 { color: var(--accent); }
 .project-info p { font-size: .9rem; line-height: 1.7; color: var(--text-muted); margin-bottom: 20px; }
-.project-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+/* Project tags — Safari pill stilinde, sessiz ve smooth */
+.project-tags { display: flex; gap: 6px; flex-wrap: wrap; }
 .project-tags span {
-  font-size: .7rem; font-weight: 600;
-  letter-spacing: .08em; text-transform: uppercase;
-  padding: 4px 12px; border-radius: 100px;
-  background: rgba(201,169,110,.08);
-  border: 1px solid rgba(201,169,110,.2);
-  color: var(--accent);
+  font-size: .65rem; font-weight: 600;
+  letter-spacing: .1em; text-transform: uppercase;
+  padding: 6px 13px; border-radius: 100px;
+  background: rgba(255,255,255,.04);
+  border: none;
+  color: rgba(255,255,255,.55);
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  box-shadow:
+    inset 0 0.5px 0 rgba(255,255,255,.07),
+    inset 0 -0.5px 0 rgba(0,0,0,.2);
+  transition: color .3s, background .3s, box-shadow .3s;
+}
+.project-card:hover .project-tags span {
+  color: rgba(255,255,255,.78);
+  background: rgba(255,255,255,.06);
 }
 
 /* ═══════════════════════════════════════════════════════════════
@@ -1575,54 +1418,40 @@ body.light .project-card {
 /* Edu card — liquid glass treatment */
 .edu-card {
   display: flex; align-items: flex-start; gap: 14px;
-  background: rgba(255,255,255,.04);
+  background: rgba(255,255,255,.025);
   border: 0;
-  border-radius: 16px; padding: 18px 20px;
+  border-radius: 18px; padding: 18px 22px;
   margin-top: 20px;
-  backdrop-filter: blur(20px) saturate(160%);
-  -webkit-backdrop-filter: blur(20px) saturate(160%);
-  position: relative; overflow: hidden;
-  isolation: isolate;
+  backdrop-filter: blur(28px) saturate(160%);
+  -webkit-backdrop-filter: blur(28px) saturate(160%);
+  position: relative;
   box-shadow:
-    0 8px 24px rgba(0,0,0,.22),
-    0 2px 6px rgba(0,0,0,.12),
-    inset 2px 2px 0.5px -2px rgba(255,255,255,.7),
-    inset -2px -2px 0.5px -2px rgba(255,255,255,.5),
-    inset 1px 1px 1px -0.5px rgba(255,255,255,.5),
-    inset -1px -1px 1px -0.5px rgba(255,255,255,.35),
-    inset 0 0 6px 6px rgba(255,255,255,.04),
-    inset 0 0 0 1px rgba(255,255,255,.06);
-  transition: transform .35s cubic-bezier(0.4,0,0.2,1), box-shadow .35s ease;
+    0 6px 22px rgba(0,0,0,.18),
+    inset 0 0.5px 0 rgba(255,255,255,.10),
+    inset 0 -0.5px 0 rgba(0,0,0,.15);
+  transition: transform .35s cubic-bezier(0.4,0,0.2,1), box-shadow .35s ease, background .3s ease;
 }
 .edu-card:hover {
   transform: translateY(-2px);
+  background: rgba(255,255,255,.04);
   box-shadow:
-    0 14px 32px rgba(0,0,0,.28),
-    0 4px 10px rgba(0,0,0,.16),
-    inset 2px 2px 0.5px -2px rgba(255,235,180,.85),
-    inset -2px -2px 0.5px -2px rgba(255,235,180,.6),
-    inset 1px 1px 1px -0.5px rgba(255,235,180,.55),
-    inset -1px -1px 1px -0.5px rgba(255,235,180,.4),
-    inset 0 0 6px 6px rgba(201,169,110,.06),
-    inset 0 0 0 1px rgba(201,169,110,.25);
-}
-.edu-card::before {
-  content: '';
-  position: absolute; top: 0; left: 0; right: 0; height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,.4), transparent);
-  z-index: 1;
+    0 12px 30px rgba(0,0,0,.22),
+    inset 0 0.5px 0 rgba(255,255,255,.14),
+    inset 0 -0.5px 0 rgba(0,0,0,.15);
 }
 body.light .edu-card {
   background: rgba(255,255,255,.55);
   box-shadow:
-    0 8px 24px rgba(0,0,0,.10),
-    0 2px 6px rgba(0,0,0,.06),
-    inset 2px 2px 0.5px -2px rgba(0,0,0,.20),
-    inset -2px -2px 0.5px -2px rgba(0,0,0,.14),
-    inset 1px 1px 1px -0.5px rgba(0,0,0,.10),
-    inset -1px -1px 1px -0.5px rgba(0,0,0,.07),
-    inset 0 0 6px 6px rgba(0,0,0,.02),
-    inset 0 0 0 1px rgba(0,0,0,.06);
+    0 6px 22px rgba(0,0,0,.08),
+    inset 0 0.5px 0 rgba(255,255,255,.85),
+    inset 0 -0.5px 0 rgba(0,0,0,.05);
+}
+body.light .edu-card:hover {
+  background: rgba(255,255,255,.7);
+  box-shadow:
+    0 12px 30px rgba(0,0,0,.10),
+    inset 0 0.5px 0 rgba(255,255,255,.9),
+    inset 0 -0.5px 0 rgba(0,0,0,.06);
 }
 .edu-icon { font-size: 1.4rem; flex-shrink: 0; }
 .edu-card strong { display: block; font-size: .9rem; color: var(--white); margin-bottom: 2px; }
@@ -1708,21 +1537,26 @@ body.light .edu-card {
 }
 .stat {
   padding: 24px;
-  background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
-  border-radius: 16px;
-  backdrop-filter: var(--glass-blur-sm);
-  -webkit-backdrop-filter: var(--glass-blur-sm);
-  box-shadow: var(--glass-shadow);
+  background: rgba(255,255,255,.025);
+  border: 0;
+  border-radius: 18px;
+  backdrop-filter: blur(28px) saturate(160%);
+  -webkit-backdrop-filter: blur(28px) saturate(160%);
+  box-shadow:
+    0 6px 22px rgba(0,0,0,.18),
+    inset 0 0.5px 0 rgba(255,255,255,.10),
+    inset 0 -0.5px 0 rgba(0,0,0,.15);
   position: relative; overflow: hidden;
-  transition: transform .35s var(--ease-out-expo), box-shadow .35s;
+  transition: transform .35s var(--ease-out-expo), box-shadow .35s, background .3s;
 }
-.stat::before {
-  content: '';
-  position: absolute; top: 0; left: 0; right: 0; height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,.14), transparent);
+.stat:hover {
+  transform: translateY(-3px);
+  background: rgba(255,255,255,.04);
+  box-shadow:
+    0 12px 32px rgba(0,0,0,.24),
+    inset 0 0.5px 0 rgba(255,255,255,.14),
+    inset 0 -0.5px 0 rgba(0,0,0,.15);
 }
-.stat:hover { transform: translateY(-3px); box-shadow: var(--glass-shadow-lg); }
 .stat-num {
   display: inline;
   font-family: var(--font-serif);
@@ -1758,53 +1592,40 @@ body.light .edu-card {
 /* Skill block — liquid glass treatment */
 .skill-block {
   padding: 36px 28px;
-  background: rgba(255,255,255,.04);
+  background: rgba(255,255,255,.025);
   border: 0;
-  border-radius: 20px;
-  backdrop-filter: blur(24px) saturate(180%);
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border-radius: 22px;
+  backdrop-filter: blur(32px) saturate(160%);
+  -webkit-backdrop-filter: blur(32px) saturate(160%);
   position: relative; overflow: hidden;
   isolation: isolate;
   box-shadow:
-    0 10px 32px rgba(0,0,0,.25),
-    0 3px 8px rgba(0,0,0,.14),
-    inset 3px 3px 0.5px -3px rgba(255,255,255,.85),
-    inset -3px -3px 0.5px -3px rgba(255,255,255,.65),
-    inset 1px 1px 1px -0.5px rgba(255,255,255,.6),
-    inset -1px -1px 1px -0.5px rgba(255,255,255,.4),
-    inset 0 0 8px 8px rgba(255,255,255,.05),
-    inset 0 0 0 1px rgba(255,255,255,.07);
-  transition: transform .45s var(--ease-out-expo), box-shadow .4s ease;
-}
-.skill-block::before {
-  content: '';
-  position: absolute; top: 0; left: 0; right: 0; height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,.4), transparent);
-  z-index: 1; pointer-events: none;
+    0 8px 28px rgba(0,0,0,.22),
+    inset 0 0.5px 0 rgba(255,255,255,.10),
+    inset 0 -0.5px 0 rgba(0,0,0,.18);
+  transition: transform .45s var(--ease-out-expo), box-shadow .4s ease, background .35s ease;
 }
 .skill-block:hover {
-  transform: translateY(-6px);
+  transform: translateY(-4px);
+  background: rgba(255,255,255,.04);
   box-shadow:
-    0 18px 48px rgba(0,0,0,.32),
-    0 6px 14px rgba(0,0,0,.18),
-    inset 3px 3px 0.5px -3px rgba(255,235,180,.95),
-    inset -3px -3px 0.5px -3px rgba(255,235,180,.7),
-    inset 1px 1px 1px -0.5px rgba(255,235,180,.6),
-    inset -1px -1px 1px -0.5px rgba(255,235,180,.4),
-    inset 0 0 8px 8px rgba(201,169,110,.08),
-    inset 0 0 0 1px rgba(201,169,110,.32);
+    0 14px 40px rgba(0,0,0,.28),
+    inset 0 0.5px 0 rgba(255,255,255,.14),
+    inset 0 -0.5px 0 rgba(0,0,0,.18);
 }
 body.light .skill-block {
   background: rgba(255,255,255,.55);
   box-shadow:
-    0 10px 32px rgba(0,0,0,.10),
-    0 3px 8px rgba(0,0,0,.06),
-    inset 3px 3px 0.5px -3px rgba(0,0,0,.20),
-    inset -3px -3px 0.5px -3px rgba(0,0,0,.14),
-    inset 1px 1px 1px -0.5px rgba(0,0,0,.10),
-    inset -1px -1px 1px -0.5px rgba(0,0,0,.07),
-    inset 0 0 8px 8px rgba(0,0,0,.02),
-    inset 0 0 0 1px rgba(0,0,0,.06);
+    0 8px 28px rgba(0,0,0,.08),
+    inset 0 0.5px 0 rgba(255,255,255,.85),
+    inset 0 -0.5px 0 rgba(0,0,0,.05);
+}
+body.light .skill-block:hover {
+  background: rgba(255,255,255,.7);
+  box-shadow:
+    0 14px 40px rgba(0,0,0,.12),
+    inset 0 0.5px 0 rgba(255,255,255,.9),
+    inset 0 -0.5px 0 rgba(0,0,0,.06);
 }
 .skill-icon {
   width: 48px; height: 48px; color: var(--accent);
@@ -1844,18 +1665,15 @@ body.light .skill-block {
 .testimonial-wrap {
   max-width: 860px; margin: 0 auto; text-align: center;
   padding: 56px 48px;
-  background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
+  background: rgba(255,255,255,.025);
+  border: 0;
   border-radius: 28px;
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
-  box-shadow: var(--glass-shadow-lg);
-  position: relative; overflow: hidden;
-}
-.testimonial-wrap::before {
-  content: '';
-  position: absolute; top: 0; left: 0; right: 0; height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,.2), transparent);
+  backdrop-filter: blur(32px) saturate(160%);
+  -webkit-backdrop-filter: blur(32px) saturate(160%);
+  box-shadow:
+    0 12px 36px rgba(0,0,0,.22),
+    inset 0 0.5px 0 rgba(255,255,255,.10),
+    inset 0 -0.5px 0 rgba(0,0,0,.18);
 }
 blockquote p {
   font-family: var(--font-serif);
@@ -1900,46 +1718,27 @@ blockquote span { font-size: .82rem; color: var(--text-muted); }
 .contact-link svg { width: 18px; flex-shrink: 0; }
 .contact-link:hover { color: var(--accent); }
 
-/* Contact form — premium liquid glass card (verilen reference birebir) */
+/* Contact form — Safari pill stili minimalist glass */
 .contact-form {
   display: flex; flex-direction: column; gap: 20px;
   padding: 40px;
-  background: rgba(255,255,255,.05);
+  background: rgba(255,255,255,.025);
   border: 0;
-  border-radius: 24px;
-  backdrop-filter: blur(28px) saturate(180%);
-  -webkit-backdrop-filter: blur(28px) saturate(180%);
-  position: relative; overflow: hidden;
-  isolation: isolate;
+  border-radius: 26px;
+  backdrop-filter: blur(32px) saturate(160%);
+  -webkit-backdrop-filter: blur(32px) saturate(160%);
+  position: relative;
   box-shadow:
-    /* outer depth */
-    0 12px 40px rgba(0,0,0,.32),
-    0 4px 12px rgba(0,0,0,.18),
-    /* inner liquid glass — 8-katmanlı multi-direction shadow */
-    inset 3px 3px 0.5px -3px rgba(255,255,255,.85),
-    inset -3px -3px 0.5px -3px rgba(255,255,255,.65),
-    inset 1px 1px 1px -0.5px rgba(255,255,255,.6),
-    inset -1px -1px 1px -0.5px rgba(255,255,255,.4),
-    inset 0 0 8px 8px rgba(255,255,255,.05),
-    inset 0 0 0 1px rgba(255,255,255,.08);
-}
-.contact-form::before {
-  content: '';
-  position: absolute; top: 0; left: 0; right: 0; height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,.4), transparent);
-  z-index: 1;
+    0 12px 36px rgba(0,0,0,.24),
+    inset 0 0.5px 0 rgba(255,255,255,.10),
+    inset 0 -0.5px 0 rgba(0,0,0,.18);
 }
 body.light .contact-form {
   background: rgba(255,255,255,.55);
   box-shadow:
-    0 12px 40px rgba(0,0,0,.10),
-    0 4px 12px rgba(0,0,0,.06),
-    inset 3px 3px 0.5px -3px rgba(0,0,0,.20),
-    inset -3px -3px 0.5px -3px rgba(0,0,0,.14),
-    inset 1px 1px 1px -0.5px rgba(0,0,0,.10),
-    inset -1px -1px 1px -0.5px rgba(0,0,0,.07),
-    inset 0 0 8px 8px rgba(0,0,0,.02),
-    inset 0 0 0 1px rgba(0,0,0,.06);
+    0 12px 36px rgba(0,0,0,.10),
+    inset 0 0.5px 0 rgba(255,255,255,.85),
+    inset 0 -0.5px 0 rgba(0,0,0,.05);
 }
 
 .form-group { display: flex; flex-direction: column; gap: 8px; }
@@ -1949,45 +1748,31 @@ body.light .contact-form {
   color: var(--text-muted);
 }
 
-/* Inputs — liquid glass treatment (verilen reference birebir) */
+/* Inputs — Safari pill stili minimalist */
 .form-group input, .form-group textarea {
-  position: relative;
-  background: rgba(255,255,255,.04);
+  background: rgba(255,255,255,.025);
   border: 0;
-  border-radius: 12px;
+  border-radius: 14px;
   padding: 14px 16px;
   font-family: var(--font-sans); font-size: .9rem;
   color: var(--text); outline: none;
   backdrop-filter: blur(20px) saturate(160%);
   -webkit-backdrop-filter: blur(20px) saturate(160%);
-  transition:
-    background .3s ease,
-    box-shadow .35s cubic-bezier(0.4,0,0.2,1),
-    transform .25s ease;
   resize: vertical;
-  isolation: isolate;
   box-shadow:
-    inset 2px 2px 0.5px -2px rgba(255,255,255,.7),
-    inset -2px -2px 0.5px -2px rgba(255,255,255,.5),
-    inset 1px 1px 1px -0.5px rgba(255,255,255,.5),
-    inset -1px -1px 1px -0.5px rgba(255,255,255,.35),
-    inset 0 0 6px 6px rgba(255,255,255,.04),
-    inset 0 0 0 1px rgba(255,255,255,.06),
-    0 2px 6px rgba(0,0,0,.12);
+    inset 0 0.5px 0 rgba(255,255,255,.08),
+    inset 0 -0.5px 0 rgba(0,0,0,.18);
+  transition: background .3s, box-shadow .35s cubic-bezier(0.4,0,0.2,1);
 }
 .form-group input:hover, .form-group textarea:hover {
-  background: rgba(255,255,255,.06);
+  background: rgba(255,255,255,.04);
 }
 .form-group input:focus, .form-group textarea:focus {
-  background: rgba(201,169,110,.06);
+  background: rgba(201,169,110,.05);
   box-shadow:
-    inset 2px 2px 0.5px -2px rgba(255,235,180,.85),
-    inset -2px -2px 0.5px -2px rgba(255,235,180,.6),
-    inset 1px 1px 1px -0.5px rgba(255,235,180,.6),
-    inset -1px -1px 1px -0.5px rgba(255,235,180,.4),
-    inset 0 0 6px 6px rgba(201,169,110,.06),
-    inset 0 0 0 1px rgba(201,169,110,.45),
-    0 4px 16px rgba(201,169,110,.18);
+    inset 0 0.5px 0 rgba(255,235,180,.18),
+    inset 0 -0.5px 0 rgba(0,0,0,.18),
+    0 0 0 3px rgba(201,169,110,.18);
 }
 .form-group input::placeholder, .form-group textarea::placeholder { color: var(--text-muted); }
 

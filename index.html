@@ -18,12 +18,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
   <!-- Google reCAPTCHA v2 — "Ben robot değilim" checkbox -->
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-  <!-- Spline 3D — jsdelivr (daha güvenilir, bazı PC adblocker'larda unpkg blocked) -->
-  <link rel="preconnect" href="https://prod.spline.design" crossorigin/>
+  <!-- Three.js — DottedSurface dalga animasyonu için -->
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin/>
-  <link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/@splinetool/viewer@1.9.48/build/spline-viewer.js"/>
-  <link rel="preload" as="fetch" href="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode" crossorigin/>
-  <script type="module" src="https://cdn.jsdelivr.net/npm/@splinetool/viewer@1.9.48/build/spline-viewer.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
 </head>
 <body data-i18n-pagetitle="pageTitle.home">
 
@@ -76,24 +73,13 @@
     </div>
   </nav>
 
-  <!-- ─── AI SHOWCASE — İnteraktif 3D Spline (auto-load on page open) ─── -->
-  <section id="ai-showcase" class="showcase-spline">
-    <div class="media-layer media-layer-spline active" id="splineLayer">
-      <!-- Statik poster — anında render, Spline gelene kadar gösterilir -->
-      <div class="spline-poster" aria-hidden="true"></div>
+  <!-- ─── HERO HEADER — DottedSurface 3D dalga animasyonu ─── -->
+  <section id="ai-showcase" class="showcase-dotted">
+    <!-- Three.js dotted wave grid — sayfa açılır açılmaz render olur -->
+    <div id="dottedSurface" class="dotted-surface" aria-hidden="true"></div>
 
-      <!-- Spline 3D — sayfa açılır açılmaz yüklenir.
-           Yükleme sırasında poster gradient görünür. -->
-      <spline-viewer
-        url="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
-        loading="eager"
-        events-target="global"
-        aria-hidden="true"
-        id="splineViewer"></spline-viewer>
-    </div>
-
-    <!-- Mouse-follow spotlight -->
-    <div class="showcase-spotlight" id="showcaseSpotlight" aria-hidden="true"></div>
+    <!-- Yumuşak radyal vignette — başlığa odak için -->
+    <div class="dotted-vignette" aria-hidden="true"></div>
 
     <div class="showcase-overlay-bottom"></div>
     <div class="showcase-overlay-top"></div>
