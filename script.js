@@ -288,15 +288,21 @@ document.querySelectorAll('.project-card').forEach(card => {
 const sections = document.querySelectorAll('section[id]');
 const navAnchors = document.querySelectorAll('.nav-links a');
 
-window.addEventListener('scroll', () => {
+// Scroll position'a göre active section tespit + .active class toggle
+// (raised + bold + text-shadow CSS'te tanımlı — 3D adaptive nav indicator)
+function updateActiveNavLink() {
   let current = '';
   sections.forEach(s => {
     if (window.scrollY >= s.offsetTop - 140) current = s.id;
   });
   navAnchors.forEach(a => {
-    a.style.color = a.getAttribute('href') === '#' + current ? 'var(--white)' : '';
+    const href = a.getAttribute('href') || '';
+    const matches = href === '#' + current || (current === 'work' && href.endsWith('#work'));
+    a.classList.toggle('active', matches);
   });
-}, { passive: true });
+}
+window.addEventListener('scroll', updateActiveNavLink, { passive: true });
+updateActiveNavLink(); // İlk yüklemede de çalıştır
 
 /* ── Hero: Spline 3D auto-load + mouse spotlight ── */
 (function () {
