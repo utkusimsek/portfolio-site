@@ -1179,27 +1179,23 @@ body.light .project-card:hover {
   z-index: 2;
 }
 
-.project-shape {
-  position: absolute; top: 50%; left: 50%;
-  transform: translate(-50%,-50%);
-  width: 120px; height: 120px;
-  border: 2px solid rgba(201,169,110,.25);
-  border-radius: 28% 72% 68% 32% / 48% 38% 62% 52%;
-  animation: morph 8s ease-in-out infinite;
-  transition: border-color .4s;
-  z-index: 1;
-}
-.project-card:hover .project-shape { border-color: rgba(201,169,110,.6); }
-@keyframes morph {
-  0%,100% { border-radius: 28% 72% 68% 32% / 48% 38% 62% 52%; }
-  33%      { border-radius: 66% 34% 30% 70% / 58% 72% 28% 42%; }
-  66%      { border-radius: 48% 52% 76% 24% / 34% 60% 40% 66%; }
-}
+/* Eski morphing blob kaldırıldı — görseli kapatıyor ve buton ile
+   bağlantısı yoktu. CTA artık tek odak noktası. */
+.project-shape { display: none; }
 
-/* Hover overlay — sadece pill, daire kaldırıldı */
+/* Detay overlay — alt orta spotlight + glass pill button.
+   Spotlight, butonun arkasında yumuşak altın halo veriyor; buton ve
+   gradient tek bir tasarım birimi olarak okunuyor. */
 .project-overlay {
   position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,.55) 0%, transparent 60%);
+  background:
+    /* alt orta altın spotlight (butonu çevreliyor) */
+    radial-gradient(ellipse 60% 38% at 50% 86%,
+      rgba(201,169,110,.18) 0%,
+      rgba(201,169,110,.06) 35%,
+      transparent 70%),
+    /* okunaklılık için alt karartma gradient */
+    linear-gradient(to top, rgba(0,0,0,.55) 0%, transparent 55%);
   display: flex; align-items: flex-end; justify-content: center;
   padding-bottom: 24px;
   opacity: 0;
@@ -1208,20 +1204,30 @@ body.light .project-card:hover {
 }
 .project-overlay span {
   display: inline-flex; align-items: center; gap: 8px;
-  padding: 9px 18px; border-radius: 100px;
-  background: rgba(0,0,0,.48);
-  backdrop-filter: blur(24px) saturate(160%);
-  -webkit-backdrop-filter: blur(24px) saturate(160%);
+  padding: 10px 20px; border-radius: 100px;
+  background: rgba(10,10,11,.55);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
   font-size: .72rem; font-weight: 600; letter-spacing: .08em;
   color: rgba(255,255,255,.95);
+  /* Liquid Glass: inset highlight + drop + altın spotlight'la harmanlanmış glow */
   box-shadow:
-    inset 0 0.5px 0 rgba(255,255,255,.18),
-    0 6px 20px rgba(0,0,0,.25);
+    inset 0 0.5px 0 rgba(255,255,255,.22),
+    inset 0 -0.5px 0 rgba(0,0,0,.20),
+    0 6px 20px rgba(0,0,0,.30),
+    0 0 24px rgba(201,169,110,.12);
   transform: translateY(8px);
   transition: transform .45s cubic-bezier(0.16,1,0.3,1);
 }
 .project-card:hover .project-overlay { opacity: 1; }
 .project-card:hover .project-overlay span { transform: translateY(0); }
+
+/* Touch cihazlarda (mobile/tablet) hover yok — overlay her zaman görünür.
+   Buton ve spotlight bir bütün olarak okunsun, kullanıcı CTA'yı görsün. */
+@media (hover: none) {
+  .project-overlay { opacity: 1; }
+  .project-overlay span { transform: translateY(0); }
+}
 
 .project-info { padding: 32px 36px; }
 .project-meta {
