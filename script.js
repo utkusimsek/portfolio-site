@@ -321,19 +321,31 @@ window.addEventListener('scroll', () => {
   }
 
   if (viewer) {
+    const t0 = performance.now();
     viewer.addEventListener('load', () => {
       splineLoaded = true;
-      console.log('[Hero] Spline 3D yüklendi');
+      const t = ((performance.now() - t0) / 1000).toFixed(1);
+      console.log(`[Hero] Spline 3D yüklendi (${t}s)`);
       showcase.classList.add('spline-ready');
     });
     viewer.addEventListener('error', (e) => {
+      // Gerçek hata → anında fallback (CORS, 404, parse error vs.)
       activateFallback('error event: ' + (e.detail || 'unknown'));
     });
-    // 6 saniye: Spline gelmezse fallback (UX için kritik)
-    setTimeout(() => activateFallback('6s timeout'), 6000);
+    // Erken bilgilendirme — kullanıcı durumdan haberdar olur
+    setTimeout(() => {
+      if (!splineLoaded) console.log('[Hero] Spline 6s sonra hâlâ yükleniyor, beklemeye devam...');
+    }, 6000);
+    // Son çare fallback: 15s'de hâlâ load yoksa video'ya geç
+    setTimeout(() => activateFallback('15s timeout'), 15000);
   } else {
-    // spline-viewer custom element bile register olmamış (script blocked)
-    setTimeout(() => activateFallback('spline-viewer element not found'), 100);
+    // spline-viewer custom element register olmamış (script blocked / network)
+    // Kısa bir süre bekle, custom element define olabilir
+    setTimeout(() => {
+      if (!customElements.get('spline-viewer')) {
+        activateFallback('spline-viewer custom element not registered');
+      }
+    }, 3000);
   }
 
   // Mouse-follow spotlight
