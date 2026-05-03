@@ -12,6 +12,7 @@
   "type": "commonjs",
   "dependencies": {
     "@fal-ai/client": "^1.9.5",
+    "framer-motion": "^12.38.0",
     "node-fetch": "^3.3.2"
   },
   "devDependencies": {

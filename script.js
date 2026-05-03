@@ -297,3 +297,48 @@ window.addEventListener('scroll', () => {
     a.style.color = a.getAttribute('href') === '#' + current ? 'var(--white)' : '';
   });
 }, { passive: true });
+
+/* ── Spline 3D — yükleme state + mouse-follow spotlight ── */
+(function () {
+  const showcase  = document.getElementById('ai-showcase');
+  const splineEl  = document.querySelector('#splineLayer spline-viewer');
+  const loadingEl = document.getElementById('splineLoading');
+  const spotlight = document.getElementById('showcaseSpotlight');
+  if (!showcase || !splineEl) return;
+
+  // Spline web component custom 'load' event'i fire eder
+  splineEl.addEventListener('load', () => {
+    showcase.classList.add('spline-ready');
+    if (loadingEl) loadingEl.style.display = 'none';
+  });
+  splineEl.addEventListener('error', () => {
+    showcase.classList.add('spline-errored');
+    if (loadingEl) loadingEl.style.display = 'none';
+  });
+  // Güvenlik ağı: 12 saniyede load gelmezse spinner'ı kaldır
+  setTimeout(() => {
+    if (!showcase.classList.contains('spline-ready')) {
+      showcase.classList.add('spline-ready');
+      if (loadingEl) loadingEl.style.display = 'none';
+    }
+  }, 12000);
+
+  // Mouse-follow spotlight — pointer'ı CSS variable'lara yaz, CSS render etsin
+  if (spotlight && window.matchMedia('(pointer: fine)').matches) {
+    let rafId = null;
+    let lastX = 0, lastY = 0;
+    showcase.addEventListener('pointermove', (e) => {
+      const rect = showcase.getBoundingClientRect();
+      lastX = e.clientX - rect.left;
+      lastY = e.clientY - rect.top;
+      if (rafId) return;
+      rafId = requestAnimationFrame(() => {
+        spotlight.style.setProperty('--spot-x', lastX + 'px');
+        spotlight.style.setProperty('--spot-y', lastY + 'px');
+        rafId = null;
+      });
+    }, { passive: true });
+    showcase.addEventListener('pointerenter', () => spotlight.classList.add('active'));
+    showcase.addEventListener('pointerleave', () => spotlight.classList.remove('active'));
+  }
+})();

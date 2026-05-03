@@ -252,6 +252,84 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   display: block;
 }
 
+/* ── Spline 3D layer — vanilla web component ── */
+.media-layer-spline {
+  /* Spline canvas, video'dan farklı bir mask kullanır — daha az alt fade,
+     3D sahneyi tam kapsasın diye */
+  -webkit-mask-image: linear-gradient(to bottom,
+    #000 0%, #000 60%,
+    rgba(0,0,0,.85) 78%,
+    rgba(0,0,0,.4) 92%,
+    transparent 100%);
+          mask-image: linear-gradient(to bottom,
+    #000 0%, #000 60%,
+    rgba(0,0,0,.85) 78%,
+    rgba(0,0,0,.4) 92%,
+    transparent 100%);
+}
+.media-layer-spline spline-viewer {
+  display: block;
+  width: 100%; height: 100%;
+  background: transparent;
+}
+/* Spline yüklenene kadar gösterilen spinner */
+.spline-loading {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--bg);
+  z-index: 1;
+  transition: opacity .6s cubic-bezier(0.4,0,0.2,1);
+}
+#ai-showcase.spline-ready .spline-loading { opacity: 0; pointer-events: none; }
+.spline-loading-spinner {
+  width: 42px; height: 42px;
+  border: 2px solid rgba(255,255,255,.08);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: splineSpin 1s linear infinite;
+}
+@keyframes splineSpin { to { transform: rotate(360deg); } }
+
+/* Spline viewer'ın kendi watermark'ını gizle (resmi yöntem değil ama görsel temizlik) */
+spline-viewer::part(logo) { display: none !important; }
+
+/* ── Mouse-follow Spotlight — Aceternity tarzı, vanilla CSS ── */
+.showcase-spotlight {
+  position: absolute; inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0;
+  transition: opacity .35s cubic-bezier(0.4,0,0.2,1);
+  background:
+    radial-gradient(
+      600px circle at var(--spot-x, 50%) var(--spot-y, 50%),
+      rgba(201,169,110,0.12),
+      rgba(201,169,110,0.06) 35%,
+      transparent 70%
+    );
+  mix-blend-mode: screen;
+}
+.showcase-spotlight.active { opacity: 1; }
+body.light .showcase-spotlight {
+  background:
+    radial-gradient(
+      600px circle at var(--spot-x, 50%) var(--spot-y, 50%),
+      rgba(201,169,110,0.18),
+      rgba(201,169,110,0.08) 35%,
+      transparent 70%
+    );
+  mix-blend-mode: multiply;
+}
+
+/* Mobilde 3D ağır olabilir — fallback statik gradient */
+@media (max-width: 640px) {
+  .media-layer-spline spline-viewer { opacity: 0.55; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .media-layer-spline spline-viewer { display: none; }
+  .media-layer-spline { background: radial-gradient(ellipse at top, #1a1a20, #0a0a0b 70%); }
+}
+
 /* Overlays — bottom fades into page bg for seamless section blend */
 .showcase-overlay-bottom {
   position: absolute; bottom: -1px; left: 0; right: 0;
