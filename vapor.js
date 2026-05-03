@@ -30,12 +30,33 @@
     return [main, accent, main];
   }
 
-  function getFontSize() {
+  function getBaseFontSize() {
     const w = window.innerWidth;
-    if (w < 480) return 38;
-    if (w < 768) return 52;
-    if (w < 1100) return 70;
-    return 96;
+    if (w < 480) return 36;
+    if (w < 768) return 50;
+    if (w < 1100) return 68;
+    return 88;
+  }
+
+  /* En uzun metin canvas'a sığsın diye dinamik ölçek.
+     Tüm metinler için ölçüm yapıp en geniş olana göre font-size'ı clamp eder. */
+  function calculateFitFontSize(canvasWidthCss) {
+    const base = getBaseFontSize();
+    if (!texts || !texts.length) return base;
+    const padding = 32; // soldan/sağdan minimum boşluk (px, css)
+    const maxWidth = Math.max(120, canvasWidthCss - padding * 2);
+
+    // Geçici olarak ölç (DPR çarpansız, css px cinsinden)
+    ctx.save();
+    let widest = 0;
+    for (let i = 0; i < texts.length; i++) {
+      ctx.font = `${FONT_WEIGHT} ${base}px ${FONT_FAMILY}`;
+      const w = ctx.measureText(texts[i]).width;
+      if (w > widest) widest = w;
+    }
+    ctx.restore();
+    if (widest <= maxWidth) return base;
+    return Math.max(20, Math.floor(base * (maxWidth / widest)));
   }
 
   const FONT_FAMILY = '"Playfair Display", serif';
@@ -84,7 +105,7 @@
   const DPR = Math.min(window.devicePixelRatio || 1, 2) * 1.5;
   let texts = getTexts();
   let colors = getColors();
-  let fontSize = getFontSize();
+  let fontSize = getBaseFontSize(); // createParticles içinde fit hesaplanır
   let transformedDensity = transformValue(DENSITY, [0, 10], [0.3, 1], true);
 
   let particles = [];
@@ -107,6 +128,9 @@
     canvas.style.height = H + 'px';
     canvas.width  = Math.floor(W * DPR);
     canvas.height = Math.floor(H * DPR);
+
+    // Tüm metinler canvas'a sığsın diye dinamik fit
+    fontSize = calculateFitFontSize(W);
 
     const text  = texts[currentTextIndex];
     const color = parseColor(colors[currentTextIndex] || colors[0]);
@@ -313,11 +337,10 @@
 
   // ── Init + lifecycle ──
   function init() {
-    fontSize = getFontSize();
     texts = getTexts();
     colors = getColors();
     currentTextIndex = 0;
-    createParticles();
+    createParticles(); // calculateFitFontSize otomatik çağrılır
     animationState = 'vaporizing';
     vaporizeProgress = 0;
   }
@@ -342,7 +365,6 @@
   window.addEventListener('resize', () => {
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(() => {
-      fontSize = getFontSize();
       // Sabit metni göstererek yeniden başlat
       const wasIndex = currentTextIndex;
       createParticles();
