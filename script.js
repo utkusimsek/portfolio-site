@@ -298,54 +298,47 @@ window.addEventListener('scroll', () => {
   });
 }, { passive: true });
 
-/* ── Spline 3D — auto-load + fallback video + mouse-follow spotlight ── */
+/* ── Hero: Video-first + Spline 3D upgrade + mouse spotlight ──
+   Sayfa açılır açılmaz video oynar (anında hareket karşılaması).
+   Spline arka planda sessizce yüklenir, hazır olunca crossfade ile
+   videonun üstüne gelir ve onu kapatır. */
 (function () {
   const showcase  = document.getElementById('ai-showcase');
   const viewer    = document.getElementById('splineViewer');
-  const fallback  = document.getElementById('splineFallbackVideo');
+  const video     = document.getElementById('splineFallbackVideo');
   const spotlight = document.getElementById('showcaseSpotlight');
   if (!showcase) return;
 
-  let splineLoaded = false;
-
-  function activateFallback(reason) {
-    if (splineLoaded) return;
-    console.warn('[Hero] Spline yüklenemedi, fallback videoya geçiliyor:', reason);
-    if (fallback) {
-      fallback.preload = 'auto';
-      fallback.load();
-      fallback.play().catch(() => { /* autoplay engellenmiş olabilir, sorun değil */ });
-      showcase.classList.add('spline-fallback-active');
-    }
-    showcase.classList.add('spline-ready');
+  // Video sayfa açılır açılmaz oynar; autoplay engellenirse retry
+  if (video && video.paused) {
+    video.play().catch(() => {
+      // iOS Safari low power mode bazen autoplay'i bloklar — bir interaction
+      // bekle, ondan sonra başlat
+      const retry = () => { video.play(); document.removeEventListener('click', retry); };
+      document.addEventListener('click', retry, { once: true });
+    });
   }
 
+  // Spline yüklendiğinde video'dan 3D'ye crossfade
   if (viewer) {
     const t0 = performance.now();
     viewer.addEventListener('load', () => {
-      splineLoaded = true;
       const t = ((performance.now() - t0) / 1000).toFixed(1);
-      console.log(`[Hero] Spline 3D yüklendi (${t}s)`);
+      console.log(`[Hero] Spline 3D yüklendi (${t}s) — video → 3D crossfade`);
       showcase.classList.add('spline-ready');
+      // Crossfade tamamlandıktan sonra video'yu durdur (CPU tasarrufu)
+      setTimeout(() => { if (video) video.pause(); }, 1400);
     });
     viewer.addEventListener('error', (e) => {
-      // Gerçek hata → anında fallback (CORS, 404, parse error vs.)
-      activateFallback('error event: ' + (e.detail || 'unknown'));
+      // Spline yüklenemezse video oynamaya devam — kullanıcı hiçbir şey kaybetmez
+      console.warn('[Hero] Spline error, video kalıyor:', e.detail || 'unknown');
     });
-    // Erken bilgilendirme — kullanıcı durumdan haberdar olur
+    // 20s'de hâlâ load yoksa beklemeyi bırak (video zaten oynuyor)
     setTimeout(() => {
-      if (!splineLoaded) console.log('[Hero] Spline 6s sonra hâlâ yükleniyor, beklemeye devam...');
-    }, 6000);
-    // Son çare fallback: 15s'de hâlâ load yoksa video'ya geç
-    setTimeout(() => activateFallback('15s timeout'), 15000);
-  } else {
-    // spline-viewer custom element register olmamış (script blocked / network)
-    // Kısa bir süre bekle, custom element define olabilir
-    setTimeout(() => {
-      if (!customElements.get('spline-viewer')) {
-        activateFallback('spline-viewer custom element not registered');
+      if (!showcase.classList.contains('spline-ready')) {
+        console.log('[Hero] Spline 20s sonra hâlâ yüklenmedi — video ile devam');
       }
-    }, 3000);
+    }, 20000);
   }
 
   // Mouse-follow spotlight
