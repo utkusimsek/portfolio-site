@@ -16,12 +16,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
   <!-- Google reCAPTCHA v2 — "Ben robot değilim" checkbox -->
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-  <!-- Spline 3D — agresif preload: scene + runtime sayfa açılır açılmaz indirilir -->
+  <!-- Spline 3D — jsdelivr (daha güvenilir, bazı PC adblocker'larda unpkg blocked) -->
   <link rel="preconnect" href="https://prod.spline.design" crossorigin/>
-  <link rel="preconnect" href="https://unpkg.com" crossorigin/>
-  <link rel="modulepreload" href="https://unpkg.com/@splinetool/viewer@1.9.48/build/spline-viewer.js"/>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin/>
+  <link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/@splinetool/viewer@1.9.48/build/spline-viewer.js"/>
   <link rel="preload" as="fetch" href="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode" crossorigin/>
-  <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.48/build/spline-viewer.js"></script>
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@splinetool/viewer@1.9.48/build/spline-viewer.js"></script>
 </head>
 <body data-i18n-pagetitle="pageTitle.home">
 
@@ -81,13 +81,21 @@
       <div class="spline-poster" aria-hidden="true"></div>
 
       <!-- Spline 3D scene — sayfa açılır açılmaz yüklenir.
-           Yükleme sırasında poster gradient görünür, spinner/yazı yok. -->
+           Yükleme sırasında poster gradient görünür. -->
       <spline-viewer
         url="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
         loading="eager"
         events-target="global"
         aria-hidden="true"
         id="splineViewer"></spline-viewer>
+
+      <!-- Fallback video: Spline yüklenemezse (adblocker, slow network, vs.)
+           script.js otomatik aktive eder. Default'ta gizli. -->
+      <video
+        class="spline-fallback-video"
+        id="splineFallbackVideo"
+        src="assets/hero-intro.mp4"
+        muted loop playsinline preload="none" aria-hidden="true"></video>
     </div>
 
     <!-- Mouse-follow spotlight -->

@@ -298,28 +298,42 @@ window.addEventListener('scroll', () => {
   });
 }, { passive: true });
 
-/* ── Spline 3D — auto-load on page open + mouse-follow spotlight ── */
+/* ── Spline 3D — auto-load + fallback video + mouse-follow spotlight ── */
 (function () {
   const showcase  = document.getElementById('ai-showcase');
   const viewer    = document.getElementById('splineViewer');
+  const fallback  = document.getElementById('splineFallbackVideo');
   const spotlight = document.getElementById('showcaseSpotlight');
   if (!showcase) return;
 
+  let splineLoaded = false;
+
+  function activateFallback(reason) {
+    if (splineLoaded) return;
+    console.warn('[Hero] Spline yüklenemedi, fallback videoya geçiliyor:', reason);
+    if (fallback) {
+      fallback.preload = 'auto';
+      fallback.load();
+      fallback.play().catch(() => { /* autoplay engellenmiş olabilir, sorun değil */ });
+      showcase.classList.add('spline-fallback-active');
+    }
+    showcase.classList.add('spline-ready');
+  }
+
   if (viewer) {
-    // Spline load eventinde poster fade out, 3D fade in
     viewer.addEventListener('load', () => {
+      splineLoaded = true;
+      console.log('[Hero] Spline 3D yüklendi');
       showcase.classList.add('spline-ready');
     });
-    viewer.addEventListener('error', () => {
-      showcase.classList.add('spline-errored');
+    viewer.addEventListener('error', (e) => {
+      activateFallback('error event: ' + (e.detail || 'unknown'));
     });
-    // Güvenlik ağı: 25s içinde load gelmezse poster ile devam et
-    setTimeout(() => {
-      if (!showcase.classList.contains('spline-ready') &&
-          !showcase.classList.contains('spline-errored')) {
-        showcase.classList.add('spline-ready');
-      }
-    }, 25000);
+    // 6 saniye: Spline gelmezse fallback (UX için kritik)
+    setTimeout(() => activateFallback('6s timeout'), 6000);
+  } else {
+    // spline-viewer custom element bile register olmamış (script blocked)
+    setTimeout(() => activateFallback('spline-viewer element not found'), 100);
   }
 
   // Mouse-follow spotlight

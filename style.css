@@ -290,6 +290,22 @@ body.light .spline-poster {
   transition: opacity 1.2s cubic-bezier(0.4,0,0.2,1);
 }
 #ai-showcase.spline-ready spline-viewer { opacity: 1; }
+/* Fallback aktif olunca Spline'ı tamamen gizle */
+#ai-showcase.spline-fallback-active spline-viewer { display: none; }
+
+/* Fallback video — default gizli, JS aktive edince görünür */
+.spline-fallback-video {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: none;
+  opacity: 0;
+  transition: opacity .8s cubic-bezier(0.4,0,0.2,1);
+}
+#ai-showcase.spline-fallback-active .spline-fallback-video {
+  display: block;
+  opacity: 1;
+}
 
 /* "3D Sahneyi Aktif Et" butonu — hero'nun ortasında */
 /* Liquid glass — diğer .btn-ghost ile aynı dil, sadece pozisyon farklı */
