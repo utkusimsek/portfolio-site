@@ -408,6 +408,7 @@ body.light .dotted-vignette {
 /* ── 3D Adaptive Navigation Pill ──
    Multi-layer shadow stack + gloss reflections + premium metalik his.
    "3d-adaptive-navigation-bar" referansından vanilla CSS port. */
+/* ── Nav: Apple Liquid Glass — düz şeffaf cam, gradient yok ── */
 #nav {
   position: fixed;
   top: 16px;
@@ -417,25 +418,19 @@ body.light .dotted-vignette {
   z-index: 100;
   display: flex; align-items: center;
   isolation: isolate;
+  overflow: hidden; /* ::before/::after hairline'ları pill içine kırpar */
 
-  /* Daha şeffaf akışkan cam — arka plan rengini daha çok geçirir */
-  background:
-    linear-gradient(180deg,
-      rgba(255, 255, 255, 0.05) 0%,
-      rgba(255, 255, 255, 0.02) 50%,
-      rgba(0, 0, 0, 0.04) 100%
-    );
-  backdrop-filter: blur(40px) saturate(220%);
-  -webkit-backdrop-filter: blur(40px) saturate(220%);
-  border: 1px solid rgba(255, 255, 255, 0.10);
+  /* Düz şeffaf cam — tek katman, gradient yok */
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(42px) saturate(180%);
+  -webkit-backdrop-filter: blur(42px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 9999px;
 
-  /* Sade liquid glass shadow — daha minimalist 3D */
+  /* Apple-style minimal shadow — derinlik için tek dış + tek üst inset */
   box-shadow:
-    0 4px 16px rgba(0, 0, 0, 0.18),
-    0 16px 40px rgba(0, 0, 0, 0.22),
-    inset 0 1px 0 rgba(255, 255, 255, 0.18),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.20);
+    0 8px 32px rgba(0, 0, 0, 0.20),
+    inset 0 1px 0 rgba(255, 255, 255, 0.10);
 
   transform: translate(-50%, 0) scale(var(--nav-scale, 1));
   animation: navSlideIn .8s cubic-bezier(.22,1,.36,1) both;
@@ -449,61 +444,32 @@ body.light .dotted-vignette {
     transform .35s cubic-bezier(.22,1,.36,1);
   will-change: transform, width, top;
 }
-/* Top edge ridge — ultra parlak ışık çizgisi (light catch) */
+
+/* Çok hafif üst light-catch — pill içinde, taşmadan */
 #nav::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 1.5px;
-  border-radius: 9999px 9999px 0 0;
-  background: linear-gradient(90deg,
-    rgba(255,255,255,0) 0%,
-    rgba(255,255,255,.45) 8%,
-    rgba(255,255,255,.7) 25%,
-    rgba(255,255,255,.7) 75%,
-    rgba(255,255,255,.45) 92%,
-    rgba(255,255,255,0) 100%
-  );
-  pointer-events: none;
-  z-index: 1;
-}
-/* Top hemisphere light catch — yarım daire parlama */
-#nav::after {
   content: '';
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background:
-    linear-gradient(180deg,
-      rgba(255,255,255,.10) 0%,
-      rgba(255,255,255,.04) 35%,
-      rgba(255,255,255,0) 60%
-    ),
-    radial-gradient(ellipse 50% 80% at 30% 20%,
-      rgba(255,255,255,.08) 0%,
-      transparent 60%
-    );
+  background: linear-gradient(180deg,
+    rgba(255,255,255,.06) 0%,
+    rgba(255,255,255,0) 40%
+  );
   pointer-events: none;
-  z-index: 1;
+  z-index: -1;
 }
+
 #nav.scrolled {
   top: 10px;
   width: calc(100% - 48px);
   max-width: 1040px;
-  background:
-    linear-gradient(180deg,
-      rgba(255, 255, 255, 0.08) 0%,
-      rgba(255, 255, 255, 0.03) 50%,
-      rgba(0, 0, 0, 0.06) 100%
-    );
-  backdrop-filter: blur(48px) saturate(240%);
-  -webkit-backdrop-filter: blur(48px) saturate(240%);
-  border-color: rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(50px) saturate(200%);
+  -webkit-backdrop-filter: blur(50px) saturate(200%);
+  border-color: rgba(255, 255, 255, 0.12);
   box-shadow:
-    0 6px 20px rgba(0, 0, 0, 0.24),
-    0 20px 48px rgba(0, 0, 0, 0.28),
-    inset 0 1px 0 rgba(255, 255, 255, 0.20),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.22);
+    0 12px 40px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.14);
 }
 @keyframes navSlideIn {
   from { opacity: 0; transform: translate(-50%, -140%); }
@@ -518,62 +484,27 @@ body.light .dotted-vignette {
     transform .55s cubic-bezier(.4,0,.2,1),
     opacity .35s ease;
 }
-/* Light mode — verilen örnek light bg için tasarlanmış, birebir uyarladım */
+/* Light mode — Apple glass: düz şeffaf, gradient yok */
 body.light #nav {
-  background:
-    linear-gradient(135deg,
-      #fcfcfd 0%, #f8f8fa 15%, #f3f4f6 30%,
-      #eeeff2 45%, #e9eaed 60%, #e4e5e8 75%,
-      #dee0e3 90%, #e2e3e6 100%
-    );
+  background: rgba(255, 255, 255, 0.55);
   border-color: rgba(0, 0, 0, 0.06);
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
+  backdrop-filter: blur(42px) saturate(180%);
+  -webkit-backdrop-filter: blur(42px) saturate(180%);
   box-shadow:
-    0 3px 6px rgba(0, 0, 0, 0.12),
-    0 8px 16px rgba(0, 0, 0, 0.10),
-    0 16px 32px rgba(0, 0, 0, 0.08),
-    0 1px 2px rgba(0, 0, 0, 0.12),
-    inset 0 2px 1px rgba(255, 255, 255, 0.7),
-    inset 0 -2px 6px rgba(0, 0, 0, 0.10),
-    inset 2px 2px 8px rgba(0, 0, 0, 0.08),
-    inset -2px 2px 8px rgba(0, 0, 0, 0.07),
-    inset 0 0 1px rgba(0, 0, 0, 0.15);
+    0 8px 32px rgba(0, 0, 0, 0.10),
+    inset 0 1px 0 rgba(255, 255, 255, 0.85);
 }
 body.light #nav::before {
-  background: linear-gradient(90deg,
-    rgba(255,255,255,0) 0%,
-    rgba(255,255,255,.95) 15%,
-    rgba(255,255,255,1) 50%,
-    rgba(255,255,255,.95) 85%,
-    rgba(255,255,255,0) 100%
+  background: linear-gradient(180deg,
+    rgba(255,255,255,.4) 0%,
+    rgba(255,255,255,0) 40%
   );
-  height: 2px;
-}
-body.light #nav::after {
-  background:
-    linear-gradient(180deg,
-      rgba(255,255,255,.45) 0%,
-      rgba(255,255,255,.25) 30%,
-      rgba(255,255,255,.10) 60%,
-      transparent 100%
-    ),
-    radial-gradient(ellipse 50% 80% at 30% 20%,
-      rgba(255,255,255,.40) 0%,
-      transparent 70%
-    );
 }
 body.light #nav.scrolled {
+  background: rgba(255, 255, 255, 0.7);
   box-shadow:
-    0 5px 10px rgba(0, 0, 0, 0.16),
-    0 12px 24px rgba(0, 0, 0, 0.14),
-    0 24px 48px rgba(0, 0, 0, 0.12),
-    0 1px 2px rgba(0, 0, 0, 0.16),
-    inset 0 2px 1px rgba(255, 255, 255, 0.85),
-    inset 0 -2px 6px rgba(0, 0, 0, 0.12),
-    inset 2px 2px 8px rgba(0, 0, 0, 0.10),
-    inset -2px 2px 8px rgba(0, 0, 0, 0.09),
-    inset 0 0 1px rgba(0, 0, 0, 0.18);
+    0 12px 40px rgba(0, 0, 0, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
 }
 .nav-inner {
   width: 100%;
