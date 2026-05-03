@@ -369,3 +369,83 @@ if (matchMedia('(hover: hover) and (pointer: fine)').matches && !reduceMotion) {
 
 /* Active nav link highlight — birleşik scroll loop'a taşındı (initScrollLoop). */
 
+/* ── Showreel ContainerScroll — vanilla port of framer-motion useScroll ──
+   Card'a scroll progress'ine göre rotateX (20→0), scale (1.02→1 desktop /
+   0.85→1 mobile) ve header'a translateY (0→-100) uygular.
+   IntersectionObserver gate: sadece section viewport'a yakınken hesaplar
+   (CPU verimli). Video da görünürlüğe göre play/pause edilir. */
+(function initShowreel() {
+  const section = document.getElementById('showreel');
+  if (!section) return;
+  const card = section.querySelector('.reel-card');
+  const header = section.querySelector('.reel-header');
+  const video = section.querySelector('.reel-video');
+  if (!card || !header) return;
+
+  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  let active = false;       // section viewport civarında mı
+  let ticking = false;
+  let isMobile = window.innerWidth <= 768;
+
+  function update() {
+    ticking = false;
+    if (!active || reduceMotion) return;
+    // useScroll target ["start end", "end start"] davranışı:
+    //   progress 0 → section üstü viewport altına denk gelirken
+    //   progress 1 → section altı viewport üstüne çıkarken
+    const rect = section.getBoundingClientRect();
+    const winH = window.innerHeight;
+    const raw = (winH - rect.top) / (winH + rect.height);
+    const p = Math.max(0, Math.min(1, raw));
+
+    const rotate = 20 - 20 * p;                  // 20deg → 0deg
+    // Desktop: 1.02 → 1 (hafif zoom-out), Mobile: 0.85 → 1 (zoom-in)
+    const sFrom = isMobile ? 0.85 : 1.02;
+    const sTo   = 1;
+    const scale = sFrom + (sTo - sFrom) * p;
+    const translate = -100 * p;                  // header 0 → -100px
+
+    card.style.setProperty('--reel-rotate', rotate.toFixed(2) + 'deg');
+    card.style.setProperty('--reel-scale', scale.toFixed(4));
+    header.style.setProperty('--reel-translate', translate.toFixed(1) + 'px');
+  }
+
+  function onScroll() {
+    if (!ticking) {
+      requestAnimationFrame(update);
+      ticking = true;
+    }
+  }
+
+  // Section viewport'a yakınken handler aktif, dışarıda CPU yakmasın
+  if ('IntersectionObserver' in window) {
+    const obs = new IntersectionObserver(([e]) => {
+      active = e.isIntersecting;
+      if (active) {
+        update();  // anlık snap
+        // Video play/pause — mobilde batarya tasarrufu
+        if (video && video.paused) video.play().catch(() => {});
+      } else {
+        if (video && !video.paused) video.pause();
+      }
+    }, { rootMargin: '200px 0px' });
+    obs.observe(section);
+  } else {
+    active = true;
+    update();
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', () => {
+    isMobile = window.innerWidth <= 768;
+    update();
+  }, { passive: true });
+  // Tab arkaplanda → video duraklat
+  document.addEventListener('visibilitychange', () => {
+    if (!video) return;
+    if (document.hidden) video.pause();
+    else if (active) video.play().catch(() => {});
+  });
+})();
+
