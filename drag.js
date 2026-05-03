@@ -145,8 +145,7 @@
     scan();
   }
 
-  // Yeni eklenen elementler için MutationObserver (i18n tarafından dynamic
-  // content yapılırsa)
-  const mo = new MutationObserver(() => scan());
-  mo.observe(document.body, { childList: true, subtree: true });
+  // Statik içerik için subtree-wide observer'a gerek yok — load sonrası 1 tarama yeter.
+  // (i18n innerHTML değiştirir ama element kimliği aynı kaldığı için listener'lar korunur.)
+  window.addEventListener('load', scan, { once: true });
 })();

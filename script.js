@@ -24,35 +24,52 @@
   });
 })();
 
-/* ── Nav scroll — minimal, GPU-friendly ──
-   Sadece --scroll-p (0..1) variable'ı güncelliyoruz. CSS bunu transform
-   (translate + scale) ile uyguluyor → GPU composite, 0 layout reflow.
-   Auto-hide kaldırıldı (jank kaynağıydı). */
-(function initNavScroll() {
+/* ── Birleşik scroll loop — nav --scroll-p + active link, tek rAF
+   Tüm scroll-bound DOM yazımları aynı frame'de batch edilir → 0 jank. */
+(function initScrollLoop() {
   const root = document.documentElement;
-  const RANGE = 140; // 0 → 140px scroll = full transition
-
+  const RANGE = 140;
   let ticking = false;
 
-  function smoothstep(x) {
-    return x * x * (3 - 2 * x); // S-eased curve
+  function smoothstep(x) { return x * x * (3 - 2 * x); }
+
+  // Active link tespiti için lazy section listesi (DOMContentLoaded sonrası yenilenebilir)
+  let _sections = null, _navAnchors = null;
+  function refs() {
+    if (!_sections) _sections = document.querySelectorAll('section[id]');
+    if (!_navAnchors) _navAnchors = document.querySelectorAll('.nav-links a');
+    return { sections: _sections, anchors: _navAnchors };
   }
 
   function update() {
     const y = Math.max(0, window.scrollY);
-    const p = smoothstep(Math.min(y / RANGE, 1));
-    root.style.setProperty('--scroll-p', p.toFixed(4));
+    // 1) Nav scroll progress
+    root.style.setProperty('--scroll-p', smoothstep(Math.min(y / RANGE, 1)).toFixed(4));
+
+    // 2) Active nav link
+    const { sections, anchors } = refs();
+    let current = '';
+    for (let i = 0; i < sections.length; i++) {
+      if (y >= sections[i].offsetTop - 140) current = sections[i].id;
+    }
+    for (let i = 0; i < anchors.length; i++) {
+      const href = anchors[i].getAttribute('href') || '';
+      const matches = href === '#' + current || (current === 'work' && href.endsWith('#work'));
+      anchors[i].classList.toggle('active', matches);
+    }
     ticking = false;
   }
 
   window.addEventListener('scroll', () => {
-    if (!ticking) {
-      requestAnimationFrame(update);
-      ticking = true;
-    }
+    if (!ticking) { requestAnimationFrame(update); ticking = true; }
   }, { passive: true });
 
-  update(); // initial
+  // İlk paint sonrası ilk değeri yaz
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', update);
+  } else {
+    update();
+  }
 })();
 
 /* ── Burger menu ── */
@@ -194,10 +211,13 @@ const revealObserver = new IntersectionObserver(entries => {
 
 revealEls.forEach(el => revealObserver.observe(el));
 
-/* Stagger cards by data-index */
+/* Stagger cards by data-index — kategori başına sınırlı, max 240ms */
 document.querySelectorAll('.project-card').forEach(card => {
   const i = parseInt(card.dataset.index) || 0;
-  card.style.transitionDelay = `${i * 80}ms`;
+  // Kategori içinde mod-3 ile sıfırla → her kategoride yeniden başlasın,
+  // toplam stagger 0/60/120ms ile sınırlı kalsın (akış daha çevik)
+  const local = i % 3;
+  card.style.transitionDelay = `${local * 60}ms`;
 });
 
 /* ── Counter animation ── */
@@ -226,26 +246,61 @@ const statObserver = new IntersectionObserver(entries => {
 
 document.querySelectorAll('.stat').forEach(el => statObserver.observe(el));
 
-/* ── Parallax tilt on project cards ── */
-document.querySelectorAll('.project-card').forEach(card => {
-  card.addEventListener('mousemove', e => {
-    const rect   = card.getBoundingClientRect();
-    const cx     = rect.left + rect.width  / 2;
-    const cy     = rect.top  + rect.height / 2;
-    const dx     = (e.clientX - cx) / (rect.width  / 2);
-    const dy     = (e.clientY - cy) / (rect.height / 2);
-    card.style.transform = `perspective(800px) rotateX(${-dy * 4}deg) rotateY(${dx * 4}deg) translateY(-6px)`;
+/* ── Parallax tilt on project cards — sadece hover-capable cihazlar (touch'ta gereksiz),
+     rAF ile throttle edilir (mousemove 100+ Hz fire eder, render 60Hz yeter). */
+if (matchMedia('(hover: hover) and (pointer: fine)').matches && !reduceMotion) {
+  document.querySelectorAll('.project-card').forEach(card => {
+    let pendingX = 0, pendingY = 0, frame = 0;
+    function apply() {
+      card.style.transform = `perspective(800px) rotateX(${-pendingY * 4}deg) rotateY(${pendingX * 4}deg) translateY(-6px)`;
+      frame = 0;
+    }
+    card.addEventListener('mousemove', e => {
+      const rect = card.getBoundingClientRect();
+      pendingX = (e.clientX - rect.left - rect.width  / 2) / (rect.width  / 2);
+      pendingY = (e.clientY - rect.top  - rect.height / 2) / (rect.height / 2);
+      if (!frame) frame = requestAnimationFrame(apply);
+    });
+    card.addEventListener('mouseleave', () => {
+      if (frame) { cancelAnimationFrame(frame); frame = 0; }
+      card.style.transform = '';
+    });
   });
-  card.addEventListener('mouseleave', () => {
-    card.style.transform = '';
-  });
-});
+}
 
 /* ── Hero title letter reveal ── */
 (function heroReveal() {
   document.querySelectorAll('.hero-content .reveal-up').forEach((el, i) => {
     setTimeout(() => el.classList.add('in-view'), 200 + i * 140);
   });
+})();
+
+/* ── Lazy reCAPTCHA — sadece contact bölümü viewport'a girince yükle ── */
+(() => {
+  const captchaHost = document.querySelector('.g-recaptcha');
+  if (!captchaHost) return;
+  let loaded = false;
+  function loadRecaptcha() {
+    if (loaded) return;
+    loaded = true;
+    const s = document.createElement('script');
+    s.src = 'https://www.google.com/recaptcha/api.js';
+    s.async = true; s.defer = true;
+    document.head.appendChild(s);
+  }
+  if ('IntersectionObserver' in window) {
+    const obs = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting) {
+        loadRecaptcha();
+        obs.disconnect();
+      }
+    }, { rootMargin: '300px 0px' });
+    obs.observe(captchaHost);
+  } else {
+    loadRecaptcha();
+  }
+  // İlk form etkileşiminde de tetikle (güvenlik ağı)
+  document.getElementById('contactForm')?.addEventListener('focusin', loadRecaptcha, { once: true });
 })();
 
 /* ── Contact form (Formspree + Cloudflare Turnstile) ── */
@@ -312,23 +367,5 @@ document.querySelectorAll('.project-card').forEach(card => {
   });
 })();
 
-/* ── Smooth active link highlight ── */
-const sections = document.querySelectorAll('section[id]');
-const navAnchors = document.querySelectorAll('.nav-links a');
-
-// Scroll position'a göre active section tespit + .active class toggle
-// (raised + bold + text-shadow CSS'te tanımlı — 3D adaptive nav indicator)
-function updateActiveNavLink() {
-  let current = '';
-  sections.forEach(s => {
-    if (window.scrollY >= s.offsetTop - 140) current = s.id;
-  });
-  navAnchors.forEach(a => {
-    const href = a.getAttribute('href') || '';
-    const matches = href === '#' + current || (current === 'work' && href.endsWith('#work'));
-    a.classList.toggle('active', matches);
-  });
-}
-window.addEventListener('scroll', updateActiveNavLink, { passive: true });
-updateActiveNavLink(); // İlk yüklemede de çalıştır
+/* Active nav link highlight — birleşik scroll loop'a taşındı (initScrollLoop). */
 

@@ -880,6 +880,19 @@ body.light .btn-ghost:hover {
   position: relative;
   z-index: 1;
 }
+
+/* ── Off-fold sections: content-visibility ──
+   Tarayıcı viewport dışındaki bölümleri layout/paint etmez → ilk render hızlanır.
+   contain-intrinsic-size yaklaşık yükseklik olarak rezerve edilir (CLS'siz).
+   #work hariç (LCP olabilir), tipografi üstündeki ilk bölümler eager kalır. */
+@supports (content-visibility: auto) {
+  #about, #skills, #testimonial, #contact, #footer {
+    content-visibility: auto;
+    contain-intrinsic-size: 1px 1200px;
+  }
+  #footer { contain-intrinsic-size: 1px 240px; }
+  #testimonial { contain-intrinsic-size: 1px 360px; }
+}
 /* Make section backgrounds transparent so particles show through */
 #hero, #work, #about, #skills, #contact { background: transparent; }
 .hero-content {
@@ -1743,19 +1756,21 @@ body.light .footer-legal { color: #555; border-color: rgba(0,0,0,.12); }
 ═══════════════════════════════════════════════════════════════ */
 .reveal-up, .reveal-left, .reveal-right, .reveal-card {
   opacity: 0;
-  transition: opacity .8s var(--ease-out-expo), transform .8s var(--ease-out-expo);
+  transition: opacity .7s var(--ease-out-expo), transform .7s var(--ease-out-expo);
   will-change: transform, opacity;
 }
-.reveal-up    { transform: translateY(48px); }
-.reveal-left  { transform: translateX(-60px); }
-.reveal-right { transform: translateX(60px); }
-.reveal-card  { transform: translateY(40px) scale(.97); }
+.reveal-up    { transform: translateY(40px); }
+.reveal-left  { transform: translateX(-50px); }
+.reveal-right { transform: translateX(50px); }
+.reveal-card  { transform: translateY(32px) scale(.98); }
 
 .reveal-up.in-view,
 .reveal-left.in-view,
 .reveal-right.in-view,
 .reveal-card.in-view {
   opacity: 1; transform: none;
+  /* Reveal tek seferlik — composited layer'ı boşalt, GPU memory'sini geri kazan */
+  will-change: auto;
 }
 
 /* Delay utilities */
