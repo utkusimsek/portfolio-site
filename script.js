@@ -378,9 +378,9 @@ if (matchMedia('(hover: hover) and (pointer: fine)').matches && !reduceMotion) {
   const section = document.getElementById('showreel');
   if (!section) return;
   const card = section.querySelector('.reel-card');
-  const header = section.querySelector('.reel-header');
+  const header = section.querySelector('.reel-header'); // opsiyonel
   const video = section.querySelector('.reel-video');
-  if (!card || !header) return;
+  if (!card) return;
 
   const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -408,7 +408,7 @@ if (matchMedia('(hover: hover) and (pointer: fine)').matches && !reduceMotion) {
 
     card.style.setProperty('--reel-rotate', rotate.toFixed(2) + 'deg');
     card.style.setProperty('--reel-scale', scale.toFixed(4));
-    header.style.setProperty('--reel-translate', translate.toFixed(1) + 'px');
+    if (header) header.style.setProperty('--reel-translate', translate.toFixed(1) + 'px');
   }
 
   function onScroll() {

@@ -1063,8 +1063,9 @@ body.light .btn-ghost:hover {
 ═══════════════════════════════════════════════════════════════ */
 .reel-section {
   /* Scroll progress hesaplaması için yüksek bir container — kart bu
-     container içinde scroll edildikçe rotate + scale ediyor. */
-  height: 60rem;
+     container içinde scroll edildikçe rotate + scale ediyor.
+     Başlık kaldırıldığı için 60→48rem kısaldı (daha sıkı oran). */
+  height: 48rem;
   display: flex; align-items: center; justify-content: center;
   position: relative;
   padding: 8px;
@@ -1073,34 +1074,14 @@ body.light .btn-ghost:hover {
   width: 100%;
   max-width: 1100px;
   margin: 0 auto;
-  padding: 64px 0;
+  padding: 32px 0;
   position: relative;
   /* Perspective parent — children'da rotateX 3D çalışsın */
   perspective: 1000px;
 }
-.reel-header {
-  max-width: 900px;
-  margin: 0 auto 0;
-  text-align: center;
-  padding: 0 24px;
-  /* JS scroll progress'ine göre translateY uyguluyor (--reel-translate) */
-  transform: translateY(var(--reel-translate, 0px));
-  will-change: transform;
-}
-.reel-title {
-  font-family: var(--font-serif);
-  font-size: clamp(1.8rem, 4.5vw, 3.4rem);
-  font-weight: 700; line-height: 1.1;
-  color: var(--white);
-  margin: 16px 0 0;
-  letter-spacing: -.01em;
-}
-.reel-title em {
-  font-style: italic; color: var(--accent); font-weight: 700;
-}
 .reel-card {
   max-width: 1100px;
-  margin: -48px auto 0;
+  margin: 0 auto;
   height: 30rem;
   width: 100%;
   /* Mac monitor / device frame estetiği — site paletine uyarlandı */
@@ -1152,15 +1133,14 @@ body.light .reel-title { color: #1a1a1a; }
 
 /* Tablet & mobile — yükseklik düşür, padding sıkıştır */
 @media (max-width: 768px) {
-  .reel-section { height: 56rem; padding: 4px; }
-  .reel-inner { padding: 40px 0; }
-  .reel-card { height: 24rem; padding: 6px; border-radius: 22px; margin-top: -24px; }
+  .reel-section { height: 44rem; padding: 4px; }
+  .reel-inner { padding: 24px 0; }
+  .reel-card { height: 24rem; padding: 6px; border-radius: 22px; }
   .reel-card-inner { border-radius: 16px; }
   .reel-video { border-radius: 12px; }
-  .reel-title { margin-top: 12px; }
 }
 @media (max-width: 480px) {
-  .reel-section { height: 44rem; }
+  .reel-section { height: 36rem; }
   .reel-card { height: 19rem; }
 }
 

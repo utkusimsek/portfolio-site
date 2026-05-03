@@ -31,10 +31,6 @@ const I18N = {
       ctaContact: "İletişime Geç",
       scroll: "Aşağı kaydır"
     },
-    reel: {
-      tag: "Showreel",
-      title: "Tasarımın <em>hareketli</em> hâli"
-    },
     work: {
       tag: "Seçili Çalışmalar",
       title: "Projeler",
@@ -412,10 +408,6 @@ const I18N = {
       ctaWork: "View Work",
       ctaContact: "Get in Touch",
       scroll: "Scroll down"
-    },
-    reel: {
-      tag: "Showreel",
-      title: "Design <em>in motion</em>"
     },
     work: {
       tag: "Selected Work",
