@@ -24,11 +24,53 @@
   });
 })();
 
-/* ── Nav scroll state ── */
-const nav = document.getElementById('nav');
-window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 40);
-}, { passive: true });
+/* ── Nav scroll state — fluid scroll-tied animation ── */
+(function initNavScroll() {
+  const nav = document.getElementById('nav');
+  if (!nav) return;
+
+  let lastY = 0;
+  let ticking = false;
+  let lastDir = 0; // -1 up, 1 down
+  let velocity = 0;
+
+  function update() {
+    const y = window.scrollY;
+    const dy = y - lastY;
+
+    // Yön değişiminde küçük "yay" efekti
+    const dir = dy > 0 ? 1 : (dy < 0 ? -1 : lastDir);
+    if (dir !== lastDir) {
+      // Hızlıca yön değişiminde nav scale ile zıplar
+      nav.style.setProperty('--nav-scale', dir > 0 ? '0.985' : '1.015');
+      clearTimeout(nav._scaleResetTimer);
+      nav._scaleResetTimer = setTimeout(() => {
+        nav.style.setProperty('--nav-scale', '1');
+      }, 220);
+      lastDir = dir;
+    }
+
+    // Scrolled state — eşik 40px
+    nav.classList.toggle('scrolled', y > 40);
+
+    // Hızlı aşağı scroll'da nav'ı geçici olarak gizle (mobile UX standardı)
+    if (y > 200 && dy > 8) {
+      nav.classList.add('nav-hidden');
+    } else if (dy < -3 || y < 100) {
+      nav.classList.remove('nav-hidden');
+    }
+
+    lastY = y;
+    ticking = false;
+  }
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(update);
+      ticking = true;
+    }
+  }, { passive: true });
+})();
 
 /* ── Burger menu ── */
 const burger = document.getElementById('burger');

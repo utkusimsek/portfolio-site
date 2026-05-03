@@ -410,7 +410,7 @@ body.light .dotted-vignette {
    "3d-adaptive-navigation-bar" referansından vanilla CSS port. */
 #nav {
   position: fixed;
-  top: 14px;
+  top: 16px;
   left: 50%;
   width: calc(100% - 32px);
   max-width: 1120px;
@@ -418,39 +418,36 @@ body.light .dotted-vignette {
   display: flex; align-items: center;
   isolation: isolate;
 
-  /* Premium glass + subtle metallic gradient background */
+  /* Daha şeffaf akışkan cam — arka plan rengini daha çok geçirir */
   background:
     linear-gradient(180deg,
-      rgba(28, 28, 32, 0.55) 0%,
-      rgba(15, 15, 18, 0.55) 50%,
-      rgba(8, 8, 10, 0.6) 100%
-    ),
-    rgba(15, 15, 18, 0.4);
-  backdrop-filter: blur(32px) saturate(200%);
-  -webkit-backdrop-filter: blur(32px) saturate(200%);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+      rgba(255, 255, 255, 0.05) 0%,
+      rgba(255, 255, 255, 0.02) 50%,
+      rgba(0, 0, 0, 0.04) 100%
+    );
+  backdrop-filter: blur(40px) saturate(220%);
+  -webkit-backdrop-filter: blur(40px) saturate(220%);
+  border: 1px solid rgba(255, 255, 255, 0.10);
   border-radius: 9999px;
 
-  /* 9-katmanlı premium shadow stack — derin 3D his */
+  /* Sade liquid glass shadow — daha minimalist 3D */
   box-shadow:
-    0 2px 4px rgba(0, 0, 0, 0.18),
-    0 8px 20px rgba(0, 0, 0, 0.28),
-    0 18px 44px rgba(0, 0, 0, 0.32),
-    0 30px 70px rgba(0, 0, 0, 0.20),
-    inset 0 1px 0 rgba(255, 255, 255, 0.10),
-    inset 0 -2px 6px rgba(0, 0, 0, 0.30),
-    inset 2px 2px 8px rgba(0, 0, 0, 0.18),
-    inset -2px 2px 8px rgba(0, 0, 0, 0.16),
-    inset 0 0 0 0.5px rgba(255, 255, 255, 0.04);
+    0 4px 16px rgba(0, 0, 0, 0.18),
+    0 16px 40px rgba(0, 0, 0, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.20);
 
-  transform: translate(-50%, 0);
+  transform: translate(-50%, 0) scale(var(--nav-scale, 1));
   animation: navSlideIn .8s cubic-bezier(.22,1,.36,1) both;
   transition:
-    background .45s ease,
-    border-color .45s ease,
-    box-shadow .45s ease,
-    top .45s cubic-bezier(.22,1,.36,1),
-    width .45s cubic-bezier(.22,1,.36,1);
+    background .5s cubic-bezier(.22,1,.36,1),
+    border-color .5s ease,
+    box-shadow .5s ease,
+    top .5s cubic-bezier(.22,1,.36,1),
+    width .5s cubic-bezier(.22,1,.36,1),
+    backdrop-filter .5s ease,
+    transform .35s cubic-bezier(.22,1,.36,1);
+  will-change: transform, width, top;
 }
 /* Top edge ridge — ultra parlak ışık çizgisi (light catch) */
 #nav::before {
@@ -491,28 +488,35 @@ body.light .dotted-vignette {
 }
 #nav.scrolled {
   top: 10px;
+  width: calc(100% - 48px);
+  max-width: 1040px;
   background:
     linear-gradient(180deg,
-      rgba(20, 20, 24, 0.65) 0%,
-      rgba(10, 10, 12, 0.65) 50%,
-      rgba(5, 5, 7, 0.7) 100%
-    ),
-    rgba(10, 10, 12, 0.5);
-  border-color: rgba(255, 255, 255, 0.12);
+      rgba(255, 255, 255, 0.08) 0%,
+      rgba(255, 255, 255, 0.03) 50%,
+      rgba(0, 0, 0, 0.06) 100%
+    );
+  backdrop-filter: blur(48px) saturate(240%);
+  -webkit-backdrop-filter: blur(48px) saturate(240%);
+  border-color: rgba(255, 255, 255, 0.14);
   box-shadow:
-    0 4px 8px rgba(0, 0, 0, 0.22),
-    0 12px 28px rgba(0, 0, 0, 0.38),
-    0 24px 56px rgba(0, 0, 0, 0.36),
-    0 36px 80px rgba(0, 0, 0, 0.24),
-    inset 0 1px 0 rgba(255, 255, 255, 0.14),
-    inset 0 -2px 6px rgba(0, 0, 0, 0.36),
-    inset 2px 2px 8px rgba(0, 0, 0, 0.22),
-    inset -2px 2px 8px rgba(0, 0, 0, 0.20),
-    inset 0 0 0 0.5px rgba(255, 255, 255, 0.06);
+    0 6px 20px rgba(0, 0, 0, 0.24),
+    0 20px 48px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.20),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.22);
 }
 @keyframes navSlideIn {
   from { opacity: 0; transform: translate(-50%, -140%); }
   to   { opacity: 1; transform: translate(-50%, 0); }
+}
+
+/* Hızlı aşağı scroll'da nav yumuşakça yukarı kayar (mobile UX) */
+#nav.nav-hidden {
+  transform: translate(-50%, calc(-100% - 24px)) scale(var(--nav-scale, 1));
+  opacity: 0.5;
+  transition:
+    transform .55s cubic-bezier(.4,0,.2,1),
+    opacity .35s ease;
 }
 /* Light mode — verilen örnek light bg için tasarlanmış, birebir uyarladım */
 body.light #nav {
@@ -949,15 +953,31 @@ body.light .lang-toggle:hover {
   pointer-events: none;
   opacity: .7;
   transition: opacity .35s var(--ease-out-expo);
+  z-index: 1;
 }
-/* Alt karanlık — depth */
+/* Hareketli ışık huzmesi — sürekli akan liquid shimmer */
 .btn-primary::after {
   content: "";
-  position: absolute; inset: 0;
+  position: absolute;
+  inset: 0;
   border-radius: inherit;
-  background: linear-gradient(180deg, transparent 60%, rgba(60,40,5,.18) 100%);
+  background: linear-gradient(
+    115deg,
+    transparent 30%,
+    rgba(255, 253, 221, 0.45) 50%,
+    transparent 70%
+  );
+  background-size: 250% 100%;
+  background-position: 200% 0;
   pointer-events: none;
-  z-index: -1;
+  z-index: 1;
+  animation: btnShimmer 5s cubic-bezier(.4,0,.2,1) infinite;
+  mix-blend-mode: overlay;
+}
+@keyframes btnShimmer {
+  0%   { background-position: 200% 0; }
+  60%  { background-position: -100% 0; }
+  100% { background-position: -100% 0; }
 }
 .btn-primary:hover {
   filter: brightness(1.06);
@@ -971,27 +991,51 @@ body.light .lang-toggle:hover {
     inset 0 0 0 1px rgba(255,253,221,.22);
 }
 .btn-primary:hover::before { opacity: .9; }
+.btn-primary:hover::after { animation-duration: 1.8s; }
 
-/* ── Ghost: Safari pill stili — minimalist smooth glass ── */
+/* ── Ghost: Liquid Safari pill — şeffaf cam + shimmer hover ── */
 .btn-ghost {
   color: var(--text);
-  background: rgba(255,255,255,.04);
-  backdrop-filter: blur(28px) saturate(160%);
-  -webkit-backdrop-filter: blur(28px) saturate(160%);
+  background: rgba(255,255,255,.05);
+  backdrop-filter: blur(36px) saturate(180%);
+  -webkit-backdrop-filter: blur(36px) saturate(180%);
   box-shadow:
-    0 4px 16px rgba(0,0,0,.18),
-    inset 0 0.5px 0 rgba(255,255,255,.14),
-    inset 0 -0.5px 0 rgba(0,0,0,.15);
+    0 4px 16px rgba(0,0,0,.16),
+    inset 0 0.5px 0 rgba(255,255,255,.18),
+    inset 0 -0.5px 0 rgba(0,0,0,.18);
+  overflow: hidden;
+  isolation: isolate;
+}
+/* Akan ışık huzmesi — hover'da soldan sağa geçer */
+.btn-ghost::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 60%; height: 100%;
+  background: linear-gradient(
+    100deg,
+    transparent,
+    rgba(201,169,110,.15),
+    rgba(255,255,255,.18),
+    rgba(201,169,110,.15),
+    transparent
+  );
+  pointer-events: none;
+  z-index: 0;
+  transition: left .8s cubic-bezier(.4,0,.2,1);
 }
 .btn-ghost:hover {
   color: var(--accent);
-  transform: translateY(-1px);
-  background: rgba(255,255,255,.07);
+  transform: translateY(-2px);
+  background: rgba(255,255,255,.09);
   box-shadow:
-    0 8px 24px rgba(0,0,0,.24),
-    inset 0 0.5px 0 rgba(255,255,255,.18),
-    inset 0 -0.5px 0 rgba(0,0,0,.18);
+    0 12px 28px rgba(0,0,0,.26),
+    0 0 0 1px rgba(201,169,110,.30),
+    inset 0 0.5px 0 rgba(255,255,255,.22),
+    inset 0 -0.5px 0 rgba(0,0,0,.20);
 }
+.btn-ghost:hover::after { left: 140%; }
+.btn-ghost > * { position: relative; z-index: 1; }
 
 /* Light mode — Safari pill, açık temada okunur */
 body.light .btn-ghost {
