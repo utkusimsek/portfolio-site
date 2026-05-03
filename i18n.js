@@ -804,6 +804,12 @@ function applyLang(lang) {
     }, 240);
   });
 
+  // Vapor canvas (slogan animasyonu) için explicit hook — i18n DOM mutation
+  // observer'a bağımlı kalmadan anında yeni metinlere geçer.
+  if (typeof window.__vaporRefreshLang === 'function') {
+    window.__vaporRefreshLang();
+  }
+
   localStorage.setItem('lang', lang);
 }
 

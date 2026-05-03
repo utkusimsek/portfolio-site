@@ -250,8 +250,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 #ai-showcase {
   position: relative;
   width: 100%;
-  height: 56vh;       /* 75 → 56vh: vapor canvas kaldırıldı, içerik 3 satırlık başlık */
-  min-height: 380px;
+  height: 70vh;       /* Vapor canvas görsel olarak viewport'un ortasına gelsin */
+  min-height: 460px;
   overflow: hidden;
   background: transparent; /* Particle canvas hero'da da görünsün */
 }
@@ -275,16 +275,6 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   to   { opacity: 1; transform: translateY(-50%); }
 }
 .showcase-badge { display: none; }
-.showcase-title {
-  font-family: var(--font-serif);
-  font-size: clamp(2.4rem, 7vw, 5.6rem);
-  font-weight: 700; line-height: 1.08;
-  color: var(--white);
-  margin: 0;
-  text-shadow: 0 4px 32px rgba(0,0,0,.6);
-  letter-spacing: -.01em;
-}
-.showcase-title em { font-style: italic; color: var(--accent); font-weight: 700; }
 .showcase-sub { display: none; }
 
 /* SEO/screen reader için görünmez başlık — agresif gizleme */
@@ -299,6 +289,21 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   border: 0 !important;
   font-size: 1px !important;
   line-height: 1 !important;
+}
+
+/* Vapor canvas wrapper — geniş ve net */
+.vapor-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 1100px;
+  height: clamp(140px, 18vw, 240px);
+  margin: 0 auto;
+  pointer-events: none;
+}
+#vaporCanvas {
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 
 /* Switcher */
@@ -1911,12 +1916,12 @@ body.light .footer-legal { color: #555; border-color: rgba(0,0,0,.12); }
   .hero-scroll-hint { display: none; }
   #hero { padding-bottom: 60px; }
 
-  /* Showcase */
-  #ai-showcase { height: 44vh; min-height: 300px; }
+  /* Showcase — vapor canvas viewport'a göre dengeli ortalı */
+  #ai-showcase { height: 62vh; min-height: 420px; }
   .media-switcher { gap: 6px; padding: 8px; border-radius: 14px; }
   .switcher-btn { padding: 8px 12px; gap: 6px; font-size: .72rem; }
   .showcase-content { left: 20px; right: 20px; padding: 0; }
-  .showcase-title { font-size: clamp(2rem, 9vw, 3rem); line-height: 1.06; }
+  .vapor-wrap { height: clamp(140px, 22vw, 220px); }
 
   /* Skills */
   .skills-grid { grid-template-columns: 1fr; }
@@ -1951,6 +1956,7 @@ body.light .footer-legal { color: #555; border-color: rgba(0,0,0,.12); }
   .switcher-btn { padding: 10px; }
   .skills-grid { grid-template-columns: 1fr; }
   .proj-stats { grid-template-columns: repeat(2,1fr); }
-  /* Showcase — dar telefon, daha sıkı oran */
-  #ai-showcase { height: 38vh; min-height: 260px; }
+  /* Showcase — dar telefon, vapor canvas merkezde */
+  #ai-showcase { height: 56vh; min-height: 380px; }
+  .vapor-wrap { height: clamp(130px, 28vw, 200px); }
 }
