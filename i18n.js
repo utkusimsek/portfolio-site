@@ -18,7 +18,11 @@ const I18N = {
       themeDark: "Koyu Mod",
       langAria: "Dil değiştir"
     },
-    showcase: { title: "Hayal et.<br/><em>Tasarla.</em><br/>Gerçeğe dönüştür." },
+    showcase: {
+      title: "Hayal et.<br/><em>Tasarla.</em><br/>Gerçeğe dönüştür.",
+      threeDActivate: "3D Sahneyi Aktif Et",
+      threeDLoading: "3D Sahne Yükleniyor..."
+    },
     hero: {
       tag: "Endüstriyel Tasarımcı · İzmir",
       title: "Halil Utku<br/><em>Şimşek</em>",
@@ -392,7 +396,11 @@ const I18N = {
       themeDark: "Dark Mode",
       langAria: "Switch language"
     },
-    showcase: { title: "Imagine.<br/><em>Design.</em><br/>Bring it to life." },
+    showcase: {
+      title: "Imagine.<br/><em>Design.</em><br/>Bring it to life.",
+      threeDActivate: "Activate 3D Scene",
+      threeDLoading: "Loading 3D scene..."
+    },
     hero: {
       tag: "Industrial Designer · İzmir",
       title: "Halil Utku<br/><em>Şimşek</em>",

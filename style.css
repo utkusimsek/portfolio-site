@@ -252,10 +252,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   display: block;
 }
 
-/* ── Spline 3D layer — vanilla web component ── */
+/* ── Spline 3D layer — click-to-activate yaklaşım ── */
 .media-layer-spline {
-  /* Spline canvas, video'dan farklı bir mask kullanır — daha az alt fade,
-     3D sahneyi tam kapsasın diye */
   -webkit-mask-image: linear-gradient(to bottom,
     #000 0%, #000 60%,
     rgba(0,0,0,.85) 78%,
@@ -267,20 +265,78 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
     rgba(0,0,0,.4) 92%,
     transparent 100%);
 }
+/* Statik poster — sayfa açıldığında anında render olur, ağırlık 0 */
+.spline-poster {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at 30% 20%, rgba(201,169,110,.18), transparent 55%),
+    radial-gradient(ellipse at 75% 70%, rgba(123,108,246,.12), transparent 60%),
+    radial-gradient(ellipse at 50% 50%, #1a1a20 0%, #0a0a0b 75%);
+  transition: opacity .8s cubic-bezier(0.4,0,0.2,1);
+}
+#ai-showcase.spline-ready .spline-poster { opacity: 0; }
+body.light .spline-poster {
+  background:
+    radial-gradient(ellipse at 30% 20%, rgba(201,169,110,.20), transparent 55%),
+    radial-gradient(ellipse at 75% 70%, rgba(123,108,246,.10), transparent 60%),
+    radial-gradient(ellipse at 50% 50%, #f8f5f0 0%, #f0ede8 75%);
+}
+
 .media-layer-spline spline-viewer {
   display: block;
   width: 100%; height: 100%;
   background: transparent;
+  opacity: 0;
+  transition: opacity 1.2s cubic-bezier(0.4,0,0.2,1);
 }
-/* Spline yüklenene kadar gösterilen spinner */
+#ai-showcase.spline-ready spline-viewer { opacity: 1; }
+
+/* "3D Sahneyi Aktif Et" butonu — hero'nun ortasında */
+.spline-activate-btn {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 4;
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 14px 28px;
+  background: rgba(10,10,11,.6);
+  border: 1px solid rgba(201,169,110,.4);
+  border-radius: 40px;
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  color: var(--white);
+  font-family: var(--font-sans);
+  font-size: .8rem; font-weight: 600;
+  letter-spacing: .12em; text-transform: uppercase;
+  cursor: pointer;
+  transition: all .35s cubic-bezier(0.4,0,0.2,1);
+  box-shadow: 0 8px 32px rgba(0,0,0,.35);
+  animation: splineCtaPulse 2.5s ease-in-out infinite;
+}
+.spline-activate-btn:hover {
+  border-color: var(--accent);
+  background: rgba(201,169,110,.18);
+  transform: translate(-50%, -50%) scale(1.04);
+}
+.spline-activate-btn svg { stroke: var(--accent); flex-shrink: 0; }
+.spline-activate-btn.hidden { opacity: 0; pointer-events: none; transform: translate(-50%, -50%) scale(.9); }
+body.light .spline-activate-btn { background: rgba(255,255,255,.7); color: #1a1a1a; }
+
+@keyframes splineCtaPulse {
+  0%, 100% { box-shadow: 0 8px 32px rgba(0,0,0,.35), 0 0 0 0 rgba(201,169,110,.4); }
+  50%      { box-shadow: 0 8px 32px rgba(0,0,0,.35), 0 0 0 12px rgba(201,169,110,0); }
+}
+
+/* Yükleme spinner + metin — kullanıcı butona bastıktan sonra */
 .spline-loading {
   position: absolute; inset: 0;
-  display: flex; align-items: center; justify-content: center;
-  background: var(--bg);
-  z-index: 1;
-  transition: opacity .6s cubic-bezier(0.4,0,0.2,1);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 16px;
+  z-index: 3;
+  pointer-events: none;
 }
-#ai-showcase.spline-ready .spline-loading { opacity: 0; pointer-events: none; }
+.spline-loading[hidden] { display: none; }
+#ai-showcase.spline-ready .spline-loading { opacity: 0; transition: opacity .5s; }
 .spline-loading-spinner {
   width: 42px; height: 42px;
   border: 2px solid rgba(255,255,255,.08);
@@ -288,9 +344,17 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   border-radius: 50%;
   animation: splineSpin 1s linear infinite;
 }
+.spline-loading-text {
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
 @keyframes splineSpin { to { transform: rotate(360deg); } }
+body.light .spline-loading-spinner { border-color: rgba(0,0,0,.08); border-top-color: var(--accent); }
 
-/* Spline viewer'ın kendi watermark'ını gizle (resmi yöntem değil ama görsel temizlik) */
+/* Spline viewer'ın kendi watermark'ını gizleme denemesi */
 spline-viewer::part(logo) { display: none !important; }
 
 /* ── Mouse-follow Spotlight — Aceternity tarzı, vanilla CSS ── */
