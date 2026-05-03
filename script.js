@@ -105,8 +105,8 @@ if (canvas && !reduceMotion) {
       this.y  = Math.random() * H;
       this.vx = (Math.random() - .5) * .45;
       this.vy = (Math.random() - .5) * .45;
-      this.r  = Math.random() * 1.8 + .6;
-      this.a  = Math.random() * .6 + .4;
+      this.r  = Math.random() * 1.9 + .7;
+      this.a  = Math.random() * .55 + .55;   /* 0.55–1.10 — daha parlak */
       this.pulseOffset = Math.random() * Math.PI * 2;
     }
     update(t) {
@@ -116,20 +116,20 @@ if (canvas && !reduceMotion) {
       if (this.x > W + 20) this.x = -20;
       if (this.y < -20) this.y = H + 20;
       if (this.y > H + 20) this.y = -20;
-      this.pulse = 0.7 + 0.3 * Math.sin(t * 0.001 + this.pulseOffset);
+      this.pulse = 0.75 + 0.25 * Math.sin(t * 0.001 + this.pulseOffset);
     }
     draw() {
       ctx.beginPath();
       ctx.arc(this.x, this.y, this.r * this.pulse, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(201,169,110,${this.a * this.pulse})`;
+      ctx.fillStyle = `rgba(201,169,110,${Math.min(1, this.a * this.pulse)})`;
       ctx.fill();
     }
   }
 
-  /* Particle density — mobile için ayrı tuning */
-  const MAX_COUNT = isMobile ? 35 : 70;
-  const MIN_COUNT = isMobile ? 18 : 30;
-  const DIVISOR   = isMobile ? 50000 : 28000;
+  /* Particle density — yoğun + uniform, hero alanında da görünür */
+  const MAX_COUNT = isMobile ? 55 : 130;
+  const MIN_COUNT = isMobile ? 35 : 70;
+  const DIVISOR   = isMobile ? 32000 : 16000;
   const COUNT = Math.min(MAX_COUNT, Math.max(MIN_COUNT, Math.floor(W * H / DIVISOR)));
   for (let i = 0; i < COUNT; i++) particles.push(new Particle());
 
@@ -141,12 +141,12 @@ if (canvas && !reduceMotion) {
         const dSq = dx * dx + dy * dy;
         if (dSq < LINE_DIST_SQ) {
           const d = Math.sqrt(dSq);
-          const alpha = (1 - d / LINE_DIST) * 0.28;
+          const alpha = (1 - d / LINE_DIST) * 0.42; /* 0.28 → 0.42, daha belirgin */
           ctx.beginPath();
           ctx.moveTo(particles[i].x, particles[i].y);
           ctx.lineTo(particles[j].x, particles[j].y);
           ctx.strokeStyle = `rgba(201,169,110,${alpha})`;
-          ctx.lineWidth   = 0.9;
+          ctx.lineWidth   = 1;
           ctx.stroke();
         }
       }
