@@ -1097,7 +1097,7 @@ body.light .btn-ghost:hover {
     0 84px 50px rgba(0,0,0,.15),
     inset 0 1px 0 rgba(255,255,255,.06);
   /* JS scroll progress'ine göre rotateX + scale */
-  transform: rotateX(var(--reel-rotate, 20deg)) scale(var(--reel-scale, 1.02));
+  transform: rotateX(var(--reel-rotate, 12deg)) scale(var(--reel-scale, 1.02));
   transform-origin: 50% 100%;
   will-change: transform;
   transition: box-shadow .4s ease;

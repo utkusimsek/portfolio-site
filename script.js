@@ -399,12 +399,18 @@ if (matchMedia('(hover: hover) and (pointer: fine)').matches && !reduceMotion) {
     const raw = (winH - rect.top) / (winH + rect.height);
     const p = Math.max(0, Math.min(1, raw));
 
-    const rotate = 20 - 20 * p;                  // 20deg → 0deg
-    // Desktop: 1.02 → 1 (hafif zoom-out), Mobile: 0.85 → 1 (zoom-in)
-    const sFrom = isMobile ? 0.85 : 1.02;
+    // Ease-out cubic — kart viewport'a girer girmez hızlıca düzleşsin,
+    // kalan scroll'da zaten düz dursun (linear'da uzun süre eğik kalıyordu).
+    const eased = 1 - Math.pow(1 - p, 3);
+
+    // Başlangıç açısı: desktop 12° (daha rafine), mobile 18° (daha dramatik)
+    const rotateFrom = isMobile ? 18 : 12;
+    const rotate = rotateFrom * (1 - eased);
+    // Desktop: 1.02 → 1 (hafif zoom-out), Mobile: 0.88 → 1 (zoom-in)
+    const sFrom = isMobile ? 0.88 : 1.02;
     const sTo   = 1;
-    const scale = sFrom + (sTo - sFrom) * p;
-    const translate = -100 * p;                  // header 0 → -100px
+    const scale = sFrom + (sTo - sFrom) * eased;
+    const translate = -100 * eased;              // header 0 → -100px
 
     card.style.setProperty('--reel-rotate', rotate.toFixed(2) + 'deg');
     card.style.setProperty('--reel-scale', scale.toFixed(4));
