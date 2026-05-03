@@ -256,45 +256,47 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 
 /* Three.js canvas container — section'ı tam kapsar */
 .dotted-surface {
-  position: absolute; inset: 0;
+  position: absolute;
+  inset: 0;
   z-index: 0;
   pointer-events: none;
-  /* Başlığa odak için alttan yumuşak fade */
+  overflow: hidden;
+  /* Sadece alt kenarda çok hafif fade — başlık alanı net */
   -webkit-mask-image: linear-gradient(to bottom,
-    #000 0%, #000 55%,
-    rgba(0,0,0,.85) 75%,
-    rgba(0,0,0,.4) 90%,
+    #000 0%, #000 82%,
+    rgba(0,0,0,.55) 94%,
     transparent 100%);
           mask-image: linear-gradient(to bottom,
-    #000 0%, #000 55%,
-    rgba(0,0,0,.85) 75%,
-    rgba(0,0,0,.4) 90%,
+    #000 0%, #000 82%,
+    rgba(0,0,0,.55) 94%,
     transparent 100%);
 }
 .dotted-surface canvas {
+  position: absolute;
+  top: 0; left: 0;
   width: 100% !important;
   height: 100% !important;
   display: block;
 }
 
-/* Yumuşak radyal vignette — başlığı öne çıkarır */
+/* Hafif vignette — sadece kenarlarda, başlığı öne çıkarır ama dot'ları gizlemez */
 .dotted-vignette {
   position: absolute; inset: 0;
   z-index: 1;
   pointer-events: none;
   background: radial-gradient(
-    ellipse 60% 50% at center 70%,
+    ellipse 90% 80% at center center,
     transparent 0%,
-    rgba(0,0,0,.35) 60%,
-    rgba(0,0,0,.55) 100%
+    transparent 50%,
+    rgba(0,0,0,.30) 100%
   );
 }
 body.light .dotted-vignette {
   background: radial-gradient(
-    ellipse 60% 50% at center 70%,
+    ellipse 90% 80% at center center,
     transparent 0%,
-    rgba(255,255,255,.25) 60%,
-    rgba(255,255,255,.45) 100%
+    transparent 50%,
+    rgba(255,255,255,.30) 100%
   );
 }
 
