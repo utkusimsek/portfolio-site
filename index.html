@@ -18,9 +18,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
   <!-- Google reCAPTCHA v2 — "Ben robot değilim" checkbox -->
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-  <!-- Three.js — DottedSurface dalga animasyonu için -->
-  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin/>
-  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
 </head>
 <body data-i18n-pagetitle="pageTitle.home">
 
@@ -73,17 +70,10 @@
     </div>
   </nav>
 
-  <!-- ─── HERO HEADER — DottedSurface 3D dalga animasyonu ─── -->
-  <section id="ai-showcase" class="showcase-dotted">
-    <!-- Three.js dotted wave grid — sayfa açılır açılmaz render olur -->
-    <div id="dottedSurface" class="dotted-surface" aria-hidden="true"></div>
-
-    <!-- Yumuşak radyal vignette — başlığa odak için -->
-    <div class="dotted-vignette" aria-hidden="true"></div>
-
+  <!-- ─── HERO HEADER — sade siyah/beyaz arkaplan ─── -->
+  <section id="ai-showcase">
     <div class="showcase-overlay-bottom"></div>
     <div class="showcase-overlay-top"></div>
-
     <div class="showcase-content">
       <h1 class="showcase-title" data-i18n="showcase.title">
         Hayal et.<br /><em>Tasarla.</em><br />Gerçeğe dönüştür.

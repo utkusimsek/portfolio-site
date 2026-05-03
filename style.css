@@ -254,52 +254,6 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   background: var(--bg);
 }
 
-/* Three.js canvas container — section'ı tam kapsar */
-.dotted-surface {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  overflow: hidden;
-  /* Sadece alt kenarda çok hafif fade — başlık alanı net */
-  -webkit-mask-image: linear-gradient(to bottom,
-    #000 0%, #000 82%,
-    rgba(0,0,0,.55) 94%,
-    transparent 100%);
-          mask-image: linear-gradient(to bottom,
-    #000 0%, #000 82%,
-    rgba(0,0,0,.55) 94%,
-    transparent 100%);
-}
-.dotted-surface canvas {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100% !important;
-  height: 100% !important;
-  display: block;
-}
-
-/* Hafif vignette — sadece kenarlarda, başlığı öne çıkarır ama dot'ları gizlemez */
-.dotted-vignette {
-  position: absolute; inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  background: radial-gradient(
-    ellipse 90% 80% at center center,
-    transparent 0%,
-    transparent 50%,
-    rgba(0,0,0,.30) 100%
-  );
-}
-body.light .dotted-vignette {
-  background: radial-gradient(
-    ellipse 90% 80% at center center,
-    transparent 0%,
-    transparent 50%,
-    rgba(255,255,255,.30) 100%
-  );
-}
-
 /* Overlays — bottom fades into page bg for seamless section blend */
 .showcase-overlay-bottom {
   position: absolute; bottom: -1px; left: 0; right: 0;
