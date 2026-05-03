@@ -298,76 +298,36 @@ window.addEventListener('scroll', () => {
   });
 }, { passive: true });
 
-/* ── Spline 3D — click-to-activate (lazy script + lazy scene) + spotlight ── */
+/* ── Spline 3D — auto-load on page open + mouse-follow spotlight ── */
 (function () {
-  const showcase   = document.getElementById('ai-showcase');
-  const layer      = document.getElementById('splineLayer');
-  const activateBtn= document.getElementById('splineActivateBtn');
-  const loadingEl  = document.getElementById('splineLoading');
-  const spotlight  = document.getElementById('showcaseSpotlight');
-  if (!showcase || !layer) return;
+  const showcase  = document.getElementById('ai-showcase');
+  const viewer    = document.getElementById('splineViewer');
+  const loadingEl = document.getElementById('splineLoading');
+  const spotlight = document.getElementById('showcaseSpotlight');
+  if (!showcase) return;
 
-  const SPLINE_VIEWER_URL = 'https://unpkg.com/@splinetool/viewer@1.9.48/build/spline-viewer.js';
-  const SCENE_URL = 'https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode';
-  let scriptLoaded = false;
-  let activated = false;
-
-  function loadSplineViewerScript() {
-    if (scriptLoaded) return Promise.resolve();
-    return new Promise((resolve, reject) => {
-      const s = document.createElement('script');
-      s.type = 'module';
-      s.src = SPLINE_VIEWER_URL;
-      s.onload = () => { scriptLoaded = true; resolve(); };
-      s.onerror = reject;
-      document.head.appendChild(s);
+  if (viewer) {
+    // Spline load eventinde poster + spinner fade out, 3D fade in
+    viewer.addEventListener('load', () => {
+      showcase.classList.add('spline-ready');
     });
+    viewer.addEventListener('error', () => {
+      showcase.classList.add('spline-errored');
+      if (loadingEl) {
+        loadingEl.querySelector('.spline-loading-text').textContent =
+          '3D yüklenemedi — sayfa görseli ile devam ediyor';
+      }
+    });
+    // Güvenlik ağı: 25 saniyede load gelmezse poster ile devam et
+    setTimeout(() => {
+      if (!showcase.classList.contains('spline-ready') &&
+          !showcase.classList.contains('spline-errored')) {
+        showcase.classList.add('spline-ready');
+      }
+    }, 25000);
   }
 
-  function activateSpline() {
-    if (activated) return;
-    activated = true;
-
-    // CTA butonunu kaldır, spinner'ı göster
-    if (activateBtn) activateBtn.classList.add('hidden');
-    if (loadingEl) loadingEl.hidden = false;
-
-    // Önce script'i yükle, sonra <spline-viewer> elementini inject et
-    loadSplineViewerScript()
-      .then(() => {
-        const v = document.createElement('spline-viewer');
-        v.setAttribute('url', SCENE_URL);
-        v.setAttribute('events-target', 'global');
-        v.setAttribute('aria-hidden', 'true');
-        v.addEventListener('load', () => {
-          showcase.classList.add('spline-ready');
-        });
-        v.addEventListener('error', () => {
-          showcase.classList.add('spline-errored');
-          if (loadingEl) loadingEl.hidden = true;
-        });
-        layer.appendChild(v);
-
-        // Güvenlik ağı: 20 saniyede load gelmezse spinner'ı kaldır
-        setTimeout(() => {
-          if (!showcase.classList.contains('spline-ready')) {
-            showcase.classList.add('spline-ready');
-          }
-        }, 20000);
-      })
-      .catch(() => {
-        showcase.classList.add('spline-errored');
-        if (loadingEl) loadingEl.hidden = true;
-        if (activateBtn) {
-          activateBtn.classList.remove('hidden');
-          activateBtn.querySelector('span').textContent = '3D yüklenemedi — tekrar dene';
-        }
-      });
-  }
-
-  if (activateBtn) activateBtn.addEventListener('click', activateSpline);
-
-  // Mouse-follow spotlight — Spline aktif olmasa da çalışır
+  // Mouse-follow spotlight
   if (spotlight && window.matchMedia('(pointer: fine)').matches) {
     let rafId = null;
     let lastX = 0, lastY = 0;

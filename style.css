@@ -376,9 +376,10 @@ body.light .spline-activate-btn {
   gap: 16px;
   z-index: 3;
   pointer-events: none;
+  opacity: 1;
+  transition: opacity .6s cubic-bezier(0.4,0,0.2,1);
 }
-.spline-loading[hidden] { display: none; }
-#ai-showcase.spline-ready .spline-loading { opacity: 0; transition: opacity .5s; }
+#ai-showcase.spline-ready .spline-loading { opacity: 0; }
 .spline-loading-spinner {
   width: 42px; height: 42px;
   border: 2px solid rgba(255,255,255,.08);

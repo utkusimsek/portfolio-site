@@ -16,10 +16,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
   <!-- Google reCAPTCHA v2 — "Ben robot değilim" checkbox -->
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-  <!-- Spline viewer script: artık head'de değil — kullanıcı tıklayınca
-       script.js dinamik olarak yükler. İlk paint çok daha hızlı. -->
-  <link rel="preconnect" href="https://prod.spline.design"/>
-  <link rel="dns-prefetch" href="https://unpkg.com"/>
+  <!-- Spline 3D — agresif preload: scene + runtime sayfa açılır açılmaz indirilir -->
+  <link rel="preconnect" href="https://prod.spline.design" crossorigin/>
+  <link rel="preconnect" href="https://unpkg.com" crossorigin/>
+  <link rel="modulepreload" href="https://unpkg.com/@splinetool/viewer@1.9.48/build/spline-viewer.js"/>
+  <link rel="preload" as="fetch" href="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode" crossorigin/>
+  <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.48/build/spline-viewer.js"></script>
 </head>
 <body data-i18n-pagetitle="pageTitle.home">
 
@@ -72,27 +74,26 @@
     </div>
   </nav>
 
-  <!-- ─── AI SHOWCASE — İnteraktif 3D Spline (click-to-activate) ─── -->
+  <!-- ─── AI SHOWCASE — İnteraktif 3D Spline (auto-load on page open) ─── -->
   <section id="ai-showcase" class="showcase-spline">
-    <!-- 3D scene container — Spline viewer JS tarafından inject edilir -->
     <div class="media-layer media-layer-spline active" id="splineLayer">
-      <!-- Statik fallback gradient: anında render, ağırlık 0 -->
+      <!-- Statik poster — anında render, Spline gelene kadar gösterilir -->
       <div class="spline-poster" aria-hidden="true"></div>
-      <!-- Yükleme spinner: 3D başlatıldıktan sonra görünür -->
-      <div class="spline-loading" id="splineLoading" hidden>
+
+      <!-- Spline 3D scene — sayfa açılır açılmaz yüklenir -->
+      <spline-viewer
+        url="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
+        loading="eager"
+        events-target="global"
+        aria-hidden="true"
+        id="splineViewer"></spline-viewer>
+
+      <!-- Yükleme spinner — Spline render olana kadar görünür -->
+      <div class="spline-loading" id="splineLoading">
         <div class="spline-loading-spinner"></div>
         <div class="spline-loading-text" data-i18n="showcase.threeDLoading">3D Sahne Yükleniyor...</div>
       </div>
     </div>
-
-    <!-- "3D Sahneyi Aktif Et" CTA — kullanıcı tıklayana kadar Spline yüklenmez -->
-    <button class="spline-activate-btn" id="splineActivateBtn" type="button">
-      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
-        <path d="M3.27 6.96 12 12.01l8.73-5.05M12 22.08V12"/>
-      </svg>
-      <span data-i18n="showcase.threeDActivate">3D Sahneyi Aktif Et</span>
-    </button>
 
     <!-- Mouse-follow spotlight -->
     <div class="showcase-spotlight" id="showcaseSpotlight" aria-hidden="true"></div>
