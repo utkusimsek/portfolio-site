@@ -1893,10 +1893,12 @@ body.light .footer-legal { color: #555; border-color: rgba(0,0,0,.12); }
   #hero { padding-bottom: 60px; }
 
   /* Showcase */
+  #ai-showcase { height: 52vh; min-height: 340px; }
   .media-switcher { gap: 6px; padding: 8px; border-radius: 14px; }
   .switcher-btn { padding: 8px 12px; gap: 6px; font-size: .72rem; }
   .showcase-content { left: 20px; right: 20px; padding: 0; }
   .showcase-title { font-size: clamp(1.6rem, 7vw, 2.4rem); }
+  .vapor-wrap { height: clamp(120px, 22vw, 200px); }
 
   /* Skills */
   .skills-grid { grid-template-columns: 1fr; }
@@ -1931,4 +1933,7 @@ body.light .footer-legal { color: #555; border-color: rgba(0,0,0,.12); }
   .switcher-btn { padding: 10px; }
   .skills-grid { grid-template-columns: 1fr; }
   .proj-stats { grid-template-columns: repeat(2,1fr); }
+  /* Showcase — dar telefon, daha sıkı oran */
+  #ai-showcase { height: 46vh; min-height: 300px; }
+  .vapor-wrap { height: clamp(110px, 26vw, 170px); }
 }

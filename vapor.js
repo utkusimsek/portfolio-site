@@ -385,6 +385,19 @@
   });
   themeObs.observe(document.body, { attributes: true, attributeFilter: ['class'] });
 
+  // Dil değişimini izle (i18n.js documentElement.lang'ı günceller)
+  const langObs = new MutationObserver(() => {
+    const newTexts = getTexts();
+    if (newTexts[0] === texts[0]) return; // değişiklik yoksa atla
+    texts = newTexts;
+    colors = getColors();
+    currentTextIndex = 0;
+    createParticles();
+    animationState = 'vaporizing';
+    vaporizeProgress = 0;
+  });
+  langObs.observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
+
   // Görünürlük tabanlı duraklatma (battery save)
   if ('IntersectionObserver' in window) {
     const visObs = new IntersectionObserver(
