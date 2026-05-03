@@ -75,15 +75,15 @@ navLinks.querySelectorAll('a').forEach(a => {
    Pause via IntersectionObserver when canvas is offscreen. */
 const canvas = document.getElementById('particleCanvas');
 const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
-const isSmallScreen = window.innerWidth < 768;
+const isMobile = window.innerWidth < 768;
 
-if (canvas && !reduceMotion && !isSmallScreen) {
+if (canvas && !reduceMotion) {
   const ctx    = canvas.getContext('2d');
   let W, H, particles = [];
   let isVisible = true;
   let rafId = 0;
-  const DPR = Math.min(window.devicePixelRatio || 1, 2);
-  const LINE_DIST = 160;
+  const DPR = Math.min(window.devicePixelRatio || 1, isMobile ? 1.5 : 2);
+  const LINE_DIST = isMobile ? 110 : 160;
   const LINE_DIST_SQ = LINE_DIST * LINE_DIST;
 
   function resize() {
@@ -126,8 +126,11 @@ if (canvas && !reduceMotion && !isSmallScreen) {
     }
   }
 
-  /* Lighter particle density — tuned for performance */
-  const COUNT = Math.min(70, Math.max(30, Math.floor(W * H / 28000)));
+  /* Particle density — mobile için ayrı tuning */
+  const MAX_COUNT = isMobile ? 35 : 70;
+  const MIN_COUNT = isMobile ? 18 : 30;
+  const DIVISOR   = isMobile ? 50000 : 28000;
+  const COUNT = Math.min(MAX_COUNT, Math.max(MIN_COUNT, Math.floor(W * H / DIVISOR)));
   for (let i = 0; i < COUNT; i++) particles.push(new Particle());
 
   function drawLines() {
