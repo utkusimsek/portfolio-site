@@ -24,39 +24,40 @@
   });
 })();
 
-/* ── Nav scroll state — fluid scroll-tied animation ── */
+/* ── Nav scroll — sürekli interpolasyon, hiçbir adım yok ──
+   Class toggle yerine her frame'de scroll position'dan 0..1 progress
+   hesaplayıp CSS variable'a yazıyoruz. CSS bu variable'ı calc() ile
+   tüm görsel özelliklere uyguluyor — gerçek smooth scroll-linked anim. */
 (function initNavScroll() {
-  const nav = document.getElementById('nav');
+  const nav  = document.getElementById('nav');
+  const root = document.documentElement;
   if (!nav) return;
+
+  const RANGE = 120;        // 0 → 120px scroll = full transition
+  const HIDE_THRESHOLD = 280;
+  const HIDE_DELTA = 10;
 
   let lastY = 0;
   let ticking = false;
-  let lastDir = 0; // -1 up, 1 down
-  let velocity = 0;
+
+  function smoothstep(x) {
+    // Hermite eased — linear yerine doğal his (S-curve)
+    return x * x * (3 - 2 * x);
+  }
 
   function update() {
-    const y = window.scrollY;
+    const y  = Math.max(0, window.scrollY);
     const dy = y - lastY;
 
-    // Yön değişiminde küçük "yay" efekti
-    const dir = dy > 0 ? 1 : (dy < 0 ? -1 : lastDir);
-    if (dir !== lastDir) {
-      // Hızlıca yön değişiminde nav scale ile zıplar
-      nav.style.setProperty('--nav-scale', dir > 0 ? '0.985' : '1.015');
-      clearTimeout(nav._scaleResetTimer);
-      nav._scaleResetTimer = setTimeout(() => {
-        nav.style.setProperty('--nav-scale', '1');
-      }, 220);
-      lastDir = dir;
-    }
+    // Sürekli progress: 0 (top) → 1 (scrolled)
+    const raw    = Math.min(y / RANGE, 1);
+    const eased  = smoothstep(raw);
+    root.style.setProperty('--scroll-p', eased.toFixed(4));
 
-    // Scrolled state — eşik 40px
-    nav.classList.toggle('scrolled', y > 40);
-
-    // Hızlı aşağı scroll'da nav'ı geçici olarak gizle (mobile UX standardı)
-    if (y > 200 && dy > 8) {
+    // Auto-hide: hızlı aşağı scroll'da nav yukarı kayar (smooth)
+    if (y > HIDE_THRESHOLD && dy > HIDE_DELTA) {
       nav.classList.add('nav-hidden');
-    } else if (dy < -3 || y < 100) {
+    } else if (dy < -2 || y < 80) {
       nav.classList.remove('nav-hidden');
     }
 
@@ -70,6 +71,8 @@
       ticking = true;
     }
   }, { passive: true });
+
+  update(); // initial
 })();
 
 /* ── Burger menu ── */
