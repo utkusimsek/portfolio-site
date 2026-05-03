@@ -1757,26 +1757,39 @@ body.light .footer-legal { color: #555; border-color: rgba(0,0,0,.12); }
   /* Let fullbleed media fill their containers */
   .media-layer img, .media-layer video { width: 100%; height: 100%; object-fit: cover; }
 
-  /* Nav — kompakt mobile pill */
-  #nav { top: 10px; width: calc(100% - 16px); }
-  .nav-inner { padding: 0 8px 0 14px; height: 44px; gap: 6px; }
-  .nav-right { gap: 6px; }
+  /* Nav — Apple iOS bar standartları (44pt min touch target, dolgun görünüm) */
+  #nav {
+    top: 12px;
+    width: calc(100% - 20px);
+    /* Mobile'da daha belirgin glass — zayıf görünmesin */
+    background: rgba(255, 255, 255, calc(0.075 + 0.030 * var(--scroll-p)));
+  }
+  body.light #nav {
+    background: rgba(255, 255, 255, calc(0.72 + 0.13 * var(--scroll-p)));
+  }
+  .nav-inner { padding: 0 8px 0 16px; height: 52px; gap: 8px; }
+  .nav-right { gap: 8px; }
 
-  /* Daha küçük logo — pill'i ezmesin */
-  .site-logo-img { height: 22px; }
+  /* Logo — bar yüksekliğine orantılı */
+  .site-logo-img { height: 26px; }
 
-  /* Toggle buttons — kompakt mobile pill (44px nav'a oranlı) */
-  .theme-toggle { width: 54px; height: 28px; }
-  .theme-toggle::before { width: 22px; height: 22px; top: 3px; left: 3px; }
+  /* Theme toggle — 36px height, 60px width (iOS-standart proportion) */
+  .theme-toggle { width: 60px; height: 32px; }
+  .theme-toggle::before { width: 26px; height: 26px; top: 3px; left: 3px; }
   body.light .theme-toggle::before { transform: translateX(0); }
-  body:not(.light) .theme-toggle::before { transform: translateX(26px); }
-  .theme-icon { width: 27px; height: 28px; }
-  .theme-icon svg { width: 13px; height: 13px; }
-  .lang-toggle  { height: 28px; min-width: 34px; padding: 0 8px; border-radius: 14px; box-shadow: none; font-size: .68rem; }
+  body:not(.light) .theme-toggle::before { transform: translateX(28px); }
+  .theme-icon { width: 30px; height: 32px; }
+  .theme-icon svg { width: 14px; height: 14px; }
 
-  /* Burger — slightly smaller */
-  .burger { padding: 6px; }
-  .burger span { width: 20px; }
+  /* Lang toggle — orantılı circular pill */
+  .lang-toggle {
+    height: 32px; min-width: 38px; padding: 0 12px;
+    border-radius: 16px; box-shadow: none; font-size: .72rem;
+  }
+
+  /* Burger — daha belirgin tap target */
+  .burger { padding: 8px; }
+  .burger span { width: 22px; height: 1.8px; }
   .burger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
   .burger.open span:nth-child(2) { opacity: 0; }
   .burger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
