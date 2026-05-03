@@ -362,44 +362,45 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 /* ── 3D Adaptive Navigation Pill ──
    Multi-layer shadow stack + gloss reflections + premium metalik his.
    "3d-adaptive-navigation-bar" referansından vanilla CSS port. */
-/* ── Nav: scroll-linked sürekli interpolasyon — adım yok, smooth flow ──
-   --scroll-p (0→1) JS tarafından her scroll frame'de güncelleniyor.
-   Tüm değerler bu variable üzerinden calc() ile hesaplanıyor → gerçek
-   scroll-tied animation, class toggle yerine continuous flow. */
+/* ── Nav: GPU-only scroll animation — sıfır layout reflow ──
+   Layout property'lerini (width, top, max-width) hiç değiştirmiyoruz.
+   Scroll'a göre tek değişen şey: transform (translate + scale).
+   Bu 100% GPU-composited, mobilde bile 60fps smooth. */
 :root { --scroll-p: 0; }
 
 #nav {
   position: fixed;
-  top: calc(14px - 4px * var(--scroll-p));        /* 14px → 10px (smooth) */
+  top: 14px;
   left: 50%;
-  width: calc(100% - (24px + 16px * var(--scroll-p))); /* margin shrinks */
-  max-width: calc(1120px - 100px * var(--scroll-p));    /* 1120 → 1020 (smooth) */
+  width: calc(100% - 24px);
+  max-width: 1120px;
   z-index: 100;
   display: flex; align-items: center;
 
-  /* BG opacity 0.045 → 0.075 (smooth) */
   background: rgba(255, 255, 255, calc(0.045 + 0.030 * var(--scroll-p)));
-
-  /* Blur 40 → 48px, saturate 180 → 200 (smooth) */
   backdrop-filter:
-    blur(calc(40px + 8px * var(--scroll-p)))
-    saturate(calc(180% + 20% * var(--scroll-p)));
+    blur(calc(40px + 6px * var(--scroll-p)))
+    saturate(calc(180% + 15% * var(--scroll-p)));
   -webkit-backdrop-filter:
-    blur(calc(40px + 8px * var(--scroll-p)))
-    saturate(calc(180% + 20% * var(--scroll-p)));
+    blur(calc(40px + 6px * var(--scroll-p)))
+    saturate(calc(180% + 15% * var(--scroll-p)));
   border: 0;
   border-radius: 9999px;
 
-  /* Shadow depth 12px → 18px, opacity 0.32 → 0.38 (smooth) */
   box-shadow:
-    0 calc(12px + 6px * var(--scroll-p))
-      calc(36px + 8px * var(--scroll-p)) -10px
+    0 calc(12px + 4px * var(--scroll-p))
+      calc(36px + 6px * var(--scroll-p)) -10px
       rgba(0, 0, 0, calc(0.32 + 0.06 * var(--scroll-p)));
 
-  transform: translate(-50%, 0) scale(var(--nav-scale, 1));
+  /* Tek transform: scroll'a göre yukarı kayma + nazik küçülme.
+     transform-origin: top center → küçülme üst kenara doğru olur,
+     daha doğal his. Pure GPU, hiç layout reflow yok. */
+  transform:
+    translate(-50%, calc(-3px * var(--scroll-p)))
+    scale(calc(1 - 0.025 * var(--scroll-p)));
+  transform-origin: 50% 0%;
+
   animation: navSlideIn .9s cubic-bezier(.22,1,.36,1) both;
-  /* Sadece scale ve auto-hide transition — diğer property'ler scroll-linked */
-  transition: transform .45s cubic-bezier(.34,1.56,.64,1);
   will-change: transform;
 }
 @keyframes navSlideIn {
@@ -407,14 +408,6 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   to   { opacity: 1; transform: translate(-50%, 0); }
 }
 
-/* Hızlı aşağı scroll'da nav yumuşakça yukarı kayar (mobile UX) */
-#nav.nav-hidden {
-  transform: translate(-50%, calc(-100% - 24px)) scale(var(--nav-scale, 1));
-  opacity: 0.5;
-  transition:
-    transform .55s cubic-bezier(.4,0,.2,1),
-    opacity .35s ease;
-}
 /* Light mode — aynı scroll-linked interpolation */
 body.light #nav {
   background: rgba(255, 255, 255, calc(0.55 + 0.17 * var(--scroll-p)));

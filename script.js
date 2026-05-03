@@ -24,44 +24,24 @@
   });
 })();
 
-/* ── Nav scroll — sürekli interpolasyon, hiçbir adım yok ──
-   Class toggle yerine her frame'de scroll position'dan 0..1 progress
-   hesaplayıp CSS variable'a yazıyoruz. CSS bu variable'ı calc() ile
-   tüm görsel özelliklere uyguluyor — gerçek smooth scroll-linked anim. */
+/* ── Nav scroll — minimal, GPU-friendly ──
+   Sadece --scroll-p (0..1) variable'ı güncelliyoruz. CSS bunu transform
+   (translate + scale) ile uyguluyor → GPU composite, 0 layout reflow.
+   Auto-hide kaldırıldı (jank kaynağıydı). */
 (function initNavScroll() {
-  const nav  = document.getElementById('nav');
   const root = document.documentElement;
-  if (!nav) return;
+  const RANGE = 140; // 0 → 140px scroll = full transition
 
-  const RANGE = 120;        // 0 → 120px scroll = full transition
-  const HIDE_THRESHOLD = 280;
-  const HIDE_DELTA = 10;
-
-  let lastY = 0;
   let ticking = false;
 
   function smoothstep(x) {
-    // Hermite eased — linear yerine doğal his (S-curve)
-    return x * x * (3 - 2 * x);
+    return x * x * (3 - 2 * x); // S-eased curve
   }
 
   function update() {
-    const y  = Math.max(0, window.scrollY);
-    const dy = y - lastY;
-
-    // Sürekli progress: 0 (top) → 1 (scrolled)
-    const raw    = Math.min(y / RANGE, 1);
-    const eased  = smoothstep(raw);
-    root.style.setProperty('--scroll-p', eased.toFixed(4));
-
-    // Auto-hide: hızlı aşağı scroll'da nav yukarı kayar (smooth)
-    if (y > HIDE_THRESHOLD && dy > HIDE_DELTA) {
-      nav.classList.add('nav-hidden');
-    } else if (dy < -2 || y < 80) {
-      nav.classList.remove('nav-hidden');
-    }
-
-    lastY = y;
+    const y = Math.max(0, window.scrollY);
+    const p = smoothstep(Math.min(y / RANGE, 1));
+    root.style.setProperty('--scroll-p', p.toFixed(4));
     ticking = false;
   }
 
