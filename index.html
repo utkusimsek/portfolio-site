@@ -75,15 +75,9 @@
     <div class="showcase-overlay-bottom"></div>
     <div class="showcase-overlay-top"></div>
     <div class="showcase-content">
-      <!-- SEO/i18n: gerçek h1 — visually hidden ama screen reader okur.
-           .showcase-title class kaldırıldı (style cascade çatışması yapıyordu). -->
-      <h1 class="sr-only" data-i18n="showcase.title">
-        Hayal et. Tasarla. Gerçeğe dönüştür.
+      <h1 class="showcase-title" data-i18n="showcase.title">
+        Hayal et.<br/><em>Tasarla.</em><br/>Gerçeğe dönüştür.
       </h1>
-      <!-- Vaporize text canvas — 3 metin döngüsü, per-text color -->
-      <div class="vapor-wrap" id="vaporWrap" aria-hidden="true">
-        <canvas id="vaporCanvas"></canvas>
-      </div>
     </div>
   </section>
 
@@ -606,6 +600,5 @@
   </footer>
 
   <script defer src="script.js"></script>
-  <script defer src="vapor.js"></script>
 </body>
 </html>

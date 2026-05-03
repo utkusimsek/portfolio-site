@@ -107,7 +107,7 @@ body.light {
 }
 body.light ::-webkit-scrollbar-track { background: var(--bg); }
 body.light .hero-title { color: #1a1a1a; }
-body.light .showcase-title { color: #ffffff; }
+body.light .showcase-title { color: #1a1a1a; }
 body.light .section-title { color: #1a1a1a; }
 body.light blockquote p { color: #1a1a1a; }
 body.light .project-info h3 { color: #1a1a1a; }
@@ -250,8 +250,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 #ai-showcase {
   position: relative;
   width: 100%;
-  height: 75vh;       /* 100vh → 75vh: nav ile title arasında uygun mesafe */
-  min-height: 480px;  /* küçük ekranlarda title sıkışmasın */
+  height: 56vh;       /* 75 → 56vh: vapor canvas kaldırıldı, içerik 3 satırlık başlık */
+  min-height: 380px;
   overflow: hidden;
   background: transparent; /* Particle canvas hero'da da görünsün */
 }
@@ -277,13 +277,14 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .showcase-badge { display: none; }
 .showcase-title {
   font-family: var(--font-serif);
-  font-size: clamp(2.8rem, 7vw, 6.5rem);
-  font-weight: 700; line-height: 1.05;
+  font-size: clamp(2.4rem, 7vw, 5.6rem);
+  font-weight: 700; line-height: 1.08;
   color: var(--white);
-  margin-bottom: 16px;
+  margin: 0;
   text-shadow: 0 4px 32px rgba(0,0,0,.6);
+  letter-spacing: -.01em;
 }
-.showcase-title em { font-style: italic; color: var(--accent); }
+.showcase-title em { font-style: italic; color: var(--accent); font-weight: 700; }
 .showcase-sub { display: none; }
 
 /* SEO/screen reader için görünmez başlık — agresif gizleme */
@@ -298,21 +299,6 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   border: 0 !important;
   font-size: 1px !important;
   line-height: 1 !important;
-}
-
-/* Vaporize text canvas wrapper — geniş ve net */
-.vapor-wrap {
-  position: relative;
-  width: 100%;
-  max-width: 1100px;
-  height: clamp(140px, 18vw, 240px);
-  margin: 0 auto;
-  pointer-events: none;
-}
-#vaporCanvas {
-  width: 100%;
-  height: 100%;
-  display: block;
 }
 
 /* Switcher */
@@ -1926,12 +1912,11 @@ body.light .footer-legal { color: #555; border-color: rgba(0,0,0,.12); }
   #hero { padding-bottom: 60px; }
 
   /* Showcase */
-  #ai-showcase { height: 52vh; min-height: 340px; }
+  #ai-showcase { height: 44vh; min-height: 300px; }
   .media-switcher { gap: 6px; padding: 8px; border-radius: 14px; }
   .switcher-btn { padding: 8px 12px; gap: 6px; font-size: .72rem; }
   .showcase-content { left: 20px; right: 20px; padding: 0; }
-  .showcase-title { font-size: clamp(1.6rem, 7vw, 2.4rem); }
-  .vapor-wrap { height: clamp(120px, 22vw, 200px); }
+  .showcase-title { font-size: clamp(2rem, 9vw, 3rem); line-height: 1.06; }
 
   /* Skills */
   .skills-grid { grid-template-columns: 1fr; }
@@ -1967,6 +1952,5 @@ body.light .footer-legal { color: #555; border-color: rgba(0,0,0,.12); }
   .skills-grid { grid-template-columns: 1fr; }
   .proj-stats { grid-template-columns: repeat(2,1fr); }
   /* Showcase — dar telefon, daha sıkı oran */
-  #ai-showcase { height: 46vh; min-height: 300px; }
-  .vapor-wrap { height: clamp(110px, 26vw, 170px); }
+  #ai-showcase { height: 38vh; min-height: 260px; }
 }
