@@ -249,7 +249,9 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 ═══════════════════════════════════════════════════════════════ */
 #ai-showcase {
   position: relative;
-  width: 100%; height: 100vh;
+  width: 100%;
+  height: 75vh;       /* 100vh → 75vh: nav ile title arasında uygun mesafe */
+  min-height: 480px;  /* küçük ekranlarda title sıkışmasın */
   overflow: hidden;
   background: transparent; /* Particle canvas hero'da da görünsün */
 }
@@ -259,16 +261,18 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .showcase-overlay-bottom,
 .showcase-overlay-top { display: none; }
 
-/* Content */
+/* Content — vertical center, üstte boşluk olmasın */
 .showcase-content {
-  position: absolute; bottom: 160px; left: 0; right: 0;
+  position: absolute;
+  top: 50%; left: 0; right: 0;
+  transform: translateY(-50%);
   z-index: 3; text-align: center;
   padding: 0 24px;
   animation: showcaseFadeUp .9s .2s both cubic-bezier(0.16,1,0.3,1);
 }
 @keyframes showcaseFadeUp {
-  from { opacity: 0; transform: translateY(32px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; transform: translate(0, calc(-50% + 32px)); }
+  to   { opacity: 1; transform: translateY(-50%); }
 }
 .showcase-badge { display: none; }
 .showcase-title {
@@ -1859,7 +1863,7 @@ body.light .footer-legal { color: #555; border-color: rgba(0,0,0,.12); }
   /* Showcase */
   .media-switcher { gap: 6px; padding: 8px; border-radius: 14px; }
   .switcher-btn { padding: 8px 12px; gap: 6px; font-size: .72rem; }
-  .showcase-content { bottom: 130px; left: 24px; right: 24px; }
+  .showcase-content { left: 20px; right: 20px; padding: 0; }
   .showcase-title { font-size: clamp(1.6rem, 7vw, 2.4rem); }
 
   /* Skills */
