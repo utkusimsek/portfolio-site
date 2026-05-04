@@ -1,7 +1,7 @@
 /* ─────────────────────────────────────────────────────────────────────────
-   GooeyTextMorph — vanilla JS port
-   React component'in vanilla port'u. SVG threshold filter + CSS blur ile
-   3 metin arasında akışkan ("gooey") morph geçişi.
+   Slogan Crossfade — universal smooth animation
+   3 metin arasında akışkan geçiş: opacity + hafif blur + subtle scale + ease.
+   SVG threshold filter dependency YOK — iOS dahil tüm platformlarda çalışır.
 
    States: morphing → cooldown → next pair → ...
    IntersectionObserver ile görünmeyen bölümde rAF tamamen durur.
@@ -13,12 +13,12 @@
   const text2 = document.getElementById('gooeyText2');
   if (!wrap || !text1 || !text2) return;
 
-  // ── Config (orijinal React komponentindeki defaultlar) ──
-  const morphTime    = 1.0;
-  const cooldownTime = 0.25;
+  // ── Config ──
+  const morphTime    = 1.0;   // saniye, geçiş süresi
+  const cooldownTime = 0.45;  // saniye, geçiş sonrası bekleme (smooth ritim)
+  const MAX_BLUR     = 6;     // px, geçişte uygulanan max blur (subtle)
+  const SCALE_DELTA  = 0.04;  // 0.96 → 1.00 → 1.04 scale aralığı
 
-  // i18n key'lerinden HTML'siz düz metin türet (showcase.title düz formu)
-  // Hayal et. / Tasarla. / Gerçeğe dönüştür. (TR) | Imagine. / Design. / Bring it to life. (EN)
   function getTexts() {
     const lang = (document.documentElement.lang || 'tr').toLowerCase();
     return lang.startsWith('en')
@@ -26,11 +26,7 @@
       : ['Hayal et.', 'Tasarla.', 'Gerçeğe dönüştür.'];
   }
 
-  // Her metnin kendi rengi — vurgulayıcı, marka paletinden:
-  //   1. Hayal et / Imagine     → beyaz (light mode'da koyu) — sade, başlangıç
-  //   2. Tasarla / Design       → altın (--accent #c9a96e) — marka çekirdeği
-  //   3. Gerçeğe dönüştür / ... → mor (--accent2 #7b6cf6) — dönüşüm, vurgu
-  // Gooey blur'lu morph sırasında threshold filter renkleri akışkanca harmanlar
+  // Her metin kendi vurgu rengi — marka paletinden
   function getColors() {
     const isLight = document.body.classList.contains('light');
     return isLight
@@ -49,42 +45,47 @@
   let inView      = true;
   const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // İlk metinleri ve renklerini yerleştir
+  // ── Style helpers — webkit prefix dahil ──
+  function setStyle(el, opacity, blur, scale) {
+    el.style.opacity = opacity;
+    const f = blur > 0.05 ? `blur(${blur.toFixed(2)}px)` : '';
+    el.style.filter = f;
+    el.style.webkitFilter = f;
+    const t = `translate(-50%, -50%) scale(${scale.toFixed(4)}) translateZ(0)`;
+    el.style.transform = t;
+    el.style.webkitTransform = t;
+  }
+
   function applyTextAt(el, idx) {
     el.textContent = texts[idx];
     el.style.color = colors[idx];
   }
   applyTextAt(text1, textIndex % texts.length);
   applyTextAt(text2, (textIndex + 1) % texts.length);
+  // İlk durum: text1 gizli, text2 tam görünür (sıradaki gelecek)
+  setStyle(text1, 0, 0, 1);
+  setStyle(text2, 1, 0, 1);
+
+  // ── Easing ──
+  // easeInOutCubic — başta yavaş, ortada hızlı, sonda yavaş (silky smooth)
+  function easeInOutCubic(t) {
+    return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+  }
 
   // ── Morph helpers ──
-  // iOS Safari için filter + WebkitFilter ikisini de set et
-  function setBlur(el, px) {
-    const v = `blur(${px}px)`;
-    el.style.filter = v;
-    el.style.webkitFilter = v;
-  }
-  function clearBlur(el) {
-    el.style.filter = '';
-    el.style.webkitFilter = '';
-  }
-
+  // fraction: 0 → 1 morph progress
+  //   text1 (mevcut, çıkıyor):  opacity 1→0, blur 0→MAX, scale 1→1+Δ
+  //   text2 (sıradaki, geliyor): opacity 0→1, blur MAX→0, scale 1−Δ→1
   function setMorph(fraction) {
-    // text2 (sıradaki) içe doğru gelir, text1 (mevcut) dışa doğru gider
-    setBlur(text2, Math.min(8 / fraction - 8, 100));
-    text2.style.opacity = `${Math.pow(fraction, 0.4) * 100}%`;
-
-    const f1 = 1 - fraction;
-    setBlur(text1, Math.min(8 / f1 - 8, 100));
-    text1.style.opacity = `${Math.pow(f1, 0.4) * 100}%`;
+    const f = easeInOutCubic(fraction);
+    setStyle(text1, 1 - f, f * MAX_BLUR,         1 + SCALE_DELTA * f);
+    setStyle(text2,     f, (1 - f) * MAX_BLUR,   1 - SCALE_DELTA * (1 - f));
   }
 
   function doCooldown() {
     morph = 0;
-    clearBlur(text2);
-    text2.style.opacity = '100%';
-    clearBlur(text1);
-    text1.style.opacity = '0%';
+    setStyle(text1, 0, 0, 1);
+    setStyle(text2, 1, 0, 1);
   }
 
   function doMorph() {
@@ -98,7 +99,7 @@
     setMorph(fraction);
   }
 
-  // Reduced motion: blur yerine basit fade
+  // Reduced motion: blur ve scale yok, sadece opacity crossfade
   function doReducedFrame() {
     morph -= cooldown;
     cooldown = 0;
@@ -107,10 +108,8 @@
       cooldown = cooldownTime;
       fraction = 1;
     }
-    text2.style.opacity = `${fraction * 100}%`;
-    text1.style.opacity = `${(1 - fraction) * 100}%`;
-    clearBlur(text1);
-    clearBlur(text2);
+    setStyle(text1, 1 - fraction, 0, 1);
+    setStyle(text2, fraction, 0, 1);
   }
 
   // ── Animation loop ──
@@ -156,7 +155,6 @@
   });
 
   // ── Theme / lang refresh ──
-  // Lang değişince yeni metin setine geç ve indeksi resetle
   function refreshLang() {
     const newTexts = getTexts();
     if (newTexts[0] === texts[0]) return;
@@ -168,18 +166,18 @@
     morph = 0;
     cooldown = cooldownTime;
   }
-  window.__vaporRefreshLang = refreshLang; // i18n.js explicit hook (geriye dönük uyumluluk)
+  window.__vaporRefreshLang = refreshLang;
   new MutationObserver(refreshLang).observe(document.documentElement,
     { attributes: true, attributeFilter: ['lang'] });
 
-  // Theme (light/dark) değişimi: renkleri yeniden uygula — mevcut indekslere göre
+  // Theme değişimi → renkleri yenile, mevcut indekslere göre
   new MutationObserver(() => {
     colors = getColors();
-    applyTextAt(text1, textIndex % texts.length);
-    applyTextAt(text2, (textIndex + 1) % texts.length);
+    text1.style.color = colors[textIndex % texts.length];
+    text2.style.color = colors[(textIndex + 1) % texts.length];
   }).observe(document.body, { attributes: true, attributeFilter: ['class'] });
 
-  // Kick off (font yüklemesini bekle ki ilk frame'de doğru ölçü olsun)
+  // Kick off (font yüklemesini bekle)
   if (document.fonts && document.fonts.ready) {
     document.fonts.ready.then(() => { time = performance.now(); resume(); });
   } else {
