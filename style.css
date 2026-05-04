@@ -305,25 +305,31 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 .gooey-svg {
   position: absolute;
-  width: 0;
-  height: 0;
+  width: 1px; height: 1px;
+  top: -1px; left: -1px;
+  visibility: hidden;
 }
 .gooey-stage {
   position: relative;
   width: 100%;
   height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  filter: url(#gooey-threshold);
-  /* Performans: filter'ı ayrı bir katmana al — main thread'den ayır */
-  will-change: filter;
+  /* iOS Safari için -webkit-filter prefix + GPU compositing zorunlu;
+     transform translateZ olmadan SVG filter child blur ile birleşemiyor */
+  -webkit-filter: url(#gooey-threshold);
+          filter: url(#gooey-threshold);
+  -webkit-transform: translateZ(0);
+          transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  isolation: isolate;
 }
 .gooey-text {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  /* translateZ(0) iOS'ta filter:blur child'ları compositor'a iter */
+  -webkit-transform: translate(-50%, -50%) translateZ(0);
+          transform: translate(-50%, -50%) translateZ(0);
   display: inline-block;
   font-family: var(--font-serif);
   font-weight: 700;
@@ -333,15 +339,16 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   color: var(--white);
   user-select: none;
   white-space: nowrap;
-  /* JS blur değerlerini kontrol eder */
   transition: none;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
 }
 /* Light mode — beyaz koyu metne dönsün */
 body.light .gooey-text { color: #1a1a1a; }
 
 /* Reduced motion: blur'ları kapat, sadece basit fade */
 @media (prefers-reduced-motion: reduce) {
-  .gooey-stage { filter: none; }
+  .gooey-stage { -webkit-filter: none; filter: none; }
   .gooey-text { transition: opacity .4s ease !important; }
 }
 

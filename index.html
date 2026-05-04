@@ -81,9 +81,12 @@
       </h1>
       <!-- Gooey text morph — 3 metin arasında blur+threshold ile akışkan geçiş -->
       <div class="gooey-wrap" id="gooeyWrap" aria-hidden="true">
-        <svg class="gooey-svg" aria-hidden="true" focusable="false">
+        <!-- iOS Safari için: xmlns gerekli, görünmez ama 1x1 boyut filter referansını sağlamlaştırır -->
+        <svg class="gooey-svg" aria-hidden="true" focusable="false"
+             xmlns="http://www.w3.org/2000/svg" width="1" height="1" viewBox="0 0 1 1">
           <defs>
-            <filter id="gooey-threshold">
+            <filter id="gooey-threshold" x="-50%" y="-50%" width="200%" height="200%"
+                    color-interpolation-filters="sRGB">
               <feColorMatrix in="SourceGraphic" type="matrix"
                 values="1 0 0 0 0
                         0 1 0 0 0
@@ -662,6 +665,6 @@
   </footer>
 
   <script defer src="script.js"></script>
-  <script defer src="vapor.js?v=20260504-gooey2"></script>
+  <script defer src="vapor.js?v=20260504-gooey3-ios"></script>
 </body>
 </html>

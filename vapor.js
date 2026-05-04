@@ -42,21 +42,32 @@
   applyText(text2, texts[(textIndex + 1) % texts.length]);
 
   // ── Morph helpers ──
+  // iOS Safari için filter + WebkitFilter ikisini de set et
+  function setBlur(el, px) {
+    const v = `blur(${px}px)`;
+    el.style.filter = v;
+    el.style.webkitFilter = v;
+  }
+  function clearBlur(el) {
+    el.style.filter = '';
+    el.style.webkitFilter = '';
+  }
+
   function setMorph(fraction) {
     // text2 (sıradaki) içe doğru gelir, text1 (mevcut) dışa doğru gider
-    text2.style.filter  = `blur(${Math.min(8 / fraction - 8, 100)}px)`;
+    setBlur(text2, Math.min(8 / fraction - 8, 100));
     text2.style.opacity = `${Math.pow(fraction, 0.4) * 100}%`;
 
     const f1 = 1 - fraction;
-    text1.style.filter  = `blur(${Math.min(8 / f1 - 8, 100)}px)`;
+    setBlur(text1, Math.min(8 / f1 - 8, 100));
     text1.style.opacity = `${Math.pow(f1, 0.4) * 100}%`;
   }
 
   function doCooldown() {
     morph = 0;
-    text2.style.filter  = '';
+    clearBlur(text2);
     text2.style.opacity = '100%';
-    text1.style.filter  = '';
+    clearBlur(text1);
     text1.style.opacity = '0%';
   }
 
@@ -82,8 +93,8 @@
     }
     text2.style.opacity = `${fraction * 100}%`;
     text1.style.opacity = `${(1 - fraction) * 100}%`;
-    text2.style.filter = '';
-    text1.style.filter = '';
+    clearBlur(text1);
+    clearBlur(text2);
   }
 
   // ── Animation loop ──
