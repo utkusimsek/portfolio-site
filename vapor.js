@@ -1,11 +1,17 @@
 /* ─────────────────────────────────────────────────────────────────────────
-   Slogan Crossfade — universal smooth animation
-   3 metin arasında akışkan geçiş: opacity + hafif blur + subtle scale + ease.
-   SVG threshold filter dependency YOK — iOS dahil tüm platformlarda çalışır.
+   GooeyTextMorph — React komponent vanilla port
+   SVG feColorMatrix threshold filter + CSS blur ile akışkan ("gooey") morph.
 
-   States: morphing → cooldown → next pair → ...
-   IntersectionObserver ile görünmeyen bölümde rAF tamamen durur.
-   Theme/lang değişikliklerine tepki verir.
+   Orijinal React kodunun davranışı:
+     - blur: blur(min(8/f − 8, 100))px
+     - opacity: pow(f, 0.4) × 100%
+     - morphTime: 1 sn, cooldownTime: 0.25 sn
+
+   iOS Safari uyumluluk:
+     - filter VE webkitFilter ikisi de set edilir
+     - Stage'de -webkit-filter prefix + translate3d(0,0,0) compositor'a iter
+     - SVG xmlns + viewBox + 1×1 boyut + color-interpolation-filters=sRGB
+     - filter elementinde x/y/width/height attribute'leri (-50%/200%)
    ───────────────────────────────────────────────────────────────────────── */
 (function () {
   const wrap  = document.getElementById('gooeyWrap');
@@ -13,11 +19,9 @@
   const text2 = document.getElementById('gooeyText2');
   if (!wrap || !text1 || !text2) return;
 
-  // ── Config ──
-  const morphTime    = 1.0;   // saniye, geçiş süresi
-  const cooldownTime = 0.45;  // saniye, geçiş sonrası bekleme (smooth ritim)
-  const MAX_BLUR     = 6;     // px, geçişte uygulanan max blur (subtle)
-  const SCALE_DELTA  = 0.04;  // 0.96 → 1.00 → 1.04 scale aralığı
+  // ── Config (orijinal komponent default'ları) ──
+  const morphTime    = 1.0;
+  const cooldownTime = 0.25;
 
   function getTexts() {
     const lang = (document.documentElement.lang || 'tr').toLowerCase();
@@ -43,17 +47,11 @@
   let cooldown    = cooldownTime;
   let rafId       = 0;
   let inView      = true;
-  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // ── Style helpers — webkit prefix dahil ──
-  function setStyle(el, opacity, blur, scale) {
-    el.style.opacity = opacity;
-    const f = blur > 0.05 ? `blur(${blur.toFixed(2)}px)` : '';
-    el.style.filter = f;
-    el.style.webkitFilter = f;
-    const t = `translate(-50%, -50%) scale(${scale.toFixed(4)}) translateZ(0)`;
-    el.style.transform = t;
-    el.style.webkitTransform = t;
+  // ── Style helpers — iOS için filter ve webkitFilter ikisini de set ──
+  function setFilter(el, value) {
+    el.style.filter = value;
+    el.style.webkitFilter = value;
   }
 
   function applyTextAt(el, idx) {
@@ -62,30 +60,23 @@
   }
   applyTextAt(text1, textIndex % texts.length);
   applyTextAt(text2, (textIndex + 1) % texts.length);
-  // İlk durum: text1 gizli, text2 tam görünür (sıradaki gelecek)
-  setStyle(text1, 0, 0, 1);
-  setStyle(text2, 1, 0, 1);
 
-  // ── Easing ──
-  // easeInOutCubic — başta yavaş, ortada hızlı, sonda yavaş (silky smooth)
-  function easeInOutCubic(t) {
-    return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-  }
-
-  // ── Morph helpers ──
-  // fraction: 0 → 1 morph progress
-  //   text1 (mevcut, çıkıyor):  opacity 1→0, blur 0→MAX, scale 1→1+Δ
-  //   text2 (sıradaki, geliyor): opacity 0→1, blur MAX→0, scale 1−Δ→1
+  // ── Morph helpers (React komponentinden birebir) ──
   function setMorph(fraction) {
-    const f = easeInOutCubic(fraction);
-    setStyle(text1, 1 - f, f * MAX_BLUR,         1 + SCALE_DELTA * f);
-    setStyle(text2,     f, (1 - f) * MAX_BLUR,   1 - SCALE_DELTA * (1 - f));
+    setFilter(text2, `blur(${Math.min(8 / fraction - 8, 100)}px)`);
+    text2.style.opacity = `${Math.pow(fraction, 0.4) * 100}%`;
+
+    const f1 = 1 - fraction;
+    setFilter(text1, `blur(${Math.min(8 / f1 - 8, 100)}px)`);
+    text1.style.opacity = `${Math.pow(f1, 0.4) * 100}%`;
   }
 
   function doCooldown() {
     morph = 0;
-    setStyle(text1, 0, 0, 1);
-    setStyle(text2, 1, 0, 1);
+    setFilter(text2, '');
+    text2.style.opacity = '100%';
+    setFilter(text1, '');
+    text1.style.opacity = '0%';
   }
 
   function doMorph() {
@@ -97,19 +88,6 @@
       fraction = 1;
     }
     setMorph(fraction);
-  }
-
-  // Reduced motion: blur ve scale yok, sadece opacity crossfade
-  function doReducedFrame() {
-    morph -= cooldown;
-    cooldown = 0;
-    let fraction = morph / morphTime;
-    if (fraction > 1) {
-      cooldown = cooldownTime;
-      fraction = 1;
-    }
-    setStyle(text1, 1 - fraction, 0, 1);
-    setStyle(text2, fraction, 0, 1);
   }
 
   // ── Animation loop ──
@@ -129,7 +107,7 @@
         applyTextAt(text1, textIndex % texts.length);
         applyTextAt(text2, (textIndex + 1) % texts.length);
       }
-      reduceMotion ? doReducedFrame() : doMorph();
+      doMorph();
     } else {
       doCooldown();
     }
@@ -170,7 +148,7 @@
   new MutationObserver(refreshLang).observe(document.documentElement,
     { attributes: true, attributeFilter: ['lang'] });
 
-  // Theme değişimi → renkleri yenile, mevcut indekslere göre
+  // Theme değişimi → renkleri yenile
   new MutationObserver(() => {
     colors = getColors();
     text1.style.color = colors[textIndex % texts.length];
