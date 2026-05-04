@@ -70,7 +70,7 @@
     </div>
   </nav>
 
-  <!-- ─── HERO HEADER — vapor particle text animation ─── -->
+  <!-- ─── HERO HEADER — gooey text morph animation ─── -->
   <section id="ai-showcase">
     <div class="showcase-overlay-bottom"></div>
     <div class="showcase-overlay-top"></div>
@@ -79,9 +79,23 @@
       <h1 class="sr-only" data-i18n="showcase.title">
         Hayal et. Tasarla. Gerçeğe dönüştür.
       </h1>
-      <!-- Vapor canvas — 3 metin döngüsü, dil değişiminde anında refresh -->
-      <div class="vapor-wrap" id="vaporWrap" aria-hidden="true">
-        <canvas id="vaporCanvas"></canvas>
+      <!-- Gooey text morph — 3 metin arasında blur+threshold ile akışkan geçiş -->
+      <div class="gooey-wrap" id="gooeyWrap" aria-hidden="true">
+        <svg class="gooey-svg" aria-hidden="true" focusable="false">
+          <defs>
+            <filter id="gooey-threshold">
+              <feColorMatrix in="SourceGraphic" type="matrix"
+                values="1 0 0 0 0
+                        0 1 0 0 0
+                        0 0 1 0 0
+                        0 0 0 255 -140"/>
+            </filter>
+          </defs>
+        </svg>
+        <div class="gooey-stage">
+          <span class="gooey-text" id="gooeyText1"></span>
+          <span class="gooey-text" id="gooeyText2"></span>
+        </div>
       </div>
     </div>
   </section>
@@ -648,6 +662,6 @@
   </footer>
 
   <script defer src="script.js"></script>
-  <script defer src="vapor.js"></script>
+  <script defer src="vapor.js?v=20260504-gooey"></script>
 </body>
 </html>
