@@ -81,6 +81,11 @@ const I18N = {
         meta1: "2022", meta2: "Perakende / Kamusal Alan",
         title: "KMEM Pop-up Mağaza",
         desc: "Kurukahveci Mehmet Efendi için tasarlanan bu pop-up mağaza, markanın geleneksel kahve kültürünü modern ve deneyim odaklı bir perakende anlayışıyla yeniden yorumlar. Dairesel formu sayesinde farklı yönlerden erişim sağlayarak açık hava AVM'lerde maksimum görünürlük sunar. Sıcak malzeme paleti, güçlü marka dili ve sürdürülebilir detaylarla desteklenen tasarım; kullanıcıya sadece bir ürün değil, etkileşimli ve akılda kalıcı bir kahve deneyimi sunmayı hedefler."
+      },
+      togg: {
+        meta1: "2024", meta2: "Eğlence Aracı",
+        title: "TOGG Çarpışan Araba",
+        desc: "Klasik lunapark deneyimini modern otomotiv tasarım diliyle yeniden yorumlayan çarpışan araba konsepti. İnce LED aydınlatma, darbe absorbe edici elastomer tampon ring ve tek parça ergonomik kabin yapısı ile fonksiyon ve estetiği bir araya getirir."
       }
     },
     about: {
@@ -185,6 +190,7 @@ const I18N = {
       crea: "Crea Light — Halil Utku Şimşek",
       beo:  "Beo Minisaw — Halil Utku Şimşek",
       fold: "Foldesk Lamp — Halil Utku Şimşek",
+      togg: "TOGG Çarpışan Araba — Halil Utku Şimşek",
       salm: "Salmakis Yachts — Princess Melda & 45m Gulet — Halil Utku Şimşek"
     },
     proj_detail: {
@@ -382,6 +388,30 @@ const I18N = {
       f3Desc: "Doğal ahşap, açık tonlu döşemeler ve metal aksamların ölçülü buluşması; lüks yat estetiğinin gerçek üretim koşullarıyla uyumlu, dayanıklı ve şık bir paletle yorumlanması.",
       f4Title: "Render &amp; Sunum Görselleri",
       f4Desc: "KeyShot ve Figma ile üretilmiş yüksek kaliteli render ve sunum görselleri; projenin görsel anlatımını güçlendirerek karar süreçlerini hızlandıran sinematik kareler."
+    },
+    togg: {
+      breadcrumb: "TOGG Çarpışan Araba",
+      badge: "Eğlence Aracı",
+      year: "2024 · Otomotiv İlhamlı",
+      title: "TOGG Çarpışan Araba<br/><em>Modern Lunapark Konsepti</em>",
+      overview: "<strong>TOGG Çarpışan Araba — Modern Lunapark Konsepti</strong><br/><br/>Bu proje, klasik lunapark deneyimini modern tasarım diliyle yeniden yorumlamayı amaçlayan bir çarpışan araba konseptidir. Tasarım sürecinde kullanıcı deneyimi, güvenlik, üretilebilirlik ve estetik dengesi birlikte ele alınmıştır.<br/><br/>Form dili, akıcı yüzey geçişleri ve minimal detay kullanımı ile çağdaş otomotiv tasarım trendlerinden ilham alırken, eğlence parklarının dinamik ve renkli atmosferine uyum sağlayacak şekilde kurgulanmıştır. Ön yüzde yer alan ince LED aydınlatma detayları, araca karakteristik bir kimlik kazandırırken aynı zamanda düşük enerji tüketimi ve uzun ömürlü kullanım avantajı sunar.<br/><br/>Gövde yapısı, darbe absorbe edici tampon sistemi ile desteklenmiş olup, çarpışma anında enerjiyi dağıtarak kullanıcı güvenliğini artıracak şekilde tasarlanmıştır. Alt kısımda kullanılan geniş elastomer tampon ring, hem temas yüzeyini artırarak çarpışma etkisini azaltır hem de parkur üzerindeki sürüş stabilitesini destekler.<br/><br/>İç mekanda ergonomi ön planda tutulmuş, kullanıcı oturma pozisyonu ve direksiyon açısı optimum sürüş kontrolü sağlayacak şekilde konumlandırılmıştır. Tek parça kabin yapısı, üretim sürecinde maliyet avantajı sağlarken aynı zamanda dayanıklılığı artırır.<br/><br/>Modelleme süreci dijital ortamda gerçekleştirilmiş olup, yüzey kalitesi ve form doğruluğu yüksek hassasiyetle optimize edilmiştir. Tasarım, konsept aşamasından üretime uygun hale getirilebilecek şekilde teknik olarak kurgulanmıştır.<br/><br/>Bu çalışma, eğlence ekipmanlarında fonksiyon ve estetiğin birlikte nasıl geliştirilebileceğine dair bir araştırma ve uygulama örneğidir.",
+      stat1: "Ön Aydınlatma", stat2: "Tampon Ring", stat3: "Kabin Yapısı", stat4: "Sürüş Kontrolü",
+      capCover: "Genel Görünüm — Lunapark Atmosferi",
+      capRender: "3D Render — Tam Boy Görünüm",
+      capFront: "Ön Cephe — LED Aydınlatma Detayı",
+      capSide: "Yandan — Akıcı Yüzey Geçişleri",
+      capTop: "Üstten — Tek Parça Kabin Yapısı",
+      capDetail: "Detay Çalışması — Form &amp; Yüzey",
+      capGrid: "Ön Izgara — Karakteristik Detay",
+      capTech: "Teknik Görünüm — Tampon Ring Sistemi",
+      f1Title: "Çağdaş Otomotiv Form Dili",
+      f1Desc: "Akıcı yüzey geçişleri ve minimal detay kullanımı ile modern otomotiv tasarımından ilham alan, eğlence parklarının dinamik atmosferine uyum sağlayan rafine bir form dili.",
+      f2Title: "İnce LED Aydınlatma",
+      f2Desc: "Ön yüzde yer alan ince LED aydınlatma detayları araca karakteristik bir kimlik kazandırırken, düşük enerji tüketimi ve uzun ömürlü kullanım avantajı sunar.",
+      f3Title: "Elastomer Tampon Ring",
+      f3Desc: "Alt kısımda yer alan geniş elastomer tampon ring, çarpışma enerjisini dağıtarak kullanıcı güvenliğini artırır ve parkur üzerindeki sürüş stabilitesini destekler.",
+      f4Title: "Tek Parça Ergonomik Kabin",
+      f4Desc: "Tek parça kabin yapısı üretimde maliyet avantajı ve dayanıklılık sağlar; oturma pozisyonu ve direksiyon açısı optimum sürüş kontrolü için ergonomik biçimde konumlandırılmıştır."
     }
   },
 
@@ -459,6 +489,11 @@ const I18N = {
         meta1: "2022", meta2: "Retail / Public Space",
         title: "KMEM Pop-up Store",
         desc: "Designed for Kurukahveci Mehmet Efendi, this pop-up store reinterprets the brand's traditional coffee culture through a modern, experience-driven retail approach. Its circular form provides multi-directional access for maximum visibility in open-air malls. A warm material palette, strong brand language and sustainable details aim to deliver not just a product but an interactive, memorable coffee experience."
+      },
+      togg: {
+        meta1: "2024", meta2: "Amusement Vehicle",
+        title: "TOGG Bumper Car",
+        desc: "A bumper car concept that reinterprets the classic amusement-park experience through a contemporary automotive design language. Slim LED lighting, an impact-absorbing elastomer bumper ring and a single-piece ergonomic cabin bring function and aesthetics together."
       }
     },
     about: {
@@ -562,6 +597,7 @@ const I18N = {
       crea: "Crea Light — Halil Utku Şimşek",
       beo:  "Beo Minisaw — Halil Utku Şimşek",
       fold: "Foldesk Lamp — Halil Utku Şimşek",
+      togg: "TOGG Bumper Car — Halil Utku Şimşek",
       salm: "Salmakis Yachts — Princess Melda & 45m Gulet — Halil Utku Şimşek"
     },
     proj_detail: {
@@ -759,6 +795,30 @@ const I18N = {
       f3Desc: "Measured pairing of natural wood, light-toned upholstery and metal hardware — interpreting luxury yacht aesthetics through a durable, refined palette aligned with real production conditions.",
       f4Title: "Render &amp; Presentation Imagery",
       f4Desc: "High-quality renders and presentation visuals produced in KeyShot and Figma; cinematic frames that strengthen the project's visual narrative and accelerate decision-making."
+    },
+    togg: {
+      breadcrumb: "TOGG Bumper Car",
+      badge: "Amusement Vehicle",
+      year: "2024 · Automotive-Inspired",
+      title: "TOGG Bumper Car<br/><em>A Modern Amusement-Park Concept</em>",
+      overview: "<strong>TOGG Bumper Car — A Modern Amusement-Park Concept</strong><br/><br/>This project is a bumper car concept that reinterprets the classic amusement-park experience through a contemporary design language. User experience, safety, manufacturability and aesthetic balance were addressed together throughout the design process.<br/><br/>The form language draws inspiration from current automotive trends with its flowing surface transitions and minimal detailing, while staying tuned to the dynamic, colourful atmosphere of theme parks. Slim LED lighting elements at the front give the vehicle a distinctive identity, while offering low energy consumption and long service life.<br/><br/>The body structure is supported by an impact-absorbing bumper system designed to dissipate energy on impact and improve user safety. The wide elastomer bumper ring at the base increases the contact surface to soften collisions and supports driving stability on the track.<br/><br/>Inside, ergonomics take priority — seating position and steering angle are placed to deliver optimal driving control. The single-piece cabin structure provides a cost advantage in production while increasing durability.<br/><br/>The modelling process was carried out digitally, with surface quality and form accuracy optimised at high precision. The design has been technically structured so it can be carried from concept to production-ready form.<br/><br/>This work is a research and application study on how function and aesthetics can be developed together in entertainment equipment.",
+      stat1: "Front Lighting", stat2: "Bumper Ring", stat3: "Cabin Structure", stat4: "Driving Control",
+      capCover: "General View — Amusement-Park Atmosphere",
+      capRender: "3D Render — Full Body View",
+      capFront: "Front Fascia — LED Lighting Detail",
+      capSide: "Side View — Flowing Surface Transitions",
+      capTop: "Top View — Single-Piece Cabin Structure",
+      capDetail: "Detail Study — Form &amp; Surface",
+      capGrid: "Front Grille — Signature Detail",
+      capTech: "Technical View — Bumper Ring System",
+      f1Title: "Contemporary Automotive Form Language",
+      f1Desc: "A refined form language inspired by modern automotive design, with flowing surface transitions and minimal detailing tuned to the dynamic atmosphere of theme parks.",
+      f2Title: "Slim LED Lighting",
+      f2Desc: "Slim LED lighting elements on the front fascia give the vehicle a distinctive identity while offering low energy consumption and long service life.",
+      f3Title: "Elastomer Bumper Ring",
+      f3Desc: "The wide elastomer bumper ring at the base dissipates impact energy to improve user safety and supports driving stability across the track.",
+      f4Title: "Single-Piece Ergonomic Cabin",
+      f4Desc: "The single-piece cabin structure offers a cost advantage in production and increases durability; seat position and steering angle are placed ergonomically for optimal driving control."
     }
   }
 };

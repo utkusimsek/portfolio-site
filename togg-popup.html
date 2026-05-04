@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TOGG Çarpışan Araba — Halil Utku Şimşek</title>
+  <link rel="icon" type="image/webp" href="assets/logo.webp"/>
+  <link rel="icon" type="image/png" sizes="any" href="assets/logo.png"/>
+  <link rel="apple-touch-icon" href="assets/logo.png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="project.css"/>
+  <style>
+    /* TOGG gallery — render shots are tall (portrait composites), keep them contained */
+    .proj-gallery .gallery-item { aspect-ratio: 16/9; }
+    .proj-gallery .gallery-item.togg-tall { aspect-ratio: 9/16; }
+    .proj-gallery .gallery-item.togg-square { aspect-ratio: 4/3; }
+    .proj-gallery .gallery-item img { object-fit: contain; padding: 24px; }
+    .proj-gallery .gallery-item.gallery-cover img { object-fit: cover; padding: 0; }
+    .proj-gallery .gallery-row { gap: 18px; margin-bottom: 18px; }
+    @media (max-width: 768px) {
+      .proj-gallery .gallery-item,
+      .proj-gallery .gallery-item.togg-tall,
+      .proj-gallery .gallery-item.togg-square { aspect-ratio: 4/3; }
+      .proj-gallery .gallery-item img { padding: 14px; }
+    }
+
+    /* Long multi-paragraph overview — left-align for readability */
+    .proj-overview { text-align: left; max-width: 880px; }
+    .proj-overview-label { text-align: center; }
+    .proj-overview-text { font-size: 1rem; line-height: 1.8; }
+    .proj-overview-text > strong:first-child {
+      display: block;
+      font-family: var(--font-serif);
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--white);
+      text-align: center;
+      margin-bottom: 28px;
+      letter-spacing: .005em;
+    }
+  </style>
+  <script src="splash.js"></script>
+  <script defer src="i18n.js"></script>
+  <script defer src="protect.js"></script>
+  <script defer src="ripple.js"></script>
+</head>
+<body data-i18n-pagetitle="pageTitle.togg">
+
+  <!-- ─── SPLASH ─── -->
+  <div id="splash" aria-hidden="true">
+    <div class="splash-inner">
+      <svg class="splash-logo" viewBox="0 0 196 249" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="splashGrad" x1="-21.5" y1="10" x2="194" y2="177" gradientUnits="userSpaceOnUse">
+            <stop offset="0.015" stop-color="#fff" stop-opacity="0"/>
+            <stop offset="0.51"  stop-color="#fff" stop-opacity="0.95"/>
+            <stop offset="1"     stop-color="#fff" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <path class="splash-p splash-p1" d="M50.6351 2.81087C50.6351 2.08199 49.8516 1.62163 49.2149 1.97636L19.9038 18.3053C16.8766 19.9917 15 23.1853 15 26.6505V148.52C15 152.175 17.085 155.509 20.3708 157.109L84.228 188.202C85.0859 188.619 85.9587 187.66 85.4616 186.845L52.7328 133.215C51.3609 130.967 50.6351 128.384 50.6351 125.751V2.81087Z" fill="url(#splashGrad)"/>
+        <path class="splash-p splash-p2" d="M145.365 2.81087C145.365 2.08199 146.148 1.62163 146.785 1.97636L176.096 18.3053C179.123 19.9917 181 23.1853 181 26.6505V148.52C181 152.175 178.915 155.509 175.629 157.109L111.772 188.202C110.914 188.619 110.041 187.66 110.538 186.845L143.267 133.215C144.639 130.967 145.365 128.384 145.365 125.751V2.81087Z" fill="url(#splashGrad)"/>
+        <path class="splash-p splash-p3" d="M137.706 0C138.385 0 138.847 0.688298 138.591 1.31672L115.721 57.2663C114.314 60.7083 113.59 64.3912 113.59 68.1097V122.704C113.59 124.201 113.414 125.693 113.066 127.149L98.4836 188.116C98.2498 189.093 96.8593 189.093 96.6255 188.116L82.0429 127.149C81.6947 125.693 81.5188 124.201 81.5188 122.704V67.8047C81.5188 64.2842 80.8701 60.7938 79.6052 57.5083L57.965 1.29849C57.7241 0.672737 58.186 0 58.8565 0L137.706 0Z" fill="url(#splashGrad)"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- ── Nav ── -->
+  <nav id="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo"><img src="assets/logo.webp" alt="HUŞ Logo" class="site-logo-img"></a>
+      <div class="nav-links">
+        <a href="index.html#work" data-i18n="nav.projects">Projeler</a>
+        <a href="index.html#about" data-i18n="nav.about">Hakkımda</a>
+        <a href="index.html#contact" data-i18n="nav.contact">İletişim</a>
+      </div>
+      <div class="nav-right">
+        <button class="lang-toggle" id="langToggle" data-i18n-aria="nav.langAria" aria-label="Dil değiştir">
+          <span class="lang-current">EN</span>
+        </button>
+        <button class="theme-toggle" id="themeToggle" data-i18n-aria="nav.themeAria" aria-label="Tema değiştir">
+          <span class="theme-icon theme-icon-dark">
+            <svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M10 2v2M10 16v2M2 10h2M16 10h2M4.22 4.22l1.42 1.42M14.36 14.36l1.42 1.42M4.22 15.78l1.42-1.42M14.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </span>
+          <span class="theme-icon theme-icon-light">
+            <svg viewBox="0 0 20 20" fill="none"><path d="M17 11.5A7 7 0 1 1 8.5 3a5 5 0 0 0 8.5 8.5z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <span class="theme-label">Açık Mod</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ── Hero ── -->
+  <section class="proj-hero">
+    <div class="proj-hero-img">
+      <img src="assets/togg-cover.jpg" alt="TOGG Çarpışan Araba" class="proj-cover-img" fetchpriority="high">
+      <div class="proj-hero-overlay"></div>
+    </div>
+    <div class="proj-hero-content reveal-up">
+      <div class="proj-breadcrumb">
+        <a href="index.html" data-i18n="proj_detail.breadcrumbHome">Ana Sayfa</a>
+        <span>›</span>
+        <a href="index.html#work" data-i18n="proj_detail.breadcrumbProjects">Projeler</a>
+        <span>›</span>
+        <span data-i18n="togg.breadcrumb">TOGG Çarpışan Araba</span>
+      </div>
+      <div class="proj-badge-row">
+        <span class="proj-badge" data-i18n="togg.badge">Eğlence Aracı</span>
+        <span class="proj-badge-year" data-i18n="togg.year">2024 · Otomotiv İlhamlı</span>
+      </div>
+      <h1 class="proj-title" data-i18n="togg.title">TOGG Çarpışan Araba<br/><em>Modern Lunapark Konsepti</em></h1>
+      <div class="proj-tags">
+        <span>Rhino</span><span>KeyShot</span><span>CMF</span><span>Otomotiv Tasarım</span>
+      </div>
+    </div>
+    <div class="proj-scroll-hint">
+      <span data-i18n="proj_detail.scroll">Aşağı Kaydır</span>
+      <div class="proj-scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ── Overview ── -->
+  <section class="proj-section">
+    <div class="proj-container">
+      <div class="proj-overview reveal-up">
+        <div class="proj-overview-label" data-i18n="proj_detail.overviewLabel">Proje Özeti</div>
+        <p class="proj-overview-text" data-i18n="togg.overview">
+          <strong>TOGG Çarpışan Araba — Modern Lunapark Konsepti</strong><br/><br/>
+          Bu proje, klasik lunapark deneyimini modern tasarım diliyle yeniden yorumlamayı amaçlayan bir çarpışan araba konseptidir. Tasarım sürecinde kullanıcı deneyimi, güvenlik, üretilebilirlik ve estetik dengesi birlikte ele alınmıştır.<br/><br/>
+          Form dili, akıcı yüzey geçişleri ve minimal detay kullanımı ile çağdaş otomotiv tasarım trendlerinden ilham alırken, eğlence parklarının dinamik ve renkli atmosferine uyum sağlayacak şekilde kurgulanmıştır. Ön yüzde yer alan ince LED aydınlatma detayları, araca karakteristik bir kimlik kazandırırken aynı zamanda düşük enerji tüketimi ve uzun ömürlü kullanım avantajı sunar.<br/><br/>
+          Gövde yapısı, darbe absorbe edici tampon sistemi ile desteklenmiş olup, çarpışma anında enerjiyi dağıtarak kullanıcı güvenliğini artıracak şekilde tasarlanmıştır. Alt kısımda kullanılan geniş elastomer tampon ring, hem temas yüzeyini artırarak çarpışma etkisini azaltır hem de parkur üzerindeki sürüş stabilitesini destekler.<br/><br/>
+          İç mekanda ergonomi ön planda tutulmuş, kullanıcı oturma pozisyonu ve direksiyon açısı optimum sürüş kontrolü sağlayacak şekilde konumlandırılmıştır. Tek parça kabin yapısı, üretim sürecinde maliyet avantajı sağlarken aynı zamanda dayanıklılığı artırır.<br/><br/>
+          Modelleme süreci dijital ortamda gerçekleştirilmiş olup, yüzey kalitesi ve form doğruluğu yüksek hassasiyetle optimize edilmiştir. Tasarım, konsept aşamasından üretime uygun hale getirilebilecek şekilde teknik olarak kurgulanmıştır.<br/><br/>
+          Bu çalışma, eğlence ekipmanlarında fonksiyon ve estetiğin birlikte nasıl geliştirilebileceğine dair bir araştırma ve uygulama örneğidir.
+        </p>
+      </div>
+
+      <!-- Stats row -->
+      <div class="proj-stats reveal-up">
+        <div class="proj-stat"><span class="proj-stat-num">İnce LED</span><span class="proj-stat-label" data-i18n="togg.stat1">Ön Aydınlatma</span></div>
+        <div class="proj-stat"><span class="proj-stat-num">Elastomer</span><span class="proj-stat-label" data-i18n="togg.stat2">Tampon Ring</span></div>
+        <div class="proj-stat"><span class="proj-stat-num">Tek Parça</span><span class="proj-stat-label" data-i18n="togg.stat3">Kabin Yapısı</span></div>
+        <div class="proj-stat"><span class="proj-stat-num">Ergonomik</span><span class="proj-stat-label" data-i18n="togg.stat4">Sürüş Kontrolü</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Gallery grid ── -->
+  <section class="proj-gallery">
+    <div class="proj-container">
+
+      <!-- Hero lifestyle render -->
+      <div class="gallery-row gallery-full reveal-up">
+        <div class="gallery-item gallery-cover">
+          <img src="assets/togg-cover.jpg" alt="TOGG Çarpışan Araba — Genel Görünüm" loading="lazy" decoding="async">
+          <div class="gallery-caption" data-i18n="togg.capCover">Genel Görünüm — Lunapark Atmosferi</div>
+        </div>
+      </div>
+
+      <!-- Render full -->
+      <div class="gallery-row gallery-full reveal-up">
+        <div class="gallery-item gallery-bg-light togg-tall">
+          <img src="assets/togg-render.jpg" alt="TOGG Çarpışan Araba — Render" loading="lazy" decoding="async">
+          <div class="gallery-caption gallery-caption-dark" data-i18n="togg.capRender">3D Render — Tam Boy Görünüm</div>
+        </div>
+      </div>
+
+      <!-- Front large -->
+      <div class="gallery-row gallery-full reveal-up">
+        <div class="gallery-item gallery-bg-light togg-tall">
+          <img src="assets/togg-front.jpg" alt="TOGG Çarpışan Araba — Önden" loading="lazy" decoding="async">
+          <div class="gallery-caption gallery-caption-dark" data-i18n="togg.capFront">Ön Cephe — LED Aydınlatma Detayı</div>
+        </div>
+      </div>
+
+      <!-- Side + Top half-width -->
+      <div class="gallery-row gallery-half reveal-up">
+        <div class="gallery-item gallery-bg-light">
+          <img src="assets/togg-side.jpg" alt="TOGG Çarpışan Araba — Yandan" loading="lazy" decoding="async">
+          <div class="gallery-caption gallery-caption-dark" data-i18n="togg.capSide">Yandan — Akıcı Yüzey Geçişleri</div>
+        </div>
+        <div class="gallery-item gallery-bg-light">
+          <img src="assets/togg-top.jpg" alt="TOGG Çarpışan Araba — Üstten" loading="lazy" decoding="async">
+          <div class="gallery-caption gallery-caption-dark" data-i18n="togg.capTop">Üstten — Tek Parça Kabin Yapısı</div>
+        </div>
+      </div>
+
+      <!-- Detail full -->
+      <div class="gallery-row gallery-full reveal-up">
+        <div class="gallery-item gallery-bg-light togg-tall">
+          <img src="assets/togg-detail.jpg" alt="TOGG Çarpışan Araba — Detay" loading="lazy" decoding="async">
+          <div class="gallery-caption gallery-caption-dark" data-i18n="togg.capDetail">Detay Çalışması — Form & Yüzey</div>
+        </div>
+      </div>
+
+      <!-- Grid + Tech half-width -->
+      <div class="gallery-row gallery-half reveal-up">
+        <div class="gallery-item gallery-bg-light">
+          <img src="assets/togg-grid.jpg" alt="TOGG Çarpışan Araba — Izgara Detayı" loading="lazy" decoding="async">
+          <div class="gallery-caption gallery-caption-dark" data-i18n="togg.capGrid">Ön Izgara — Karakteristik Detay</div>
+        </div>
+        <div class="gallery-item gallery-bg-dark">
+          <img src="assets/togg-tech.jpg" alt="TOGG Çarpışan Araba — Teknik" loading="lazy" decoding="async">
+          <div class="gallery-caption" data-i18n="togg.capTech">Teknik Görünüm — Tampon Ring Sistemi</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── Key features ── -->
+  <section class="proj-section proj-features-section">
+    <div class="proj-container">
+      <h2 class="proj-section-title reveal-up" data-i18n="proj_detail.featuresTitle">Tasarım Özellikleri</h2>
+      <div class="proj-features reveal-up">
+        <div class="proj-feature">
+          <div class="proj-feature-icon">◐</div>
+          <h4 data-i18n="togg.f1Title">Çağdaş Otomotiv Form Dili</h4>
+          <p data-i18n="togg.f1Desc">Akıcı yüzey geçişleri ve minimal detay kullanımı ile modern otomotiv tasarımından ilham alan, eğlence parklarının dinamik atmosferine uyum sağlayan rafine bir form dili.</p>
+        </div>
+        <div class="proj-feature">
+          <div class="proj-feature-icon">☀</div>
+          <h4 data-i18n="togg.f2Title">İnce LED Aydınlatma</h4>
+          <p data-i18n="togg.f2Desc">Ön yüzde yer alan ince LED aydınlatma detayları araca karakteristik bir kimlik kazandırırken, düşük enerji tüketimi ve uzun ömürlü kullanım avantajı sunar.</p>
+        </div>
+        <div class="proj-feature">
+          <div class="proj-feature-icon">◯</div>
+          <h4 data-i18n="togg.f3Title">Elastomer Tampon Ring</h4>
+          <p data-i18n="togg.f3Desc">Alt kısımda yer alan geniş elastomer tampon ring, çarpışma enerjisini dağıtarak kullanıcı güvenliğini artırır ve parkur üzerindeki sürüş stabilitesini destekler.</p>
+        </div>
+        <div class="proj-feature">
+          <div class="proj-feature-icon">⌬</div>
+          <h4 data-i18n="togg.f4Title">Tek Parça Ergonomik Kabin</h4>
+          <p data-i18n="togg.f4Desc">Tek parça kabin yapısı üretimde maliyet avantajı ve dayanıklılık sağlar; oturma pozisyonu ve direksiyon açısı optimum sürüş kontrolü için ergonomik biçimde konumlandırılmıştır.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Back link ── -->
+  <section class="proj-back-section">
+    <div class="proj-container">
+      <a href="index.html#work" class="proj-back-btn reveal-up" data-i18n="proj_detail.back">← Tüm Projelere Dön</a>
+    </div>
+  </section>
+
+  <!-- ── Footer ── -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <img src="assets/logo.webp" alt="HUŞ Logo" class="site-logo-img footer-logo-img" loading="lazy" decoding="async">
+      <p data-i18n="proj_detail.footer">© 2026 Halil Utku Şimşek — Tüm hakları saklıdır.</p>
+      <a href="telif.html" class="footer-legal" data-i18n="footer.legal">Telif Hakkı</a>
+    </div>
+  </footer>
+
+  <script>
+    /* Cover img Ken Burns */
+    const coverImg = document.querySelector('.proj-cover-img');
+    if(coverImg){ coverImg.addEventListener('load',()=>coverImg.classList.add('loaded')); if(coverImg.complete) coverImg.classList.add('loaded'); }
+
+    /* Theme */
+    (function(){
+      const btn   = document.getElementById('themeToggle');
+      const label = btn.querySelector('.theme-label');
+      const saved = localStorage.getItem('theme');
+      if(saved==='light'){ document.body.classList.add('light'); label.textContent='Koyu Mod'; }
+      btn.addEventListener('click',()=>{
+        const isLight = document.body.classList.toggle('light');
+        label.textContent = isLight ? 'Koyu Mod' : 'Açık Mod';
+        localStorage.setItem('theme', isLight ? 'light' : 'dark');
+      });
+    })();
+
+    /* Nav scroll */
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>40),{passive:true});
+
+    /* Scroll reveal */
+    const io = new IntersectionObserver(entries=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in-view'); io.unobserve(e.target); }});
+    },{ threshold:0.1, rootMargin:'0px 0px -50px 0px' });
+    document.querySelectorAll('.reveal-up').forEach(el=>io.observe(el));
+
+    /* Gallery lightbox */
+    document.querySelectorAll('.gallery-item img').forEach(img=>{
+      img.style.cursor='zoom-in';
+      img.addEventListener('click',()=>{
+        const overlay=document.createElement('div');
+        overlay.className='lightbox-overlay';
+        overlay.innerHTML=`<div class="lightbox-inner"><img src="${img.src}" alt="${img.alt}" loading="lazy" decoding="async"><button class="lightbox-close">✕</button></div>`;
+        document.body.appendChild(overlay);
+        requestAnimationFrame(()=>overlay.classList.add('active'));
+        const close=()=>{ overlay.classList.remove('active'); setTimeout(()=>overlay.remove(),300); };
+        overlay.querySelector('.lightbox-close').addEventListener('click',close);
+        overlay.addEventListener('click',e=>{ if(e.target===overlay) close(); });
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1267,6 +1267,7 @@ body.light .project-card:hover {
 .p4 { background: linear-gradient(135deg, #1c1a10 0%, #2e2a18 50%, #3a3020 100%); }
 .p5 { background: linear-gradient(135deg, #1a1010 0%, #2e1818 50%, #3a1010 100%); }
 .p6 { background: linear-gradient(135deg, #101820 0%, #182030 50%, #0e1c2a 100%); }
+.p9 { background: linear-gradient(135deg, #0d1018 0%, #181e2a 50%, #0a1422 100%); }
 /* Kentsel */
 .p7 { background: linear-gradient(135deg, #0e1e10 0%, #162816 50%, #0a200c 100%); }
 .p8 { background: linear-gradient(135deg, #1e1010 0%, #301818 50%, #3a1414 100%); }
