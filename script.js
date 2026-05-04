@@ -379,7 +379,7 @@ if (matchMedia('(hover: hover) and (pointer: fine)').matches && !reduceMotion) {
   if (!section) return;
   const card = section.querySelector('.reel-card');
   const header = section.querySelector('.reel-header'); // opsiyonel
-  const video = section.querySelector('.reel-video');
+  // Video oynatma kontrolü artık reel rotator'da — burada sadece tilt/scale.
   if (!card) return;
 
   const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -428,13 +428,7 @@ if (matchMedia('(hover: hover) and (pointer: fine)').matches && !reduceMotion) {
   if ('IntersectionObserver' in window) {
     const obs = new IntersectionObserver(([e]) => {
       active = e.isIntersecting;
-      if (active) {
-        update();  // anlık snap
-        // Video play/pause — mobilde batarya tasarrufu
-        if (video && video.paused) video.play().catch(() => {});
-      } else {
-        if (video && !video.paused) video.pause();
-      }
+      if (active) update();
     }, { rootMargin: '200px 0px' });
     obs.observe(section);
   } else {
@@ -447,11 +441,121 @@ if (matchMedia('(hover: hover) and (pointer: fine)').matches && !reduceMotion) {
     isMobile = window.innerWidth <= 768;
     update();
   }, { passive: true });
-  // Tab arkaplanda → video duraklat
-  document.addEventListener('visibilitychange', () => {
-    if (!video) return;
-    if (document.hidden) video.pause();
-    else if (active) video.play().catch(() => {});
+})();
+
+/* ── Showreel Reel — 6 video crossfade rotator ───────────────────────────
+   Tablet kartının içinde 6 proje videosu sırayla oynar; her birinin doğal
+   süresine göre advance eder, sıradakini ~1.2 sn önceden buffer'a alır,
+   böylece geçişler donmasız ve cinematic olur. */
+(function initShowreelRotator() {
+  const deck = document.getElementById('reelDeck');
+  const barEl = document.getElementById('reelProgressBar');
+  if (!deck) return;
+
+  const layers = Array.from(deck.querySelectorAll('.reel-video'));
+  if (!layers.length) return;
+
+  const SAFETY_MS    = 9000;
+  const FADE_MS      = 1400;
+  const PRELOAD_LEAD = 1200;
+
+  layers.forEach(v => {
+    if (!v.src && v.dataset.src) v.src = v.dataset.src;
+    v.muted = true;
+    v.playsInline = true;
+    v.loop = false;
+    v.setAttribute('disablepictureinpicture', '');
+    v.setAttribute('disableremoteplayback', '');
   });
+
+  let current = 0, timer = null, raf = null;
+  let inView = false;
+
+  function startProgress(durationMs) {
+    cancelAnimationFrame(raf);
+    if (!barEl) return;
+    const start = performance.now();
+    (function step(t) {
+      const p = Math.min(((t || performance.now()) - start) / durationMs, 1);
+      barEl.style.width = (p * 100) + '%';
+      if (p < 1) raf = requestAnimationFrame(step);
+    })();
+  }
+
+  function preload(idx) {
+    const v = layers[idx];
+    if (!v) return;
+    if (v.preload !== 'auto') v.preload = 'auto';
+    try { v.load(); } catch (e) { /* noop */ }
+  }
+
+  function advance() { show((current + 1) % layers.length); }
+
+  function show(idx) {
+    clearTimeout(timer);
+    const prev = current;
+    current = idx;
+    const prevLayer = layers[prev];
+    const nextLayer = layers[idx];
+
+    nextLayer.currentTime = 0;
+    if (inView) {
+      const p = nextLayer.play();
+      if (p && p.catch) p.catch(() => {});
+    }
+
+    nextLayer.classList.add('is-active');
+    if (prev !== idx) {
+      setTimeout(() => {
+        prevLayer.classList.remove('is-active');
+        setTimeout(() => { try { prevLayer.pause(); } catch (e) {} }, FADE_MS + 60);
+      }, 20);
+    }
+
+    preload((idx + 1) % layers.length);
+
+    function scheduleNext() {
+      const dur = isFinite(nextLayer.duration) && nextLayer.duration > 0
+        ? nextLayer.duration * 1000
+        : SAFETY_MS;
+      const wait = Math.max(2200, dur - PRELOAD_LEAD);
+      startProgress(wait);
+      timer = setTimeout(advance, wait);
+    }
+
+    if (nextLayer.readyState >= 1 && isFinite(nextLayer.duration)) {
+      scheduleNext();
+    } else {
+      const onMeta = () => { nextLayer.removeEventListener('loadedmetadata', onMeta); scheduleNext(); };
+      nextLayer.addEventListener('loadedmetadata', onMeta);
+      timer = setTimeout(() => {
+        nextLayer.removeEventListener('loadedmetadata', onMeta);
+        advance();
+      }, SAFETY_MS);
+      startProgress(SAFETY_MS);
+    }
+  }
+
+  if ('IntersectionObserver' in window) {
+    const obs = new IntersectionObserver(([e]) => {
+      inView = e.isIntersecting;
+      const v = layers[current];
+      if (!v) return;
+      if (inView) v.play().catch(() => {});
+      else v.pause();
+    }, { rootMargin: '200px 0px' });
+    obs.observe(deck);
+  } else {
+    inView = true;
+  }
+
+  document.addEventListener('visibilitychange', () => {
+    const v = layers[current];
+    if (!v) return;
+    if (document.hidden) v.pause();
+    else if (inView) v.play().catch(() => {});
+  });
+
+  show(0);
 })();
 

@@ -112,16 +112,22 @@
     </div>
   </section>
 
-  <!-- ─── SHOWREEL — ContainerScroll vanilla port ─── -->
+  <!-- ─── SHOWREEL — ContainerScroll + 6-video crossfade reel ─── -->
   <section id="showreel" class="reel-section">
     <div class="reel-inner">
       <div class="reel-card">
         <div class="reel-card-inner">
-          <video class="reel-video"
-                 src="assets/showreel.mp4"
-                 autoplay muted loop playsinline
-                 preload="metadata"
-                 aria-label="Tasarım showreel"></video>
+          <div class="reel-deck" id="reelDeck" aria-label="Tasarım showreel">
+            <video class="reel-video is-active" muted playsinline preload="auto"     data-src="assets/videos/showcase-01.mp4"></video>
+            <video class="reel-video"           muted playsinline preload="metadata" data-src="assets/videos/showcase-02.mp4"></video>
+            <video class="reel-video"           muted playsinline preload="metadata" data-src="assets/videos/showcase-03.mp4"></video>
+            <video class="reel-video"           muted playsinline preload="metadata" data-src="assets/videos/showcase-04.mp4"></video>
+            <video class="reel-video"           muted playsinline preload="metadata" data-src="assets/videos/showcase-05.mp4"></video>
+            <video class="reel-video"           muted playsinline preload="metadata" data-src="assets/videos/showcase-06.mp4"></video>
+          </div>
+          <div class="reel-progress" aria-hidden="true">
+            <span class="reel-progress-bar" id="reelProgressBar"></span>
+          </div>
         </div>
       </div>
     </div>
