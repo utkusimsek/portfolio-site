@@ -336,11 +336,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   /* JS blur değerlerini kontrol eder */
   transition: none;
 }
-.gooey-text.gooey-accent { color: var(--accent); }
-
 /* Light mode — beyaz koyu metne dönsün */
 body.light .gooey-text { color: #1a1a1a; }
-body.light .gooey-text.gooey-accent { color: var(--accent); }
 
 /* Reduced motion: blur'ları kapat, sadece basit fade */
 @media (prefers-reduced-motion: reduce) {

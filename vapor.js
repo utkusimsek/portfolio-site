@@ -13,9 +13,9 @@
   const text2 = document.getElementById('gooeyText2');
   if (!wrap || !text1 || !text2) return;
 
-  // ── Config ──
-  const morphTime    = 1.0;   // saniye, geçiş süresi
-  const cooldownTime = 0.45;  // saniye, geçiş sonrası bekleme
+  // ── Config (orijinal React komponentindeki defaultlar) ──
+  const morphTime    = 1.0;
+  const cooldownTime = 0.25;
 
   // i18n key'lerinden HTML'siz düz metin türet (showcase.title düz formu)
   // Hayal et. / Tasarla. / Gerçeğe dönüştür. (TR) | Imagine. / Design. / Bring it to life. (EN)
@@ -24,11 +24,6 @@
     return lang.startsWith('en')
       ? ['Imagine.', 'Design.', 'Bring it to life.']
       : ['Hayal et.', 'Tasarla.', 'Gerçeğe dönüştür.'];
-  }
-
-  // 3-metin döngüsünde ortadaki (Tasarla / Design) altın aksent ile vurgulanır
-  function isAccent(text) {
-    return text === 'Tasarla.' || text === 'Design.';
   }
 
   // ── State ──
@@ -42,10 +37,7 @@
   const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   // İlk metinleri yerleştir
-  function applyText(el, t) {
-    el.textContent = t;
-    el.classList.toggle('gooey-accent', isAccent(t));
-  }
+  function applyText(el, t) { el.textContent = t; }
   applyText(text1, texts[textIndex % texts.length]);
   applyText(text2, texts[(textIndex + 1) % texts.length]);
 
