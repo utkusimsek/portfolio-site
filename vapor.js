@@ -26,8 +26,21 @@
       : ['Hayal et.', 'Tasarla.', 'Gerçeğe dönüştür.'];
   }
 
+  // Her metnin kendi rengi — vurgulayıcı, marka paletinden:
+  //   1. Hayal et / Imagine     → beyaz (light mode'da koyu) — sade, başlangıç
+  //   2. Tasarla / Design       → altın (--accent #c9a96e) — marka çekirdeği
+  //   3. Gerçeğe dönüştür / ... → mor (--accent2 #7b6cf6) — dönüşüm, vurgu
+  // Gooey blur'lu morph sırasında threshold filter renkleri akışkanca harmanlar
+  function getColors() {
+    const isLight = document.body.classList.contains('light');
+    return isLight
+      ? ['#1a1a1a', '#c9a96e', '#5d4ed1']
+      : ['#ffffff', '#c9a96e', '#8b7df8'];
+  }
+
   // ── State ──
   let texts       = getTexts();
+  let colors      = getColors();
   let textIndex   = texts.length - 1;
   let time        = performance.now();
   let morph       = 0;
@@ -36,10 +49,13 @@
   let inView      = true;
   const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // İlk metinleri yerleştir
-  function applyText(el, t) { el.textContent = t; }
-  applyText(text1, texts[textIndex % texts.length]);
-  applyText(text2, texts[(textIndex + 1) % texts.length]);
+  // İlk metinleri ve renklerini yerleştir
+  function applyTextAt(el, idx) {
+    el.textContent = texts[idx];
+    el.style.color = colors[idx];
+  }
+  applyTextAt(text1, textIndex % texts.length);
+  applyTextAt(text2, (textIndex + 1) % texts.length);
 
   // ── Morph helpers ──
   // iOS Safari için filter + WebkitFilter ikisini de set et
@@ -111,8 +127,8 @@
     if (cooldown <= 0) {
       if (shouldIncrementIndex) {
         textIndex = (textIndex + 1) % texts.length;
-        applyText(text1, texts[textIndex % texts.length]);
-        applyText(text2, texts[(textIndex + 1) % texts.length]);
+        applyTextAt(text1, textIndex % texts.length);
+        applyTextAt(text2, (textIndex + 1) % texts.length);
       }
       reduceMotion ? doReducedFrame() : doMorph();
     } else {
@@ -145,16 +161,23 @@
     const newTexts = getTexts();
     if (newTexts[0] === texts[0]) return;
     texts = newTexts;
+    colors = getColors();
     textIndex = texts.length - 1;
-    applyText(text1, texts[textIndex % texts.length]);
-    applyText(text2, texts[(textIndex + 1) % texts.length]);
+    applyTextAt(text1, textIndex % texts.length);
+    applyTextAt(text2, (textIndex + 1) % texts.length);
     morph = 0;
     cooldown = cooldownTime;
   }
   window.__vaporRefreshLang = refreshLang; // i18n.js explicit hook (geriye dönük uyumluluk)
   new MutationObserver(refreshLang).observe(document.documentElement,
     { attributes: true, attributeFilter: ['lang'] });
-  // Theme değişikliği CSS'e bağlı, JS reset gerekmez
+
+  // Theme (light/dark) değişimi: renkleri yeniden uygula — mevcut indekslere göre
+  new MutationObserver(() => {
+    colors = getColors();
+    applyTextAt(text1, textIndex % texts.length);
+    applyTextAt(text2, (textIndex + 1) % texts.length);
+  }).observe(document.body, { attributes: true, attributeFilter: ['class'] });
 
   // Kick off (font yüklemesini bekle ki ilk frame'de doğru ölçü olsun)
   if (document.fonts && document.fonts.ready) {
