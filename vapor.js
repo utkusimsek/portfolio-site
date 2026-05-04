@@ -10,7 +10,7 @@
   const canvas = document.getElementById('vaporCanvas');
   if (!wrap || !canvas) return;
 
-  const ctx = canvas.getContext('2d');
+  const ctx = canvas.getContext('2d', { willReadFrequently: true });
 
   // ── Config ──
   function getTexts() {
@@ -102,13 +102,16 @@
   }
 
   // ── State ──
-  const DPR = Math.min(window.devicePixelRatio || 1, 2) * 1.5;
+  // DPR clamped to 2 — *1.5 multiplier dropped (was creating 5760px+ canvases on retina,
+  // causing main-thread lag from getImageData + per-particle fillRect at scale).
+  const DPR = Math.min(window.devicePixelRatio || 1, 2);
   let texts = getTexts();
   let colors = getColors();
   let fontSize = getBaseFontSize(); // createParticles içinde fit hesaplanır
   let transformedDensity = transformValue(DENSITY, [0, 10], [0.3, 1], true);
 
   let particles = [];
+  let particleSize = 1;
   let textBoundaries = null;
   let currentTextIndex = 0;
   let animationState = 'static'; // static | vaporizing | fadingIn | waiting
@@ -158,10 +161,10 @@
     const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
     const data = imageData.data;
 
-    // Sampling rate
-    const baseDPR = 3;
+    // Sampling rate — daha seyrek sample = daha az particle = daha az lag.
+    // Eski: sampleRate=1 her DPR'de → 30K+ particle. Şimdi DPR'ye göre 2-3 arası.
     const currentDPR = canvas.width / parseInt(canvas.style.width);
-    const sampleRate = Math.max(1, Math.round(currentDPR / baseDPR));
+    const sampleRate = Math.max(2, Math.round(currentDPR));
 
     particles = [];
     for (let y = 0; y < canvas.height; y += sampleRate) {
@@ -183,6 +186,8 @@
         }
       }
     }
+    // Particle pixel boyutu — sample seyrekse pixel da büyür ki yoğunluk korunsun
+    particleSize = Math.max(1, sampleRate / DPR);
     ctx.clearRect(0, 0, canvas.width, canvas.height);
   }
 
@@ -248,12 +253,13 @@
   function renderParticles() {
     ctx.save();
     ctx.scale(DPR, DPR);
+    const sz = particleSize;
     for (let i = 0, len = particles.length; i < len; i++) {
       const p = particles[i];
       if (p.opacity > 0) {
         const c = p.color.replace(/[\d.]+\)$/, p.opacity + ')');
         ctx.fillStyle = c;
-        ctx.fillRect(p.x / DPR, p.y / DPR, 1, 1);
+        ctx.fillRect(p.x / DPR, p.y / DPR, sz, sz);
       }
     }
     ctx.restore();
@@ -275,7 +281,7 @@
   // ── Animation loop ──
   function animate(currentTime) {
     if (!isInView) {
-      rafId = requestAnimationFrame(animate);
+      rafId = 0;            // tamamen dur — resume() yeniden başlatır
       return;
     }
     const dt = Math.min(0.05, (currentTime - lastTime) / 1000); // clamp dt
@@ -310,6 +316,7 @@
       fadeOpacity += (dt * 1000) / FADE_IN_DURATION;
       ctx.save();
       ctx.scale(DPR, DPR);
+      const sz = particleSize;
       for (let i = 0, len = particles.length; i < len; i++) {
         const p = particles[i];
         p.x = p.originalX;
@@ -317,7 +324,7 @@
         const o = Math.min(fadeOpacity, 1) * p.originalAlpha;
         const c = p.color.replace(/[\d.]+\)$/, o + ')');
         ctx.fillStyle = c;
-        ctx.fillRect(p.x / DPR, p.y / DPR, 1, 1);
+        ctx.fillRect(p.x / DPR, p.y / DPR, sz, sz);
       }
       ctx.restore();
       if (fadeOpacity >= 1) {
@@ -401,17 +408,32 @@
   const langObs = new MutationObserver(refreshLang);
   langObs.observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
 
-  // Görünürlük tabanlı duraklatma (battery save)
+  function resume() {
+    if (rafId) return;
+    lastTime = performance.now();
+    rafId = requestAnimationFrame(animate);
+  }
+
+  // Görünürlük tabanlı duraklatma (battery + main-thread save)
   if ('IntersectionObserver' in window) {
     const visObs = new IntersectionObserver(
-      ([e]) => { isInView = e.isIntersecting; },
+      ([e]) => {
+        isInView = e.isIntersecting;
+        if (isInView) resume();
+      },
       { threshold: 0 }
     );
     visObs.observe(wrap);
   }
 
-  // Tab arkaplanda → durdur
+  // Tab arkaplanda → durdur, geri gelince devam et
   document.addEventListener('visibilitychange', () => {
-    isInView = !document.hidden;
+    if (document.hidden) {
+      isInView = false;
+    } else {
+      // Tab geri geldi: viewport durumu varsayılan olarak true (IO yanlışsa düzeltir).
+      isInView = true;
+      resume();
+    }
   });
 })();
