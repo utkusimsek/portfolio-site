@@ -410,7 +410,16 @@ const I18N = {
       f3Title: "Elastomer Tampon Ring",
       f3Desc: "Alt kısımda yer alan geniş elastomer tampon ring, çarpışma enerjisini dağıtarak kullanıcı güvenliğini artırır. Tekrarlanan darbelerde formunu koruyan elastik malzeme; bakım aralığını uzatır, parkur üzerindeki sürüş stabilitesini ve temas yüzeyini birlikte iyileştirir.",
       f4Title: "Tek Parça Ergonomik Kabin",
-      f4Desc: "Tek parça kabin yapısı üretimde maliyet avantajı ve dayanıklılık sağlar — daha az birleşim, daha az zayıf nokta. Geniş giriş açıklığı, düşük eşik ve optimize oturma pozisyonu farklı yaş gruplarına konforlu erişim ve sürüş kontrolü sunar."
+      f4Desc: "Tek parça kabin yapısı üretimde maliyet avantajı ve dayanıklılık sağlar — daha az birleşim, daha az zayıf nokta. Geniş giriş açıklığı, düşük eşik ve optimize oturma pozisyonu farklı yaş gruplarına konforlu erişim ve sürüş kontrolü sunar.",
+      threeDLabel: "İnteraktif 3D Model",
+      threeDTitle: "Modeli Kendi Açından İncele",
+      threeDSubtitle: "Sürükle, döndür, yakınlaştır. Mobil cihazda <strong>AR modu</strong> ile aracı kendi mekânında ölçekli görüntüle.",
+      threeDLoading: "3D Model Yükleniyor...",
+      threeDError: "Model yüklenemedi. Sayfayı yenileyin veya bir süre sonra tekrar deneyin.",
+      threeDAR: "AR'da Gör",
+      threeDDrag: "Sürükle: Döndür",
+      threeDPan: "Sağ tık: Kaydır",
+      threeDZoom: "Tekerlek: Yakınlaştır"
     }
   },
 
@@ -816,7 +825,16 @@ const I18N = {
       f3Title: "Elastomer Bumper Ring",
       f3Desc: "The wide elastomer bumper ring at the base dissipates impact energy to protect the user. The elastic material holds its shape under repeated hits — extending maintenance intervals while improving both contact surface and on-track stability.",
       f4Title: "Single-Piece Ergonomic Cabin",
-      f4Desc: "The single-piece cabin offers a production cost advantage and durability — fewer joints means fewer weak points. A wide entry opening, low threshold and optimised seating position deliver comfortable access and driving control for different age groups."
+      f4Desc: "The single-piece cabin offers a production cost advantage and durability — fewer joints means fewer weak points. A wide entry opening, low threshold and optimised seating position deliver comfortable access and driving control for different age groups.",
+      threeDLabel: "Interactive 3D Model",
+      threeDTitle: "Explore the Model from Your Angle",
+      threeDSubtitle: "Drag, rotate, zoom. On mobile, view the vehicle to scale in your own space with <strong>AR mode</strong>.",
+      threeDLoading: "Loading 3D Model...",
+      threeDError: "The model could not be loaded. Refresh the page or try again later.",
+      threeDAR: "View in AR",
+      threeDDrag: "Drag: Rotate",
+      threeDPan: "Right click: Pan",
+      threeDZoom: "Wheel: Zoom"
     }
   }
 };
