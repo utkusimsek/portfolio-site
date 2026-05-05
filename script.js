@@ -457,7 +457,7 @@ if (matchMedia('(hover: hover) and (pointer: fine)').matches && !reduceMotion) {
 
   const SAFETY_MS    = 9000;
   const FADE_MS      = 1400;
-  const PRELOAD_LEAD = 1200;
+  const PRELOAD_LEAD = 3000;
 
   layers.forEach(v => {
     if (!v.src && v.dataset.src) v.src = v.dataset.src;
@@ -513,6 +513,7 @@ if (matchMedia('(hover: hover) and (pointer: fine)').matches && !reduceMotion) {
     }
 
     preload((idx + 1) % layers.length);
+    preload((idx + 2) % layers.length);
 
     function scheduleNext() {
       const dur = isFinite(nextLayer.duration) && nextLayer.duration > 0
