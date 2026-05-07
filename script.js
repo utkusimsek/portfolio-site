@@ -459,14 +459,22 @@ if (matchMedia('(hover: hover) and (pointer: fine)').matches && !reduceMotion) {
   const FADE_MS      = 1400;
   const PRELOAD_LEAD = 3000;
 
+  // Configure all videos but DON'T set src yet — that would trigger 7 parallel
+  // metadata requests on page load. We attach src lazily when each video is
+  // about to play (or immediately for the first one).
   layers.forEach(v => {
-    if (!v.src && v.dataset.src) v.src = v.dataset.src;
     v.muted = true;
     v.playsInline = true;
     v.loop = false;
     v.setAttribute('disablepictureinpicture', '');
     v.setAttribute('disableremoteplayback', '');
   });
+
+  // Eagerly load only the first one — it's the visible content above the fold.
+  if (layers[0] && !layers[0].src && layers[0].dataset.src) {
+    layers[0].src = layers[0].dataset.src;
+    layers[0].preload = 'auto';
+  }
 
   let current = 0, timer = null, raf = null;
   let inView = false;
@@ -485,6 +493,8 @@ if (matchMedia('(hover: hover) and (pointer: fine)').matches && !reduceMotion) {
   function preload(idx) {
     const v = layers[idx];
     if (!v) return;
+    // Lazy src attach — first time this video is needed
+    if (!v.src && v.dataset.src) v.src = v.dataset.src;
     if (v.preload !== 'auto') v.preload = 'auto';
     try { v.load(); } catch (e) { /* noop */ }
   }

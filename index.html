@@ -7,15 +7,28 @@
   <link rel="icon" type="image/webp" href="assets/logo.webp"/>
   <link rel="icon" type="image/png" sizes="any" href="assets/logo.png"/>
   <link rel="apple-touch-icon" href="assets/logo.png"/>
-  <script src="splash.js"></script>
+
+  <!-- Critical resource preloads — speeds up LCP (Largest Contentful Paint) -->
+  <link rel="preload" as="image" href="assets/logo.webp" fetchpriority="high"/>
+  <link rel="preload" as="image" href="assets/pb-cover.webp" fetchpriority="high"/>
+  <link rel="preload" as="video" href="assets/videos/showcase-07.mp4" type="video/mp4"/>
+  <link rel="preload" as="style" href="style.css"/>
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- Use media trick to load fonts non-render-blocking, then swap -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" media="print" onload="this.media='all'"/>
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/></noscript>
+
+  <!-- Splash inline — must run synchronously before body paints (theme flash, splash-skip class) -->
+  <script>(function(){try{if(localStorage.getItem('theme')==='light')document.documentElement.classList.add('pre-light')}catch(_){}var skip=false;try{skip=sessionStorage.getItem('splashShown')==='1'}catch(_){}function removeSplashNow(){var s=document.getElementById('splash');if(s&&s.parentNode)s.parentNode.removeChild(s)}if(skip){document.documentElement.classList.add('splash-skip');if(document.readyState!=='loading')removeSplashNow();else document.addEventListener('DOMContentLoaded',removeSplashNow);return}try{sessionStorage.setItem('splashShown','1')}catch(_){}var MIN_MS=1000,MAX_MS=3500,startedAt=performance.now(),faded=false;function fadeOut(){if(faded)return;faded=true;var s=document.getElementById('splash');if(!s)return;s.classList.add('splash-out');setTimeout(function(){if(s.parentNode)s.parentNode.removeChild(s)},500)}function scheduleFade(){var e=performance.now()-startedAt;setTimeout(fadeOut,Math.max(0,MIN_MS-e))}if(document.readyState==='complete')scheduleFade();else{window.addEventListener('load',scheduleFade);setTimeout(fadeOut,MAX_MS)}})();</script>
+
   <script defer src="i18n.js"></script>
   <script defer src="protect.js"></script>
   <script defer src="ripple.js"></script>
   <script defer src="drag.js"></script>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
   <!-- Google reCAPTCHA v2 — yalnızca contact form viewport'a girince yüklenir
        (lazy load → ilk paint'i bloklamaz, ana sayfa daha hızlı) -->
 </head>
