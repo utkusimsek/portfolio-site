@@ -1603,7 +1603,9 @@ body.light .project-card:hover {
 .project-card:hover .project-info h3 { color: var(--accent); }
 .project-info p { font-size: .9rem; line-height: 1.7; color: var(--text-muted); margin-bottom: 20px; }
 /* Project tags — Safari pill stilinde, sessiz ve smooth */
-.project-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+/* Yazılım/program tag'leri gizli — proje sayfalarında ve kartlarda
+   hangi araçların kullanıldığını ifşa etmiyoruz */
+.project-tags, .proj-tags { display: none !important; }
 .project-tags span {
   font-size: .65rem; font-weight: 600;
   letter-spacing: .1em; text-transform: uppercase;

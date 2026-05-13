@@ -170,7 +170,7 @@
   </style>
   <!-- Splash inline — must run synchronously before body paints -->
   <script>(function(){try{if(localStorage.getItem('theme')==='light')document.documentElement.classList.add('pre-light')}catch(_){}var skip=false;try{skip=sessionStorage.getItem('splashShown')==='1'}catch(_){}function removeSplashNow(){var s=document.getElementById('splash');if(s&&s.parentNode)s.parentNode.removeChild(s)}if(skip){document.documentElement.classList.add('splash-skip');if(document.readyState!=='loading')removeSplashNow();else document.addEventListener('DOMContentLoaded',removeSplashNow);return}try{sessionStorage.setItem('splashShown','1')}catch(_){}var MIN_MS=1000,MAX_MS=3500,startedAt=performance.now(),faded=false;function fadeOut(){if(faded)return;faded=true;var s=document.getElementById('splash');if(!s)return;s.classList.add('splash-out');setTimeout(function(){if(s.parentNode)s.parentNode.removeChild(s)},500)}function scheduleFade(){var e=performance.now()-startedAt;setTimeout(fadeOut,Math.max(0,MIN_MS-e))}if(document.readyState==='complete')scheduleFade();else{window.addEventListener('load',scheduleFade);setTimeout(fadeOut,MAX_MS)}})();</script>
-  <script defer src="i18n.js"></script>
+  <script defer src="i18n.js?v=20260513c"></script>
   <script defer src="protect.js"></script>
   <script defer src="ripple.js"></script>
 </head>
