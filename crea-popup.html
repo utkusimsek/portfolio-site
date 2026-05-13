@@ -12,7 +12,102 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="style.css"/>
   <link rel="stylesheet" href="project.css"/>
+  <!-- Google model-viewer — interactive 3D component (~70KB, lazy) -->
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js" defer></script>
   <style>
+    /* ── 3D Viewer section — sitenin tasarım dili ile uyumlu ── */
+    .proj-3d { padding: 100px 0; background: var(--bg); }
+    .proj-3d-header { text-align: center; max-width: 720px; margin: 0 auto 48px; }
+    .proj-3d-label {
+      font-size: .65rem; font-weight: 700;
+      letter-spacing: .16em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 16px;
+    }
+    .proj-3d-title {
+      font-family: var(--font-serif);
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 700; line-height: 1.15;
+      color: var(--white); margin-bottom: 14px;
+    }
+    .proj-3d-subtitle {
+      font-size: .95rem; line-height: 1.7;
+      color: var(--text-muted);
+    }
+    .proj-3d-stage {
+      position: relative;
+      aspect-ratio: 21/10;
+      min-height: 420px;
+      border-radius: 24px;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse at top, #1a1a20 0%, #0a0a0b 70%),
+        var(--bg);
+      border: 1px solid var(--glass-border);
+      box-shadow: var(--glass-shadow-lg);
+    }
+    @media (max-width: 768px) {
+      .proj-3d-stage { aspect-ratio: 4/5; min-height: 480px; }
+    }
+    model-viewer {
+      width: 100%; height: 100%;
+      background-color: transparent;
+      --poster-color: transparent;
+      --progress-bar-color: var(--accent);
+      --progress-bar-height: 2px;
+    }
+    .proj-3d-loading {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 18px; pointer-events: none;
+      background: rgba(10,10,11,.35);
+      backdrop-filter: blur(2px);
+      transition: opacity .5s var(--ease-out-expo);
+      z-index: 3;
+    }
+    .proj-3d-stage.loaded .proj-3d-loading { opacity: 0; }
+    .proj-3d-stage.errored .proj-3d-loading { opacity: 1; background: rgba(10,10,11,.7); }
+    .proj-3d-loading-spinner {
+      width: 36px; height: 36px;
+      border: 2px solid rgba(255,255,255,.1);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: proj3dSpin .9s linear infinite;
+    }
+    .proj-3d-stage.errored .proj-3d-loading-spinner { display: none; }
+    @keyframes proj3dSpin { to { transform: rotate(360deg); } }
+    .proj-3d-loading-text {
+      font-size: .78rem; font-weight: 600;
+      letter-spacing: .14em; text-transform: uppercase;
+      color: var(--white);
+    }
+    .proj-3d-loading-progress {
+      font-size: .85rem; font-weight: 700;
+      color: var(--accent);
+      font-variant-numeric: tabular-nums;
+      min-width: 50px; text-align: center;
+    }
+    .proj-3d-stage.errored .proj-3d-loading-progress { display: none; }
+    .proj-3d-controls {
+      display: flex; gap: 22px; justify-content: center;
+      margin-top: 22px; flex-wrap: wrap;
+    }
+    .proj-3d-control {
+      display: flex; align-items: center; gap: 8px;
+      font-size: .72rem; letter-spacing: .08em;
+      color: var(--text-muted);
+    }
+    .proj-3d-control-icon {
+      width: 18px; height: 18px;
+      display: flex; align-items: center; justify-content: center;
+      opacity: .65;
+    }
+    body.light .proj-3d-stage {
+      background:
+        radial-gradient(ellipse at top, #ffffff 0%, #f0ede8 70%),
+        var(--bg);
+    }
+
     /* Crea gallery — product shots have varying wide aspects, contain with bg */
     .proj-gallery .gallery-item { aspect-ratio: 16/9; }
     .proj-gallery .gallery-item.crea-wide { aspect-ratio: 21/9; }
@@ -197,6 +292,52 @@
     </div>
   </section>
 
+  <!-- ── Interactive 3D Model ── -->
+  <section class="proj-3d">
+    <div class="proj-container">
+      <div class="proj-3d-header reveal-up">
+        <div class="proj-3d-label" data-i18n="crea.threeDLabel">İnteraktif 3D Model</div>
+        <h2 class="proj-3d-title" data-i18n="crea.threeDTitle">Modeli Kendi Açından İncele</h2>
+        <p class="proj-3d-subtitle" data-i18n="crea.threeDSubtitle">Sürükle, döndür, yakınlaştır — aydınlatmayı istediğin açıdan incele.</p>
+      </div>
+
+      <div class="proj-3d-stage reveal-up" id="crea3dStage">
+        <model-viewer
+          id="crea3d"
+          src="assets/crea.glb"
+          alt="Crea Light — interaktif 3D model"
+          camera-controls
+          touch-action="pan-y"
+          auto-rotate
+          auto-rotate-delay="3000"
+          rotation-per-second="12deg"
+          interaction-prompt="none"
+          shadow-intensity="0.9"
+          shadow-softness="0.85"
+          exposure="1.05"
+          environment-image="neutral"
+          loading="lazy"
+          reveal="auto"
+          poster="assets/crea-cover.webp">
+        </model-viewer>
+
+        <!-- Yükleme ipucu — model gelene kadar gösterilir -->
+        <div class="proj-3d-loading" id="crea3dLoading">
+          <div class="proj-3d-loading-spinner"></div>
+          <div class="proj-3d-loading-text" data-i18n="crea.threeDLoading">3D Model Yükleniyor...</div>
+          <div class="proj-3d-loading-progress" id="crea3dProgressTxt">0%</div>
+        </div>
+      </div>
+
+      <!-- İnteraksiyon ipuçları -->
+      <div class="proj-3d-controls reveal-up">
+        <div class="proj-3d-control"><span class="proj-3d-control-icon">↻</span><span data-i18n="crea.threeDDrag">Sürükle: Döndür</span></div>
+        <div class="proj-3d-control"><span class="proj-3d-control-icon">⌖</span><span data-i18n="crea.threeDPan">Sağ tık: Kaydır</span></div>
+        <div class="proj-3d-control"><span class="proj-3d-control-icon">⊕</span><span data-i18n="crea.threeDZoom">Tekerlek: Yakınlaştır</span></div>
+      </div>
+    </div>
+  </section>
+
   <!-- ── Key features ── -->
   <section class="proj-section proj-features-section">
     <div class="proj-container">
@@ -284,6 +425,37 @@
         overlay.addEventListener('click',e=>{ if(e.target===overlay) close(); });
       });
     });
+
+    /* 3D Viewer — progress + load state + i18n-aware error */
+    (function(){
+      const stage   = document.getElementById('crea3dStage');
+      const viewer  = document.getElementById('crea3d');
+      const txtNode = document.getElementById('crea3dProgressTxt');
+      const loading = document.getElementById('crea3dLoading');
+      if(!viewer) return;
+
+      const t = (key, fallback) => {
+        const lang = document.documentElement.lang === 'en' ? 'en' : 'tr';
+        const dict = (typeof I18N !== 'undefined' && I18N[lang] && I18N[lang].crea) || {};
+        return dict[key] || fallback;
+      };
+
+      viewer.addEventListener('progress', e => {
+        const ratio = e.detail && typeof e.detail.totalProgress === 'number' ? e.detail.totalProgress : 0;
+        txtNode.textContent = Math.round(ratio * 100) + '%';
+        if (ratio >= 1) setTimeout(() => stage.classList.add('loaded'), 250);
+      });
+
+      viewer.addEventListener('load', () => stage.classList.add('loaded'));
+
+      viewer.addEventListener('error', (e) => {
+        const detail = e && e.detail ? (e.detail.sourceError || e.detail.type || '') : '';
+        console.error('[3D viewer] error:', detail);
+        stage.classList.add('errored');
+        loading.querySelector('.proj-3d-loading-text').textContent =
+          t('threeDError', 'Model yüklenemedi. Sayfayı yenileyin veya bir süre sonra tekrar deneyin.');
+      });
+    })();
   </script>
 </body>
 </html>

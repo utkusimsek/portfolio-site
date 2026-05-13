@@ -326,7 +326,15 @@ const I18N = {
       f3Title: "Yüksek CRI LED Sistemi",
       f3Desc: "Yüksek renk doğruluğuna sahip LED aydınlatma; çalışma yüzeyinde dengeli ve homojen ışık dağılımı oluşturarak göz yorgunluğunu azaltır.",
       f4Title: "Kamera Kapatıcı, Alüminyum Gövde & USB-C",
-      f4Desc: "Entegre fiziksel kamera kapatıcı kullanıcı gizliliğini güvence altına alır; dayanıklı alüminyum gövde ve Type-C modüler bağlantı, modern cihazlarla tam uyumlu kompakt bir tasarım sunar."
+      f4Desc: "Entegre fiziksel kamera kapatıcı kullanıcı gizliliğini güvence altına alır; dayanıklı alüminyum gövde ve Type-C modüler bağlantı, modern cihazlarla tam uyumlu kompakt bir tasarım sunar.",
+      threeDLabel: "İnteraktif 3D Model",
+      threeDTitle: "Modeli Kendi Açından İncele",
+      threeDSubtitle: "Sürükle, döndür, yakınlaştır — aydınlatmayı istediğin açıdan incele.",
+      threeDLoading: "3D Model Yükleniyor...",
+      threeDError: "Model yüklenemedi. Sayfayı yenileyin veya bir süre sonra tekrar deneyin.",
+      threeDDrag: "Sürükle: Döndür",
+      threeDPan: "Sağ tık: Kaydır",
+      threeDZoom: "Tekerlek: Yakınlaştır"
     },
     beo: {
       breadcrumb: "Beo Minisaw",
@@ -788,7 +796,15 @@ const I18N = {
       f3Title: "High-CRI LED System",
       f3Desc: "A high colour-rendering LED engine creates balanced, even light across the work surface, reducing eye strain over long sessions.",
       f4Title: "Camera Cover, Aluminium Body & USB-C",
-      f4Desc: "An integrated physical camera cover safeguards user privacy; the durable aluminium body and Type-C modular connection deliver a compact design that pairs cleanly with modern devices."
+      f4Desc: "An integrated physical camera cover safeguards user privacy; the durable aluminium body and Type-C modular connection deliver a compact design that pairs cleanly with modern devices.",
+      threeDLabel: "Interactive 3D Model",
+      threeDTitle: "Explore the Model from Your Angle",
+      threeDSubtitle: "Drag, rotate, zoom — explore the lamp from any angle.",
+      threeDLoading: "Loading 3D Model...",
+      threeDError: "The model could not be loaded. Refresh the page or try again later.",
+      threeDDrag: "Drag: Rotate",
+      threeDPan: "Right click: Pan",
+      threeDZoom: "Wheel: Zoom"
     },
     beo: {
       breadcrumb: "Beo Minisaw",
