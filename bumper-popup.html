@@ -317,14 +317,13 @@
       <div class="proj-3d-header reveal-up">
         <div class="proj-3d-label" data-i18n="bumper.threeDLabel">İnteraktif 3D Model</div>
         <h2 class="proj-3d-title" data-i18n="bumper.threeDTitle">Modeli Kendi Açından İncele</h2>
-        <p class="proj-3d-subtitle" data-i18n="bumper.threeDSubtitle">Sürükle, döndür, yakınlaştır. Mobil cihazda <strong>AR modu</strong> ile aracı kendi mekânında ölçekli görüntüle.</p>
+        <p class="proj-3d-subtitle" data-i18n="bumper.threeDSubtitle">Sürükle, döndür, yakınlaştır — modeli istediğin açıdan incele.</p>
       </div>
 
       <div class="proj-3d-stage reveal-up" id="bumper3dStage">
         <model-viewer
           id="bumper3d"
           src="assets/bumper.glb"
-          ios-src="assets/bumper.usdz"
           alt="Çarpışan Araç Tasarımı — interaktif 3D model"
           camera-controls
           touch-action="pan-y"
@@ -336,18 +335,9 @@
           shadow-softness="0.85"
           exposure="1.05"
           environment-image="neutral"
-          ar
-          ar-modes="webxr scene-viewer quick-look"
-          ar-scale="auto"
           loading="lazy"
           reveal="auto"
           poster="assets/bumper-cover.jpg">
-
-          <!-- AR butonu (cihaz desteklerse görünür) -->
-          <button slot="ar-button" class="proj-3d-ar-btn" type="button">
-            <svg viewBox="0 0 24 24"><path d="M3 7l9-4 9 4v10l-9 4-9-4V7z"/><path d="M3 7l9 4 9-4M12 11v10"/></svg>
-            <span data-i18n="bumper.threeDAR">AR'da Gör</span>
-          </button>
         </model-viewer>
 
         <!-- Yükleme ipucu — model gelene kadar gösterilir -->
