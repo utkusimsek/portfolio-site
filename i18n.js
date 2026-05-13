@@ -274,7 +274,15 @@ const I18N = {
       f3Title: "Akıllı Kilit & RFID",
       f3Desc: "QR/RFID ekranı ve uygulama entegrasyonu ile temassız kilit ve kullanıcı doğrulama; ödeme ve kullanım geçmişi mobil uygulama üzerinden takip edilir.",
       f4Title: "Reklam & Bilgi Paneli",
-      f4Desc: "Tempered cam reklam yüzeyi ve çift yön bilgi LED'i; istasyonu sadece bir şarj noktası değil, kentsel iletişim ve yön bulma altyapısının parçası yapar."
+      f4Desc: "Tempered cam reklam yüzeyi ve çift yön bilgi LED'i; istasyonu sadece bir şarj noktası değil, kentsel iletişim ve yön bulma altyapısının parçası yapar.",
+      threeDLabel: "İnteraktif 3D Model",
+      threeDTitle: "Modeli Kendi Açından İncele",
+      threeDSubtitle: "Sürükle, döndür, yakınlaştır — istasyonu istediğin açıdan incele.",
+      threeDLoading: "3D Model Yükleniyor...",
+      threeDError: "Model yüklenemedi. Sayfayı yenileyin veya bir süre sonra tekrar deneyin.",
+      threeDDrag: "Sürükle: Döndür",
+      threeDPan: "Sağ tık: Kaydır",
+      threeDZoom: "Tekerlek: Yakınlaştır"
     },
     eko: {
       breadcrumb: "Ekofish 200ft",
@@ -728,7 +736,15 @@ const I18N = {
       f3Title: "Smart Lock & RFID",
       f3Desc: "QR/RFID display and app integration provide contactless locking and user verification; payment and usage history are tracked through the mobile app.",
       f4Title: "Advertising & Info Panel",
-      f4Desc: "A tempered glass advertising surface and dual-sided info LEDs make the station not just a charging point but part of the city's communication and wayfinding infrastructure."
+      f4Desc: "A tempered glass advertising surface and dual-sided info LEDs make the station not just a charging point but part of the city's communication and wayfinding infrastructure.",
+      threeDLabel: "Interactive 3D Model",
+      threeDTitle: "Explore the Model from Your Angle",
+      threeDSubtitle: "Drag, rotate, zoom — explore the station from any angle.",
+      threeDLoading: "Loading 3D Model...",
+      threeDError: "The model could not be loaded. Refresh the page or try again later.",
+      threeDDrag: "Drag: Rotate",
+      threeDPan: "Right click: Pan",
+      threeDZoom: "Wheel: Zoom"
     },
     eko: {
       breadcrumb: "Ekofish 200ft",
