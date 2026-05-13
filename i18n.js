@@ -450,7 +450,15 @@ const I18N = {
       specSpeedLabel: "Maks. Hız",
       specPowerLabel: "Tahrik",
       specCapacityLabel: "Kapasite",
-      specCapacityValue: "1 yetişkin + 1 çocuk / 2 çocuk"
+      specCapacityValue: "1 yetişkin + 1 çocuk / 2 çocuk",
+      threeDLabel: "İnteraktif 3D Model",
+      threeDTitle: "Modeli Kendi Açından İncele",
+      threeDSubtitle: "Sürükle, döndür, yakınlaştır — modeli istediğin açıdan incele.",
+      threeDLoading: "3D Model Yükleniyor...",
+      threeDError: "Model yüklenemedi. Sayfayı yenileyin veya bir süre sonra tekrar deneyin.",
+      threeDDrag: "Sürükle: Döndür",
+      threeDPan: "Sağ tık: Kaydır",
+      threeDZoom: "Tekerlek: Yakınlaştır"
     }
   },
 
@@ -896,7 +904,15 @@ const I18N = {
       specSpeedLabel: "Max Speed",
       specPowerLabel: "Drivetrain",
       specCapacityLabel: "Capacity",
-      specCapacityValue: "1 adult + 1 child / 2 children"
+      specCapacityValue: "1 adult + 1 child / 2 children",
+      threeDLabel: "Interactive 3D Model",
+      threeDTitle: "Explore the Model from Your Angle",
+      threeDSubtitle: "Drag, rotate, zoom — explore the model from any angle.",
+      threeDLoading: "Loading 3D Model...",
+      threeDError: "The model could not be loaded. Refresh the page or try again later.",
+      threeDDrag: "Drag: Rotate",
+      threeDPan: "Right click: Pan",
+      threeDZoom: "Wheel: Zoom"
     }
   }
 };
