@@ -1315,6 +1315,7 @@ body.light .project-card:hover {
 /* Kentsel */
 .p7 { background: linear-gradient(135deg, #0e1e10 0%, #162816 50%, #0a200c 100%); }
 .p8 { background: linear-gradient(135deg, #1e1010 0%, #301818 50%, #3a1414 100%); }
+.p10 { background: linear-gradient(135deg, #1a0a0c 0%, #2a1014 50%, #4a0e10 100%); }
 
 /* Category blocks */
 .category-block { margin-bottom: 72px; }

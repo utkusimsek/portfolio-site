@@ -86,6 +86,11 @@ const I18N = {
         meta1: "2024", meta2: "Eğlence Aracı",
         title: "Çarpışan Araç Tasarımı",
         desc: "Klasik lunapark deneyimini modern otomotiv tasarım diliyle yeniden yorumlayan çarpışan araç konsepti. İnce LED aydınlatma, darbe absorbe edici elastomer tampon ring ve tek parça ergonomik kabin yapısı ile fonksiyon ve estetiği bir araya getirir."
+      },
+      bumper2: {
+        meta1: "2025", meta2: "Sportif Konsept",
+        title: "Sportif Çarpışan Oto",
+        desc: "Klasik çarpışan oto formunu güncel otomotiv tasarım diliyle yeniden yorumlayan sportif ve agresif bir ürün tasarımı. Alçak gövde, keskin hatlar, geniş omuz çizgileri ve parlak kırmızı yüzeyiyle eğlence alanlarında güçlü ve dikkat çekici bir görsel kimlik kurar."
       }
     },
     about: {
@@ -191,6 +196,7 @@ const I18N = {
       beo:  "Beo Minisaw — Halil Utku Şimşek",
       fold: "Foldesk Lamp — Halil Utku Şimşek",
       bumper: "Çarpışan Araç Tasarımı — Halil Utku Şimşek",
+      bumper2: "Sportif Çarpışan Oto — Halil Utku Şimşek",
       salm: "Salmakis Yachts — Princess Melda & 45m Gulet — Halil Utku Şimşek"
     },
     proj_detail: {
@@ -418,6 +424,33 @@ const I18N = {
       threeDDrag: "Sürükle: Döndür",
       threeDPan: "Sağ tık: Kaydır",
       threeDZoom: "Tekerlek: Yakınlaştır"
+    },
+    bumper2: {
+      breadcrumb: "Sportif Çarpışan Oto",
+      badge: "Eğlence Aracı",
+      year: "2025 · Sportif Konsept",
+      title: "Sportif Çarpışan Oto<br/><em>Agresif Otomotiv Konsepti</em>",
+      overview: "<strong>Agresif Çizgilere Sahip Modern Çarpışan Oto Tasarımı</strong><br/><br/>Bu proje, klasik çarpışan oto formunu güncel otomotiv tasarım diliyle yeniden yorumlayan sportif ve agresif bir ürün tasarımıdır. Alçak gövde yapısı, keskin hatları, geniş omuz çizgileri ve parlak kırmızı yüzeyiyle araç; eğlence alanlarında güçlü, dikkat çekici ve dinamik bir görsel kimlik oluşturmak için tasarlanmıştır.<br/><br/><strong>Form &amp; Estetik —</strong> Tasarımda spor otomobillerden ilham alan aerodinamik yüzeyler, bütünleşik tampon formu ve modern LED aydınlatma detayları öne çıkarılmıştır. Ön bölümde agresif far çizgileri ve düşük burun yapısı kullanılırken, arka bölümde dairesel LED stop lambaları ve sportif difüzör etkisi veren detaylarla daha güçlü bir karakter elde edilmiştir.<br/><br/><strong>Kullanıcı Deneyimi —</strong> Kullanıcı deneyimi açısından araç, ergonomik oturma pozisyonu, kolay yönlendirilebilir direksiyon yapısı ve geniş oturma alanı ile hem çocuklar hem de yetişkinler için konforlu bir sürüş hissi sunacak şekilde düşünülmüştür. Gövde formu sadece estetik değil, aynı zamanda darbelere karşı dayanıklı ve güvenli bir kullanım sağlayacak şekilde tasarlanmıştır.<br/><br/><strong>Gövde &amp; Şasi —</strong> Yüksek dayanımlı fiberglass veya ABS plastik gövde önerilmiştir; parlak otomotiv boyası ile premium ve dikkat çekici bir yüzey kalitesi hedeflenmiştir. Çelik konstrüksiyon şasi ile darbelere dayanıklı, uzun ömürlü ve güvenli bir altyapı kurgulanmıştır.<br/><br/><strong>Tahrik &amp; Tampon Sistemi —</strong> Elektrikli tahrik sistemi ile sessiz, düşük bakım maliyetli ve çevre dostu kullanım hedeflenmiştir; 24V veya 48V elektrikli motor altyapısına uygun olarak geliştirilebilir. Çevresel darbe emici kauçuk veya poliüretan tampon sistemi ile çarpışma etkisinin azaltılması amaçlanmıştır.<br/><br/><strong>Aydınlatma &amp; Güvenlik —</strong> Ön gündüz farları ve arka LED stop lambaları, tasarımın sportif karakterini güçlendirirken araç görünürlüğünü de artırır. Hız sınırlayıcı sistem, emniyet kemeri, darbe emici çevre tamponu ve acil durdurma sistemi tasarıma entegre edilebilir.<br/><br/><strong>Kullanım Alanları —</strong> 1 yetişkin + 1 çocuk veya 2 çocuk kullanımına uygun ergonomik oturma alanı planlanabilir. Lunaparklar, AVM eğlence alanları, çocuk oyun merkezleri, etkinlik alanları ve tematik eğlence parkları için uygundur.",
+      stat1: "Form Dili", stat2: "Elektrikli Tahrik", stat3: "Ön &amp; Arka Aydınlatma", stat4: "Güvenli Maks Hız",
+      capStudio: "Stüdyo Çekimi — Form Diline Net Bakış",
+      capNight: "Gece Operasyonu — LED Görünürlüğü",
+      capCouple: "Çift Kullanım — Geniş Oturma Alanı",
+      capSolo: "Sürüş Konforu — Ergonomik Direksiyon Pozisyonu",
+      f1Title: "Agresif Form Dili",
+      f1Desc: "Alçak gövde, keskin hatlar ve geniş omuz çizgileri ile spor otomobil estetiği eğlence aracı kategorisine taşınır. Bütünleşik tampon formu ve aerodinamik yüzey geçişleri dikkat çekici bir görsel kimlik oluşturur.",
+      f2Title: "LED Aydınlatma",
+      f2Desc: "Ön agresif far çizgileri ve arka dairesel LED stop lambaları, hem sportif karakteri pekiştirir hem de gece operasyonlarında parkur içinde görünürlüğü artırarak güvenliğe katkı sağlar.",
+      f3Title: "Elektrikli Tahrik",
+      f3Desc: "24V veya 48V elektrikli motor altyapısına uygun sessiz, düşük bakım maliyetli ve çevre dostu tahrik sistemi. Hız sınırlayıcı ile çocuklar ve yetişkinler için güvenli sürüş garantisi.",
+      f4Title: "Çevresel Darbe Emici Tampon",
+      f4Desc: "Kauçuk veya poliüretan malzemeden çevresel tampon sistemi, çarpışma etkisini emerek hem aracı hem kullanıcıyı korur. Çelik konstrüksiyon şasi uzun ömürlü ve güvenli bir altyapı sağlar.",
+      specLengthLabel: "Uzunluk",
+      specWidthLabel: "Genişlik",
+      specHeightLabel: "Yükseklik",
+      specSpeedLabel: "Maks. Hız",
+      specPowerLabel: "Tahrik",
+      specCapacityLabel: "Kapasite",
+      specCapacityValue: "1 yetişkin + 1 çocuk / 2 çocuk"
     }
   },
 
@@ -500,6 +533,11 @@ const I18N = {
         meta1: "2024", meta2: "Amusement Vehicle",
         title: "Bumper Car Design",
         desc: "A bumper car concept that reinterprets the classic amusement-park experience through a contemporary automotive design language. Slim LED lighting, an impact-absorbing elastomer bumper ring and a single-piece ergonomic cabin bring function and aesthetics together."
+      },
+      bumper2: {
+        meta1: "2025", meta2: "Sport Concept",
+        title: "Sport Bumper Car",
+        desc: "A sporty, aggressive product design that reinterprets the classic bumper car through contemporary automotive design language. With a low body, sharp lines, broad shoulder lines and glossy red surfacing, the vehicle establishes a powerful, eye-catching identity in amusement venues."
       }
     },
     about: {
@@ -604,6 +642,7 @@ const I18N = {
       beo:  "Beo Minisaw — Halil Utku Şimşek",
       fold: "Foldesk Lamp — Halil Utku Şimşek",
       bumper: "Bumper Car Design — Halil Utku Şimşek",
+      bumper2: "Sport Bumper Car — Halil Utku Şimşek",
       salm: "Salmakis Yachts — Princess Melda & 45m Gulet — Halil Utku Şimşek"
     },
     proj_detail: {
@@ -831,6 +870,33 @@ const I18N = {
       threeDDrag: "Drag: Rotate",
       threeDPan: "Right click: Pan",
       threeDZoom: "Wheel: Zoom"
+    },
+    bumper2: {
+      breadcrumb: "Sport Bumper Car",
+      badge: "Amusement Vehicle",
+      year: "2025 · Sport Concept",
+      title: "Sport Bumper Car<br/><em>An Aggressive Automotive Concept</em>",
+      overview: "<strong>A Modern Bumper Car with Aggressive Lines</strong><br/><br/>This project is a sporty, aggressive product design that reinterprets the classic bumper car form through contemporary automotive design language. With a low body, sharp lines, broad shoulder lines and a glossy red surface, the vehicle is designed to establish a powerful, eye-catching and dynamic visual identity in entertainment venues.<br/><br/><strong>Form &amp; Aesthetics —</strong> The design highlights aerodynamic surfaces inspired by sports cars, an integrated bumper form and modern LED lighting details. The front uses aggressive headlight graphics and a low-nose stance, while the rear introduces circular LED tail lights and diffuser-effect details for a stronger character.<br/><br/><strong>User Experience —</strong> The vehicle is conceived to deliver a comfortable driving feel for both children and adults via an ergonomic seating position, easily steerable wheel and a generous seating area. The body form is not only aesthetic but also designed to be impact-resilient and safe in use.<br/><br/><strong>Body &amp; Chassis —</strong> A high-strength fibreglass or ABS plastic body is proposed; glossy automotive paint targets a premium, attention-grabbing surface quality. A steel frame chassis provides an impact-resistant, long-lasting and safe foundation.<br/><br/><strong>Drivetrain &amp; Bumper System —</strong> An electric drivetrain delivers quiet, low-maintenance and environmentally friendly operation; the architecture supports 24V or 48V electric motors. A peripheral rubber or polyurethane impact-absorbing bumper system reduces the effect of collisions.<br/><br/><strong>Lighting &amp; Safety —</strong> Front daytime running lights and rear LED tail lamps reinforce the sporty character while improving visibility. Speed limiter, seat belt, peripheral impact-absorbing bumper and an emergency stop system can be integrated.<br/><br/><strong>Use Cases —</strong> An ergonomic seating area can be planned for 1 adult + 1 child or 2 children. Suitable for amusement parks, mall entertainment areas, kids' play centres, event venues and themed amusement parks.",
+      stat1: "Form Language", stat2: "Electric Drivetrain", stat3: "Front &amp; Rear Lighting", stat4: "Safe Max Speed",
+      capStudio: "Studio Shot — A Clear Look at the Form",
+      capNight: "Night Operation — LED Visibility",
+      capCouple: "Two-Up Use — Generous Seating",
+      capSolo: "Driving Comfort — Ergonomic Steering Position",
+      f1Title: "Aggressive Form Language",
+      f1Desc: "A low body, sharp lines and broad shoulder lines bring sports-car aesthetics into the amusement-vehicle category. The integrated bumper form and aerodynamic surface transitions establish an eye-catching visual identity.",
+      f2Title: "LED Lighting",
+      f2Desc: "Aggressive front headlight graphics and circular rear LED tail lamps reinforce the sporty character while improving in-track visibility during night-time operation.",
+      f3Title: "Electric Drivetrain",
+      f3Desc: "A quiet, low-maintenance and environmentally friendly drivetrain compatible with 24V or 48V electric motor architecture. A speed limiter ensures safe driving for both children and adults.",
+      f4Title: "Peripheral Impact-Absorbing Bumper",
+      f4Desc: "A peripheral rubber or polyurethane bumper system absorbs collision energy to protect both the vehicle and the user. The steel frame chassis provides a long-lasting, safe foundation.",
+      specLengthLabel: "Length",
+      specWidthLabel: "Width",
+      specHeightLabel: "Height",
+      specSpeedLabel: "Max Speed",
+      specPowerLabel: "Drivetrain",
+      specCapacityLabel: "Capacity",
+      specCapacityValue: "1 adult + 1 child / 2 children"
     }
   }
 };
