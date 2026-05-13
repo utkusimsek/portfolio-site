@@ -199,16 +199,15 @@
 
     <!-- ─── WORK ─── -->
   <section id="work">
-    <!-- Lamp intro — dramatic section transition (conic-gradient light cones, scroll-triggered) -->
-    <div class="lamp-intro reveal-up" aria-hidden="true">
+    <!-- Lamp intro — dramatic section transition (conic-gradient light cones,
+         CSS custom-property animated via .in-view, transparent background) -->
+    <div class="lamp-intro" aria-hidden="false">
       <div class="lamp-stage">
+        <div class="lamp-glow-wide"></div>
         <div class="lamp-cone lamp-cone-l"></div>
         <div class="lamp-cone lamp-cone-r"></div>
-        <div class="lamp-floor-glow"></div>
-        <div class="lamp-floor-light"></div>
+        <div class="lamp-glow-core"></div>
         <div class="lamp-line"></div>
-        <div class="lamp-top-cover"></div>
-        <div class="lamp-floor-cap"></div>
       </div>
       <div class="lamp-content">
         <span class="section-tag" data-i18n="work.tag">Seçili Çalışmalar</span>
@@ -712,5 +711,23 @@
 
   <script defer src="script.js"></script>
   <script defer src="vapor.js?v=20260504-gooey5-restored"></script>
+  <!-- Lamp intro — dedicated IntersectionObserver (decoupled from .reveal-up to avoid initial opacity:0 conflict) -->
+  <script>
+    (function(){
+      if (!('IntersectionObserver' in window)) {
+        document.querySelectorAll('.lamp-intro').forEach(el => el.classList.add('in-view'));
+        return;
+      }
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('in-view');
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.18, rootMargin: '0px 0px -60px 0px' });
+      document.querySelectorAll('.lamp-intro').forEach(el => io.observe(el));
+    })();
+  </script>
 </body>
 </html>

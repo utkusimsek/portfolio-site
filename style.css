@@ -1103,147 +1103,122 @@ body.light .btn-ghost:hover {
 
 /* ═══════════════════════════════════════════════════════════════
    LAMP INTRO — dramatik bölüm geçişi (conic-gradient ışık konileri)
-   #work section'ının başında kullanılır. Scroll'la genişler.
+   #work section'ının başında kullanılır. Tamamen şeffaf zemin —
+   sayfa arka planı / particle canvas görünür. Lamp ışığı katman
+   olarak üzerine düşer. Scroll'la element viewport'a girince
+   IntersectionObserver `.in-view` ekler, animasyon CSS variable
+   ile sürülür (kasmasız, GPU-only transform).
 ═══════════════════════════════════════════════════════════════ */
 .lamp-intro {
   position: relative;
   width: 100%;
-  min-height: 520px;
+  min-height: 480px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   overflow: hidden;
   isolation: isolate;
-  background: #050507; /* lamp her zaman koyu — light mode'da bile dramatik kalır */
-  margin: 0 0 40px;
+  background: transparent;
+  margin: 60px 0;
+  /* Animasyon ilerlemesi — initial 0, .in-view geldiğinde 1 */
+  --lamp-progress: 0;
+  transition: --lamp-progress 1.4s var(--ease-out-expo, cubic-bezier(.16,1,.3,1));
 }
-.lamp-intro::before {
-  /* Üst kenarda hafif radial parlama ve alt kenarda body bg'sine yumuşak geçiş */
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse 80% 50% at 50% 0%, rgba(201,169,110,.05), transparent 70%),
-    linear-gradient(to bottom, transparent 75%, var(--bg) 100%);
-  z-index: 5;
-  pointer-events: none;
+.lamp-intro.in-view { --lamp-progress: 1; }
+
+/* CSS Custom Property animation registration — Houdini destekli
+   tarayıcılarda smooth interpolation. Desteklemeyenlerde fallback
+   olarak alt'taki ayrı class transition'ları kullanılır. */
+@property --lamp-progress {
+  syntax: "<number>";
+  initial-value: 0;
+  inherits: true;
 }
 
 .lamp-stage {
   position: absolute;
   inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   z-index: 0;
+  pointer-events: none;
 }
 
-/* İki konik gradient — container'ın ORTASINDAN aşağı yayılan ışık konileri.
-   Pivot point = container'ın 50% dikey noktası (lamp asılı bu seviyede). */
+/* İki konik ışık — container'ın dikey ortasından açılır.
+   Genişlik scroll'da 16rem → 32rem büyür, transform-only (GPU). */
 .lamp-cone {
   position: absolute;
   top: 50%;
   height: 14rem;
-  width: 16rem;
-  opacity: .5;
-  transition: width 1.4s var(--ease-out-expo, cubic-bezier(.16,1,.3,1)),
-              opacity  1s var(--ease-out-expo, cubic-bezier(.16,1,.3,1));
-  will-change: width, opacity;
+  width: 32rem;                                            /* Final genişlik */
+  opacity: 1;
+  /* scaleX 0.5 → 1 ile 16rem etkisinden 32rem'e expand olur.
+     scale dönüşümü pure GPU, layout reflow yok → asla kasmaz. */
+  transform-origin: center top;
+  transform: scaleX(calc(.5 + .5 * var(--lamp-progress)));
+  will-change: transform;
+  -webkit-mask-image: linear-gradient(to bottom, black 0%, black 55%, transparent 100%);
+          mask-image: linear-gradient(to bottom, black 0%, black 55%, transparent 100%);
 }
 .lamp-cone-l {
   right: 50%;
   background: conic-gradient(from 70deg at center top,
-    rgba(232,201,138,.95) 0deg,
-    rgba(232,201,138,.3) 18deg,
-    transparent 40deg,
+    rgba(232,201,138,.85) 0deg,
+    rgba(232,201,138,.35) 14deg,
+    transparent 32deg,
     transparent 360deg);
 }
 .lamp-cone-r {
   left: 50%;
   background: conic-gradient(from 290deg at center top,
     transparent 0deg,
-    transparent 320deg,
-    rgba(232,201,138,.3) 342deg,
-    rgba(232,201,138,.95) 360deg);
-}
-/* Kenarları yumuşatan mask'ler — konilerin sert kenarı görünmesin */
-.lamp-cone-l::after, .lamp-cone-r::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 10rem;
-  background: #050507;
-  -webkit-mask-image: linear-gradient(to top, white, transparent);
-          mask-image: linear-gradient(to top, white, transparent);
-  z-index: 2;
+    transparent 328deg,
+    rgba(232,201,138,.35) 346deg,
+    rgba(232,201,138,.85) 360deg);
 }
 
-/* Alt — yere yayılan ışıklı blur */
-.lamp-floor-glow {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -90%);
-  width: 28rem;
-  height: 9rem;
-  background: rgba(201,169,110,.45);
-  border-radius: 50%;
-  filter: blur(60px);
-  z-index: 1;
-}
-.lamp-floor-light {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -110%);
-  width: 8rem;
-  height: 9rem;
-  background: rgba(232,201,138,.7);
-  border-radius: 50%;
-  filter: blur(40px);
-  z-index: 2;
-  transition: width 1.4s var(--ease-out-expo, cubic-bezier(.16,1,.3,1));
-}
-
-/* Yatay ışık çizgisi — lamp'in pivot noktası */
+/* Pivot çizgisi — lamp'in asıldığı yatay altın çizgi.
+   scaleX ile genişler, pure GPU. */
 .lamp-line {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -120%);
-  width: 15rem;
+  transform: translate(-50%, -1px) scaleX(calc(.5 + .5 * var(--lamp-progress)));
+  width: 32rem;
   height: 2px;
-  background: linear-gradient(to right, transparent, rgba(232,201,138,.95) 50%, transparent);
+  background: linear-gradient(to right,
+    transparent 0%,
+    rgba(232,201,138,.95) 30%,
+    rgba(232,201,138,.95) 70%,
+    transparent 100%);
   z-index: 3;
-  transition: width 1.4s var(--ease-out-expo, cubic-bezier(.16,1,.3,1));
+  will-change: transform;
+  box-shadow: 0 0 24px rgba(232,201,138,.35);
 }
 
-/* Üst yarıyı kapatan slate katman — koniler altta görünmesi için üst yarı kararır */
-.lamp-top-cover {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 50%;
-  background: #050507;
-  z-index: 4;
-  pointer-events: none;
-}
-/* Alt yarıdaki konilerin sert kenarını yumuşatmak için ek mask */
-.lamp-floor-cap {
+/* Pivot etrafında parlaklık — lamp body glow */
+.lamp-glow-core {
   position: absolute;
   top: 50%;
-  left: 0;
-  width: 100%;
-  height: 50%;
-  z-index: 4;
-  pointer-events: none;
-  background: linear-gradient(to bottom,
-    rgba(5,5,7,0) 0%,
-    rgba(5,5,7,.4) 60%,
-    rgba(5,5,7,.85) 100%);
+  left: 50%;
+  transform: translate(-50%, -50%) scale(calc(.6 + .4 * var(--lamp-progress)));
+  width: 14rem;
+  height: 5rem;
+  background: radial-gradient(ellipse at center, rgba(232,201,138,.7) 0%, transparent 65%);
+  filter: blur(18px);
+  z-index: 2;
+  will-change: transform;
+}
+.lamp-glow-wide {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -25%) scale(calc(.7 + .3 * var(--lamp-progress)));
+  width: 28rem;
+  height: 7rem;
+  background: radial-gradient(ellipse at center, rgba(201,169,110,.35) 0%, transparent 70%);
+  filter: blur(36px);
+  z-index: 1;
+  will-change: transform;
 }
 
 /* İçerik — koni ışığının altında, ortalı */
@@ -1252,11 +1227,13 @@ body.light .btn-ghost:hover {
   z-index: 10;
   text-align: center;
   padding: 0 20px;
-  transform: translateY(60px);
+  margin-top: 60px;
 }
 .lamp-content .section-tag {
   color: rgba(232,201,138,.9);
   text-shadow: 0 0 24px rgba(201,169,110,.4);
+  opacity: calc(var(--lamp-progress));
+  transition: opacity .9s ease .3s;
 }
 .lamp-content .section-title {
   background: linear-gradient(to bottom right, #f4e6c4, #c9a96e);
@@ -1265,42 +1242,49 @@ body.light .btn-ghost:hover {
   color: transparent;
   font-size: clamp(2.6rem, 5.5vw, 5rem);
   letter-spacing: -.01em;
-  opacity: 0;
-  transform: translateY(40px);
+  /* opacity ve translateY pure variable-driven — JS yok, kasma yok */
+  opacity: calc(var(--lamp-progress));
+  transform: translateY(calc(30px * (1 - var(--lamp-progress))));
   transition: opacity .9s ease .3s, transform .9s var(--ease-out-expo, cubic-bezier(.16,1,.3,1)) .3s;
 }
 
-/* Scroll triggered — JS reveal-up observer .in-view ekler */
-.lamp-intro.in-view .lamp-cone     { width: 32rem; opacity: 1; }
-.lamp-intro.in-view .lamp-line     { width: 32rem; }
-.lamp-intro.in-view .lamp-floor-light { width: 16rem; }
-.lamp-intro.in-view .section-title { opacity: 1; transform: translateY(0); }
+/* Houdini @property desteklemeyen tarayıcılar için fallback:
+   classic class-based transition. CSS yeterince güvenli. */
+@supports not (background: paint(test)) {
+  .lamp-cone {
+    transform: scaleX(.5);
+    transition: transform 1.4s var(--ease-out-expo, cubic-bezier(.16,1,.3,1));
+  }
+  .lamp-intro.in-view .lamp-cone { transform: scaleX(1); }
+  .lamp-line {
+    transform: translate(-50%, -1px) scaleX(.5);
+    transition: transform 1.4s var(--ease-out-expo, cubic-bezier(.16,1,.3,1));
+  }
+  .lamp-intro.in-view .lamp-line { transform: translate(-50%, -1px) scaleX(1); }
+  .lamp-glow-core { transform: translate(-50%, -50%) scale(.6); transition: transform 1.4s var(--ease-out-expo); }
+  .lamp-intro.in-view .lamp-glow-core { transform: translate(-50%, -50%) scale(1); }
+  .lamp-glow-wide { transform: translate(-50%, -25%) scale(.7); transition: transform 1.4s var(--ease-out-expo); }
+  .lamp-intro.in-view .lamp-glow-wide { transform: translate(-50%, -25%) scale(1); }
+  .lamp-content .section-tag,
+  .lamp-content .section-title { opacity: 0; }
+  .lamp-intro.in-view .lamp-content .section-tag,
+  .lamp-intro.in-view .lamp-content .section-title { opacity: 1; transform: translateY(0); }
+}
 
 /* Reduced motion — animasyonu kapat, final state'i direkt göster */
 @media (prefers-reduced-motion: reduce) {
-  .lamp-cone { transition: none; width: 32rem; opacity: 1; }
-  .lamp-line { transition: none; width: 32rem; }
-  .lamp-floor-light { transition: none; width: 16rem; }
-  .lamp-content .section-title { transition: none; opacity: 1; transform: none; }
-}
-
-/* Light tema — lamp section dark kalıyor ama bg geçişi düzeltilir */
-body.light .lamp-intro::before {
-  background:
-    radial-gradient(ellipse 80% 50% at 50% 0%, rgba(201,169,110,.05), transparent 70%),
-    linear-gradient(to bottom, transparent 75%, var(--bg) 100%);
+  .lamp-intro { --lamp-progress: 1; transition: none; }
+  .lamp-cone, .lamp-line, .lamp-glow-core, .lamp-glow-wide,
+  .lamp-content .section-tag, .lamp-content .section-title { transition: none; }
 }
 
 /* Mobile */
 @media (max-width: 768px) {
-  .lamp-intro { min-height: 380px; margin-bottom: 24px; }
-  .lamp-cone { height: 10rem; width: 12rem; }
-  .lamp-floor-glow { width: 18rem; height: 6rem; }
-  .lamp-floor-light { width: 6rem; height: 6rem; }
-  .lamp-line { width: 12rem; }
-  .lamp-intro.in-view .lamp-cone     { width: 22rem; }
-  .lamp-intro.in-view .lamp-line     { width: 22rem; }
-  .lamp-intro.in-view .lamp-floor-light { width: 11rem; }
+  .lamp-intro { min-height: 360px; margin: 32px 0; }
+  .lamp-cone { height: 10rem; width: 22rem; }
+  .lamp-line { width: 22rem; }
+  .lamp-glow-core { width: 11rem; height: 4rem; }
+  .lamp-glow-wide { width: 20rem; height: 6rem; }
 }
 
 /* ═══════════════════════════════════════════════════════════════
