@@ -2325,7 +2325,146 @@ body.light .footer-legal { color: #555; border-color: rgba(0,0,0,.12); }
   .switcher-btn { padding: 10px; }
   .skills-grid { grid-template-columns: 1fr; }
   .proj-stats { grid-template-columns: repeat(2,1fr); }
-  /* Showcase — dar telefon, gooey text merkezde */
-  #ai-showcase { height: 70vh; min-height: 460px; }
-  .gooey-wrap { height: clamp(150px, 32vw, 220px); }
+  /* Showcase — dar telefon, circular reveal merkezde */
+  #ai-showcase { height: auto; min-height: 480px; padding: 80px 20px; }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   CIRCULAR REVEAL HEADING — site giriş sahnesi (ai-showcase içinde)
+   Ortasında HUŞ logosu, etrafında dönen 4 kelime; hover'da
+   merkeze proje görseli açılır. Light tema'da neumorphic taşbaskı,
+   dark tema'da glass + gold accent.
+═══════════════════════════════════════════════════════════════ */
+.cr-wrap {
+  position: relative;
+  width: clamp(280px, 42vw, 460px);
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  isolation: isolate;
+  /* Yumuşak yüzme — vapor/gooey'in zarif titremine paralel */
+  animation: cr-float 6s ease-in-out infinite;
+  /* Default (dark) palette */
+  background: radial-gradient(ellipse at 30% 30%, rgba(40,40,46,.85), rgba(14,14,16,.85));
+  box-shadow:
+    0 30px 80px -20px rgba(0,0,0,.6),
+    inset 0 0 0 1px rgba(201,169,110,.15),
+    inset 0 1px 0 rgba(255,255,255,.04);
+}
+@keyframes cr-float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-8px); }
+}
+
+/* İç çerçeveler — neumorphic depth, light/dark için iki ayrı set */
+.cr-frame-1, .cr-frame-2 {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+.cr-frame-1 { inset: 4px; }
+.cr-frame-2 { inset: 18px; }
+/* Dark tema iç çerçeveler — soft accent ring */
+.cr-frame-1 { box-shadow: inset 0 0 24px rgba(201,169,110,.06); }
+.cr-frame-2 { box-shadow: inset 0 0 14px rgba(0,0,0,.4); }
+
+/* Merkez içerik — logo veya text */
+.cr-center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 4;
+  transition: opacity .4s ease;
+}
+.cr-center img {
+  width: clamp(56px, 9vw, 88px);
+  height: auto;
+  filter: drop-shadow(0 4px 18px rgba(201,169,110,.35));
+  transition: transform .5s var(--ease-out-expo, cubic-bezier(.16,1,.3,1));
+}
+.cr-wrap:hover .cr-center img { transform: scale(.92); }
+.cr-wrap.has-active .cr-center { opacity: 0; }
+
+/* Hover'da açılan görsel overlay — daire içinde */
+.cr-overlay {
+  position: absolute;
+  inset: 12%;
+  border-radius: 50%;
+  overflow: hidden;
+  z-index: 3;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .35s ease;
+  background: #0a0a0b;
+}
+.cr-overlay::after {
+  /* Görselin üzerine yumuşak vinyet */
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, transparent 55%, rgba(0,0,0,.5) 100%);
+  pointer-events: none;
+}
+.cr-overlay img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(.85) saturate(.95);
+}
+.cr-wrap.has-active .cr-overlay { opacity: 1; }
+
+/* Dönen SVG katman */
+.cr-rotor {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  animation: cr-spin 36s linear infinite;
+  transform-origin: 50% 50%;
+}
+.cr-wrap:hover .cr-rotor { animation-play-state: paused; }
+@keyframes cr-spin {
+  to { transform: rotate(360deg); }
+}
+
+.cr-rotor text {
+  font-family: var(--font-sans, system-ui);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .35em;
+  text-transform: uppercase;
+  fill: rgba(232,201,138,.78);
+  cursor: pointer;
+  transition: fill .25s ease;
+}
+.cr-rotor text:hover,
+.cr-rotor text.cr-active { fill: var(--white); }
+
+/* ── Light theme: neumorphic palette (orijinal aceternity hissiyatı) ── */
+body.light .cr-wrap {
+  background: linear-gradient(145deg, #efece6, #d8d4cc);
+  box-shadow:
+    14px 14px 32px #c5c1ba,
+    -14px -14px 32px #ffffff,
+    inset 0 0 0 1px rgba(0,0,0,.04);
+}
+body.light .cr-frame-1 { box-shadow: inset 5px 5px 12px #c8c4bc, inset -5px -5px 12px #ffffff; }
+body.light .cr-frame-2 { box-shadow: inset 3px 3px 8px #c8c4bc, inset -3px -3px 8px #ffffff; }
+body.light .cr-rotor text { fill: rgba(80,70,55,.75); }
+body.light .cr-rotor text:hover,
+body.light .cr-rotor text.cr-active { fill: #1a1a1a; }
+body.light .cr-overlay { background: #f0ede8; }
+body.light .cr-center img { filter: drop-shadow(0 4px 14px rgba(0,0,0,.18)); }
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .cr-wrap, .cr-rotor { animation: none; }
+}
+
+/* ── Mobile ── */
+@media (max-width: 600px) {
+  .cr-wrap { width: min(86vw, 360px); }
+  .cr-rotor text { font-size: 11px; letter-spacing: .28em; }
 }

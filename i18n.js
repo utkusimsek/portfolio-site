@@ -19,7 +19,11 @@ const I18N = {
       langAria: "Dil değiştir"
     },
     showcase: {
-      title: "Hayal et.<br/><em>Tasarla.</em><br/>Gerçeğe dönüştür.",
+      title: "Hayal et. Tasarla. Modelle. Gerçekleştir.",
+      word1: "Hayal Et",
+      word2: "Tasarla",
+      word3: "Modelle",
+      word4: "Gerçekleştir",
       threeDActivate: "3D Sahneyi Aktif Et",
       threeDLoading: "3D Sahne Yükleniyor..."
     },
@@ -490,7 +494,11 @@ const I18N = {
       langAria: "Switch language"
     },
     showcase: {
-      title: "Imagine.<br/><em>Design.</em><br/>Bring it to life.",
+      title: "Imagine. Design. Model. Realise.",
+      word1: "Imagine",
+      word2: "Design",
+      word3: "Model",
+      word4: "Realise",
       threeDActivate: "Activate 3D Scene",
       threeDLoading: "Loading 3D scene..."
     },

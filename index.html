@@ -12,9 +12,9 @@
   <link rel="preload" as="image" href="assets/logo.webp" fetchpriority="high"/>
   <link rel="preload" as="image" href="assets/pb-cover.webp" fetchpriority="high"/>
   <link rel="preload" as="video" href="assets/videos/showcase-07.mp4" type="video/mp4"/>
-  <link rel="preload" as="style" href="style.css"/>
+  <link rel="preload" as="style" href="style.css?v=20260513-cr"/>
 
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css?v=20260513-cr" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <!-- Use media trick to load fonts non-render-blocking, then swap -->
@@ -83,35 +83,51 @@
     </div>
   </nav>
 
-  <!-- ─── HERO HEADER — gooey text morph animation ─── -->
+  <!-- ─── HERO HEADER — circular reveal heading (rotor: 4 word, hover: project image) ─── -->
   <section id="ai-showcase">
     <div class="showcase-overlay-bottom"></div>
     <div class="showcase-overlay-top"></div>
     <div class="showcase-content">
       <!-- SEO/screen-reader için gerçek h1 — visually hidden -->
       <h1 class="sr-only" data-i18n="showcase.title">
-        Hayal et. Tasarla. Gerçeğe dönüştür.
+        Hayal et. Tasarla. Modelle. Gerçekleştir.
       </h1>
-      <!-- Gooey text morph — React component port (blur + SVG threshold) -->
-      <div class="gooey-wrap" id="gooeyWrap" aria-hidden="true">
-        <!-- SVG threshold filter — iOS Safari uyumlu attribute'lerle -->
-        <svg class="gooey-svg" aria-hidden="true" focusable="false"
-             xmlns="http://www.w3.org/2000/svg" width="1" height="1" viewBox="0 0 1 1">
-          <defs>
-            <filter id="gooey-threshold" x="-50%" y="-50%" width="200%" height="200%"
-                    color-interpolation-filters="sRGB">
-              <feColorMatrix in="SourceGraphic" type="matrix"
-                values="1 0 0 0 0
-                        0 1 0 0 0
-                        0 0 1 0 0
-                        0 0 0 255 -140"/>
-            </filter>
-          </defs>
-        </svg>
-        <div class="gooey-stage">
-          <span class="gooey-text" id="gooeyText1"></span>
-          <span class="gooey-text" id="gooeyText2"></span>
+
+      <!-- Circular reveal — vanilla port of aceternity 'circular-reveal-heading'.
+           Dönen 4 kelime, ortada HUŞ logosu. Hover'da proje görseli açılır. -->
+      <div class="cr-wrap" id="circReveal" aria-hidden="true">
+        <div class="cr-frame-1"></div>
+        <div class="cr-frame-2"></div>
+
+        <!-- Hover'da açılan görsel overlay -->
+        <div class="cr-overlay" id="crOverlay">
+          <img id="crOverlayImg" alt="" src="" loading="lazy" decoding="async">
         </div>
+
+        <!-- Merkez logo -->
+        <div class="cr-center" id="crCenter">
+          <img src="assets/logo.webp" alt="HUŞ" loading="eager" decoding="async">
+        </div>
+
+        <!-- Dönen text rotor -->
+        <svg class="cr-rotor" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <path id="crCurve" fill="none"
+                  d="M 200,200 m -160,0 a 160,160 0 1,1 320,0 a 160,160 0 1,1 -320,0"/>
+          </defs>
+          <text class="cr-segment" data-image="assets/pb-cover.webp" data-key="word1">
+            <textPath href="#crCurve" startOffset="2%">Hayal Et</textPath>
+          </text>
+          <text class="cr-segment" data-image="assets/foldesk-cover.webp" data-key="word2">
+            <textPath href="#crCurve" startOffset="27%">Tasarla</textPath>
+          </text>
+          <text class="cr-segment" data-image="assets/beo-cover.webp" data-key="word3">
+            <textPath href="#crCurve" startOffset="52%">Modelle</textPath>
+          </text>
+          <text class="cr-segment" data-image="assets/scooter-cover.webp" data-key="word4">
+            <textPath href="#crCurve" startOffset="77%">Gerçekleştir</textPath>
+          </text>
+        </svg>
       </div>
     </div>
   </section>
@@ -710,7 +726,99 @@
   </footer>
 
   <script defer src="script.js"></script>
-  <script defer src="vapor.js?v=20260504-gooey5-restored"></script>
+  <!-- vapor.js (gooey morph) artık kullanılmıyor — circular reveal aldı yerini.
+       Dosya repo'da duruyor; başka yerde referansı yok, JS init'i markup
+       bulamadığı için zararsızca no-op. -->
+
+  <!-- Circular Reveal Heading — interaktivite -->
+  <script>
+    (function(){
+      const wrap     = document.getElementById('circReveal');
+      if (!wrap) return;
+      const overlay  = document.getElementById('crOverlay');
+      const overlayImg = document.getElementById('crOverlayImg');
+      const segments = wrap.querySelectorAll('.cr-segment');
+      if (!segments.length || !overlay) return;
+
+      // Görselleri preload — hover'da takılma olmasın
+      segments.forEach(seg => {
+        const src = seg.dataset.image;
+        if (src) { const im = new Image(); im.src = src; }
+      });
+
+      // i18n: textPath'leri global I18N nesnesinden manuel set et
+      // (i18n.js'nin innerHTML davranışı SVG'de güvensiz olabilir).
+      const applyWords = () => {
+        const lang = document.documentElement.lang === 'en' ? 'en' : 'tr';
+        const words = (typeof I18N !== 'undefined' && I18N[lang] && I18N[lang].showcase) || {};
+        segments.forEach(seg => {
+          const key = seg.dataset.key;
+          if (!key || !words[key]) return;
+          const tp = seg.querySelector('textPath');
+          if (tp) tp.textContent = words[key];
+        });
+      };
+      // İlk uygula (i18n.js defer ile yüklenmiş olabilir, biraz bekle)
+      if (typeof I18N !== 'undefined') applyWords();
+      else window.addEventListener('load', applyWords);
+      // Dil değişince güncelle — html.lang attribute değişimini izle
+      new MutationObserver(applyWords).observe(document.documentElement, {
+        attributes: true, attributeFilter: ['lang']
+      });
+
+      let active = null;
+      const setActive = (seg) => {
+        if (active === seg) return;
+        active = seg;
+        segments.forEach(s => s.classList.toggle('cr-active', s === seg));
+        if (seg) {
+          const src = seg.dataset.image;
+          if (src && overlayImg.src !== location.origin + '/' + src) {
+            overlayImg.src = src;
+          }
+          wrap.classList.add('has-active');
+        } else {
+          wrap.classList.remove('has-active');
+        }
+      };
+
+      // Hover (desktop)
+      segments.forEach(seg => {
+        seg.addEventListener('mouseenter', () => setActive(seg));
+        seg.addEventListener('mouseleave', () => setActive(null));
+      });
+
+      // Mobile / touch — segment'lere tıklama ile toggle
+      // (Aynı zamanda klavye erişimi için focus desteği)
+      segments.forEach((seg, i) => {
+        seg.style.touchAction = 'manipulation';
+        seg.addEventListener('click', (e) => {
+          e.stopPropagation();
+          setActive(active === seg ? null : seg);
+        });
+      });
+      // Daire dışına tıklama → kapat
+      document.addEventListener('click', (e) => {
+        if (!wrap.contains(e.target)) setActive(null);
+      });
+
+      // Mobile fallback: hover yoksa segmentleri sırayla 3sn aralıklı vurgula,
+      // böylece touch yapmayan kullanıcılar da görselleri görür.
+      const isTouch = matchMedia('(hover: none)').matches;
+      const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (isTouch && !reduced) {
+        let i = 0;
+        const tick = () => {
+          // Kullanıcı manuel tıkladıysa otomatik döngü onunla çakışmasın
+          if (document.hidden) return;
+          setActive(segments[i]);
+          i = (i + 1) % segments.length;
+        };
+        // İlk tetikleme 1.5sn sonra (sayfa yerleşsin), sonra her 3sn
+        setTimeout(() => { tick(); setInterval(tick, 3000); }, 1500);
+      }
+    })();
+  </script>
   <!-- Lamp intro — dedicated IntersectionObserver (decoupled from .reveal-up to avoid initial opacity:0 conflict) -->
   <script>
     (function(){
