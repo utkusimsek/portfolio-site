@@ -2430,14 +2430,19 @@ body.light .footer-legal { color: #555; border-color: rgba(0,0,0,.12); }
   z-index: 2;
   animation: cr-spin 36s linear infinite;
   transform-origin: 50% 50%;
+  /* will-change: GPU compositor layer hint (static transform EKLEME —
+     animation'ın transform keyframe'iyle çakışıp discrete interpolation
+     yapar, dönüş smooth olmaz). */
   will-change: transform;
-  /* GPU compositor layer'ına it — düşük-uçlu cihazlarda daha smooth */
-  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+/* Keyframe'i from/to ile explicit yaz — bazı tarayıcılar implicit from'da
+   matris interpolasyonu yerine fonksiyon-bazlı yapsın, daha smooth olur. */
+@keyframes cr-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
 }
 .cr-wrap:hover .cr-rotor { animation-play-state: paused; }
-@keyframes cr-spin {
-  to { transform: rotate(360deg); }
-}
 
 .cr-rotor text {
   font-family: var(--font-sans, system-ui);
