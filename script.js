@@ -177,8 +177,18 @@ if (canvas && !reduceMotion) {
     }
   }
 
+  const htmlEl = document.documentElement;
+  let skipFrame = false;
   function animateParticles(t) {
     if (!isVisible) { rafId = 0; return; }
+    /* Aktif scroll sırasında render'ı half-rate'e düşür (her diğer frame
+       skip) — main thread scroll'a kalsın, kullanıcı algılayamaz. */
+    if (htmlEl.classList.contains('is-scrolling')) {
+      skipFrame = !skipFrame;
+      if (skipFrame) { rafId = requestAnimationFrame(animateParticles); return; }
+    } else {
+      skipFrame = false;
+    }
     ctx.clearRect(0, 0, W, H);
     particles.forEach(p => { p.update(t || 0); p.draw(); });
     drawLines();
@@ -577,23 +587,47 @@ if (matchMedia('(hover: hover) and (pointer: fine)').matches && !reduceMotion) {
   show(0);
 })();
 
-/* ── Image warmup — sayfa load + idle olduktan sonra kalan lazy image'leri
-   eager'a çevir; arka planda ön-yüklenmiş olurlar, scroll'da bekleme yok.
-   Critical path bozulmaz çünkü load event'ten sonra çalışır. */
-(function warmupLazyImages() {
+/* ── Image cache warmup — load + idle sonrası lazy image URL'lerini
+   <link rel="prefetch"> ile browser HTTP cache'ine düşür. Native lazy
+   loading davranışı korunur (img.loading attribute'una dokunulmaz), ama
+   img viewport'a yaklaştığında dosya cache'ten anında gelir — paint
+   chain jank'i olmaz. Sıralı bir kuyruktan gönderilir, network bursu yok. */
+(function warmupImageCache() {
   const idle = window.requestIdleCallback || ((cb) => setTimeout(cb, 1500));
   function warm() {
     idle(() => {
-      const imgs = document.querySelectorAll('img[loading="lazy"]');
-      imgs.forEach(img => {
-        if (img.complete) return;
-        /* fetchpriority low: critical kaynaklarla yarışmasın ama yine de
-           browser idle bandwidth'inde indirilsin */
-        if ('fetchPriority' in img) img.fetchPriority = 'low';
-        img.loading = 'eager';
-      });
-    }, { timeout: 3000 });
+      const imgs = [...document.querySelectorAll('img[loading="lazy"]')]
+        .filter(img => img.src && !img.complete);
+      let i = 0;
+      function next() {
+        if (i >= imgs.length) return;
+        const img = imgs[i++];
+        const link = document.createElement('link');
+        link.rel = 'prefetch';
+        link.as = 'image';
+        link.href = img.currentSrc || img.src;
+        document.head.appendChild(link);
+        /* 80ms aralıkla — paralel burst yok, scroll smooth kalır */
+        setTimeout(next, 80);
+      }
+      next();
+    }, { timeout: 4000 });
   }
   if (document.readyState === 'complete') warm();
   else window.addEventListener('load', warm, { once: true });
+})();
+
+/* ── Scroll-aware particle pause — kullanıcı aktif scroll ederken
+   particle render'ı bir frame skip et, main thread'i scroll'a bırak.
+   Scroll durunca otomatik devam. Gözle algılanmaz ama jank ortadan kalkar. */
+(function initScrollAwarePerf() {
+  if (!window.matchMedia('(min-width: 0px)').matches) return;
+  let scrollIdleTimer = 0;
+  window.addEventListener('scroll', () => {
+    document.documentElement.classList.add('is-scrolling');
+    clearTimeout(scrollIdleTimer);
+    scrollIdleTimer = setTimeout(() => {
+      document.documentElement.classList.remove('is-scrolling');
+    }, 140);
+  }, { passive: true });
 })();
