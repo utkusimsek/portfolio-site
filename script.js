@@ -151,17 +151,24 @@ if (canvas && !reduceMotion) {
   for (let i = 0; i < COUNT; i++) particles.push(new Particle());
 
   function drawLines() {
+    /* x'e göre sırala (her kare neredeyse sıralı kaldığı için TimSort O(n))
+       sonra iç döngüde dx > LINE_DIST olunca break → naive O(n²) yerine
+       lokal komşu kontrolü. 130 parçacık için ~8450 → ~650 pair check. */
+    particles.sort((a, b) => a.x - b.x);
     for (let i = 0; i < particles.length; i++) {
+      const pi = particles[i];
       for (let j = i + 1; j < particles.length; j++) {
-        const dx = particles[i].x - particles[j].x;
-        const dy = particles[i].y - particles[j].y;
+        const pj = particles[j];
+        const dx = pj.x - pi.x;
+        if (dx > LINE_DIST) break;
+        const dy = pi.y - pj.y;
         const dSq = dx * dx + dy * dy;
         if (dSq < LINE_DIST_SQ) {
           const d = Math.sqrt(dSq);
-          const alpha = (1 - d / LINE_DIST) * 0.42; /* 0.28 → 0.42, daha belirgin */
+          const alpha = (1 - d / LINE_DIST) * 0.42;
           ctx.beginPath();
-          ctx.moveTo(particles[i].x, particles[i].y);
-          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.moveTo(pi.x, pi.y);
+          ctx.lineTo(pj.x, pj.y);
           ctx.strokeStyle = `rgba(201,169,110,${alpha})`;
           ctx.lineWidth   = 1;
           ctx.stroke();

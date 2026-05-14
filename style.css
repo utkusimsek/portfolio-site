@@ -362,8 +362,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   border: 1px solid rgba(255,255,255,.14);
   border-radius: 20px;
   padding: 8px;
-  backdrop-filter: blur(40px) saturate(200%);
-  -webkit-backdrop-filter: blur(40px) saturate(200%);
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
   box-shadow: 0 8px 40px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.1);
 }
 .switcher-btn {
@@ -873,8 +873,8 @@ body.light .lang-toggle:hover {
 .btn-ghost {
   color: var(--text);
   background: rgba(255,255,255,.05);
-  backdrop-filter: blur(36px) saturate(180%);
-  -webkit-backdrop-filter: blur(36px) saturate(180%);
+  backdrop-filter: blur(24px) saturate(160%);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
   border: 1px solid rgba(255,255,255,.08);
   box-shadow: 0 4px 16px rgba(0,0,0,.14);
 }
@@ -1424,6 +1424,7 @@ body.light .reel-title { color: #1a1a1a; }
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 24px;
+  contain: layout style;
 }
 /* Project card — Safari pill stili: minimalist smooth glass */
 .project-card {
@@ -1431,15 +1432,18 @@ body.light .reel-title { color: #1a1a1a; }
   border: 0;
   border-radius: 22px;
   overflow: hidden;
-  backdrop-filter: blur(32px) saturate(160%);
-  -webkit-backdrop-filter: blur(32px) saturate(160%);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
   position: relative;
   isolation: isolate;
+  /* Off-screen kartları render etmeyi atla → uzun listede LCP/scroll smoothness */
+  content-visibility: auto;
+  contain-intrinsic-size: 0 420px;
   box-shadow:
     0 8px 28px rgba(0,0,0,.22),
     inset 0 0.5px 0 rgba(255,255,255,.10),
     inset 0 -0.5px 0 rgba(0,0,0,.18);
-  transition: transform .45s var(--ease-out-expo), box-shadow .45s ease, background .35s ease;
+  transition: transform .5s var(--ease-out-expo), box-shadow .45s ease, background .35s ease;
 }
 .project-card:hover {
   transform: translateY(-6px);
@@ -2182,9 +2186,9 @@ body.light .footer-legal { color: #555; border-color: rgba(0,0,0,.12); }
     top: 14px;
     width: calc(100% - 40px); /* daha dar — floating pill hissi */
     background: rgba(255, 255, 255, calc(0.10 + 0.04 * var(--scroll-p)));
-    /* iOS-grade glass: yoğun blur + saturation */
-    backdrop-filter: blur(50px) saturate(220%);
-    -webkit-backdrop-filter: blur(50px) saturate(220%);
+    /* iOS-grade glass: yoğun blur + saturation (mobil GPU için optimize) */
+    backdrop-filter: blur(32px) saturate(200%);
+    -webkit-backdrop-filter: blur(32px) saturate(200%);
     /* Liquid Glass shadow:
        — uzun, çok yumuşak drop (depth)
        — inset top highlight (üst kenarda sheen)
@@ -2426,6 +2430,9 @@ body.light .footer-legal { color: #555; border-color: rgba(0,0,0,.12); }
   z-index: 2;
   animation: cr-spin 36s linear infinite;
   transform-origin: 50% 50%;
+  will-change: transform;
+  /* GPU compositor layer'ına it — düşük-uçlu cihazlarda daha smooth */
+  transform: translateZ(0);
 }
 .cr-wrap:hover .cr-rotor { animation-play-state: paused; }
 @keyframes cr-spin {

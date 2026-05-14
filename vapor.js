@@ -48,10 +48,10 @@
   let rafId       = 0;
   let inView      = true;
 
-  // ── Style helpers — iOS için filter ve webkitFilter ikisini de set ──
+  // ── Style helpers — modern iOS unprefixed filter destekliyor, webkit
+  //    prefix property write maliyetini ekliyordu, kaldırıldı ──
   function setFilter(el, value) {
     el.style.filter = value;
-    el.style.webkitFilter = value;
   }
 
   function applyTextAt(el, idx) {
