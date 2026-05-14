@@ -464,7 +464,7 @@ if (matchMedia('(hover: hover) and (pointer: fine)').matches && !reduceMotion) {
 
   const SAFETY_MS    = 9000;
   const FADE_MS      = 1400;
-  const PRELOAD_LEAD = 3000;
+  const PRELOAD_LEAD = 5000; /* 3000 → 5000: bir sonraki videoya 5sn buffer */
 
   // Configure all videos but DON'T set src yet — that would trigger 7 parallel
   // metadata requests on page load. We attach src lazily when each video is
@@ -577,3 +577,23 @@ if (matchMedia('(hover: hover) and (pointer: fine)').matches && !reduceMotion) {
   show(0);
 })();
 
+/* ── Image warmup — sayfa load + idle olduktan sonra kalan lazy image'leri
+   eager'a çevir; arka planda ön-yüklenmiş olurlar, scroll'da bekleme yok.
+   Critical path bozulmaz çünkü load event'ten sonra çalışır. */
+(function warmupLazyImages() {
+  const idle = window.requestIdleCallback || ((cb) => setTimeout(cb, 1500));
+  function warm() {
+    idle(() => {
+      const imgs = document.querySelectorAll('img[loading="lazy"]');
+      imgs.forEach(img => {
+        if (img.complete) return;
+        /* fetchpriority low: critical kaynaklarla yarışmasın ama yine de
+           browser idle bandwidth'inde indirilsin */
+        if ('fetchPriority' in img) img.fetchPriority = 'low';
+        img.loading = 'eager';
+      });
+    }, { timeout: 3000 });
+  }
+  if (document.readyState === 'complete') warm();
+  else window.addEventListener('load', warm, { once: true });
+})();
