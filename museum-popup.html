@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Müze Vitrin Sistemi — Halil Utku Şimşek</title>
+  <link rel="icon" type="image/webp" href="assets/logo.webp"/>
+  <link rel="icon" type="image/png" sizes="any" href="assets/logo.png"/>
+  <link rel="apple-touch-icon" href="assets/logo.png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css?v=lg5"/>
+  <link rel="stylesheet" href="project.css?v=lg5"/>
+  <style>
+    .proj-gallery .gallery-row { gap: 18px; margin-bottom: 18px; }
+  </style>
+  <script>document.documentElement.classList.add('js');</script>
+  <script defer src="i18n.js?v=lg1"></script>
+  <script defer src="i18n-v2.js?v=lg5"></script>
+  <script defer src="i18n-projects.js?v=lg6"></script>
+  <script defer src="vendor/lenis.min.js"></script>
+  <script defer src="glass.js?v=lg5"></script>
+  <script defer src="project.js?v=lg5"></script>
+  <script defer src="motion.js?v=lg5"></script>
+  <script defer src="protect.js"></script>
+</head>
+<body data-i18n-pagetitle="pageTitle.museum" class="light page-project">
+
+  <header class="nav-wrap" id="nav">
+    <nav class="nav lg" data-refract="nav" aria-label="Ana menü">
+      <a class="nav-logo" href="index.html" aria-label="Ana sayfa">
+        <img src="assets/logo.webp" alt="" width="22" height="25">
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html#work" data-i18n="v2.nav.work">İşler</a></li>
+        <li><a href="index.html#about" data-i18n="v2.nav.about">Hakkımda</a></li>
+        <li><a href="index.html#skills" data-i18n="v2.nav.skills">Araçlar</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="lang-toggle" id="langToggle" data-i18n-aria="nav.langAria" aria-label="Dil değiştir">
+          <span class="lang-current">EN</span>
+        </button>
+        <a class="nav-cta" href="index.html#contact">
+          <span data-i18n="v2.nav.cta">Yazın</span>
+          <span class="arrow-dot" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M5 11 11 5M6 5h5v5" /></svg></span>
+        </a>
+        <button class="burger" id="burger" aria-label="Menü" aria-expanded="false" aria-controls="mobileMenu">
+          <span></span><span></span>
+        </button>
+      </div>
+    </nav>
+    <div class="mobile-menu lg" id="mobileMenu" hidden>
+      <a href="index.html#work" data-i18n="v2.nav.work">İşler</a>
+      <a href="index.html#about" data-i18n="v2.nav.about">Hakkımda</a>
+      <a href="index.html#skills" data-i18n="v2.nav.skills">Araçlar</a>
+      <a href="index.html#contact" data-i18n="v2.nav.contact">İletişim</a>
+    </div>
+  </header>
+
+  <!-- ── Hero ── -->
+  <section class="proj-hero">
+    <div class="proj-hero-img">
+      <img src="assets/museum-cover.webp" alt="Müze Vitrin Sistemi" class="proj-cover-img" fetchpriority="high">
+      <div class="proj-hero-overlay"></div>
+    </div>
+    <div class="proj-hero-content reveal-up">
+      <div class="proj-breadcrumb">
+        <a href="index.html" data-i18n="proj_detail.breadcrumbHome">Ana Sayfa</a>
+        <span>›</span>
+        <a href="index.html#work" data-i18n="proj_detail.breadcrumbProjects">Projeler</a>
+        <span>›</span>
+        <span data-i18n="museum.breadcrumb">Müze Vitrin Sistemi</span>
+      </div>
+      <div class="proj-badge-row">
+        <span class="proj-badge" data-i18n="museum.badge">Sergileme Tasarımı</span>
+        <span class="proj-badge-year" data-i18n="museum.year">2026 · Sistem Tasarımı</span>
+      </div>
+      <h1 class="proj-title" data-i18n="museum.title">Müze Vitrin Sistemi<br/><em>Yedi tipten oluşan modüler sergileme ailesi</em></h1>
+      <div class="proj-tags">
+        <span>Rhino 3D</span><span>V-Ray</span><span>Sergileme</span><span>Modüler Sistem</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Overview ── -->
+  <section class="proj-section">
+    <div class="proj-container">
+      <div class="proj-overview reveal-up">
+        <div class="proj-overview-label" data-i18n="proj_detail.overviewLabel">Proje Özeti</div>
+        <p class="proj-overview-text" data-i18n="museum.overview"><strong>Tek bir dil, yedi farklı vitrin</strong><br/><br/>Belge, tekstil, gemi modeli, saat, vazo ve kostüm gibi ölçeği ve hassasiyeti birbirinden çok farklı eserleri tek bir tasarım dili altında toplayan bir vitrin ailesi. Farklı sergileme ihtiyaçları ortak bir kaide ve profil sistemine indirgendi.<br/><br/>Ceviz kaide, ince çerçeveli temperli cam ve kaideye entegre lineer aydınlatma her tipte tekrar eder. Böylece galeri boyunca görsel süreklilik kurulurken eser her zaman kompozisyonun odağında kalır.</p>
+      </div>
+
+      <div class="proj-stats reveal-up">
+        <div class="proj-stat"><span class="proj-stat-num">7</span><span class="proj-stat-label" data-i18n="museum.stat1">Vitrin tipi</span></div>
+        <div class="proj-stat"><span class="proj-stat-num" data-i18n="museum.statNum2">Ceviz</span><span class="proj-stat-label" data-i18n="museum.stat2">Ortak kaide</span></div>
+        <div class="proj-stat"><span class="proj-stat-num">LED</span><span class="proj-stat-label" data-i18n="museum.stat3">Entegre aydınlatma</span></div>
+        <div class="proj-stat"><span class="proj-stat-num" data-i18n="museum.statNum4">Temperli</span><span class="proj-stat-label" data-i18n="museum.stat4">İnce çerçeveli cam</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Gallery ── -->
+  <section class="proj-gallery">
+    <div class="proj-container">
+
+      <div class="gallery-row gallery-full reveal-up">
+        <div class="gallery-item gallery-cover">
+          <img src="assets/museum-axis.webp" alt="Galeri aksı: vitrin ailesi birlikte" loading="lazy" decoding="async">
+          <div class="gallery-caption" data-i18n="museum.capAxis">Galeri aksı: vitrin ailesi birlikte</div>
+        </div>
+      </div>
+
+      <div class="gallery-row gallery-half reveal-up">
+        <div class="gallery-item">
+          <img src="assets/museum-wall-doc.webp" alt="Büyük duvar vitrini: belge" loading="lazy" decoding="async">
+          <div class="gallery-caption" data-i18n="museum.capWallDoc">Büyük duvar vitrini: belge</div>
+        </div>
+        <div class="gallery-item">
+          <img src="assets/museum-wall-textile.webp" alt="Ayaklı duvar vitrini: tekstil" loading="lazy" decoding="async">
+          <div class="gallery-caption" data-i18n="museum.capWallTextile">Ayaklı duvar vitrini: tekstil</div>
+        </div>
+      </div>
+
+      <div class="gallery-row gallery-half reveal-up">
+        <div class="gallery-item">
+          <img src="assets/museum-table.webp" alt="Yatay masa vitrini: gemi modeli" loading="lazy" decoding="async">
+          <div class="gallery-caption" data-i18n="museum.capTable">Yatay masa vitrini: gemi modeli</div>
+        </div>
+        <div class="gallery-item">
+          <img src="assets/museum-costume.webp" alt="Kostüm vitrini" loading="lazy" decoding="async">
+          <div class="gallery-caption" data-i18n="museum.capCostume">Kostüm vitrini</div>
+        </div>
+      </div>
+
+      <div class="gallery-row gallery-full reveal-up">
+        <div class="gallery-item gallery-cover">
+          <img src="assets/museum-visitors-table.webp" alt="Ziyaretçi ölçeğinde masa vitrini" loading="lazy" decoding="async">
+          <div class="gallery-caption" data-i18n="museum.capVisitorsTable">Ziyaretçi ölçeğinde masa vitrini</div>
+        </div>
+      </div>
+
+      <div class="gallery-row gallery-half reveal-up">
+        <div class="gallery-item">
+          <img src="assets/museum-plinth-low.webp" alt="Kare kaide, alçak" loading="lazy" decoding="async">
+          <div class="gallery-caption" data-i18n="museum.capPlinthLow">Kare kaide, alçak</div>
+        </div>
+        <div class="gallery-item">
+          <img src="assets/museum-plinth-high.webp" alt="Kare kaide, yüksek" loading="lazy" decoding="async">
+          <div class="gallery-caption" data-i18n="museum.capPlinthHigh">Kare kaide, yüksek</div>
+        </div>
+      </div>
+
+      <div class="gallery-row gallery-half reveal-up">
+        <div class="gallery-item">
+          <img src="assets/museum-column-hex.webp" alt="Uzun sütun, altıgen kaide" loading="lazy" decoding="async">
+          <div class="gallery-caption" data-i18n="museum.capColumnHex">Uzun sütun, altıgen kaide</div>
+        </div>
+        <div class="gallery-item">
+          <img src="assets/museum-column-single.webp" alt="Tekil eser: çevresinden dolaşılan sütun" loading="lazy" decoding="async">
+          <div class="gallery-caption" data-i18n="museum.capColumnSingle">Tekil eser: çevresinden dolaşılan sütun</div>
+        </div>
+      </div>
+
+      <div class="gallery-row gallery-full reveal-up">
+        <div class="gallery-item gallery-cover">
+          <img src="assets/museum-visitors-wall.webp" alt="Duvar vitrini önünde izleme mesafesi" loading="lazy" decoding="async">
+          <div class="gallery-caption" data-i18n="museum.capVisitorsWall">Duvar vitrini önünde izleme mesafesi</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── Key features ── -->
+  <section class="proj-section proj-features-section">
+    <div class="proj-container">
+      <h2 class="proj-section-title reveal-up" data-i18n="proj_detail.featuresTitle">Tasarım Özellikleri</h2>
+      <div class="proj-features reveal-up">
+        <div class="proj-feature">
+          <h4 data-i18n="museum.f1Title">Ortak kaide ve profil</h4>
+          <p data-i18n="museum.f1Desc">Yedi tipin tamamı aynı ceviz kaide ve çerçeve profilinden türetildi. Üretimde parça çeşitliliği azalır, galeride aile kimliği okunur.</p>
+        </div>
+        <div class="proj-feature">
+          <h4 data-i18n="museum.f2Title">İzleme yüksekliğine göre tipoloji</h4>
+          <p data-i18n="museum.f2Desc">Her tip, eserin izlenme yüksekliği ve yaklaşma mesafesine göre kurgulandı: duvar vitrinleri belge ve tekstil için, masa vitrinleri model için, sütunlar çevresinden dolaşılan tekil eserler için.</p>
+        </div>
+        <div class="proj-feature">
+          <h4 data-i18n="museum.f3Title">Kaideye entegre lineer aydınlatma</h4>
+          <p data-i18n="museum.f3Desc">Işık kaynağı kaide ve üst profilin içinde gizlenir. Eser gölgesiz aydınlanırken ziyaretçi ışık kaynağını görmez.</p>
+        </div>
+        <div class="proj-feature">
+          <h4 data-i18n="museum.f4Title">Galeri boyunca süreklilik</h4>
+          <p data-i18n="museum.f4Desc">Malzeme, oran ve ışık her tipte tekrarlandığı için farklı boydaki vitrinler bir arada kullanıldığında tek bir sistem gibi okunur.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Back link ── -->
+  <section class="proj-back-section">
+    <div class="proj-container">
+      <a href="index.html#work" class="proj-back-btn reveal-up" data-i18n="proj_detail.back">← Tüm Projelere Dön</a>
+    </div>
+  </section>
+
+  <!-- ── Footer ── -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <img src="assets/logo.webp" alt="HUŞ Logo" class="site-logo-img footer-logo-img" loading="lazy" decoding="async">
+      <p data-i18n="proj_detail.footer">© 2026 Halil Utku Şimşek — Tüm hakları saklıdır.</p>
+      <a href="telif.html" class="footer-legal" data-i18n="footer.legal">Telif Hakkı</a>
+    </div>
+  </footer>
+
+  <script>
+    /* Cover img Ken Burns */
+    const coverImg = document.querySelector('.proj-cover-img');
+    if(coverImg){ coverImg.addEventListener('load',()=>coverImg.classList.add('loaded')); if(coverImg.complete) coverImg.classList.add('loaded'); }
+
+    /* theme toggle removed: the site is light-only */
+
+    /* Nav scroll */
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>40),{passive:true});
+
+    /* Scroll reveal */
+    const io = new IntersectionObserver(entries=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in-view'); io.unobserve(e.target); }});
+    },{ threshold:0.1, rootMargin:'0px 0px -50px 0px' });
+    document.querySelectorAll('.reveal-up').forEach(el=>io.observe(el));
+
+    /* Gallery lightbox */
+    document.querySelectorAll('.gallery-item img').forEach(img=>{
+      img.style.cursor='zoom-in';
+      img.addEventListener('click',()=>{
+        const overlay=document.createElement('div');
+        overlay.className='lightbox-overlay';
+        overlay.innerHTML=`<div class="lightbox-inner"><img src="${img.src}" alt="${img.alt}" loading="lazy" decoding="async"><button class="lightbox-close">✕</button></div>`;
+        document.body.appendChild(overlay);
+        requestAnimationFrame(()=>overlay.classList.add('active'));
+        const close=()=>{ overlay.classList.remove('active'); setTimeout(()=>overlay.remove(),300); };
+        overlay.querySelector('.lightbox-close').addEventListener('click',close);
+        overlay.addEventListener('click',e=>{ if(e.target===overlay) close(); });
+      });
+    });
+  </script>
+</body>
+</html>

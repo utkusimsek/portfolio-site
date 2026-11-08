@@ -18,7 +18,8 @@
 
   <script>document.documentElement.classList.add('js');</script>
   <script defer src="i18n.js?v=lg1"></script>
-  <script defer src="i18n-v2.js?v=lg5"></script>
+  <script defer src="i18n-v2.js?v=lg6"></script>
+  <script defer src="i18n-projects.js?v=lg6"></script>
   <script defer src="protect.js"></script>
   <script defer src="vendor/lenis.min.js"></script>
   <script defer src="glass.js?v=lg5"></script>
@@ -111,14 +112,15 @@
         <div class="work-head">
           <div>
             <h2 class="h-section" id="workTitle" data-i18n="v2.work.title">Seçili işler</h2>
-            <p class="lede" data-i18n="v2.work.intro">Denizde, masada ve sokakta kullanılan on bir proje.</p>
+            <p class="lede" data-i18n="v2.work.intro">Denizde, masada, sokakta ve müzede kullanılan on dört proje.</p>
           </div>
           <div class="seg" role="tablist" data-i18n-aria="v2.work.filterAria" aria-label="Projeleri kategoriye göre süz" id="workFilter">
             <span class="seg-thumb" aria-hidden="true"></span>
-            <button role="tab" aria-selected="true" data-filter="all"><span data-i18n="v2.work.all">Tümü</span><sup>11</sup></button>
+            <button role="tab" aria-selected="true" data-filter="all"><span data-i18n="v2.work.all">Tümü</span><sup>14</sup></button>
             <button role="tab" aria-selected="false" data-filter="yacht"><span data-i18n="v2.work.yacht">Yat</span><sup>3</sup></button>
-            <button role="tab" aria-selected="false" data-filter="product"><span data-i18n="v2.work.product">Ürün</span><sup>5</sup></button>
+            <button role="tab" aria-selected="false" data-filter="product"><span data-i18n="v2.work.product">Ürün</span><sup>6</sup></button>
             <button role="tab" aria-selected="false" data-filter="urban"><span data-i18n="v2.work.urban">Kentsel</span><sup>3</sup></button>
+            <button role="tab" aria-selected="false" data-filter="interior"><span data-i18n="v2.work.interior">İç mekân</span><sup>2</sup></button>
           </div>
         </div>
 
@@ -146,6 +148,16 @@
             </div>
           </a>
 
+          <a class="work-card" href="perfora-popup.html" data-cat="product">
+            <figure class="work-media">
+              <img src="assets/perfora-cover.webp" alt="Perfora" loading="lazy" decoding="async" style="object-position:50% 40%">
+            </figure>
+            <div class="work-cap">
+              <h3 data-i18n="perfora.card">Perfora</h3>
+              <p><span data-i18n="perfora.cardMeta">Rhino eklentisi</span><span>2026</span></p>
+            </div>
+          </a>
+
           <a class="work-card" href="beo-popup.html" data-cat="product">
             <figure class="work-media">
               <img src="assets/beo-cover.webp" alt="Beo Minisaw mini elektrikli testere" loading="lazy" decoding="async" style="object-position:50% 30%">
@@ -153,6 +165,16 @@
             <div class="work-cap">
               <h3 data-i18n="proj.beo.title">Beo Minisaw</h3>
               <p><span data-i18n="proj.beo.meta2">Bang &amp; Olufsen</span><span data-i18n="proj.beo.meta1">2022</span></p>
+            </div>
+          </a>
+
+          <a class="work-card" href="museum-popup.html" data-cat="interior">
+            <figure class="work-media">
+              <img src="assets/museum-axis.webp" alt="Müze Vitrin Sistemi" loading="lazy" decoding="async">
+            </figure>
+            <div class="work-cap">
+              <h3 data-i18n="museum.card">Müze Vitrin Sistemi</h3>
+              <p><span data-i18n="museum.cardMeta">Sergileme tasarımı</span><span>2026</span></p>
             </div>
           </a>
 
@@ -183,6 +205,16 @@
             <div class="work-cap">
               <h3 data-i18n="proj.kmem.title">KMEM Pop-up Mağaza</h3>
               <p><span data-i18n="proj.kmem.meta2">Perakende / Kamusal Alan</span><span data-i18n="proj.kmem.meta1">2022</span></p>
+            </div>
+          </a>
+
+          <a class="work-card" href="marble-popup.html" data-cat="interior">
+            <figure class="work-media">
+              <img src="assets/marble-cover.webp" alt="Mermer Banyo ve Şömine Koleksiyonu" loading="lazy" decoding="async">
+            </figure>
+            <div class="work-cap">
+              <h3 data-i18n="marble.card">Mermer Banyo ve Şömine Koleksiyonu</h3>
+              <p><span data-i18n="marble.cardMeta">MEG Custom Marble</span><span>2025–26</span></p>
             </div>
           </a>
 

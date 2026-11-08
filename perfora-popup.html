@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Perfora — Halil Utku Şimşek</title>
+  <link rel="icon" type="image/webp" href="assets/logo.webp"/>
+  <link rel="icon" type="image/png" sizes="any" href="assets/logo.png"/>
+  <link rel="apple-touch-icon" href="assets/logo.png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css?v=lg5"/>
+  <link rel="stylesheet" href="project.css?v=lg5"/>
+  <style>
+    .proj-gallery .gallery-row { gap: 18px; margin-bottom: 18px; }
+    .proj-gallery .gallery-half .gallery-item.g-tall { aspect-ratio: 4 / 5; }
+    .proj-gallery .gallery-half .gallery-item.g-video { aspect-ratio: 9 / 14; background: #F4F5F7; }
+    .proj-gallery .gallery-item video { width: 100%; height: 100%; object-fit: contain; display: block; }
+    .proj-gallery .gallery-item.g-contain { background: #F4F5F7; }
+    .proj-gallery .gallery-item.g-contain img { object-fit: contain; }
+    @media (max-width: 600px) { .proj-gallery .gallery-half .gallery-item.g-video { aspect-ratio: 9 / 16; } }
+    /* light studio cover: ink type instead of white */
+    .proj-hero { background: #EEF0F2; }
+    .proj-hero .proj-hero-overlay, body.light .proj-hero .proj-hero-overlay { background: none; }
+    .proj-hero .proj-title, body.light .proj-hero .proj-title,
+    .proj-hero .proj-title em { color: var(--ink); }
+    .proj-hero .proj-title em { color: var(--ink-2); }
+    .proj-hero .proj-breadcrumb, .proj-hero .proj-breadcrumb a, body.light .proj-hero .proj-breadcrumb a,
+    .proj-hero .proj-breadcrumb span:last-child { color: var(--ink-2); }
+    .proj-hero .proj-tags span, body.light .proj-hero .proj-tags span { color: var(--ink-2); border-color: rgba(11, 28, 42, .2); }
+    .proj-hero .proj-badge-year, body.light .proj-hero .proj-badge-year { color: var(--ink); background: rgba(255, 255, 255, .7); }
+    .proj-hero .proj-badge { background: var(--ink); color: #fff; }
+    @media (max-width: 760px) {
+      .proj-hero .proj-cover-img { object-position: 80% 30%; }
+      .proj-hero .proj-hero-overlay, body.light .proj-hero .proj-hero-overlay { background: linear-gradient(0deg, rgba(238, 240, 242, .92) 0%, rgba(238, 240, 242, .6) 38%, rgba(238, 240, 242, 0) 60%); }
+    }
+  </style>
+  <script>document.documentElement.classList.add('js');</script>
+  <script defer src="i18n.js?v=lg1"></script>
+  <script defer src="i18n-v2.js?v=lg5"></script>
+  <script defer src="i18n-projects.js?v=lg6"></script>
+  <script defer src="vendor/lenis.min.js"></script>
+  <script defer src="glass.js?v=lg5"></script>
+  <script defer src="project.js?v=lg5"></script>
+  <script defer src="motion.js?v=lg5"></script>
+  <script defer src="protect.js"></script>
+</head>
+<body data-i18n-pagetitle="pageTitle.perfora" class="light page-project">
+
+  <header class="nav-wrap" id="nav">
+    <nav class="nav lg" data-refract="nav" aria-label="Ana menü">
+      <a class="nav-logo" href="index.html" aria-label="Ana sayfa">
+        <img src="assets/logo.webp" alt="" width="22" height="25">
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html#work" data-i18n="v2.nav.work">İşler</a></li>
+        <li><a href="index.html#about" data-i18n="v2.nav.about">Hakkımda</a></li>
+        <li><a href="index.html#skills" data-i18n="v2.nav.skills">Araçlar</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="lang-toggle" id="langToggle" data-i18n-aria="nav.langAria" aria-label="Dil değiştir">
+          <span class="lang-current">EN</span>
+        </button>
+        <a class="nav-cta" href="index.html#contact">
+          <span data-i18n="v2.nav.cta">Yazın</span>
+          <span class="arrow-dot" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M5 11 11 5M6 5h5v5" /></svg></span>
+        </a>
+        <button class="burger" id="burger" aria-label="Menü" aria-expanded="false" aria-controls="mobileMenu">
+          <span></span><span></span>
+        </button>
+      </div>
+    </nav>
+    <div class="mobile-menu lg" id="mobileMenu" hidden>
+      <a href="index.html#work" data-i18n="v2.nav.work">İşler</a>
+      <a href="index.html#about" data-i18n="v2.nav.about">Hakkımda</a>
+      <a href="index.html#skills" data-i18n="v2.nav.skills">Araçlar</a>
+      <a href="index.html#contact" data-i18n="v2.nav.contact">İletişim</a>
+    </div>
+  </header>
+
+  <!-- ── Hero ── -->
+  <section class="proj-hero">
+    <div class="proj-hero-img">
+      <img src="assets/perfora-hero.webp" alt="Perfora" class="proj-cover-img" fetchpriority="high">
+      <div class="proj-hero-overlay"></div>
+    </div>
+    <div class="proj-hero-content reveal-up">
+      <div class="proj-breadcrumb">
+        <a href="index.html" data-i18n="proj_detail.breadcrumbHome">Ana Sayfa</a>
+        <span>›</span>
+        <a href="index.html#work" data-i18n="proj_detail.breadcrumbProjects">Projeler</a>
+        <span>›</span>
+        <span data-i18n="perfora.breadcrumb">Perfora</span>
+      </div>
+      <div class="proj-badge-row">
+        <span class="proj-badge" data-i18n="perfora.badge">Hesaplamalı Tasarım</span>
+        <span class="proj-badge-year" data-i18n="perfora.year">2026 · Rhino 8 / 9 Eklentisi</span>
+      </div>
+      <h1 class="proj-title" data-i18n="perfora.title">Perfora<br/><em>Desen, artık bir parametre</em></h1>
+      <div class="proj-tags">
+        <span>C# · .NET</span><span>RhinoCommon</span><span>Parametrik Tasarım</span><span>Arayüz Tasarımı</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Overview ── -->
+  <section class="proj-section">
+    <div class="proj-container">
+      <div class="proj-overview reveal-up">
+        <div class="proj-overview-label" data-i18n="proj_detail.overviewLabel">Proje Özeti</div>
+        <p class="proj-overview-text" data-i18n="perfora.overview"><strong>Rhino için gradyan kontrollü desen eklentisi</strong><br/><br/>Ürün ve yüzey tasarımında tekrar tekrar elle çizdiğim delik, kafes ve faset desenlerini tek bir araca dönüştürmek için geliştirdiğim Rhino 8 ve 9 eklentisi. Desen tipi seçilir, tuval üzerindeki kontrolcüler sürüklenir; deliklerin boyutu ve derinliği bu noktalara yaklaştıkça yumuşakça değişir.<br/><br/>Desen düz panellerin yanında çift eğrilikli yüzeylere de sarılır; gövdeye gömülebilir ya da kabartılabilir. Arayüzü, geometri motorunu ve tanıtım filmini kendim tasarlayıp yazdım. Aynı çekirdek, tarayıcıda çalışan web sürümünün de temelini oluşturuyor.</p>
+      </div>
+
+      <div class="proj-stats reveal-up">
+        <div class="proj-stat"><span class="proj-stat-num">8 · 9</span><span class="proj-stat-label" data-i18n="perfora.stat1">Rhino sürümü</span></div>
+        <div class="proj-stat"><span class="proj-stat-num" data-i18n="perfora.statNum2">Gradyan</span><span class="proj-stat-label" data-i18n="perfora.stat2">Boyut ve derinlik kanalı</span></div>
+        <div class="proj-stat"><span class="proj-stat-num" data-i18n="perfora.statNum3">Yüzey</span><span class="proj-stat-label" data-i18n="perfora.stat3">Çift eğrilikli sarma</span></div>
+        <div class="proj-stat"><span class="proj-stat-num" data-i18n="perfora.statNum4">C# · .NET</span><span class="proj-stat-label" data-i18n="perfora.stat4">Arayüz ve motor</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Gallery ── -->
+  <section class="proj-gallery">
+    <div class="proj-container">
+
+      <div class="gallery-row gallery-half reveal-up">
+        <div class="gallery-item g-video">
+          <video src="assets/videos/perfora-tanitim.mp4" poster="assets/perfora-video-poster.webp" muted loop playsinline autoplay preload="metadata" aria-label="Tanıtım filmi"></video>
+          <div class="gallery-caption" data-i18n="perfora.capVideo">Tanıtım filmi</div>
+        </div>
+        <div class="gallery-item g-video g-contain">
+          <img src="assets/perfora-texture.webp" alt="Desen dikişi: önce ve sonra" loading="lazy" decoding="async">
+          <div class="gallery-caption" data-i18n="perfora.capTexture">Desen dikişi: önce ve sonra</div>
+        </div>
+      </div>
+
+      <div class="gallery-row gallery-full reveal-up">
+        <div class="gallery-item g-contain">
+          <img src="assets/perfora-facets.webp" alt="Faset kütüphanesi: piramit, elmas, küp yığını" loading="lazy" decoding="async">
+          <div class="gallery-caption" data-i18n="perfora.capFacets">Faset kütüphanesi: piramit, elmas, küp yığını</div>
+        </div>
+      </div>
+
+      <div class="gallery-row gallery-full reveal-up">
+        <div class="gallery-item g-contain">
+          <img src="assets/perfora-library.webp" alt="Parametrik doku çizgileri" loading="lazy" decoding="async">
+          <div class="gallery-caption" data-i18n="perfora.capLibrary">Parametrik doku çizgileri</div>
+        </div>
+      </div>
+
+      <div class="gallery-row gallery-half reveal-up">
+        <div class="gallery-item g-contain">
+          <img src="assets/perfora-slicing.webp" alt="Dilimleme: dalgalı panel ve şezlong" loading="lazy" decoding="async">
+          <div class="gallery-caption" data-i18n="perfora.capSlicing">Dilimleme: dalgalı panel ve şezlong</div>
+        </div>
+        <div class="gallery-item g-contain">
+          <img src="assets/perfora-studio.webp" alt="Perfora Studio, Rhino içinde" loading="lazy" decoding="async">
+          <div class="gallery-caption" data-i18n="perfora.capStudio">Perfora Studio, Rhino içinde</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── Key features ── -->
+  <section class="proj-section proj-features-section">
+    <div class="proj-container">
+      <h2 class="proj-section-title reveal-up" data-i18n="proj_detail.featuresTitle">Tasarım Özellikleri</h2>
+      <div class="proj-features reveal-up">
+        <div class="proj-feature">
+          <h4 data-i18n="perfora.f1Title">Gradyan kontrolcüleri</h4>
+          <p data-i18n="perfora.f1Desc">Nokta ve eğri kontrolcüleri desenin boyutunu ve derinliğini yönetir; ortası derin, kenarı sığ gibi kurallar tek hareketle kurulur.</p>
+        </div>
+        <div class="proj-feature">
+          <h4 data-i18n="perfora.f2Title">Yüzeye sarma ve rölyef</h4>
+          <p data-i18n="perfora.f2Desc">Kafes yüzeyin fiziksel ölçüsüne göre yerleşir; desen gövdeye gömülür, kabartılır ya da delik olarak kesilir, uçlar koni gibi daraltılabilir.</p>
+        </div>
+        <div class="proj-feature">
+          <h4 data-i18n="perfora.f3Title">Desen kütüphanesi</h4>
+          <p data-i18n="perfora.f3Desc">Delik, Voronoi kabuk, üçgen kafes, faset ve dilim desenleri aynı ayar sistemini paylaşır; kayıtlı ayarlar başka projelere taşınır.</p>
+        </div>
+        <div class="proj-feature">
+          <h4 data-i18n="perfora.f4Title">Perfora Studio</h4>
+          <p data-i18n="perfora.f4Desc">Rhino içinde açılan web tabanlı arayüz: solda desen kartları, ortada sürüklenebilir tuval, sağda parametreler ve tek tuşla uygulama.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Back link ── -->
+  <section class="proj-back-section">
+    <div class="proj-container">
+      <a href="index.html#work" class="proj-back-btn reveal-up" data-i18n="proj_detail.back">← Tüm Projelere Dön</a>
+    </div>
+  </section>
+
+  <!-- ── Footer ── -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <img src="assets/logo.webp" alt="HUŞ Logo" class="site-logo-img footer-logo-img" loading="lazy" decoding="async">
+      <p data-i18n="proj_detail.footer">© 2026 Halil Utku Şimşek — Tüm hakları saklıdır.</p>
+      <a href="telif.html" class="footer-legal" data-i18n="footer.legal">Telif Hakkı</a>
+    </div>
+  </footer>
+
+  <script>
+    /* Cover img Ken Burns */
+    const coverImg = document.querySelector('.proj-cover-img');
+    if(coverImg){ coverImg.addEventListener('load',()=>coverImg.classList.add('loaded')); if(coverImg.complete) coverImg.classList.add('loaded'); }
+
+    /* theme toggle removed: the site is light-only */
+
+    /* Nav scroll */
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>40),{passive:true});
+
+    /* Scroll reveal */
+    const io = new IntersectionObserver(entries=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in-view'); io.unobserve(e.target); }});
+    },{ threshold:0.1, rootMargin:'0px 0px -50px 0px' });
+    document.querySelectorAll('.reveal-up').forEach(el=>io.observe(el));
+
+    /* Gallery lightbox */
+    document.querySelectorAll('.gallery-item img').forEach(img=>{
+      img.style.cursor='zoom-in';
+      img.addEventListener('click',()=>{
+        const overlay=document.createElement('div');
+        overlay.className='lightbox-overlay';
+        overlay.innerHTML=`<div class="lightbox-inner"><img src="${img.src}" alt="${img.alt}" loading="lazy" decoding="async"><button class="lightbox-close">✕</button></div>`;
+        document.body.appendChild(overlay);
+        requestAnimationFrame(()=>overlay.classList.add('active'));
+        const close=()=>{ overlay.classList.remove('active'); setTimeout(()=>overlay.remove(),300); };
+        overlay.querySelector('.lightbox-close').addEventListener('click',close);
+        overlay.addEventListener('click',e=>{ if(e.target===overlay) close(); });
+      });
+    });
+  </script>
+</body>
+</html>

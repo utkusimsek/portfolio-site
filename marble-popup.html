@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mermer Koleksiyonu — Halil Utku Şimşek</title>
+  <link rel="icon" type="image/webp" href="assets/logo.webp"/>
+  <link rel="icon" type="image/png" sizes="any" href="assets/logo.png"/>
+  <link rel="apple-touch-icon" href="assets/logo.png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css?v=lg5"/>
+  <link rel="stylesheet" href="project.css?v=lg5"/>
+  <style>
+    .proj-gallery .gallery-row { gap: 18px; margin-bottom: 18px; }
+    .proj-gallery .gallery-half .gallery-item.g-tall { aspect-ratio: 4 / 5; }
+    .proj-gallery .gallery-item.g-drawing { background: #fff; aspect-ratio: 16 / 9.4; }
+    .proj-gallery .gallery-item.g-drawing-sq { aspect-ratio: 16 / 10; }
+    .proj-gallery .gallery-item.g-drawing img { object-fit: contain; padding: clamp(12px, 2.4vw, 36px); }
+  </style>
+  <script>document.documentElement.classList.add('js');</script>
+  <script defer src="i18n.js?v=lg1"></script>
+  <script defer src="i18n-v2.js?v=lg5"></script>
+  <script defer src="i18n-projects.js?v=lg6"></script>
+  <script defer src="vendor/lenis.min.js"></script>
+  <script defer src="glass.js?v=lg5"></script>
+  <script defer src="project.js?v=lg5"></script>
+  <script defer src="motion.js?v=lg5"></script>
+  <script defer src="protect.js"></script>
+</head>
+<body data-i18n-pagetitle="pageTitle.marble" class="light page-project">
+
+  <header class="nav-wrap" id="nav">
+    <nav class="nav lg" data-refract="nav" aria-label="Ana menü">
+      <a class="nav-logo" href="index.html" aria-label="Ana sayfa">
+        <img src="assets/logo.webp" alt="" width="22" height="25">
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html#work" data-i18n="v2.nav.work">İşler</a></li>
+        <li><a href="index.html#about" data-i18n="v2.nav.about">Hakkımda</a></li>
+        <li><a href="index.html#skills" data-i18n="v2.nav.skills">Araçlar</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="lang-toggle" id="langToggle" data-i18n-aria="nav.langAria" aria-label="Dil değiştir">
+          <span class="lang-current">EN</span>
+        </button>
+        <a class="nav-cta" href="index.html#contact">
+          <span data-i18n="v2.nav.cta">Yazın</span>
+          <span class="arrow-dot" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M5 11 11 5M6 5h5v5" /></svg></span>
+        </a>
+        <button class="burger" id="burger" aria-label="Menü" aria-expanded="false" aria-controls="mobileMenu">
+          <span></span><span></span>
+        </button>
+      </div>
+    </nav>
+    <div class="mobile-menu lg" id="mobileMenu" hidden>
+      <a href="index.html#work" data-i18n="v2.nav.work">İşler</a>
+      <a href="index.html#about" data-i18n="v2.nav.about">Hakkımda</a>
+      <a href="index.html#skills" data-i18n="v2.nav.skills">Araçlar</a>
+      <a href="index.html#contact" data-i18n="v2.nav.contact">İletişim</a>
+    </div>
+  </header>
+
+  <!-- ── Hero ── -->
+  <section class="proj-hero">
+    <div class="proj-hero-img">
+      <img src="assets/marble-cover.webp" alt="Mermer Koleksiyonu" class="proj-cover-img" fetchpriority="high">
+      <div class="proj-hero-overlay"></div>
+    </div>
+    <div class="proj-hero-content reveal-up">
+      <div class="proj-breadcrumb">
+        <a href="index.html" data-i18n="proj_detail.breadcrumbHome">Ana Sayfa</a>
+        <span>›</span>
+        <a href="index.html#work" data-i18n="proj_detail.breadcrumbProjects">Projeler</a>
+        <span>›</span>
+        <span data-i18n="marble.breadcrumb">Mermer Koleksiyonu</span>
+      </div>
+      <div class="proj-badge-row">
+        <span class="proj-badge" data-i18n="marble.badge">İç Mekân Ürünü</span>
+        <span class="proj-badge-year" data-i18n="marble.year">2025–2026 · MEG Custom Marble</span>
+      </div>
+      <h1 class="proj-title" data-i18n="marble.title">Mermer Koleksiyonu<br/><em>Ölçüye özel banyo, şömine ve mobilya</em></h1>
+      <div class="proj-tags">
+        <span>Rhino 3D</span><span>3ds Max</span><span>V-Ray</span><span>Teknik Çizim</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Overview ── -->
+  <section class="proj-section">
+    <div class="proj-container">
+      <div class="proj-overview reveal-up">
+        <div class="proj-overview-label" data-i18n="proj_detail.overviewLabel">Proje Özeti</div>
+        <p class="proj-overview-text" data-i18n="marble.overview"><strong>Bloktan mimari bir öğeye</strong><br/><br/>MEG Custom Marble için New York ve Miami'deki konut projelerine yönelik geliştirdiğim ölçüye özel mermer ürünler: çift lavabolu banyo dolapları, basamaklı ve klasik şömine çerçeveleri, tek parça küvet, ayaklı lavabo, mutfak adası ve mermer kapaklı mobilyalar.<br/><br/>Her plaka farklı olduğu için tasarım damar dokusunu yerleştirmekle başlar. 3D modelleme ve görselleştirmenin yanında, atölyenin doğrudan kesime geçebileceği okunaklı üretim çizimlerini de hazırladım.</p>
+      </div>
+
+      <div class="proj-stats reveal-up">
+        <div class="proj-stat"><span class="proj-stat-num">80″</span><span class="proj-stat-label" data-i18n="marble.stat1">Çift lavabolu dolap</span></div>
+        <div class="proj-stat"><span class="proj-stat-num" data-i18n="marble.statNum2">Calacatta Viola</span><span class="proj-stat-label" data-i18n="marble.stat2">Ana taş</span></div>
+        <div class="proj-stat"><span class="proj-stat-num" data-i18n="marble.statNum3">NY · Miami</span><span class="proj-stat-label" data-i18n="marble.stat3">Proje şehirleri</span></div>
+        <div class="proj-stat"><span class="proj-stat-num" data-i18n="marble.statNum4">Ölçülü</span><span class="proj-stat-label" data-i18n="marble.stat4">Üretim çizimi</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Gallery ── -->
+  <section class="proj-gallery">
+    <div class="proj-container">
+
+      <div class="gallery-row gallery-half reveal-up">
+        <div class="gallery-item g-tall">
+          <img src="assets/marble-vanity.webp" alt="80 inç çift lavabo, ceviz gövde" loading="lazy" decoding="async">
+          <div class="gallery-caption" data-i18n="marble.capVanity">80 inç çift lavabo, ceviz gövde</div>
+        </div>
+        <div class="gallery-item g-tall">
+          <img src="assets/marble-vanity-detail.webp" alt="Entegre hazneler ve damar sürekliliği" loading="lazy" decoding="async">
+          <div class="gallery-caption" data-i18n="marble.capVanityDetail">Entegre hazneler ve damar sürekliliği</div>
+        </div>
+      </div>
+
+      <div class="gallery-row gallery-full reveal-up">
+        <div class="gallery-item g-drawing">
+          <img src="assets/marble-drawing-powder.webp" alt="Teknik çizim: powder bath lavabosu, honed Calacatta Vagli" loading="lazy" decoding="async">
+          <div class="gallery-caption" data-i18n="marble.capDrawingPowder">Teknik çizim: powder bath lavabosu, honed Calacatta Vagli</div>
+        </div>
+      </div>
+
+      <div class="gallery-row gallery-half reveal-up">
+        <div class="gallery-item g-tall">
+          <img src="assets/marble-bathtub.webp" alt="Tek parça mermer küvet" loading="lazy" decoding="async">
+          <div class="gallery-caption" data-i18n="marble.capBathtub">Tek parça mermer küvet</div>
+        </div>
+        <div class="gallery-item g-tall">
+          <img src="assets/marble-pedestal.webp" alt="Ayaklı mermer lavabo" loading="lazy" decoding="async">
+          <div class="gallery-caption" data-i18n="marble.capPedestal">Ayaklı mermer lavabo</div>
+        </div>
+      </div>
+
+      <div class="gallery-row gallery-full reveal-up">
+        <div class="gallery-item gallery-cover">
+          <img src="assets/marble-workshop.webp" alt="Atölye: küvetin işlenmesi (görselleştirme)" loading="lazy" decoding="async">
+          <div class="gallery-caption" data-i18n="marble.capWorkshop">Atölye: küvetin işlenmesi (görselleştirme)</div>
+        </div>
+      </div>
+
+      <div class="gallery-row gallery-full reveal-up">
+        <div class="gallery-item gallery-cover">
+          <img src="assets/marble-sideboard.webp" alt="Mermer kapaklı konsol, kitap açılımı damar" loading="lazy" decoding="async">
+          <div class="gallery-caption" data-i18n="marble.capSideboard">Mermer kapaklı konsol, kitap açılımı damar</div>
+        </div>
+      </div>
+
+      <div class="gallery-row gallery-half reveal-up">
+        <div class="gallery-item">
+          <img src="assets/marble-coffee-table.webp" alt="Blok mermer orta sehpa" loading="lazy" decoding="async">
+          <div class="gallery-caption" data-i18n="marble.capCoffeeTable">Blok mermer orta sehpa</div>
+        </div>
+        <div class="gallery-item">
+          <img src="assets/marble-fireplace-stepped.webp" alt="Basamaklı şömine çerçevesi" loading="lazy" decoding="async">
+          <div class="gallery-caption" data-i18n="marble.capFireplaceStepped">Basamaklı şömine çerçevesi</div>
+        </div>
+      </div>
+
+      <div class="gallery-row gallery-full reveal-up">
+        <div class="gallery-item gallery-cover">
+          <img src="assets/marble-kitchen.webp" alt="Mermer mutfak adası" loading="lazy" decoding="async">
+          <div class="gallery-caption" data-i18n="marble.capKitchen">Mermer mutfak adası</div>
+        </div>
+      </div>
+
+      <div class="gallery-row gallery-full reveal-up">
+        <div class="gallery-item g-drawing g-drawing-sq">
+          <img src="assets/marble-drawing-bath2.webp" alt="Teknik çizim: Bathroom 2 lavabo ve kesitler" loading="lazy" decoding="async">
+          <div class="gallery-caption" data-i18n="marble.capDrawingBath">Teknik çizim: Bathroom 2 lavabo ve kesitler</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── Key features ── -->
+  <section class="proj-section proj-features-section">
+    <div class="proj-container">
+      <h2 class="proj-section-title reveal-up" data-i18n="proj_detail.featuresTitle">Tasarım Özellikleri</h2>
+      <div class="proj-features reveal-up">
+        <div class="proj-feature">
+          <h4 data-i18n="marble.f1Title">Ölçüye özel üretim</h4>
+          <p data-i18n="marble.f1Desc">Her ürün projenin nişine, tesisat noktalarına ve kullanıcısına göre boyutlandırılır; standart katalog ölçüsü yerine mekâna göre çözülür.</p>
+        </div>
+        <div class="proj-feature">
+          <h4 data-i18n="marble.f2Title">Damar yerleşimi</h4>
+          <p data-i18n="marble.f2Desc">Plakadaki damarlar kesimden önce yerleştirilir; kapaklarda kitap açılımı, lavabo yüzeyinde kesintisiz akış hedeflenir.</p>
+        </div>
+        <div class="proj-feature">
+          <h4 data-i18n="marble.f3Title">Üretime hazır teknik çizim</h4>
+          <p data-i18n="marble.f3Desc">Görünüşler, kesitler ve hazne detayları atölyenin okuyabileceği sadelikte çizilir; tasarım ile kesim arasında yorum payı kalmaz.</p>
+        </div>
+        <div class="proj-feature">
+          <h4 data-i18n="marble.f4Title">Taş ve ahşap birlikte</h4>
+          <p data-i18n="marble.f4Desc">Mermer yüzeyler ceviz ve Avrupa meşesi gövdelerle eşleşir; yuvarlak kulp detayı ahşabın içine oyularak sıcak bir karşıtlık kurar.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Back link ── -->
+  <section class="proj-back-section">
+    <div class="proj-container">
+      <a href="index.html#work" class="proj-back-btn reveal-up" data-i18n="proj_detail.back">← Tüm Projelere Dön</a>
+    </div>
+  </section>
+
+  <!-- ── Footer ── -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <img src="assets/logo.webp" alt="HUŞ Logo" class="site-logo-img footer-logo-img" loading="lazy" decoding="async">
+      <p data-i18n="proj_detail.footer">© 2026 Halil Utku Şimşek — Tüm hakları saklıdır.</p>
+      <a href="telif.html" class="footer-legal" data-i18n="footer.legal">Telif Hakkı</a>
+    </div>
+  </footer>
+
+  <script>
+    /* Cover img Ken Burns */
+    const coverImg = document.querySelector('.proj-cover-img');
+    if(coverImg){ coverImg.addEventListener('load',()=>coverImg.classList.add('loaded')); if(coverImg.complete) coverImg.classList.add('loaded'); }
+
+    /* theme toggle removed: the site is light-only */
+
+    /* Nav scroll */
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>40),{passive:true});
+
+    /* Scroll reveal */
+    const io = new IntersectionObserver(entries=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in-view'); io.unobserve(e.target); }});
+    },{ threshold:0.1, rootMargin:'0px 0px -50px 0px' });
+    document.querySelectorAll('.reveal-up').forEach(el=>io.observe(el));
+
+    /* Gallery lightbox */
+    document.querySelectorAll('.gallery-item img').forEach(img=>{
+      img.style.cursor='zoom-in';
+      img.addEventListener('click',()=>{
+        const overlay=document.createElement('div');
+        overlay.className='lightbox-overlay';
+        overlay.innerHTML=`<div class="lightbox-inner"><img src="${img.src}" alt="${img.alt}" loading="lazy" decoding="async"><button class="lightbox-close">✕</button></div>`;
+        document.body.appendChild(overlay);
+        requestAnimationFrame(()=>overlay.classList.add('active'));
+        const close=()=>{ overlay.classList.remove('active'); setTimeout(()=>overlay.remove(),300); };
+        overlay.querySelector('.lightbox-close').addEventListener('click',close);
+        overlay.addEventListener('click',e=>{ if(e.target===overlay) close(); });
+      });
+    });
+  </script>
+</body>
+</html>
