@@ -2,864 +2,429 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Halil Utku Şimşek — Endüstriyel Tasarımcı</title>
+  <meta name="description" content="Halil Utku Şimşek — yat, endüstriyel ürün ve kent mobilyası tasarımcısı. İzmir ve Bodrum." />
+  <meta name="theme-color" content="#EDF1F4" />
   <link rel="icon" type="image/webp" href="assets/logo.webp"/>
   <link rel="icon" type="image/png" sizes="any" href="assets/logo.png"/>
   <link rel="apple-touch-icon" href="assets/logo.png"/>
 
-  <!-- Critical resource preloads — speeds up LCP (Largest Contentful Paint) -->
-  <link rel="preload" as="image" href="assets/logo.webp" fetchpriority="high"/>
   <link rel="preload" as="image" href="assets/pb-cover.webp" fetchpriority="high"/>
-  <!-- İkinci kart (Ekofish) hero hemen altında, scroll'da ilk görünür → düşük öncelikli preload -->
-  <link rel="preload" as="image" href="assets/eko-cover.webp"/>
-  <link rel="preload" as="video" href="assets/videos/showcase-07.mp4" type="video/mp4"/>
-  <link rel="preload" as="style" href="style.css?v=20260515-mc2"/>
-
-  <link rel="stylesheet" href="style.css?v=20260515-mc2" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <!-- Use media trick to load fonts non-render-blocking, then swap -->
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" media="print" onload="this.media='all'"/>
-  <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/></noscript>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css?v=lg1" />
 
-  <!-- Splash inline — must run synchronously before body paints (theme flash, splash-skip class) -->
-  <script>(function(){try{if(localStorage.getItem('theme')==='light')document.documentElement.classList.add('pre-light')}catch(_){}var skip=false;try{skip=sessionStorage.getItem('splashShown')==='1'}catch(_){}function removeSplashNow(){var s=document.getElementById('splash');if(s&&s.parentNode)s.parentNode.removeChild(s)}if(skip){document.documentElement.classList.add('splash-skip');if(document.readyState!=='loading')removeSplashNow();else document.addEventListener('DOMContentLoaded',removeSplashNow);return}try{sessionStorage.setItem('splashShown','1')}catch(_){}var MIN_MS=1000,MAX_MS=3500,startedAt=performance.now(),faded=false;function fadeOut(){if(faded)return;faded=true;var s=document.getElementById('splash');if(!s)return;s.classList.add('splash-out');setTimeout(function(){if(s.parentNode)s.parentNode.removeChild(s)},500)}function scheduleFade(){var e=performance.now()-startedAt;setTimeout(fadeOut,Math.max(0,MIN_MS-e))}if(document.readyState==='complete')scheduleFade();else{window.addEventListener('load',scheduleFade);setTimeout(fadeOut,MAX_MS)}})();</script>
-
-  <script defer src="i18n.js?v=20260513c"></script>
+  <script>document.documentElement.classList.add('js');</script>
+  <script defer src="i18n.js?v=lg1"></script>
+  <script defer src="i18n-v2.js?v=lg1"></script>
   <script defer src="protect.js"></script>
-  <script defer src="ripple.js"></script>
-  <script defer src="drag.js"></script>
-  <!-- Google reCAPTCHA v2 — yalnızca contact form viewport'a girince yüklenir
-       (lazy load → ilk paint'i bloklamaz, ana sayfa daha hızlı) -->
+  <script defer src="glass.js?v=lg1"></script>
+  <script defer src="script.js?v=lg1"></script>
 </head>
-<body data-i18n-pagetitle="pageTitle.home">
+<body data-i18n-pagetitle="pageTitle.home" class="page-home">
 
-  <!-- ─── SPLASH ─── -->
-  <div id="splash" aria-hidden="true">
-    <div class="splash-inner">
-      <svg class="splash-logo" viewBox="0 0 196 249" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="splashGrad" x1="-21.5" y1="10" x2="194" y2="177" gradientUnits="userSpaceOnUse">
-            <stop offset="0.015" stop-color="#fff" stop-opacity="0"/>
-            <stop offset="0.51"  stop-color="#fff" stop-opacity="0.95"/>
-            <stop offset="1"     stop-color="#fff" stop-opacity="0"/>
-          </linearGradient>
-        </defs>
-        <path class="splash-p splash-p1" d="M50.6351 2.81087C50.6351 2.08199 49.8516 1.62163 49.2149 1.97636L19.9038 18.3053C16.8766 19.9917 15 23.1853 15 26.6505V148.52C15 152.175 17.085 155.509 20.3708 157.109L84.228 188.202C85.0859 188.619 85.9587 187.66 85.4616 186.845L52.7328 133.215C51.3609 130.967 50.6351 128.384 50.6351 125.751V2.81087Z" fill="url(#splashGrad)"/>
-        <path class="splash-p splash-p2" d="M145.365 2.81087C145.365 2.08199 146.148 1.62163 146.785 1.97636L176.096 18.3053C179.123 19.9917 181 23.1853 181 26.6505V148.52C181 152.175 178.915 155.509 175.629 157.109L111.772 188.202C110.914 188.619 110.041 187.66 110.538 186.845L143.267 133.215C144.639 130.967 145.365 128.384 145.365 125.751V2.81087Z" fill="url(#splashGrad)"/>
-        <path class="splash-p splash-p3" d="M137.706 0C138.385 0 138.847 0.688298 138.591 1.31672L115.721 57.2663C114.314 60.7083 113.59 64.3912 113.59 68.1097V122.704C113.59 124.201 113.414 125.693 113.066 127.149L98.4836 188.116C98.2498 189.093 96.8593 189.093 96.6255 188.116L82.0429 127.149C81.6947 125.693 81.5188 124.201 81.5188 122.704V67.8047C81.5188 64.2842 80.8701 60.7938 79.6052 57.5083L57.965 1.29849C57.7241 0.672737 58.186 0 58.8565 0L137.706 0Z" fill="url(#splashGrad)"/>
-        <path class="splash-text" d="M1.61449 240V223.631H4.57972V230.561H12.1646V223.631H15.1379V240H12.1646V233.046H4.57972V240H1.61449ZM21.7677 240.248C20.9897 240.248 20.2891 240.109 19.6656 239.832C19.0476 239.55 18.5573 239.134 18.195 238.585C17.838 238.036 17.6595 237.36 17.6595 236.555C17.6595 235.863 17.7874 235.29 18.0432 234.837C18.2989 234.384 18.6479 234.022 19.0902 233.75C19.5324 233.478 20.0306 233.273 20.5848 233.134C21.1443 232.991 21.7224 232.887 22.3192 232.823C23.0385 232.748 23.6219 232.681 24.0695 232.623C24.5171 232.559 24.8421 232.463 25.0446 232.335C25.2524 232.202 25.3563 231.997 25.3563 231.72V231.672C25.3563 231.07 25.1778 230.603 24.8208 230.273C24.4638 229.943 23.9496 229.778 23.2783 229.778C22.5696 229.778 22.0075 229.932 21.5918 230.241C21.1816 230.55 20.9045 230.915 20.7606 231.336L18.0591 230.952C18.2723 230.206 18.6239 229.583 19.1142 229.082C19.6044 228.576 20.2038 228.198 20.9125 227.947C21.6211 227.691 22.4044 227.564 23.2623 227.564C23.8537 227.564 24.4425 227.633 25.0286 227.771C25.6148 227.91 26.1503 228.139 26.6351 228.459C27.12 228.773 27.509 229.202 27.802 229.746C28.1004 230.289 28.2496 230.968 28.2496 231.784V240H25.4682V238.314H25.3723C25.1965 238.655 24.9487 238.974 24.629 239.273C24.3146 239.566 23.9177 239.803 23.4381 239.984C22.9639 240.16 22.4071 240.248 21.7677 240.248ZM22.519 238.122C23.0998 238.122 23.6033 238.007 24.0296 237.778C24.4558 237.544 24.7835 237.235 25.0127 236.851C25.2471 236.467 25.3643 236.049 25.3643 235.596V234.149C25.2737 234.224 25.1192 234.293 24.9008 234.357C24.6876 234.421 24.4478 234.477 24.1814 234.525C23.915 234.573 23.6513 234.616 23.3902 234.653C23.1291 234.69 22.9026 234.722 22.7108 234.749C22.2792 234.808 21.8929 234.903 21.5519 235.037C21.2109 235.17 20.9418 235.356 20.7446 235.596C20.5475 235.831 20.4489 236.134 20.4489 236.507C20.4489 237.04 20.6434 237.442 21.0324 237.714C21.4213 237.986 21.9169 238.122 22.519 238.122ZM34.0522 223.631V240H31.1589V223.631H34.0522ZM37.0274 240V227.723H39.9207V240H37.0274ZM38.4821 225.981C38.0238 225.981 37.6295 225.829 37.2992 225.526C36.9688 225.216 36.8036 224.846 36.8036 224.415C36.8036 223.978 36.9688 223.607 37.2992 223.304C37.6295 222.995 38.0238 222.84 38.4821 222.84C38.9456 222.84 39.3399 222.995 39.665 223.304C39.9953 223.607 40.1605 223.978 40.1605 224.415C40.1605 224.846 39.9953 225.216 39.665 225.526C39.3399 225.829 38.9456 225.981 38.4821 225.981ZM45.7893 223.631V240H42.896V223.631H45.7893ZM64.7935 223.631H67.7587V234.325C67.7587 235.498 67.4817 236.529 66.9275 237.418C66.3787 238.308 65.6061 239.004 64.6097 239.504C63.6133 240 62.449 240.248 61.1169 240.248C59.7795 240.248 58.6126 240 57.6162 239.504C56.6198 239.004 55.8472 238.308 55.2984 237.418C54.7496 236.529 54.4751 235.498 54.4751 234.325V223.631H57.4404V234.078C57.4404 234.76 57.5896 235.367 57.888 235.9C58.1917 236.433 58.6179 236.851 59.1668 237.155C59.7156 237.453 60.3656 237.602 61.1169 237.602C61.8682 237.602 62.5183 237.453 63.0671 237.155C63.6213 236.851 64.0475 236.433 64.3459 235.9C64.6443 235.367 64.7935 234.76 64.7935 234.078V223.631ZM76.9841 227.723V229.961H69.9267V227.723H76.9841ZM71.6691 224.782H74.5624V236.307C74.5624 236.696 74.621 236.995 74.7382 237.203C74.8608 237.405 75.0206 237.544 75.2178 237.618C75.4149 237.693 75.6334 237.73 75.8732 237.73C76.0543 237.73 76.2195 237.717 76.3687 237.69C76.5232 237.664 76.6405 237.64 76.7204 237.618L77.2079 239.88C77.0534 239.933 76.8323 239.992 76.5445 240.056C76.2621 240.12 75.9158 240.157 75.5055 240.168C74.7809 240.189 74.1281 240.08 73.5473 239.84C72.9665 239.595 72.5056 239.217 72.1646 238.705C71.8289 238.194 71.6638 237.554 71.6691 236.787V224.782ZM82.3052 236.148L82.2972 232.655H82.7607L87.1726 227.723H90.5535L85.1265 233.766H84.5271L82.3052 236.148ZM79.6676 240V223.631H82.5609V240H79.6676ZM87.3724 240L83.3762 234.413L85.3263 232.375L90.8332 240H87.3724ZM100.306 234.837V227.723H103.2V240H100.394V237.818H100.266C99.9893 238.505 99.5337 239.068 98.8997 239.504C98.2709 239.941 97.4956 240.16 96.5738 240.16C95.7693 240.16 95.0579 239.981 94.4398 239.624C93.8271 239.262 93.3475 238.737 93.0012 238.05C92.6548 237.357 92.4817 236.521 92.4817 235.54V227.723H95.375V235.093C95.375 235.871 95.5881 236.489 96.0144 236.947C96.4406 237.405 97.0001 237.634 97.6928 237.634C98.1191 237.634 98.532 237.53 98.9316 237.322C99.3313 237.115 99.659 236.806 99.9147 236.395C100.176 235.98 100.306 235.46 100.306 234.837ZM120.781 228.131C120.707 227.433 120.392 226.89 119.838 226.501C119.289 226.112 118.575 225.917 117.696 225.917C117.078 225.917 116.548 226.01 116.106 226.197C115.663 226.383 115.325 226.636 115.091 226.956C114.856 227.276 114.736 227.641 114.731 228.051C114.731 228.392 114.808 228.688 114.963 228.938C115.123 229.189 115.338 229.402 115.61 229.578C115.882 229.748 116.183 229.892 116.513 230.009C116.844 230.127 117.177 230.225 117.512 230.305L119.047 230.689C119.665 230.833 120.259 231.027 120.829 231.272C121.405 231.517 121.919 231.826 122.372 232.199C122.83 232.572 123.192 233.023 123.459 233.55C123.725 234.078 123.858 234.696 123.858 235.404C123.858 236.363 123.613 237.208 123.123 237.938C122.633 238.663 121.924 239.23 120.997 239.64C120.075 240.045 118.959 240.248 117.648 240.248C116.375 240.248 115.269 240.051 114.331 239.656C113.399 239.262 112.669 238.687 112.141 237.93C111.619 237.173 111.337 236.251 111.294 235.165H114.211C114.254 235.735 114.43 236.209 114.739 236.587C115.048 236.965 115.45 237.248 115.946 237.434C116.447 237.621 117.006 237.714 117.624 237.714C118.269 237.714 118.834 237.618 119.319 237.426C119.809 237.229 120.192 236.958 120.47 236.611C120.747 236.259 120.888 235.849 120.893 235.38C120.888 234.954 120.763 234.602 120.517 234.325C120.272 234.043 119.929 233.808 119.486 233.622C119.05 233.43 118.538 233.26 117.952 233.11L116.09 232.631C114.742 232.285 113.676 231.76 112.893 231.056C112.115 230.348 111.726 229.407 111.726 228.235C111.726 227.271 111.987 226.426 112.509 225.701C113.036 224.977 113.753 224.415 114.659 224.015C115.565 223.61 116.59 223.407 117.736 223.407C118.898 223.407 119.915 223.61 120.789 224.015C121.668 224.415 122.358 224.971 122.859 225.685C123.36 226.394 123.619 227.209 123.635 228.131H120.781ZM116.801 239.936H118.367L118.24 240.615C118.74 240.69 119.164 240.882 119.51 241.191C119.862 241.505 120.038 241.956 120.038 242.542C120.043 243.298 119.705 243.906 119.023 244.364C118.341 244.822 117.368 245.051 116.106 245.051L116.074 243.629C116.686 243.629 117.174 243.546 117.536 243.381C117.899 243.221 118.082 242.965 118.088 242.614C118.098 242.273 117.971 242.022 117.704 241.862C117.443 241.708 117.027 241.601 116.457 241.543L116.801 239.936ZM129.467 223.631V240H126.502V223.631H129.467ZM127.989 221.889C127.525 221.889 127.128 221.737 126.798 221.433C126.473 221.124 126.31 220.754 126.31 220.322C126.31 219.885 126.475 219.515 126.806 219.211C127.136 218.902 127.53 218.748 127.989 218.748C128.447 218.748 128.838 218.902 129.163 219.211C129.494 219.515 129.659 219.885 129.659 220.322C129.659 220.754 129.494 221.124 129.163 221.433C128.838 221.737 128.447 221.889 127.989 221.889ZM132.678 223.631H136.307L141.166 235.492H141.358L146.217 223.631H149.846V240H147.001V228.754H146.849L142.325 239.952H140.199L135.675 228.731H135.523V240H132.678V223.631ZM161.971 228.131C161.896 227.433 161.582 226.89 161.028 226.501C160.479 226.112 159.765 225.917 158.886 225.917C158.268 225.917 157.737 226.01 157.295 226.197C156.853 226.383 156.515 226.636 156.28 226.956C156.046 227.276 155.926 227.641 155.92 228.051C155.92 228.392 155.998 228.688 156.152 228.938C156.312 229.189 156.528 229.402 156.8 229.578C157.071 229.748 157.372 229.892 157.703 230.009C158.033 230.127 158.366 230.225 158.702 230.305L160.236 230.689C160.854 230.833 161.449 231.027 162.019 231.272C162.594 231.517 163.108 231.826 163.561 232.199C164.02 232.572 164.382 233.023 164.648 233.55C164.915 234.078 165.048 234.696 165.048 235.404C165.048 236.363 164.803 237.208 164.313 237.938C163.822 238.663 163.114 239.23 162.187 239.64C161.265 240.045 160.148 240.248 158.838 240.248C157.564 240.248 156.459 240.051 155.521 239.656C154.588 239.262 153.858 238.687 153.331 237.93C152.809 237.173 152.526 236.251 152.484 235.165H155.401C155.444 235.735 155.619 236.209 155.928 236.587C156.237 236.965 156.64 237.248 157.135 237.434C157.636 237.621 158.196 237.714 158.814 237.714C159.458 237.714 160.023 237.618 160.508 237.426C160.998 237.229 161.382 236.958 161.659 236.611C161.936 236.259 162.077 235.849 162.083 235.38C162.077 234.954 161.952 234.602 161.707 234.325C161.462 234.043 161.118 233.808 160.676 233.622C160.239 233.43 159.728 233.26 159.141 233.11L157.279 232.631C155.931 232.285 154.865 231.76 154.082 231.056C153.304 230.348 152.915 229.407 152.915 228.235C152.915 227.271 153.176 226.426 153.699 225.701C154.226 224.977 154.943 224.415 155.849 224.015C156.754 223.61 157.78 223.407 158.926 223.407C160.087 223.407 161.105 223.61 161.979 224.015C162.858 224.415 163.548 224.971 164.049 225.685C164.55 226.394 164.808 227.209 164.824 228.131H161.971ZM157.991 239.936H159.557L159.429 240.615C159.93 240.69 160.354 240.882 160.7 241.191C161.052 241.505 161.227 241.956 161.227 242.542C161.233 243.298 160.894 243.906 160.212 244.364C159.53 244.822 158.558 245.051 157.295 245.051L157.263 243.629C157.876 243.629 158.363 243.546 158.726 243.381C159.088 243.221 159.272 242.965 159.277 242.614C159.288 242.273 159.16 242.022 158.894 241.862C158.633 241.708 158.217 241.601 157.647 241.543L157.991 239.936ZM167.691 240V223.631H178.338V226.117H170.657V230.561H177.786V233.046H170.657V237.514H178.401V240H167.691ZM181.363 240V223.631H184.328V231.152H184.528L190.914 223.631H194.534L188.204 230.976L194.59 240H191.026L186.142 232.983L184.328 235.125V240H181.363Z" fill="#ffffff"/>
-      </svg>
-    </div>
-  </div>
+  <a class="skip-link" href="#work">İçeriğe geç</a>
 
-  <!-- ─── NAV ─── -->
-  <nav id="nav">
-    <div class="nav-inner">
-      <a class="logo" href="#"><img src="assets/logo.webp" alt="HUŞ Logo" class="site-logo-img"></a>
+  <!-- ─── NAV — floating liquid-glass pill ─── -->
+  <header class="nav-wrap" id="nav">
+    <nav class="nav lg" data-refract="nav" aria-label="Ana menü">
+      <a class="nav-logo" href="#top" aria-label="Halil Utku Şimşek — başa dön">
+        <img src="assets/logo.webp" alt="" width="22" height="25">
+        <span class="nav-name">Utku Şimşek</span>
+      </a>
       <ul class="nav-links">
-        <li><a href="#work" data-i18n="nav.projects">Projeler</a></li>
-        <li><a href="#about" data-i18n="nav.about">Hakkımda</a></li>
-        <li><a href="#skills" data-i18n="nav.skills">Yetkinlikler</a></li>
-        <li><a href="#contact" data-i18n="nav.contact">İletişim</a></li>
+        <li><a href="#work" data-i18n="v2.nav.work">İşler</a></li>
+        <li><a href="#about" data-i18n="v2.nav.about">Hakkımda</a></li>
+        <li><a href="#skills" data-i18n="v2.nav.skills">Araçlar</a></li>
       </ul>
-      <div class="nav-right">
+      <div class="nav-actions">
         <button class="lang-toggle" id="langToggle" data-i18n-aria="nav.langAria" aria-label="Dil değiştir">
           <span class="lang-current">EN</span>
         </button>
-        <button class="theme-toggle" id="themeToggle" data-i18n-aria="nav.themeAria" aria-label="Tema değiştir">
-          <span class="theme-icon theme-icon-dark">
-            <svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M10 2v2M10 16v2M2 10h2M16 10h2M4.22 4.22l1.42 1.42M14.36 14.36l1.42 1.42M4.22 15.78l1.42-1.42M14.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-          </span>
-          <span class="theme-icon theme-icon-light">
-            <svg viewBox="0 0 20 20" fill="none"><path d="M17 11.5A7 7 0 1 1 8.5 3a5 5 0 0 0 8.5 8.5z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </span>
-          <span class="theme-label">Açık Mod</span>
-        </button>
-        <button class="burger" id="burger" aria-label="Menu">
-          <span></span><span></span><span></span>
+        <a class="nav-cta" href="#contact">
+          <span data-i18n="v2.nav.cta">Yazın</span>
+          <span class="arrow-dot" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M5 11 11 5M6 5h5v5" /></svg></span>
+        </a>
+        <button class="burger" id="burger" aria-label="Menü" aria-expanded="false" aria-controls="mobileMenu">
+          <span></span><span></span>
         </button>
       </div>
+    </nav>
+    <div class="mobile-menu lg" id="mobileMenu" hidden>
+      <a href="#work" data-i18n="v2.nav.work">İşler</a>
+      <a href="#about" data-i18n="v2.nav.about">Hakkımda</a>
+      <a href="#skills" data-i18n="v2.nav.skills">Araçlar</a>
+      <a href="#contact" data-i18n="v2.nav.contact">İletişim</a>
     </div>
-  </nav>
+  </header>
 
-  <!-- ─── HERO HEADER — circular reveal heading (rotor: 4 word, hover: project image) ─── -->
-  <section id="ai-showcase">
-    <div class="showcase-overlay-bottom"></div>
-    <div class="showcase-overlay-top"></div>
-    <div class="showcase-content">
-      <!-- SEO/screen-reader için gerçek h1 — visually hidden -->
-      <h1 class="sr-only" data-i18n="showcase.title">
-        Hayal et. Tasarla. Modelle. Gerçekleştir.
-      </h1>
+  <main id="top">
 
-      <!-- Circular reveal — vanilla port of aceternity 'circular-reveal-heading'.
-           Dönen 4 kelime, ortada HUŞ logosu. Hover'da proje görseli açılır. -->
-      <div class="cr-wrap" id="circReveal" aria-hidden="true">
-        <div class="cr-frame-1"></div>
-        <div class="cr-frame-2"></div>
+    <!-- ─── HERO ─── -->
+    <section class="hero" aria-labelledby="heroName">
+      <div class="hero-frame" id="heroFrame">
+        <div class="hero-media">
+          <img src="assets/pb-cover.webp" alt="45ft Multi Hardtop Powerboat, iki tekne açık denizde, kuşbakışı render" width="1920" height="1080" fetchpriority="high" decoding="async">
+        </div>
+        <div class="hero-shade" aria-hidden="true"></div>
 
-        <!-- Hover'da açılan görsel overlay -->
-        <div class="cr-overlay" id="crOverlay">
-          <img id="crOverlayImg" alt="" src="" loading="lazy" decoding="async">
+        <p class="hero-intro" data-i18n="v2.hero.intro">Yat, ürün ve kent mobilyası tasarlıyorum. İlk eskizden üretime hazır modele kadar formun nedenini çizgiyle anlatıyorum.</p>
+
+        <a class="hero-card lg" data-refract="card" href="45ft-powerboat.html">
+          <span class="hero-card-thumb"><img src="assets/pb-aerial.webp" alt="" loading="eager" decoding="async"></span>
+          <span class="hero-card-text">
+            <small data-i18n="v2.hero.featured">Diploma projesi</small>
+            <strong data-i18n="proj.pb.title">45ft Multi Hardtop Powerboat</strong>
+            <span class="hero-card-meta" data-i18n="v2.hero.featuredMeta">KLAN Studio için, 2023</span>
+          </span>
+          <span class="arrow-dot arrow-dot--light" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M5 11 11 5M6 5h5v5" /></svg></span>
+        </a>
+
+        <div class="hero-status lg" data-refract="pill">
+          <span class="status-dot" aria-hidden="true"></span>
+          <span data-i18n="v2.hero.status">Yeni projelere açığım</span>
+          <span class="status-sep" aria-hidden="true"></span>
+          <span data-i18n="v2.hero.place">İzmir ve Bodrum</span>
         </div>
 
-        <!-- Merkez logo -->
-        <div class="cr-center" id="crCenter">
-          <img src="assets/logo.webp" alt="HUŞ" loading="eager" decoding="async">
-        </div>
+        <h1 class="hero-name" id="heroName" aria-label="Halil Utku Şimşek">
+          <span class="hero-name-line" data-split>Utku Şimşek</span>
+        </h1>
 
-        <!-- Dönen text rotor -->
-        <svg class="cr-rotor" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <path id="crCurve" fill="none"
-                  d="M 200,200 m -160,0 a 160,160 0 1,1 320,0 a 160,160 0 1,1 -320,0"/>
-          </defs>
-          <text class="cr-segment" data-image="assets/pb-cover.webp" data-key="word1">
-            <textPath href="#crCurve" startOffset="2%">Hayal Et</textPath>
-          </text>
-          <text class="cr-segment" data-image="assets/foldesk-cover.webp" data-key="word2">
-            <textPath href="#crCurve" startOffset="27%">Tasarla</textPath>
-          </text>
-          <text class="cr-segment" data-image="assets/beo-cover.webp" data-key="word3">
-            <textPath href="#crCurve" startOffset="52%">Modelle</textPath>
-          </text>
-          <text class="cr-segment" data-image="assets/scooter-cover.webp" data-key="word4">
-            <textPath href="#crCurve" startOffset="77%">Gerçekleştir</textPath>
-          </text>
-        </svg>
+        <!-- Liquid-glass lens: follows the pointer, bends the sea underneath -->
+        <div class="hero-lens lg" id="heroLens" data-refract="lens" aria-hidden="true"></div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ─── GLOBAL PARTICLE BG (behind everything) ─── -->
-  <canvas id="particleCanvas"></canvas>
-
-  <!-- ─── HERO ─── -->
-  <section id="hero">
-    <div class="hero-content">
-      <div class="hero-tag reveal-up delay-0" data-i18n="hero.tag">Endüstriyel Tasarımcı · İzmir</div>
-      <h1 class="hero-title reveal-up delay-1" data-i18n="hero.title">
-        Halil Utku<br /><em>Şimşek</em>
-      </h1>
-      <p class="hero-sub reveal-up delay-2" data-i18n="hero.sub">
-        Yat tasarımından endüstriyel ürünlere, kentsel mobilyadan
-        kamusal mekâna — teknik çizim ve ileri görselleştirme uzmanlığıyla
-        yenilikçi, estetik ve kullanıcı odaklı tasarımlar yaratıyorum.
-      </p>
-      <div class="hero-cta reveal-up delay-3">
-        <a href="#work" class="btn btn-primary" data-i18n="hero.ctaWork">Projeleri Gör</a>
-        <a href="#contact" class="btn btn-ghost" data-i18n="hero.ctaContact">İletişime Geç</a>
-      </div>
-    </div>
-    <div class="hero-scroll-hint">
-      <span data-i18n="hero.scroll">Aşağı kaydır</span>
-      <div class="scroll-line"></div>
-    </div>
-  </section>
-
-  <!-- ─── SHOWREEL — ContainerScroll + 6-video crossfade reel ─── -->
-  <section id="showreel" class="reel-section">
-    <div class="reel-inner">
-      <div class="reel-card">
-        <div class="reel-card-inner">
-          <div class="reel-deck" id="reelDeck" aria-label="Tasarım showreel">
-            <video class="reel-video is-active" muted playsinline preload="auto"     data-src="assets/videos/showcase-07.mp4"></video>
-            <video class="reel-video"           muted playsinline preload="metadata" data-src="assets/videos/showcase-01.mp4"></video>
-            <video class="reel-video"           muted playsinline preload="metadata" data-src="assets/videos/showcase-02.mp4"></video>
-            <video class="reel-video"           muted playsinline preload="metadata" data-src="assets/videos/showcase-03.mp4"></video>
-            <video class="reel-video"           muted playsinline preload="metadata" data-src="assets/videos/showcase-04.mp4"></video>
-            <video class="reel-video"           muted playsinline preload="metadata" data-src="assets/videos/showcase-05.mp4"></video>
-            <video class="reel-video"           muted playsinline preload="metadata" data-src="assets/videos/showcase-06.mp4"></video>
-          </div>
-          <div class="reel-progress" aria-hidden="true">
-            <span class="reel-progress-bar" id="reelProgressBar"></span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── LOGO MARQUEE ─── -->
-  <div class="marquee-wrap text-marquee-wrap">
-    <div class="marquee-fade marquee-fade-l"></div>
-    <div class="marquee-fade marquee-fade-r"></div>
-    <div class="text-marquee-track">
-
-      <!-- SET 1 -->
-      <span class="mq-item"><img src="assets/logos/logo10.png" alt="Figma" title="Figma" loading="lazy" decoding="async"></span>
-      <span class="mq-item"><img src="assets/logos/logo01.png" alt="Twinmotion" title="Twinmotion" loading="lazy" decoding="async"></span>
-      <span class="mq-item"><img src="assets/logos/logo02.png" alt="Procreate" title="Procreate" loading="lazy" decoding="async"></span>
-      <span class="mq-item"><img src="assets/logos/logo03.png" alt="Photoshop" title="Photoshop" loading="lazy" decoding="async"></span>
-      <span class="mq-item"><img src="assets/logos/logo04.png" alt="KeyShot" title="KeyShot" loading="lazy" decoding="async"></span>
-      <span class="mq-item"><img src="assets/logos/logo05.png" alt="V-Ray" title="V-Ray" loading="lazy" decoding="async"></span>
-      <span class="mq-item"><img src="assets/logos/logo07.png" alt="3ds Max" title="3ds Max" loading="lazy" decoding="async"></span>
-      <span class="mq-item"><img src="assets/logos/logo08.png" alt="Rhino 3D" title="Rhino 3D" loading="lazy" decoding="async"></span>
-      <span class="mq-item"><img src="assets/logos/grasshopper.jpg" alt="Grasshopper" title="Grasshopper" loading="lazy" decoding="async"></span>
-      <span class="mq-item"><img src="assets/logos/logo09.png" alt="Fusion 360" title="Fusion 360" loading="lazy" decoding="async"></span>
-
-      <!-- SET 2 (duplicate for infinite loop) -->
-      <span class="mq-item"><img src="assets/logos/logo10.png" alt="Figma" title="Figma" loading="lazy" decoding="async"></span>
-      <span class="mq-item"><img src="assets/logos/logo01.png" alt="Twinmotion" title="Twinmotion" loading="lazy" decoding="async"></span>
-      <span class="mq-item"><img src="assets/logos/logo02.png" alt="Procreate" title="Procreate" loading="lazy" decoding="async"></span>
-      <span class="mq-item"><img src="assets/logos/logo03.png" alt="Photoshop" title="Photoshop" loading="lazy" decoding="async"></span>
-      <span class="mq-item"><img src="assets/logos/logo04.png" alt="KeyShot" title="KeyShot" loading="lazy" decoding="async"></span>
-      <span class="mq-item"><img src="assets/logos/logo05.png" alt="V-Ray" title="V-Ray" loading="lazy" decoding="async"></span>
-      <span class="mq-item"><img src="assets/logos/logo07.png" alt="3ds Max" title="3ds Max" loading="lazy" decoding="async"></span>
-      <span class="mq-item"><img src="assets/logos/logo08.png" alt="Rhino 3D" title="Rhino 3D" loading="lazy" decoding="async"></span>
-      <span class="mq-item"><img src="assets/logos/grasshopper.jpg" alt="Grasshopper" title="Grasshopper" loading="lazy" decoding="async"></span>
-      <span class="mq-item"><img src="assets/logos/logo09.png" alt="Fusion 360" title="Fusion 360" loading="lazy" decoding="async"></span>
-
-    </div>
-  </div>
 
     <!-- ─── WORK ─── -->
-  <section id="work">
-    <!-- Lamp intro — dramatic section transition (conic-gradient light cones,
-         CSS custom-property animated via .in-view, transparent background) -->
-    <div class="lamp-intro" aria-hidden="false">
-      <div class="lamp-stage">
-        <div class="lamp-glow-wide"></div>
-        <div class="lamp-cone lamp-cone-l"></div>
-        <div class="lamp-cone lamp-cone-r"></div>
-        <div class="lamp-glow-core"></div>
-        <div class="lamp-line"></div>
-      </div>
-      <div class="lamp-content">
-        <span class="section-tag" data-i18n="work.tag">Seçili Çalışmalar</span>
-        <h2 class="section-title" data-i18n="work.title">Projeler</h2>
-      </div>
-    </div>
-    <div class="container">
-
-      <!-- Kategori 1: Yat Tasarımı -->
-      <div class="category-block">
-        <div class="category-label reveal-up">
-          <span class="cat-icon">⚓</span>
-          <span data-i18n="work.catYacht">Yat Tasarımı</span>
-        </div>
-        <div class="projects-grid">
-
-          <article class="project-card reveal-card wide" data-index="0" onclick="window.location='45ft-powerboat.html'" style="cursor:pointer">
-            <div class="project-visual p1" style="position:relative;overflow:hidden;">
-              <img src="assets/pb-cover.webp" alt="45ft Powerboat" class="project-cover-img" width="1600" height="900" fetchpriority="high" decoding="async">
-              <div class="project-shape"></div>
-              <div class="project-badge" data-i18n="work.badgeDiploma">Diploma Projesi</div>
-              <div class="project-overlay"><span data-i18n="work.detail">Detayları Gör →</span></div>
-            </div>
-            <div class="project-info">
-              <div class="project-meta">
-                <span data-i18n="proj.pb.meta1">2023</span><span data-i18n="proj.pb.meta2">KLAN Studio</span>
-              </div>
-              <h3 data-i18n="proj.pb.title">45ft Multi Hardtop Powerboat</h3>
-              <p data-i18n="proj.pb.desc">Klan Studio tarafından tasarlanan 14 metre uzunluğunda tender tipi powerboat konsepti. Elektrikli hardtop, modüler güverte düzeni ve tam donanımlı alt kabin ile hafta sonu kullanıcılarına yönelik yüksek performanslı konfor çözümü.</p>
-              <div class="project-tags">
-                <span>Rhino 3D</span><span>V-Ray</span><span>AutoCAD</span><span>Naval Architecture</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="project-card reveal-card" data-index="1" onclick="window.location='ekofish-popup.html'" style="cursor:pointer">
-            <div class="project-visual p2" style="position:relative;overflow:hidden;">
-              <img src="assets/eko-cover.webp" alt="Ekofish 200ft" class="project-cover-img" width="1600" height="900" loading="lazy" decoding="async">
-              <div class="project-shape"></div>
-              <div class="project-badge" data-i18n="work.badgeCompetition">Yarışma</div>
-              <div class="project-overlay"><span data-i18n="work.detail">Detayları Gör →</span></div>
-            </div>
-            <div class="project-info">
-              <div class="project-meta">
-                <span data-i18n="proj.eko.meta1">2022</span><span data-i18n="proj.eko.meta2">12. Ulusal Gemi &amp; Yat Tasarım Yarışması</span>
-              </div>
-              <h3 data-i18n="proj.eko.title">Ekofish 200ft</h3>
-              <p data-i18n="proj.eko.desc">Deniz ekosistemine zarar vermeden balık stoklarını koruyan
-                 sürdürülebilir bir trol gemisi. İnsansız su altı araçları dip trolünü
-                 hassas kontrol ederken, güneş panelleri enerji verimliliği sağlar;
-                 ölçü dışı balıklar canlı olarak doğaya kazandırılır.</p>
-              <div class="project-tags">
-                <span>Rhino 3D</span><span>Twinmotion</span><span>Sürdürülebilir</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="project-card reveal-card" data-index="2" onclick="window.location='salmakis-popup.html'" style="cursor:pointer">
-            <div class="project-visual p3" style="position:relative;overflow:hidden;">
-              <img src="assets/gulet/melda-cover.png" alt="Princess Melda — 42,5m Motor Yat" class="project-cover-img" width="1600" height="900" loading="lazy" decoding="async">
-              <div class="project-shape"></div>
-              <div class="project-overlay"><span data-i18n="work.detail">Detayları Gör →</span></div>
-            </div>
-            <div class="project-info">
-              <div class="project-meta">
-                <span data-i18n="proj.salm.meta1">2021–2022</span><span data-i18n="proj.salm.meta2">Salmakis Yachts / Neta Marine</span>
-              </div>
-              <h3 data-i18n="proj.salm.title">42,5m Motor Yat &amp; 45m Gulet</h3>
-              <p data-i18n="proj.salm.desc">Salmakis Yachts bünyesinde Princess Melda 42,5m motor yat ve 45m
-                 Gulet projeleri kapsamında konsept geliştirme, 3D modelleme,
-                 iç mekân kurgusu ve render üretiminde aktif rol aldığım staj
-                 dönemi çalışmaları.</p>
-              <div class="project-tags">
-                <span>Rhino</span><span>KeyShot</span><span>Figma</span><span>İç Mekân</span>
-              </div>
-            </div>
-          </article>
-
-        </div>
-      </div>
-
-      <!-- Kategori 2: Endüstriyel Ürün Tasarımı -->
-      <div class="category-block">
-        <div class="category-label reveal-up">
-          <span class="cat-icon">◈</span>
-          <span data-i18n="work.catIndustrial">Endüstriyel Ürün Tasarımı</span>
-        </div>
-        <div class="projects-grid">
-
-          <article class="project-card reveal-card" data-index="3" onclick="window.location='foldesk-popup.html'" style="cursor:pointer">
-            <div class="project-visual p4" style="position:relative;overflow:hidden;">
-              <img src="assets/foldesk-cover.webp" alt="Foldesk Lamp" class="project-cover-img" width="1600" height="900" loading="lazy" decoding="async">
-              <div class="project-shape"></div>
-              <div class="project-overlay"><span data-i18n="work.detail">Detayları Gör →</span></div>
-            </div>
-            <div class="project-info">
-              <div class="project-meta">
-                <span data-i18n="proj.fold.meta1">2023</span><span data-i18n="proj.fold.meta2">Katlanabilir Aydınlatma</span>
-              </div>
-              <h3 data-i18n="proj.fold.title">Foldesk Lamp</h3>
-              <p data-i18n="proj.fold.desc">Dar çalışma alanları için geliştirilen, katlanabilir mekanizmaya sahip
-                 kompakt bir masa aydınlatma çözümü. Lineer LED ışık barı, ayarlanabilir başlık
-                 ve çok eksenli menteşe sistemi ile mimar, mühendis ve tasarımcılar için
-                 ergonomik ve verimli bir çalışma deneyimi sunar.</p>
-              <div class="project-tags">
-                <span>Fusion 360</span><span>KeyShot</span><span>CMF</span><span>Ergonomi</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="project-card reveal-card" data-index="4" onclick="window.location='beo-popup.html'" style="cursor:pointer">
-            <div class="project-visual p5" style="position:relative;overflow:hidden;">
-              <img src="assets/beo-cover.webp" alt="Beo Minisaw" class="project-cover-img" width="1600" height="900" loading="lazy" decoding="async">
-              <div class="project-shape"></div>
-              <div class="project-overlay"><span data-i18n="work.detail">Detayları Gör →</span></div>
-            </div>
-            <div class="project-info">
-              <div class="project-meta">
-                <span data-i18n="proj.beo.meta1">2022</span><span data-i18n="proj.beo.meta2">Bang &amp; Olufsen</span>
-              </div>
-              <h3 data-i18n="proj.beo.title">Beo Minisaw</h3>
-              <p data-i18n="proj.beo.desc">Bang &amp; Olufsen'in premium tasarım diliyle yeniden yorumlanan,
-                 kompakt ve yüksek performanslı bir mini elektrikli testere konsepti.
-                 Modüler yapısı, entegre aydınlatma ve kontrol paneli ile bakım kolaylığı
-                 ve üst düzey kullanıcı deneyimi sunar.</p>
-              <div class="project-tags">
-                <span>Rhino</span><span>V-Ray</span><span>Marka Tasarımı</span><span>Ergonomi</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="project-card reveal-card wide" data-index="5" onclick="window.location='crea-popup.html'" style="cursor:pointer">
-            <div class="project-visual p6" style="position:relative;overflow:hidden;">
-              <img src="assets/crea-cover.webp" alt="Crea Light" class="project-cover-img" width="1600" height="900" loading="lazy" decoding="async">
-              <div class="project-shape"></div>
-              <div class="project-overlay"><span data-i18n="work.detail">Detayları Gör →</span></div>
-            </div>
-            <div class="project-info">
-              <div class="project-meta">
-                <span data-i18n="proj.crea.meta1">2022</span><span data-i18n="proj.crea.meta2">Çalışma Aydınlatması</span>
-              </div>
-              <h3 data-i18n="proj.crea.title">Crea Light</h3>
-              <p data-i18n="proj.crea.desc">Uzun süreli bilgisayar kullanımında göz sağlığını korumak ve
-                 çalışma konforunu artırmak için tasarlanmış akıllı ve ergonomik
-                 masa aydınlatması. Uzayabilir form, 2700–6500K ayarlanabilir renk
-                 sıcaklığı, yüksek CRI LED ve entegre kamera kapatıcısı ile çalışma
-                 alanını sadeleştirir.</p>
-              <div class="project-tags">
-                <span>Fusion 360</span><span>KeyShot</span><span>Ergonomi</span><span>UX</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="project-card reveal-card wide" data-index="8" onclick="window.location='bumper-popup.html'" style="cursor:pointer">
-            <div class="project-visual p9" style="position:relative;overflow:hidden;">
-              <img src="assets/bumper-cover.jpg" alt="Çarpışan Araç Tasarımı" class="project-cover-img" width="1600" height="900" loading="lazy" decoding="async">
-              <div class="project-shape"></div>
-              <div class="project-overlay"><span data-i18n="work.detail">Detayları Gör →</span></div>
-            </div>
-            <div class="project-info">
-              <div class="project-meta">
-                <span data-i18n="proj.bumper.meta1">2024</span><span data-i18n="proj.bumper.meta2">Eğlence Aracı</span>
-              </div>
-              <h3 data-i18n="proj.bumper.title">Çarpışan Araç Tasarımı</h3>
-              <p data-i18n="proj.bumper.desc">Klasik lunapark deneyimini modern otomotiv tasarım diliyle
-                 yeniden yorumlayan çarpışan araç konsepti. İnce LED aydınlatma,
-                 darbe absorbe edici elastomer tampon ring ve tek parça ergonomik
-                 kabin yapısı ile fonksiyon ve estetiği bir araya getirir.</p>
-              <div class="project-tags">
-                <span>Rhino</span><span>KeyShot</span><span>CMF</span><span>Otomotiv Tasarım</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="project-card reveal-card wide" data-index="9" onclick="window.location='bumper2-popup.html'" style="cursor:pointer">
-            <div class="project-visual p10" style="position:relative;overflow:hidden;">
-              <img src="assets/bumper2-cover.webp" alt="Sportif Çarpışan Oto" class="project-cover-img" width="1600" height="900" loading="lazy" decoding="async">
-              <div class="project-shape"></div>
-              <div class="project-overlay"><span data-i18n="work.detail">Detayları Gör →</span></div>
-            </div>
-            <div class="project-info">
-              <div class="project-meta">
-                <span data-i18n="proj.bumper2.meta1">2025</span><span data-i18n="proj.bumper2.meta2">Sportif Konsept</span>
-              </div>
-              <h3 data-i18n="proj.bumper2.title">Sportif Çarpışan Oto</h3>
-              <p data-i18n="proj.bumper2.desc">Klasik çarpışan oto formunu güncel otomotiv tasarım diliyle
-                 yeniden yorumlayan sportif ve agresif bir ürün tasarımı. Alçak gövde,
-                 keskin hatlar, geniş omuz çizgileri ve parlak kırmızı yüzeyiyle
-                 eğlence alanlarında güçlü ve dikkat çekici bir görsel kimlik kurar.</p>
-              <div class="project-tags">
-                <span>Rhino</span><span>KeyShot</span><span>CMF</span><span>Otomotiv Tasarım</span>
-              </div>
-            </div>
-          </article>
-
-        </div>
-      </div>
-
-      <!-- Kategori 3: Kentsel ve Kamusal Tasarım -->
-      <div class="category-block">
-        <div class="category-label reveal-up">
-          <span class="cat-icon">◉</span>
-          <span data-i18n="work.catUrban">Kentsel &amp; Kamusal Tasarım</span>
-        </div>
-        <div class="projects-grid">
-
-          <article class="project-card reveal-card" data-index="6" onclick="window.location='scooter-popup.html'" style="cursor:pointer">
-            <div class="project-visual p7" style="position:relative;overflow:hidden;">
-              <img src="assets/scooter-cover.webp" alt="Scooter Port" class="project-cover-img" width="1600" height="900" loading="lazy" decoding="async">
-              <div class="project-shape"></div>
-              <div class="project-overlay"><span data-i18n="work.detail">Detayları Gör →</span></div>
-            </div>
-            <div class="project-info">
-              <div class="project-meta">
-                <span data-i18n="proj.scoot.meta1">2023</span><span data-i18n="proj.scoot.meta2">Ulaşım / Kentsel</span>
-              </div>
-              <h3 data-i18n="proj.scoot.title">Scooter Port</h3>
-              <p data-i18n="proj.scoot.desc">Şehir içi mikromobiliteyi daha erişilebilir ve sürdürülebilir
-                 hale getirmek için tasarlanmış akıllı bir scooter istasyonu.
-                 Mobil uygulama ve QR/RFID entegrasyonu sayesinde hızlı kiralama,
-                 güneş enerjisi destekli altyapı ile çevre dostu bir çözüm.</p>
-              <div class="project-tags">
-                <span>Rhino</span><span>Twinmotion</span><span>IoT</span><span>UX/UI</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="project-card reveal-card" data-index="7" onclick="window.location='kmem-popup.html'" style="cursor:pointer">
-            <div class="project-visual p8" style="position:relative;overflow:hidden;">
-              <img src="assets/kmem-cover.webp" alt="KMEM Pop-up Mağaza" class="project-cover-img" width="1600" height="900" loading="lazy" decoding="async">
-              <div class="project-shape"></div>
-              <div class="project-overlay"><span data-i18n="work.detail">Detayları Gör →</span></div>
-            </div>
-            <div class="project-info">
-              <div class="project-meta">
-                <span data-i18n="proj.kmem.meta1">2022</span><span data-i18n="proj.kmem.meta2">Perakende / Kamusal Alan</span>
-              </div>
-              <h3 data-i18n="proj.kmem.title">KMEM Pop-up Mağaza</h3>
-              <p data-i18n="proj.kmem.desc">Kurukahveci Mehmet Efendi için tasarlanan bu pop-up mağaza,
-                 markanın geleneksel kahve kültürünü modern ve deneyim odaklı
-                 bir perakende anlayışıyla yeniden yorumlar. Dairesel formu
-                 sayesinde farklı yönlerden erişim sağlayarak açık hava
-                 AVM'lerde maksimum görünürlük sunar. Sıcak malzeme paleti,
-                 güçlü marka dili ve sürdürülebilir detaylarla desteklenen
-                 tasarım; kullanıcıya sadece bir ürün değil, etkileşimli ve
-                 akılda kalıcı bir kahve deneyimi sunmayı hedefler.</p>
-              <div class="project-tags">
-                <span>Rhino</span><span>V-Ray</span><span>Marka Tasarımı</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="project-card reveal-card wide" data-index="10" onclick="window.location='mobilchef-popup.html'" style="cursor:pointer">
-            <div class="project-visual" style="position:relative;overflow:hidden;">
-              <img src="assets/mobilchef-cover.webp" alt="Atiker Holding · Mobilchef Ekobox L220" class="project-cover-img" width="1600" height="900" loading="lazy" decoding="async">
-              <div class="project-shape"></div>
-              <div class="project-overlay"><span data-i18n="work.detail">Detayları Gör →</span></div>
-            </div>
-            <div class="project-info">
-              <div class="project-meta">
-                <span>Atiker Holding · Mobilchef</span><span>Mobil Ünite Tasarımı</span>
-              </div>
-              <h3>Mobilchef Ekobox L220 Karavan</h3>
-              <p>Atiker Holding bünyesindeki Mobilchef için geliştirilen Ekobox Eko01 L220;
-                 kompakt ölçülerde maksimum işlevsellik sunan, mobil satış ve yiyecek-içecek
-                 konseptlerine uyarlanabilir bir karavan tasarımı. Yuvarlatılmış hatlar,
-                 fiberglas gövde, açılır satış penceresi ve modüler iç düzen ile standart,
-                 mutfak, kafe, dondurma ve bar konseptlerinde profesyonel bir mobil mutfak çözümü.</p>
-              <div class="project-tags">
-                <span>Rhino</span><span>KeyShot</span><span>Fiberglas</span><span>Mobil Mutfak</span>
-              </div>
-            </div>
-          </article>
-
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ─── ABOUT ─── -->
-  <section id="about">
-    <div class="container about-inner">
-      <div class="about-visual reveal-left">
-        <div class="about-img-wrap">
-          <div class="about-img-placeholder">
-            <img src="assets/profile.webp" alt="Halil Utku Şimşek — Portre" class="about-portrait" width="800" height="1000" loading="lazy" decoding="async">
-          </div>
-          <div class="about-accent"></div>
-        </div>
-        <!-- Education card -->
-        <div class="edu-card reveal-up delay-2">
-          <div class="edu-icon">🎓</div>
+    <section class="work" id="work" aria-labelledby="workTitle">
+      <div class="shell">
+        <div class="work-head">
           <div>
+            <h2 class="h-section" id="workTitle" data-i18n="v2.work.title">Seçili işler</h2>
+            <p class="lede" data-i18n="v2.work.intro">Denizde, masada ve sokakta kullanılan on bir proje.</p>
+          </div>
+          <div class="seg" role="tablist" data-i18n-aria="v2.work.filterAria" aria-label="Projeleri kategoriye göre süz" id="workFilter">
+            <span class="seg-thumb" aria-hidden="true"></span>
+            <button role="tab" aria-selected="true" data-filter="all"><span data-i18n="v2.work.all">Tümü</span><sup>11</sup></button>
+            <button role="tab" aria-selected="false" data-filter="yacht"><span data-i18n="v2.work.yacht">Yat</span><sup>3</sup></button>
+            <button role="tab" aria-selected="false" data-filter="product"><span data-i18n="v2.work.product">Ürün</span><sup>5</sup></button>
+            <button role="tab" aria-selected="false" data-filter="urban"><span data-i18n="v2.work.urban">Kentsel</span><sup>3</sup></button>
+          </div>
+        </div>
+
+        <div class="work-grid" id="workGrid">
+
+          <a class="work-card" href="45ft-powerboat.html" data-cat="yacht">
+            <figure class="work-media">
+              <img src="assets/pb-cover.webp" alt="45ft Multi Hardtop Powerboat açık denizde" loading="lazy" decoding="async" style="object-position:88% 55%">
+              <span class="chip lg" data-i18n="work.badgeDiploma">Diploma Projesi</span>
+            </figure>
+            <div class="work-cap">
+              <h3 data-i18n="proj.pb.title">45ft Multi Hardtop Powerboat</h3>
+              <p><span data-i18n="proj.pb.meta2">KLAN Studio</span><span data-i18n="proj.pb.meta1">2023</span></p>
+            </div>
+          </a>
+
+          <a class="work-card" href="ekofish-popup.html" data-cat="yacht">
+            <figure class="work-media">
+              <img src="assets/eko-cover.webp" alt="Ekofish 200ft sürdürülebilir trol gemisi" loading="lazy" decoding="async">
+              <span class="chip lg" data-i18n="work.badgeCompetition">Yarışma</span>
+            </figure>
+            <div class="work-cap">
+              <h3 data-i18n="proj.eko.title">Ekofish 200ft</h3>
+              <p><span data-i18n="proj.eko.meta2">12. Ulusal Gemi &amp; Yat Tasarım Yarışması</span><span data-i18n="proj.eko.meta1">2022</span></p>
+            </div>
+          </a>
+
+          <a class="work-card" href="beo-popup.html" data-cat="product">
+            <figure class="work-media">
+              <img src="assets/beo-cover.webp" alt="Beo Minisaw mini elektrikli testere" loading="lazy" decoding="async" style="object-position:50% 30%">
+            </figure>
+            <div class="work-cap">
+              <h3 data-i18n="proj.beo.title">Beo Minisaw</h3>
+              <p><span data-i18n="proj.beo.meta2">Bang &amp; Olufsen</span><span data-i18n="proj.beo.meta1">2022</span></p>
+            </div>
+          </a>
+
+          <a class="work-card" href="foldesk-popup.html" data-cat="product">
+            <figure class="work-media">
+              <img src="assets/foldesk-cover.webp" alt="Foldesk katlanabilir masa lambası" loading="lazy" decoding="async">
+            </figure>
+            <div class="work-cap">
+              <h3 data-i18n="proj.fold.title">Foldesk Lamp</h3>
+              <p><span data-i18n="proj.fold.meta2">Katlanabilir Aydınlatma</span><span data-i18n="proj.fold.meta1">2023</span></p>
+            </div>
+          </a>
+
+          <a class="work-card" href="scooter-popup.html" data-cat="urban">
+            <figure class="work-media">
+              <img src="assets/scooter-cover.webp" alt="Scooter Port akıllı scooter istasyonu" loading="lazy" decoding="async">
+            </figure>
+            <div class="work-cap">
+              <h3 data-i18n="proj.scoot.title">Scooter Port</h3>
+              <p><span data-i18n="proj.scoot.meta2">Ulaşım / Kentsel</span><span data-i18n="proj.scoot.meta1">2023</span></p>
+            </div>
+          </a>
+
+          <a class="work-card" href="kmem-popup.html" data-cat="urban">
+            <figure class="work-media">
+              <img src="assets/kmem-cover.webp" alt="Kurukahveci Mehmet Efendi pop-up mağaza" loading="lazy" decoding="async">
+            </figure>
+            <div class="work-cap">
+              <h3 data-i18n="proj.kmem.title">KMEM Pop-up Mağaza</h3>
+              <p><span data-i18n="proj.kmem.meta2">Perakende / Kamusal Alan</span><span data-i18n="proj.kmem.meta1">2022</span></p>
+            </div>
+          </a>
+
+          <a class="work-card" href="crea-popup.html" data-cat="product">
+            <figure class="work-media">
+              <img src="assets/crea-cover.webp" alt="Crea Light çalışma aydınlatması" loading="lazy" decoding="async">
+            </figure>
+            <div class="work-cap">
+              <h3 data-i18n="proj.crea.title">Crea Light</h3>
+              <p><span data-i18n="proj.crea.meta2">Çalışma Aydınlatması</span><span data-i18n="proj.crea.meta1">2022</span></p>
+            </div>
+          </a>
+
+          <a class="work-card" href="bumper2-popup.html" data-cat="product">
+            <figure class="work-media">
+              <img src="assets/bumper2-cover.webp" alt="Sportif çarpışan oto, kırmızı" loading="lazy" decoding="async">
+            </figure>
+            <div class="work-cap">
+              <h3 data-i18n="proj.bumper2.title">Sportif Çarpışan Oto</h3>
+              <p><span data-i18n="proj.bumper2.meta2">Sportif Konsept</span><span data-i18n="proj.bumper2.meta1">2025</span></p>
+            </div>
+          </a>
+
+          <a class="work-card" href="salmakis-popup.html" data-cat="yacht">
+            <figure class="work-media">
+              <img src="assets/gulet/melda-cover.png" alt="Princess Melda 42,5m motor yat" loading="lazy" decoding="async">
+            </figure>
+            <div class="work-cap">
+              <h3 data-i18n="proj.salm.title">42,5m Motor Yat &amp; 45m Gulet</h3>
+              <p><span data-i18n="proj.salm.meta2">Salmakis Yachts / Neta Marine</span><span data-i18n="proj.salm.meta1">2021–2022</span></p>
+            </div>
+          </a>
+
+          <a class="work-card" href="bumper-popup.html" data-cat="product">
+            <figure class="work-media">
+              <img src="assets/bumper-cover.jpg" alt="Çarpışan araç tasarımı, siyah" loading="lazy" decoding="async">
+            </figure>
+            <div class="work-cap">
+              <h3 data-i18n="proj.bumper.title">Çarpışan Araç Tasarımı</h3>
+              <p><span data-i18n="proj.bumper.meta2">Eğlence Aracı</span><span data-i18n="proj.bumper.meta1">2024</span></p>
+            </div>
+          </a>
+
+          <a class="work-card" href="mobilchef-popup.html" data-cat="urban">
+            <figure class="work-media">
+              <img src="assets/mobilchef-street.webp" alt="Mobilchef Ekobox L220 karavan sokakta" loading="lazy" decoding="async">
+            </figure>
+            <div class="work-cap">
+              <h3 data-i18n="v2.mc.title">Mobilchef Ekobox L220</h3>
+              <p><span>Atiker Holding</span><span data-i18n="v2.mc.meta">Mobil ünite tasarımı</span></p>
+            </div>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── SHOWREEL ─── -->
+    <section class="reel" id="showreel" aria-labelledby="reelTitle">
+      <div class="shell">
+        <h2 class="h-section" id="reelTitle" data-i18n="v2.reel.title">Renderdan harekete</h2>
+      </div>
+      <div class="reel-frame" id="reelFrame">
+        <div class="reel-deck" id="reelDeck">
+          <video class="reel-video is-active" muted playsinline preload="auto" data-src="assets/videos/showcase-07.mp4"></video>
+          <video class="reel-video" muted playsinline preload="none" data-src="assets/videos/showcase-03.mp4"></video>
+          <video class="reel-video" muted playsinline preload="none" data-src="assets/videos/showcase-01.mp4"></video>
+          <video class="reel-video" muted playsinline preload="none" data-src="assets/videos/showcase-02.mp4"></video>
+          <video class="reel-video" muted playsinline preload="none" data-src="assets/videos/showcase-04.mp4"></video>
+          <video class="reel-video" muted playsinline preload="none" data-src="assets/videos/showcase-06.mp4"></video>
+          <video class="reel-video" muted playsinline preload="none" data-src="assets/videos/showcase-05.mp4"></video>
+        </div>
+        <div class="reel-bar lg" data-refract="pill">
+          <button class="reel-play" id="reelPlay" aria-label="Duraklat" data-i18n-aria="v2.reel.pause">
+            <svg class="i-pause" viewBox="0 0 16 16" aria-hidden="true"><rect x="4" y="3" width="2.6" height="10" rx="1"/><rect x="9.4" y="3" width="2.6" height="10" rx="1"/></svg>
+            <svg class="i-play" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3.2v9.6a.6.6 0 0 0 .9.5l7.6-4.8a.6.6 0 0 0 0-1L5.9 2.7a.6.6 0 0 0-.9.5Z"/></svg>
+          </button>
+          <div class="reel-steps" id="reelSteps"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── ABOUT ─── -->
+    <section class="about" id="about" aria-labelledby="aboutTitle">
+      <div class="shell about-grid">
+        <figure class="about-portrait">
+          <img src="assets/profile.webp" alt="Halil Utku Şimşek portresi" width="1920" height="1773" loading="lazy" decoding="async">
+          <figcaption class="lg" data-refract="card">
             <strong data-i18n="about.eduUni">Yaşar Üniversitesi</strong>
-            <span data-i18n="about.eduDept">Endüstriyel Tasarım · 2023</span>
-          </div>
-        </div>
-      </div>
+            <span data-i18n="v2.about.portraitCaption">Endüstriyel Tasarım lisansı, 2023</span>
+          </figcaption>
+        </figure>
 
-      <div class="about-text reveal-right">
-        <span class="section-tag" data-i18n="about.tag">Hakkımda</span>
-        <h2 data-i18n="about.title">Tasarımın dili<br /><em>her yerde</em> konuşur</h2>
-        <p data-i18n="about.p1">Yaşar Üniversitesi Endüstriyel Tasarım bölümünden mezun oldum.
-           Disiplinlerarası çalışmaya ve kullanıcı merkezli tasarım
-           ilkelerine olan inancım, her projenin temelini oluşturuyor.</p>
-        <p data-i18n="about.p2">Neta Marine, Salmakis Yachts ve SKY Naval Architects bünyesinde
-           edindiğim deneyimlerle yat tasarımında güçlü bir uzmanlık geliştirdim.
-           Rhino, V-Ray ve Twinmotion gibi araçlarla hem kavramsal hem de
-           üretime yakın çözümler üretiyorum.</p>
+        <div class="about-body">
+          <h2 class="sr-only" id="aboutTitle" data-i18n="v2.nav.about">Hakkımda</h2>
+          <p class="about-lead" data-i18n="v2.about.lead">Bir teknenin gövdesine de bir masa lambasının menteşesine de aynı soruyu soruyorum: bu form neden böyle?</p>
+          <div class="about-text">
+            <p data-i18n="v2.about.p1">Yaşar Üniversitesi Endüstriyel Tasarım bölümünden 2023'te mezun oldum.</p>
+            <p data-i18n="v2.about.p2">Neta Marine, Salmakis Yachts ve SKY Naval Architects'te yat tasarımı üzerine çalıştım.</p>
+          </div>
 
-        <!-- Experience Timeline -->
-        <div class="experience-list">
-          <div class="exp-item reveal-up delay-0">
-            <div class="exp-dot"></div>
-            <div>
-              <strong>Neta Marine</strong>
-              <span data-i18n="about.expNetaRole">Tasarım Stajyeri · 42,5m Motor Yat iç mekân geliştirme</span>
-            </div>
-          </div>
-          <div class="exp-item reveal-up delay-1">
-            <div class="exp-dot"></div>
-            <div>
-              <strong>Salmakis Yachts</strong>
-              <span data-i18n="about.expSalmRole">Tasarım Stajyeri · 45m Gulet eskiz ve konsept çalışmaları</span>
-            </div>
-          </div>
-          <div class="exp-item reveal-up delay-2">
-            <div class="exp-dot"></div>
-            <div>
-              <strong>SKY Naval Architects</strong>
-              <span data-i18n="about.expSkyRole">Tasarım Stajyeri · Naval mimari ve teknik çizim</span>
-            </div>
-          </div>
-          <div class="exp-item reveal-up delay-3">
-            <div class="exp-dot"></div>
-            <div>
-              <strong>MegCustom Marble</strong>
-              <span data-i18n="about.expMegRole">Tasarım Desteği · Malzeme ve yüzey tasarımı</span>
-            </div>
-          </div>
-        </div>
+          <dl class="stats">
+            <div><dt><span data-count="10">10</span>+</dt><dd data-i18n="v2.about.statProjects">tamamlanan proje</dd></div>
+            <div><dt><span data-count="4">4</span></dt><dd data-i18n="v2.about.statIntern">staj</dd></div>
+            <div><dt><span data-count="4">4</span></dt><dd data-i18n="v2.about.statCert">sertifika</dd></div>
+          </dl>
 
-        <div class="about-stats">
-          <div class="stat reveal-up delay-0">
-            <span class="stat-num" data-target="10">0</span>+
-            <span class="stat-label" data-i18n="about.statProjects">Tamamlanan Proje</span>
-          </div>
-          <div class="stat reveal-up delay-1">
-            <span class="stat-num" data-target="4">0</span>
-            <span class="stat-label" data-i18n="about.statIntern">Staj Deneyimi</span>
-          </div>
-          <div class="stat reveal-up delay-2">
-            <span class="stat-num" data-target="4">0</span>
-            <span class="stat-label" data-i18n="about.statCert">Sertifika</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── SKILLS ─── -->
-  <section id="skills">
-    <div class="container">
-      <div class="section-header reveal-up">
-        <span class="section-tag" data-i18n="skills.tag">Yetkinlikler</span>
-        <h2 class="section-title" data-i18n="skills.title">Araçlar &amp; Uzmanlık</h2>
-      </div>
-      <div class="skills-grid">
-
-        <div class="skill-block reveal-up delay-0">
-          <div class="skill-icon">
-            <svg viewBox="0 0 48 48" fill="none"><path d="M8 40L24 8l16 32" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 30h22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-          </div>
-          <h4 data-i18n="skills.modeling">3D Modelleme</h4>
-          <ul>
-            <li>Rhino 3D <span class="bar"><span style="--w:96%"></span></span></li>
-            <li>Fusion 360 <span class="bar"><span style="--w:88%"></span></span></li>
-            <li>AutoCAD <span class="bar"><span style="--w:85%"></span></span></li>
-            <li>Grasshopper <span class="bar"><span style="--w:75%"></span></span></li>
+          <h3 class="h-small" data-i18n="v2.about.expTitle">Çalıştığım yerler</h3>
+          <ul class="exp">
+            <li><strong>Neta Marine</strong><span data-i18n="about.expNetaRole">Tasarım Stajyeri · 42,5m Motor Yat iç mekân geliştirme</span></li>
+            <li><strong>Salmakis Yachts</strong><span data-i18n="about.expSalmRole">Tasarım Stajyeri · 45m Gulet eskiz ve konsept çalışmaları</span></li>
+            <li><strong>SKY Naval Architects</strong><span data-i18n="about.expSkyRole">Tasarım Stajyeri · Naval mimari ve teknik çizim</span></li>
+            <li><strong>MegCustom Marble</strong><span data-i18n="about.expMegRole">Tasarım Desteği · Malzeme ve yüzey tasarımı</span></li>
           </ul>
         </div>
-
-        <div class="skill-block reveal-up delay-1">
-          <div class="skill-icon">
-            <svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="14" stroke="currentColor" stroke-width="2"/><path d="M17 31l4-8 3 5 3-3 5 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
-          <h4 data-i18n="skills.viz">Görselleştirme &amp; Render</h4>
-          <ul>
-            <li>V-Ray <span class="bar"><span style="--w:93%"></span></span></li>
-            <li>KeyShot <span class="bar"><span style="--w:90%"></span></span></li>
-            <li>Twinmotion <span class="bar"><span style="--w:85%"></span></span></li>
-            <li>Procreate <span class="bar"><span style="--w:80%"></span></span></li>
-          </ul>
-        </div>
-
-        <div class="skill-block reveal-up delay-2">
-          <div class="skill-icon">
-            <svg viewBox="0 0 48 48" fill="none"><rect x="8" y="14" width="32" height="20" rx="3" stroke="currentColor" stroke-width="2"/><path d="M18 14V10M30 14V10M12 34l6 4h12l6-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-          </div>
-          <h4 data-i18n="skills.ui">UI &amp; Sunum</h4>
-          <ul>
-            <li>Figma <span class="bar"><span style="--w:82%"></span></span></li>
-            <li>Adobe Photoshop <span class="bar"><span style="--w:78%"></span></span></li>
-            <li>Procreate (Sketch) <span class="bar"><span style="--w:88%"></span></span></li>
-            <li>InDesign <span class="bar"><span style="--w:70%"></span></span></li>
-          </ul>
-        </div>
-
-        <div class="skill-block reveal-up delay-3">
-          <div class="skill-icon">
-            <svg viewBox="0 0 48 48" fill="none"><path d="M24 8v10M24 30v10M8 24h10M30 24h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="24" cy="24" r="6" stroke="currentColor" stroke-width="2"/></svg>
-          </div>
-          <h4 data-i18n="skills.certs">Sertifikalar &amp; Lisanslar</h4>
-          <ul class="cert-list">
-            <li><span class="cert-badge">✓</span> <span data-i18n="skills.certYacht">Yat Tasarımı Sertifikası</span></li>
-            <li><span class="cert-badge">✓</span> <span data-i18n="skills.certInterior">İç Mekân Tasarımı Sertifikası</span></li>
-            <li><span class="cert-badge">✓</span> <span data-i18n="skills.certGh">Grasshopper Sertifikası</span></li>
-            <li><span class="cert-badge">✓</span> <span data-i18n="skills.certVray">V-Ray Uzmanlık Sertifikası</span></li>
-            <li><span class="cert-badge">⚓</span> <span data-i18n="skills.certBoat">Amatör Kaptan Ehliyeti</span></li>
-            <li><span class="cert-badge">🚗</span> <span data-i18n="skills.certDriver">B Sınıfı Sürücü Belgesi</span></li>
-          </ul>
-        </div>
-
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ─── TESTIMONIAL ─── -->
-  <section id="testimonial">
-    <div class="container">
-      <div class="testimonial-wrap reveal-up">
-        <blockquote>
-          <p data-i18n="testimonial.text">Yat tasarımı ile endüstriyel ürün tasarımını aynı titizlikle ele alan,
-             teknik derinliği ile estetik duyarlılığını her projede dengeleyen bir
-             tasarımcı olarak çalışmalarımda kullanıcı deneyimini her zaman merkeze alıyorum.</p>
-          <footer>
-            <strong>Halil Utku Şimşek</strong>
-            <span data-i18n="testimonial.role">Endüstriyel Tasarımcı · Yaşar Üniversitesi, 2023</span>
-          </footer>
-        </blockquote>
-      </div>
-    </div>
-  </section>
+    <!-- ─── SKILLS ─── -->
+    <section class="skills" id="skills" aria-labelledby="skillsTitle">
+      <div class="shell">
+        <div class="skills-head">
+          <h2 class="h-section" id="skillsTitle" data-i18n="v2.skills.title">Araçlar ve yetkinlik</h2>
+          <p class="lede" data-i18n="v2.skills.intro">Her çubuk on parçalı; doluluk, aracı ne kadar rahat kullandığımı gösteriyor.</p>
+        </div>
 
-  <!-- ─── CONTACT ─── -->
-  <section id="contact">
-    <div class="container contact-inner">
-      <div class="contact-text reveal-left">
-        <span class="section-tag" data-i18n="contact.tag">İletişim</span>
-        <h2 data-i18n="contact.title">Birlikte bir şey<br /><em>tasarlayalım</em></h2>
-        <p data-i18n="contact.desc">Yeni bir proje fikriniz mi var? Yat iç mekânından ürün tasarımına,
-           kentsel mobilyadan marka kimliğine — sevinçle konuşalım.</p>
-        <div class="contact-links">
-          <a href="mailto:utkusimsek65@gmail.com" class="contact-link">
-            <svg viewBox="0 0 24 24" fill="none"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="1.5"/><polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="1.5"/></svg>
-            utkusimsek65@gmail.com
-          </a>
-          <a href="https://www.linkedin.com/in/halil-utku-%C5%9Fim%C5%9Fek-86b92311a/" class="contact-link" target="_blank" rel="noopener noreferrer">
-            <svg viewBox="0 0 24 24" fill="none"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z" stroke="currentColor" stroke-width="1.5"/><circle cx="4" cy="4" r="2" stroke="currentColor" stroke-width="1.5"/></svg>
-            LinkedIn
-          </a>
-          <a href="https://www.behance.net/utkusimsek" class="contact-link" target="_blank" rel="noopener noreferrer">
-            <svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="1.5"/><path d="M7 12h4M15 12l-2-2 2-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-            Behance
-          </a>
-          <a href="https://www.instagram.com/h.utkusimsek/" class="contact-link" target="_blank" rel="noopener noreferrer">
-            <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.5"/><circle cx="17.5" cy="6.5" r=".6" fill="currentColor"/></svg>
-            Instagram
-          </a>
-          <div class="contact-link location-tag">
-            <svg viewBox="0 0 24 24" fill="none"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="9" r="2.5" stroke="currentColor" stroke-width="1.5"/></svg>
-            <span data-i18n="contact.location">İzmir — Bodrum</span>
+        <div class="skill-cols">
+          <div class="skill-col">
+            <h3 class="h-small" data-i18n="v2.skills.modeling">3D modelleme</h3>
+            <ul class="meters">
+              <li><span>Rhino 3D</span><i class="meter" data-level="10"></i></li>
+              <li><span>Fusion 360</span><i class="meter" data-level="9"></i></li>
+              <li><span>AutoCAD</span><i class="meter" data-level="8"></i></li>
+              <li><span>Grasshopper</span><i class="meter" data-level="7"></i></li>
+            </ul>
+          </div>
+          <div class="skill-col">
+            <h3 class="h-small" data-i18n="v2.skills.render">Görselleştirme</h3>
+            <ul class="meters">
+              <li><span>V-Ray</span><i class="meter" data-level="9"></i></li>
+              <li><span>KeyShot</span><i class="meter" data-level="9"></i></li>
+              <li><span>Twinmotion</span><i class="meter" data-level="8"></i></li>
+              <li><span>3ds Max</span><i class="meter" data-level="7"></i></li>
+            </ul>
+          </div>
+          <div class="skill-col">
+            <h3 class="h-small" data-i18n="v2.skills.present">Sunum ve arayüz</h3>
+            <ul class="meters">
+              <li><span>Procreate</span><i class="meter" data-level="9"></i></li>
+              <li><span>Figma</span><i class="meter" data-level="8"></i></li>
+              <li><span>Photoshop</span><i class="meter" data-level="8"></i></li>
+              <li><span>InDesign</span><i class="meter" data-level="7"></i></li>
+            </ul>
           </div>
         </div>
+
+        <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+          <symbol id="laurel" viewBox="0 0 40 80">
+            <path d="M34 78C14 66 6 46 9 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+            <g fill="currentColor">
+              <ellipse cx="7" cy="12" rx="2.6" ry="6.5" transform="rotate(-18 7 12)"/>
+              <ellipse cx="15" cy="16" rx="2.4" ry="6" transform="rotate(38 15 16)"/>
+              <ellipse cx="4.5" cy="26" rx="2.6" ry="6.5" transform="rotate(-30 4.5 26)"/>
+              <ellipse cx="14.5" cy="30" rx="2.4" ry="6" transform="rotate(48 14.5 30)"/>
+              <ellipse cx="4.5" cy="41" rx="2.6" ry="6.5" transform="rotate(-44 4.5 41)"/>
+              <ellipse cx="16" cy="44" rx="2.4" ry="6" transform="rotate(58 16 44)"/>
+              <ellipse cx="8" cy="56" rx="2.6" ry="6.5" transform="rotate(-58 8 56)"/>
+              <ellipse cx="20" cy="57" rx="2.4" ry="6" transform="rotate(68 20 57)"/>
+              <ellipse cx="15" cy="68" rx="2.6" ry="6.5" transform="rotate(-70 15 68)"/>
+            </g>
+          </symbol>
+        </svg>
+
+        <h3 class="h-small certs-title" data-i18n="v2.skills.certs">Sertifikalar</h3>
+        <ul class="certs">
+          <li><svg class="laurel" aria-hidden="true"><use href="#laurel"/></svg><span data-i18n="skills.certYacht">Yat Tasarımı Sertifikası</span><svg class="laurel laurel--r" aria-hidden="true"><use href="#laurel"/></svg></li>
+          <li><svg class="laurel" aria-hidden="true"><use href="#laurel"/></svg><span data-i18n="skills.certInterior">İç Mekân Tasarımı Sertifikası</span><svg class="laurel laurel--r" aria-hidden="true"><use href="#laurel"/></svg></li>
+          <li><svg class="laurel" aria-hidden="true"><use href="#laurel"/></svg><span data-i18n="skills.certGh">Grasshopper Sertifikası</span><svg class="laurel laurel--r" aria-hidden="true"><use href="#laurel"/></svg></li>
+          <li><svg class="laurel" aria-hidden="true"><use href="#laurel"/></svg><span data-i18n="skills.certVray">V-Ray Uzmanlık Sertifikası</span><svg class="laurel laurel--r" aria-hidden="true"><use href="#laurel"/></svg></li>
+        </ul>
+        <p class="licenses"><span data-i18n="v2.skills.licenses">Ehliyetler</span>: <span data-i18n="skills.certBoat">Amatör Kaptan Ehliyeti</span>, <span data-i18n="skills.certDriver">B Sınıfı Sürücü Belgesi</span></p>
       </div>
-      <form class="contact-form reveal-right" id="contactForm"
-            action="https://formspree.io/f/xaqvyppn" method="POST">
-        <div class="form-group">
-          <label for="name" data-i18n="contact.labelName">Ad Soyad</label>
-          <input type="text" id="name" name="name" data-i18n-placeholder="contact.phName" placeholder="Adınız" required />
+    </section>
+
+    <!-- ─── CONTACT ─── -->
+    <section class="contact" id="contact" aria-labelledby="contactTitle">
+      <div class="contact-sky">
+        <div class="sky-clouds" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+        <div class="contact-grid">
+          <div class="contact-copy">
+            <h2 class="h-display" id="contactTitle" data-i18n="v2.contact.title">Birlikte bir şey tasarlayalım</h2>
+            <p class="lede" data-i18n="v2.contact.desc">Yeni bir proje, staj ya da iş birliği fikriniz varsa yazın. Genellikle iki gün içinde dönüyorum.</p>
+            <ul class="contact-links">
+              <li><a class="pill lg" href="mailto:utkusimsek65@gmail.com">utkusimsek65@gmail.com</a></li>
+              <li><a class="pill lg" href="https://www.linkedin.com/in/halil-utku-%C5%9Fim%C5%9Fek-86b92311a/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+              <li><a class="pill lg" href="https://www.behance.net/utkusimsek" target="_blank" rel="noopener noreferrer">Behance</a></li>
+              <li><a class="pill lg" href="https://www.instagram.com/h.utkusimsek/" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+            </ul>
+          </div>
+
+          <form class="contact-form lg" id="contactForm" action="https://formspree.io/f/xaqvyppn" method="POST">
+            <h3 class="form-title" data-i18n="v2.contact.formTitle">Mesaj gönderin</h3>
+            <div class="field-row">
+              <label class="field">
+                <span data-i18n="contact.labelName">Ad Soyad</span>
+                <input type="text" name="name" autocomplete="name" data-i18n-placeholder="contact.phName" placeholder="Adınız" required />
+              </label>
+              <label class="field">
+                <span data-i18n="contact.labelEmail">E-posta</span>
+                <input type="email" name="email" autocomplete="email" data-i18n-placeholder="contact.phEmail" placeholder="email@domain.com" required />
+              </label>
+            </div>
+            <label class="field">
+              <span data-i18n="contact.labelSubject">Konu</span>
+              <input type="text" name="subject" data-i18n-placeholder="contact.phSubject" placeholder="Proje veya iş birliği hakkında..." />
+            </label>
+            <label class="field">
+              <span data-i18n="contact.labelMessage">Mesaj</span>
+              <textarea name="message" rows="4" data-i18n-placeholder="contact.phMessage" placeholder="Projenizi anlatın..." required></textarea>
+            </label>
+            <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="hp" aria-hidden="true" />
+            <div class="form-captcha">
+              <div class="g-recaptcha" data-sitekey="6LcEMNYsAAAAAM3MwiQ3WqI4nzZWYWDSmTXObA9U" data-theme="light"></div>
+            </div>
+            <button type="submit" class="btn-primary">
+              <span class="btn-label" data-i18n="contact.submit">Mesaj Gönder</span>
+              <span class="arrow-dot arrow-dot--light" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M5 11 11 5M6 5h5v5" /></svg></span>
+            </button>
+            <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+          </form>
         </div>
-        <div class="form-group">
-          <label for="email" data-i18n="contact.labelEmail">E-posta</label>
-          <input type="email" id="email" name="email" data-i18n-placeholder="contact.phEmail" placeholder="email@domain.com" required />
-        </div>
-        <div class="form-group">
-          <label for="subject" data-i18n="contact.labelSubject">Konu</label>
-          <input type="text" id="subject" name="subject" data-i18n-placeholder="contact.phSubject" placeholder="Proje veya iş birliği hakkında..." />
-        </div>
-        <div class="form-group">
-          <label for="message" data-i18n="contact.labelMessage">Mesaj</label>
-          <textarea id="message" name="message" rows="5" data-i18n-placeholder="contact.phMessage" placeholder="Projenizi anlatın..." required></textarea>
-        </div>
-        <!-- Honeypot — botlar doldurur, gerçek kullanıcılar görmez -->
-        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;" aria-hidden="true" />
-        <!-- Google reCAPTCHA v2 — "Ben robot değilim" checkbox -->
-        <div class="form-captcha">
-          <div class="g-recaptcha"
-               data-sitekey="6LcEMNYsAAAAAM3MwiQ3WqI4nzZWYWDSmTXObA9U"
-               data-theme="dark"></div>
-        </div>
-        <button type="submit" class="btn btn-primary full-w" data-i18n="contact.submit">Mesaj Gönder</button>
-        <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
-      </form>
-    </div>
-  </section>
+      </div>
+    </section>
+  </main>
 
   <!-- ─── FOOTER ─── -->
-  <footer id="footer">
-    <div class="container footer-inner">
-      <div class="footer-logo"><img src="assets/logo.webp" alt="HUŞ Logo" class="site-logo-img footer-logo-img" loading="lazy" decoding="async"></div>
+  <footer class="site-footer">
+    <div class="shell footer-row">
       <p data-i18n="footer.copy">© 2026 Halil Utku Şimşek. Tüm hakları saklıdır.</p>
-      <a href="telif.html" class="footer-legal" data-i18n="footer.legal">Telif Hakkı</a>
-      <div class="footer-socials">
-        <a href="https://www.linkedin.com/in/halil-utku-%C5%9Fim%C5%9Fek-86b92311a/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">in</a>
-        <a href="https://www.behance.net/utkusimsek" aria-label="Behance" target="_blank" rel="noopener noreferrer">Be</a>
-        <a href="https://www.instagram.com/h.utkusimsek/" aria-label="Instagram" target="_blank" rel="noopener noreferrer">Ig</a>
-        <a href="mailto:utkusimsek65@gmail.com" aria-label="Email">@</a>
-      </div>
+      <nav class="footer-links" aria-label="Alt menü">
+        <a href="telif.html" data-i18n="footer.legal">Telif Hakkı</a>
+        <a href="https://www.linkedin.com/in/halil-utku-%C5%9Fim%C5%9Fek-86b92311a/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://www.behance.net/utkusimsek" target="_blank" rel="noopener noreferrer">Behance</a>
+        <a href="https://www.instagram.com/h.utkusimsek/" target="_blank" rel="noopener noreferrer">Instagram</a>
+        <a href="#top" data-i18n="v2.footer.top">Başa dön</a>
+      </nav>
     </div>
+    <p class="footer-mark" aria-hidden="true">Halil Utku Şimşek</p>
   </footer>
-
-  <script defer src="script.js?v=20260514-smooth9"></script>
-  <!-- vapor.js (gooey morph) artık kullanılmıyor — circular reveal aldı yerini.
-       Dosya repo'da duruyor; başka yerde referansı yok, JS init'i markup
-       bulamadığı için zararsızca no-op. -->
-
-  <!-- Circular Reveal Heading — interaktivite -->
-  <script>
-    (function(){
-      const wrap     = document.getElementById('circReveal');
-      if (!wrap) return;
-      const overlay  = document.getElementById('crOverlay');
-      const overlayImg = document.getElementById('crOverlayImg');
-      const segments = wrap.querySelectorAll('.cr-segment');
-      if (!segments.length || !overlay) return;
-
-      // Görselleri preload — hover'da takılma olmasın
-      segments.forEach(seg => {
-        const src = seg.dataset.image;
-        if (src) { const im = new Image(); im.src = src; }
-      });
-
-      // i18n: textPath'leri global I18N nesnesinden manuel set et
-      // (i18n.js'nin innerHTML davranışı SVG'de güvensiz olabilir).
-      const applyWords = () => {
-        const lang = document.documentElement.lang === 'en' ? 'en' : 'tr';
-        const words = (typeof I18N !== 'undefined' && I18N[lang] && I18N[lang].showcase) || {};
-        segments.forEach(seg => {
-          const key = seg.dataset.key;
-          if (!key || !words[key]) return;
-          const tp = seg.querySelector('textPath');
-          if (tp) tp.textContent = words[key];
-        });
-      };
-      // İlk uygula (i18n.js defer ile yüklenmiş olabilir, biraz bekle)
-      if (typeof I18N !== 'undefined') applyWords();
-      else window.addEventListener('load', applyWords);
-      // Dil değişince güncelle — html.lang attribute değişimini izle
-      new MutationObserver(applyWords).observe(document.documentElement, {
-        attributes: true, attributeFilter: ['lang']
-      });
-
-      let active = null;
-      const setActive = (seg) => {
-        if (active === seg) return;
-        active = seg;
-        segments.forEach(s => s.classList.toggle('cr-active', s === seg));
-        if (seg) {
-          const src = seg.dataset.image;
-          if (src && overlayImg.src !== location.origin + '/' + src) {
-            overlayImg.src = src;
-          }
-          wrap.classList.add('has-active');
-        } else {
-          wrap.classList.remove('has-active');
-        }
-      };
-
-      // Hover (desktop)
-      segments.forEach(seg => {
-        seg.addEventListener('mouseenter', () => setActive(seg));
-        seg.addEventListener('mouseleave', () => setActive(null));
-      });
-
-      // Mobile / touch — segment'lere tıklama ile toggle
-      // (Aynı zamanda klavye erişimi için focus desteği)
-      segments.forEach((seg, i) => {
-        seg.style.touchAction = 'manipulation';
-        seg.addEventListener('click', (e) => {
-          e.stopPropagation();
-          setActive(active === seg ? null : seg);
-        });
-      });
-      // Daire dışına tıklama → kapat
-      document.addEventListener('click', (e) => {
-        if (!wrap.contains(e.target)) setActive(null);
-      });
-
-      // Mobile fallback: hover yoksa segmentleri sırayla 3sn aralıklı vurgula,
-      // böylece touch yapmayan kullanıcılar da görselleri görür.
-      const isTouch = matchMedia('(hover: none)').matches;
-      const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (isTouch && !reduced) {
-        let i = 0;
-        const tick = () => {
-          // Kullanıcı manuel tıkladıysa otomatik döngü onunla çakışmasın
-          if (document.hidden) return;
-          setActive(segments[i]);
-          i = (i + 1) % segments.length;
-        };
-        // İlk tetikleme 1.5sn sonra (sayfa yerleşsin), sonra her 3sn
-        setTimeout(() => { tick(); setInterval(tick, 3000); }, 1500);
-      }
-    })();
-  </script>
-  <!-- Lamp intro — dedicated IntersectionObserver (decoupled from .reveal-up to avoid initial opacity:0 conflict) -->
-  <script>
-    (function(){
-      if (!('IntersectionObserver' in window)) {
-        document.querySelectorAll('.lamp-intro').forEach(el => el.classList.add('in-view'));
-        return;
-      }
-      const io = new IntersectionObserver((entries) => {
-        entries.forEach(e => {
-          if (e.isIntersecting) {
-            e.target.classList.add('in-view');
-            io.unobserve(e.target);
-          }
-        });
-      }, { threshold: 0.18, rootMargin: '0px 0px -60px 0px' });
-      document.querySelectorAll('.lamp-intro').forEach(el => io.observe(el));
-    })();
-  </script>
 </body>
 </html>

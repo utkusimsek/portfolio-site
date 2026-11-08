@@ -1,633 +1,311 @@
 /* ─────────────────────────────────────────────────────────────────────────
-   HALİL UTKU ŞİMŞEK PORTFOLIO — script.js
+   script.js — home page behaviour
+   One orchestrated load moment (hero), everything else answers the user:
+   filter, lens, reel controls, menu. Scroll work is batched into one rAF.
    ───────────────────────────────────────────────────────────────────────── */
-
-/* ── Theme Toggle ── */
-(function initTheme() {
-  const btn   = document.getElementById('themeToggle');
-  const label = btn.querySelector('.theme-label');
-  const saved = localStorage.getItem('theme');
-
-  if (saved === 'light') {
-    document.body.classList.add('light');
-    label.textContent = 'Koyu Mod';
-  }
-
-  btn.addEventListener('click', () => {
-    const isLight = document.body.classList.toggle('light');
-    label.textContent = isLight ? 'Koyu Mod' : 'Açık Mod';
-    localStorage.setItem('theme', isLight ? 'light' : 'dark');
-
-    /* Buton mini-scale animasyonu */
-    btn.style.transform = 'scale(.92)';
-    setTimeout(() => btn.style.transform = '', 200);
-  });
-})();
-
-/* ── Birleşik scroll loop — nav --scroll-p + active link, tek rAF
-   Tüm scroll-bound DOM yazımları aynı frame'de batch edilir → 0 jank. */
-(function initScrollLoop() {
+(() => {
   const root = document.documentElement;
-  const RANGE = 140;
-  let ticking = false;
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const finePointer = matchMedia('(hover: hover) and (pointer: fine)').matches;
+  const $ = (s, c = document) => c.querySelector(s);
+  const $$ = (s, c = document) => Array.from(c.querySelectorAll(s));
+  const lang = () => (root.lang === 'en' ? 'en' : 'tr');
+  const tr = (path, fallback) => {
+    const dict = typeof I18N !== 'undefined' ? I18N[lang()] : null;
+    const v = dict && path.split('.').reduce((o, k) => (o ? o[k] : undefined), dict);
+    return v || fallback;
+  };
 
-  function smoothstep(x) { return x * x * (3 - 2 * x); }
-
-  // Active link tespiti için lazy section listesi (DOMContentLoaded sonrası yenilenebilir)
-  let _sections = null, _navAnchors = null;
-  function refs() {
-    if (!_sections) _sections = document.querySelectorAll('section[id]');
-    if (!_navAnchors) _navAnchors = document.querySelectorAll('.nav-links a');
-    return { sections: _sections, anchors: _navAnchors };
-  }
-
-  function update() {
-    const y = Math.max(0, window.scrollY);
-    // 1) Nav scroll progress
-    root.style.setProperty('--scroll-p', smoothstep(Math.min(y / RANGE, 1)).toFixed(4));
-
-    // 2) Active nav link
-    const { sections, anchors } = refs();
-    let current = '';
-    for (let i = 0; i < sections.length; i++) {
-      if (y >= sections[i].offsetTop - 140) current = sections[i].id;
-    }
-    for (let i = 0; i < anchors.length; i++) {
-      const href = anchors[i].getAttribute('href') || '';
-      const matches = href === '#' + current || (current === 'work' && href.endsWith('#work'));
-      anchors[i].classList.toggle('active', matches);
-    }
-    ticking = false;
-  }
-
-  window.addEventListener('scroll', () => {
-    if (!ticking) { requestAnimationFrame(update); ticking = true; }
-  }, { passive: true });
-
-  // İlk paint sonrası ilk değeri yaz
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', update);
-  } else {
-    update();
-  }
-})();
-
-/* ── Burger menu ── */
-const burger = document.getElementById('burger');
-const navLinks = document.querySelector('.nav-links');
-burger.addEventListener('click', () => {
-  const isOpen = navLinks.classList.toggle('open');
-  burger.classList.toggle('open', isOpen);
-});
-// Linklere tıklanınca menüyü kapat
-navLinks.querySelectorAll('a').forEach(a => {
-  a.addEventListener('click', () => {
-    navLinks.classList.remove('open');
-    burger.classList.remove('open');
+  /* ── hero name: split into characters for the load sequence ── */
+  $$('[data-split]').forEach(el => {
+    const text = el.textContent.trim();
+    el.textContent = '';
+    [...text].forEach((c, i) => {
+      const s = document.createElement('span');
+      s.className = c === ' ' ? 'ch ch-sp' : 'ch';
+      s.textContent = c === ' ' ? ' ' : c;
+      s.style.setProperty('--i', i);
+      s.setAttribute('aria-hidden', 'true');
+      el.appendChild(s);
+    });
   });
-});
 
-/* ── Global Particle Canvas — behind entire page ──
-   Skip on small screens / reduced-motion to save CPU.
-   Pause via IntersectionObserver when canvas is offscreen. */
-const canvas = document.getElementById('particleCanvas');
-const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
-const isMobile = window.innerWidth < 768;
+  /* ── load choreography: start once the hero image is decoded ── */
+  const heroImg = $('.hero-media img');
+  let started = false;
+  const start = () => {
+    if (started) return;
+    started = true;
+    requestAnimationFrame(() => requestAnimationFrame(() => root.classList.add('is-loaded')));
+  };
+  if (reduced) start();
+  else if (heroImg) {
+    if (heroImg.complete) start();
+    else { heroImg.addEventListener('load', start, { once: true }); heroImg.addEventListener('error', start, { once: true }); }
+    setTimeout(start, 2200);
+  } else start();
 
-if (canvas && !reduceMotion) {
-  const ctx    = canvas.getContext('2d');
-  let W, H, particles = [];
-  let isVisible = true;
-  let rafId = 0;
-  const DPR = Math.min(window.devicePixelRatio || 1, isMobile ? 1.5 : 2);
-  const LINE_DIST = isMobile ? 110 : 160;
-  const LINE_DIST_SQ = LINE_DIST * LINE_DIST;
-
-  function resize() {
-    W = window.innerWidth;
-    H = window.innerHeight;
-    canvas.width  = W * DPR;
-    canvas.height = H * DPR;
-    canvas.style.width  = W + 'px';
-    canvas.style.height = H + 'px';
-    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
-  }
-  window.addEventListener('resize', resize, { passive: true });
-  resize();
-
-  class Particle {
-    constructor() { this.reset(); }
-    reset() {
-      this.x  = Math.random() * W;
-      this.y  = Math.random() * H;
-      this.vx = (Math.random() - .5) * .45;
-      this.vy = (Math.random() - .5) * .45;
-      this.r  = Math.random() * 1.9 + .7;
-      this.a  = Math.random() * .55 + .55;   /* 0.55–1.10 — daha parlak */
-      this.pulseOffset = Math.random() * Math.PI * 2;
-    }
-    update(t) {
-      this.x += this.vx;
-      this.y += this.vy;
-      if (this.x < -20) this.x = W + 20;
-      if (this.x > W + 20) this.x = -20;
-      if (this.y < -20) this.y = H + 20;
-      if (this.y > H + 20) this.y = -20;
-      this.pulse = 0.75 + 0.25 * Math.sin(t * 0.001 + this.pulseOffset);
-    }
-    draw() {
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, this.r * this.pulse, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(201,169,110,${Math.min(1, this.a * this.pulse)})`;
-      ctx.fill();
-    }
+  /* ── nav: light/dark state, active link, mobile menu ── */
+  const navWrap = $('#nav');
+  const heroFrame = $('#heroFrame');
+  const burger = $('#burger');
+  const menu = $('#mobileMenu');
+  if (burger && menu) {
+    const close = () => { burger.setAttribute('aria-expanded', 'false'); menu.hidden = true; };
+    burger.addEventListener('click', () => {
+      const open = burger.getAttribute('aria-expanded') !== 'true';
+      burger.setAttribute('aria-expanded', String(open));
+      menu.hidden = !open;
+    });
+    $$('a', menu).forEach(a => a.addEventListener('click', close));
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
   }
 
-  /* Particle density — yoğun + uniform, hero alanında da görünür */
-  const MAX_COUNT = isMobile ? 55 : 130;
-  const MIN_COUNT = isMobile ? 35 : 70;
-  const DIVISOR   = isMobile ? 32000 : 16000;
-  const COUNT = Math.min(MAX_COUNT, Math.max(MIN_COUNT, Math.floor(W * H / DIVISOR)));
-  for (let i = 0; i < COUNT; i++) particles.push(new Particle());
+  const sections = $$('main section[id]');
+  const links = $$('.nav-links a');
 
-  function drawLines() {
-    /* x'e göre sırala (her kare neredeyse sıralı kaldığı için TimSort O(n))
-       sonra iç döngüde dx > LINE_DIST olunca break → naive O(n²) yerine
-       lokal komşu kontrolü. 130 parçacık için ~8450 → ~650 pair check. */
-    particles.sort((a, b) => a.x - b.x);
-    for (let i = 0; i < particles.length; i++) {
-      const pi = particles[i];
-      for (let j = i + 1; j < particles.length; j++) {
-        const pj = particles[j];
-        const dx = pj.x - pi.x;
-        if (dx > LINE_DIST) break;
-        const dy = pi.y - pj.y;
-        const dSq = dx * dx + dy * dy;
-        if (dSq < LINE_DIST_SQ) {
-          const d = Math.sqrt(dSq);
-          const alpha = (1 - d / LINE_DIST) * 0.42;
-          ctx.beginPath();
-          ctx.moveTo(pi.x, pi.y);
-          ctx.lineTo(pj.x, pj.y);
-          ctx.strokeStyle = `rgba(201,169,110,${alpha})`;
-          ctx.lineWidth   = 1;
-          ctx.stroke();
+  /* ── reel scale target ── */
+  const reelFrame = $('#reelFrame');
+
+  /* ── single scroll loop ── */
+  let ticking = false;
+  const onScroll = () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      ticking = false;
+      const vh = innerHeight;
+      if (heroFrame && navWrap) {
+        const b = heroFrame.getBoundingClientRect().bottom;
+        navWrap.classList.toggle('is-light', b < 80);
+        if (!reduced && b > 0) {
+          const y = Math.max(0, -heroFrame.getBoundingClientRect().top);
+          heroFrame.style.setProperty('--hero-shift', (y * 0.18).toFixed(1) + 'px');
         }
       }
-    }
-  }
-
-  const htmlEl = document.documentElement;
-  let skipFrame = false;
-  function animateParticles(t) {
-    if (!isVisible) { rafId = 0; return; }
-    /* Aktif scroll sırasında render'ı half-rate'e düşür (her diğer frame
-       skip) — main thread scroll'a kalsın, kullanıcı algılayamaz. */
-    if (htmlEl.classList.contains('is-scrolling')) {
-      skipFrame = !skipFrame;
-      if (skipFrame) { rafId = requestAnimationFrame(animateParticles); return; }
-    } else {
-      skipFrame = false;
-    }
-    ctx.clearRect(0, 0, W, H);
-    particles.forEach(p => { p.update(t || 0); p.draw(); });
-    drawLines();
-    rafId = requestAnimationFrame(animateParticles);
-  }
-  rafId = requestAnimationFrame(animateParticles);
-
-  /* Pause animation when canvas is offscreen (saves CPU during scrolling away). */
-  const visObserver = new IntersectionObserver(entries => {
-    isVisible = entries[0].isIntersecting;
-    if (isVisible && !rafId) rafId = requestAnimationFrame(animateParticles);
-  });
-  visObserver.observe(canvas);
-
-  /* Pause when tab is hidden. */
-  document.addEventListener('visibilitychange', () => {
-    if (document.hidden) { isVisible = false; }
-    else { isVisible = true; if (!rafId) rafId = requestAnimationFrame(animateParticles); }
-  });
-} else if (canvas) {
-  canvas.style.display = 'none';
-}
-
-/* ── Scroll Reveal (IntersectionObserver) ── */
-const revealEls = document.querySelectorAll(
-  '.reveal-up, .reveal-left, .reveal-right, .reveal-card, .skill-block'
-);
-
-const revealObserver = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('in-view');
-      revealObserver.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
-
-revealEls.forEach(el => revealObserver.observe(el));
-
-/* Stagger cards by data-index — kategori başına sınırlı, max 240ms */
-document.querySelectorAll('.project-card').forEach(card => {
-  const i = parseInt(card.dataset.index) || 0;
-  // Kategori içinde mod-3 ile sıfırla → her kategoride yeniden başlasın,
-  // toplam stagger 0/60/120ms ile sınırlı kalsın (akış daha çevik)
-  const local = i % 3;
-  card.style.transitionDelay = `${local * 60}ms`;
-});
-
-/* ── Counter animation ── */
-function animateCounter(el, target, duration = 1800) {
-  let start = null;
-  function step(ts) {
-    if (!start) start = ts;
-    const progress = Math.min((ts - start) / duration, 1);
-    const eased    = 1 - Math.pow(1 - progress, 4); // ease-out-quart
-    el.textContent = Math.round(eased * target);
-    if (progress < 1) requestAnimationFrame(step);
-  }
-  requestAnimationFrame(step);
-}
-
-const statObserver = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      const numEl  = entry.target.querySelector('.stat-num');
-      const target = parseInt(numEl.dataset.target);
-      animateCounter(numEl, target);
-      statObserver.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.5 });
-
-document.querySelectorAll('.stat').forEach(el => statObserver.observe(el));
-
-/* ── Parallax tilt on project cards — sadece hover-capable cihazlar (touch'ta gereksiz),
-     rAF ile throttle edilir (mousemove 100+ Hz fire eder, render 60Hz yeter). */
-if (matchMedia('(hover: hover) and (pointer: fine)').matches && !reduceMotion) {
-  document.querySelectorAll('.project-card').forEach(card => {
-    let pendingX = 0, pendingY = 0, frame = 0;
-    function apply() {
-      card.style.transform = `perspective(800px) rotateX(${-pendingY * 4}deg) rotateY(${pendingX * 4}deg) translateY(-6px)`;
-      frame = 0;
-    }
-    card.addEventListener('mousemove', e => {
-      const rect = card.getBoundingClientRect();
-      pendingX = (e.clientX - rect.left - rect.width  / 2) / (rect.width  / 2);
-      pendingY = (e.clientY - rect.top  - rect.height / 2) / (rect.height / 2);
-      if (!frame) frame = requestAnimationFrame(apply);
-    });
-    card.addEventListener('mouseleave', () => {
-      if (frame) { cancelAnimationFrame(frame); frame = 0; }
-      card.style.transform = '';
-    });
-  });
-}
-
-/* ── Hero title letter reveal ── */
-(function heroReveal() {
-  document.querySelectorAll('.hero-content .reveal-up').forEach((el, i) => {
-    setTimeout(() => el.classList.add('in-view'), 200 + i * 140);
-  });
-})();
-
-/* ── Lazy reCAPTCHA — sadece contact bölümü viewport'a girince yükle ── */
-(() => {
-  const captchaHost = document.querySelector('.g-recaptcha');
-  if (!captchaHost) return;
-  let loaded = false;
-  function loadRecaptcha() {
-    if (loaded) return;
-    loaded = true;
-    const s = document.createElement('script');
-    s.src = 'https://www.google.com/recaptcha/api.js';
-    s.async = true; s.defer = true;
-    document.head.appendChild(s);
-  }
-  if ('IntersectionObserver' in window) {
-    const obs = new IntersectionObserver(entries => {
-      if (entries[0].isIntersecting) {
-        loadRecaptcha();
-        obs.disconnect();
+      if (reelFrame && !reduced) {
+        const r = reelFrame.getBoundingClientRect();
+        const p = Math.min(1, Math.max(0, (vh - r.top) / (vh * 0.8)));
+        reelFrame.style.setProperty('--reel-scale', (0.94 + 0.06 * p).toFixed(4));
       }
-    }, { rootMargin: '300px 0px' });
-    obs.observe(captchaHost);
-  } else {
-    loadRecaptcha();
+      let current = null;
+      sections.forEach(s => { if (s.getBoundingClientRect().top < vh * 0.4) current = s.id; });
+      links.forEach(a => a.classList.toggle('is-active', a.getAttribute('href') === '#' + current));
+    });
+  };
+  addEventListener('scroll', onScroll, { passive: true });
+  addEventListener('resize', onScroll, { passive: true });
+  onScroll();
+
+  /* ── hero lens: a drop of glass that trails the pointer ── */
+  const lens = $('#heroLens');
+  if (lens && heroFrame && finePointer && !reduced) {
+    const size = 190;
+    let tx = 0, ty = 0, x = 0, y = 0, s = .6, ts = .6, raf = 0, inside = false;
+    const place = () => {
+      x += (tx - x) * 0.14;
+      y += (ty - y) * 0.14;
+      s += (ts - s) * 0.12;
+      lens.style.transform = `translate3d(${(x - size / 2).toFixed(1)}px, ${(y - size / 2).toFixed(1)}px, 0) scale(${s.toFixed(3)})`;
+      if (Math.abs(tx - x) > .2 || Math.abs(ty - y) > .2 || Math.abs(ts - s) > .002) raf = requestAnimationFrame(place);
+      else raf = 0;
+    };
+    const kick = () => { if (!raf) raf = requestAnimationFrame(place); };
+    heroFrame.addEventListener('pointermove', e => {
+      const r = heroFrame.getBoundingClientRect();
+      tx = e.clientX - r.left; ty = e.clientY - r.top;
+      if (!inside) { inside = true; x = tx; y = ty; ts = 1; lens.classList.add('is-on'); }
+      kick();
+    });
+    heroFrame.addEventListener('pointerleave', () => { inside = false; ts = .6; lens.classList.remove('is-on'); kick(); });
+    // grows over interactive glass so the two lenses don't fight
+    $$('.hero-card, .hero-status', heroFrame).forEach(el => {
+      el.addEventListener('pointerenter', () => { ts = .35; kick(); });
+      el.addEventListener('pointerleave', () => { ts = 1; kick(); });
+    });
   }
-  // İlk form etkileşiminde de tetikle (güvenlik ağı)
-  document.getElementById('contactForm')?.addEventListener('focusin', loadRecaptcha, { once: true });
-})();
 
-/* ── Contact form (Formspree + Cloudflare Turnstile) ── */
-(() => {
-  const form = document.getElementById('contactForm');
-  if (!form) return;
+  /* ── work filter ── */
+  const grid = $('#workGrid');
+  const seg = $('#workFilter');
+  if (grid && seg) {
+    const cards = $$('.work-card', grid);
+    const thumb = $('.seg-thumb', seg);
+    const buttons = $$('button', seg);
+    const pattern = ['span-7', 'span-5', 'span-5', 'span-7'];
 
-  const status = document.getElementById('formStatus');
-  const btn = form.querySelector('button[type=submit]');
-  const btnDefaultText = btn.textContent;
-
-  const t = (key, fallback) => {
-    const lang = document.documentElement.lang === 'en' ? 'en' : 'tr';
-    const dict = (typeof I18N !== 'undefined' && I18N[lang] && I18N[lang].contact) || {};
-    return dict[key] || fallback;
-  };
-
-  const setStatus = (msg, type) => {
-    status.textContent = msg;
-    status.dataset.state = type || '';
-  };
-
-  form.addEventListener('submit', async e => {
-    e.preventDefault();
-
-    // reCAPTCHA token doğrulaması — kutu işaretlenmemişse gönderme
-    const token = (typeof grecaptcha !== 'undefined' && grecaptcha.getResponse) ? grecaptcha.getResponse() : '';
-    if (!token) {
-      setStatus(t('captchaRequired', 'Lütfen "Ben robot değilim" kutusunu işaretleyin.'), 'err');
-      return;
-    }
-
-    btn.disabled = true;
-    btn.textContent = t('sending', 'Gönderiliyor...');
-    setStatus('', '');
-
-    try {
-      const res = await fetch(form.action, {
-        method: 'POST',
-        headers: { Accept: 'application/json' },
-        body: new FormData(form)
+    const layout = () => {
+      let k = 0;
+      cards.forEach(c => {
+        c.classList.remove('span-7', 'span-5', 'span-full');
+        if (c.hidden) return;
+        c.classList.add(pattern[k % 4]);
+        k++;
       });
-      if (!res.ok) {
-        const data = await res.json().catch(() => ({}));
-        throw new Error((data.errors && data.errors[0] && data.errors[0].message) || res.statusText);
-      }
-      btn.textContent = t('sent', 'Gönderildi ✓');
-      btn.style.background = '#2d6a4f';
-      btn.style.color = '#fff';
-      setStatus(t('success', 'Mesajınız iletildi. En kısa sürede dönüş yapacağım.'), 'ok');
-      form.reset();
-      if (typeof grecaptcha !== 'undefined') grecaptcha.reset();
-      setTimeout(() => {
-        btn.textContent = btnDefaultText;
-        btn.style.background = '';
-        btn.style.color = '';
+      // an odd last card gets the whole row, as a wide panorama
+      const vis = cards.filter(c => !c.hidden);
+      if (vis.length % 2 === 1) vis[vis.length - 1].classList.add('span-full');
+    };
+    const moveThumb = btn => {
+      seg.style.setProperty('--tx', btn.offsetLeft + 'px');
+      seg.style.setProperty('--tw', btn.offsetWidth + 'px');
+    };
+    const apply = (filter, btn) => {
+      buttons.forEach(b => b.setAttribute('aria-selected', String(b === btn)));
+      moveThumb(btn);
+      let k = 0;
+      cards.forEach(c => {
+        const show = filter === 'all' || c.dataset.cat === filter;
+        c.hidden = !show;
+        c.classList.remove('is-entering');
+        if (show && !reduced) { void c.offsetWidth; c.style.setProperty('--k', k++); c.classList.add('is-entering'); }
+      });
+      layout();
+    };
+    buttons.forEach(b => b.addEventListener('click', () => apply(b.dataset.filter, b)));
+    seg.addEventListener('keydown', e => {
+      const i = buttons.findIndex(b => b.getAttribute('aria-selected') === 'true');
+      const n = e.key === 'ArrowRight' ? i + 1 : e.key === 'ArrowLeft' ? i - 1 : null;
+      if (n === null) return;
+      const b = buttons[(n + buttons.length) % buttons.length];
+      b.focus(); b.click();
+    });
+    layout();
+    const sync = () => moveThumb(buttons.find(b => b.getAttribute('aria-selected') === 'true'));
+    // thumb needs the final font metrics
+    (document.fonts ? document.fonts.ready : Promise.resolve()).then(sync);
+    new ResizeObserver(sync).observe(seg);
+  }
+
+  /* ── showreel: crossfading clips with story-style steps ── */
+  (function reel() {
+    const deck = $('#reelDeck');
+    const stepsHost = $('#reelSteps');
+    const playBtn = $('#reelPlay');
+    if (!deck || !stepsHost) return;
+    const vids = $$('video', deck);
+    let idx = 0, playing = !reduced, visible = false;
+
+    const steps = vids.map((v, i) => {
+      const s = document.createElement('button');
+      s.className = 'reel-step';
+      s.type = 'button';
+      s.setAttribute('aria-label', tr('v2.reel.clip', 'Klip') + ' ' + (i + 1));
+      s.appendChild(document.createElement('i'));
+      s.addEventListener('click', () => go(i));
+      stepsHost.appendChild(s);
+      return s;
+    });
+    const ensureSrc = v => { if (!v.src && v.dataset.src) { v.src = v.dataset.src; v.preload = 'auto'; } };
+    const paint = () => steps.forEach((s, i) => { s.classList.toggle('is-done', i < idx); if (i !== idx) s.style.setProperty('--p', 0); });
+    const go = i => {
+      const prev = vids[idx];
+      idx = (i + vids.length) % vids.length;
+      const v = vids[idx];
+      ensureSrc(v);
+      ensureSrc(vids[(idx + 1) % vids.length]);
+      vids.forEach(x => x.classList.toggle('is-active', x === v));
+      if (prev !== v) { prev.pause(); }
+      try { v.currentTime = 0; } catch (_) {}
+      paint();
+      if (playing && visible) v.play().catch(() => {});
+    };
+    vids.forEach((v, i) => {
+      v.addEventListener('timeupdate', () => {
+        if (i !== idx || !v.duration) return;
+        steps[i].style.setProperty('--p', (v.currentTime / v.duration).toFixed(3));
+      });
+      v.addEventListener('ended', () => { if (i === idx) go(idx + 1); });
+    });
+    const setPlaying = p => {
+      playing = p;
+      playBtn.classList.toggle('is-paused', !p);
+      const key = p ? 'v2.reel.pause' : 'v2.reel.play';
+      playBtn.setAttribute('data-i18n-aria', key);
+      playBtn.setAttribute('aria-label', tr(key, p ? 'Duraklat' : 'Oynat'));
+      const v = vids[idx];
+      if (p && visible) v.play().catch(() => {}); else v.pause();
+    };
+    playBtn && playBtn.addEventListener('click', () => setPlaying(!playing));
+    setPlaying(playing);
+    new IntersectionObserver(([e]) => {
+      visible = e.isIntersecting;
+      if (visible) { ensureSrc(vids[idx]); if (playing) vids[idx].play().catch(() => {}); }
+      else vids[idx].pause();
+    }, { threshold: 0.25 }).observe(deck);
+    paint();
+  })();
+
+  /* ── skill meters: ten segments, filled once when seen ── */
+  const meters = $$('.meter');
+  meters.forEach(m => {
+    const lvl = +m.dataset.level || 0;
+    m.setAttribute('role', 'img');
+    m.setAttribute('aria-label', lvl + '/10');
+    for (let i = 0; i < 10; i++) {
+      const b = document.createElement('b');
+      b.style.setProperty('--d', i);
+      b.dataset.on = i < lvl ? '1' : '';
+      m.appendChild(b);
+    }
+  });
+  const fill = m => $$('b', m).forEach(b => b.dataset.on && b.classList.add('on'));
+  if (reduced || !('IntersectionObserver' in window)) meters.forEach(fill);
+  else {
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) { $$('.meter', e.target).forEach(fill); io.unobserve(e.target); }
+    }), { threshold: 0.35 });
+    $$('.skill-col').forEach(c => io.observe(c));
+  }
+
+  /* ── lazy reCAPTCHA ── */
+  (() => {
+    const host = $('.g-recaptcha');
+    if (!host) return;
+    let loaded = false;
+    const load = () => {
+      if (loaded) return;
+      loaded = true;
+      const s = document.createElement('script');
+      s.src = 'https://www.google.com/recaptcha/api.js';
+      s.async = true; s.defer = true;
+      document.head.appendChild(s);
+    };
+    new IntersectionObserver((es, o) => { if (es[0].isIntersecting) { load(); o.disconnect(); } }, { rootMargin: '400px 0px' }).observe(host);
+    $('#contactForm')?.addEventListener('focusin', load, { once: true });
+  })();
+
+  /* ── contact form (Formspree) ── */
+  (() => {
+    const form = $('#contactForm');
+    if (!form) return;
+    const status = $('#formStatus');
+    const btn = form.querySelector('button[type=submit]');
+    const label = btn.querySelector('.btn-label');
+    const t = (k, f) => tr('contact.' + k, f);
+    const setStatus = (msg, type) => { status.textContent = msg; status.dataset.state = type || ''; };
+
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      const token = (typeof grecaptcha !== 'undefined' && grecaptcha.getResponse) ? grecaptcha.getResponse() : '';
+      if (!token) { setStatus(t('captchaRequired', 'Lütfen "Ben robot değilim" kutusunu işaretleyin.'), 'err'); return; }
+      btn.disabled = true;
+      label.textContent = t('sending', 'Gönderiliyor...');
+      setStatus('', '');
+      try {
+        const res = await fetch(form.action, { method: 'POST', headers: { Accept: 'application/json' }, body: new FormData(form) });
+        if (!res.ok) throw new Error(res.statusText);
+        label.textContent = t('sent', 'Gönderildi');
+        btn.classList.add('is-sent');
+        setStatus(t('success', 'Mesajınız iletildi. En kısa sürede dönüş yapacağım.'), 'ok');
+        form.reset();
+        if (typeof grecaptcha !== 'undefined') grecaptcha.reset();
+        setTimeout(() => { label.textContent = t('submit', 'Mesaj Gönder'); btn.classList.remove('is-sent'); btn.disabled = false; }, 3500);
+      } catch (_) {
         btn.disabled = false;
-      }, 3500);
-    } catch (err) {
-      btn.disabled = false;
-      btn.textContent = btnDefaultText;
-      setStatus(t('error', 'Gönderilemedi. Lütfen tekrar deneyin veya doğrudan e-posta atın.'), 'err');
-    }
-  });
-})();
-
-/* Active nav link highlight — birleşik scroll loop'a taşındı (initScrollLoop). */
-
-/* ── Showreel ContainerScroll — vanilla port of framer-motion useScroll ──
-   Card'a scroll progress'ine göre rotateX (20→0), scale (1.02→1 desktop /
-   0.85→1 mobile) ve header'a translateY (0→-100) uygular.
-   IntersectionObserver gate: sadece section viewport'a yakınken hesaplar
-   (CPU verimli). Video da görünürlüğe göre play/pause edilir. */
-(function initShowreel() {
-  const section = document.getElementById('showreel');
-  if (!section) return;
-  const card = section.querySelector('.reel-card');
-  const header = section.querySelector('.reel-header'); // opsiyonel
-  // Video oynatma kontrolü artık reel rotator'da — burada sadece tilt/scale.
-  if (!card) return;
-
-  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  let active = false;       // section viewport civarında mı
-  let ticking = false;
-  let isMobile = window.innerWidth <= 768;
-
-  function update() {
-    ticking = false;
-    if (!active || reduceMotion) return;
-    // useScroll target ["start end", "end start"] davranışı:
-    //   progress 0 → section üstü viewport altına denk gelirken
-    //   progress 1 → section altı viewport üstüne çıkarken
-    const rect = section.getBoundingClientRect();
-    const winH = window.innerHeight;
-    const raw = (winH - rect.top) / (winH + rect.height);
-    const p = Math.max(0, Math.min(1, raw));
-
-    // Ease-out cubic — kart viewport'a girer girmez hızlıca düzleşsin,
-    // kalan scroll'da zaten düz dursun (linear'da uzun süre eğik kalıyordu).
-    const eased = 1 - Math.pow(1 - p, 3);
-
-    // Başlangıç açısı: desktop 12° (daha rafine), mobile 18° (daha dramatik)
-    const rotateFrom = isMobile ? 18 : 12;
-    const rotate = rotateFrom * (1 - eased);
-    // Desktop: 1.02 → 1 (hafif zoom-out), Mobile: 0.88 → 1 (zoom-in)
-    const sFrom = isMobile ? 0.88 : 1.02;
-    const sTo   = 1;
-    const scale = sFrom + (sTo - sFrom) * eased;
-    const translate = -100 * eased;              // header 0 → -100px
-
-    card.style.setProperty('--reel-rotate', rotate.toFixed(2) + 'deg');
-    card.style.setProperty('--reel-scale', scale.toFixed(4));
-    if (header) header.style.setProperty('--reel-translate', translate.toFixed(1) + 'px');
-  }
-
-  function onScroll() {
-    if (!ticking) {
-      requestAnimationFrame(update);
-      ticking = true;
-    }
-  }
-
-  // Section viewport'a yakınken handler aktif, dışarıda CPU yakmasın
-  if ('IntersectionObserver' in window) {
-    const obs = new IntersectionObserver(([e]) => {
-      active = e.isIntersecting;
-      if (active) update();
-    }, { rootMargin: '200px 0px' });
-    obs.observe(section);
-  } else {
-    active = true;
-    update();
-  }
-
-  window.addEventListener('scroll', onScroll, { passive: true });
-  window.addEventListener('resize', () => {
-    isMobile = window.innerWidth <= 768;
-    update();
-  }, { passive: true });
-})();
-
-/* ── Showreel Reel — 6 video crossfade rotator ───────────────────────────
-   Tablet kartının içinde 6 proje videosu sırayla oynar; her birinin doğal
-   süresine göre advance eder, sıradakini ~1.2 sn önceden buffer'a alır,
-   böylece geçişler donmasız ve cinematic olur. */
-(function initShowreelRotator() {
-  const deck = document.getElementById('reelDeck');
-  const barEl = document.getElementById('reelProgressBar');
-  if (!deck) return;
-
-  const layers = Array.from(deck.querySelectorAll('.reel-video'));
-  if (!layers.length) return;
-
-  const SAFETY_MS    = 9000;
-  const FADE_MS      = 1400;
-  const PRELOAD_LEAD = 5000; /* 3000 → 5000: bir sonraki videoya 5sn buffer */
-
-  // Configure all videos but DON'T set src yet — that would trigger 7 parallel
-  // metadata requests on page load. We attach src lazily when each video is
-  // about to play (or immediately for the first one).
-  layers.forEach(v => {
-    v.muted = true;
-    v.playsInline = true;
-    v.loop = false;
-    v.setAttribute('disablepictureinpicture', '');
-    v.setAttribute('disableremoteplayback', '');
-  });
-
-  // Eagerly load only the first one — it's the visible content above the fold.
-  if (layers[0] && !layers[0].src && layers[0].dataset.src) {
-    layers[0].src = layers[0].dataset.src;
-    layers[0].preload = 'auto';
-  }
-
-  let current = 0, timer = null, raf = null;
-  let inView = false;
-
-  function startProgress(durationMs) {
-    cancelAnimationFrame(raf);
-    if (!barEl) return;
-    const start = performance.now();
-    (function step(t) {
-      const p = Math.min(((t || performance.now()) - start) / durationMs, 1);
-      barEl.style.width = (p * 100) + '%';
-      if (p < 1) raf = requestAnimationFrame(step);
-    })();
-  }
-
-  function preload(idx) {
-    const v = layers[idx];
-    if (!v) return;
-    // Lazy src attach — first time this video is needed
-    if (!v.src && v.dataset.src) v.src = v.dataset.src;
-    if (v.preload !== 'auto') v.preload = 'auto';
-    try { v.load(); } catch (e) { /* noop */ }
-  }
-
-  function advance() { show((current + 1) % layers.length); }
-
-  function show(idx) {
-    clearTimeout(timer);
-    const prev = current;
-    current = idx;
-    const prevLayer = layers[prev];
-    const nextLayer = layers[idx];
-
-    nextLayer.currentTime = 0;
-    if (inView) {
-      const p = nextLayer.play();
-      if (p && p.catch) p.catch(() => {});
-    }
-
-    nextLayer.classList.add('is-active');
-    if (prev !== idx) {
-      setTimeout(() => {
-        prevLayer.classList.remove('is-active');
-        setTimeout(() => { try { prevLayer.pause(); } catch (e) {} }, FADE_MS + 60);
-      }, 20);
-    }
-
-    preload((idx + 1) % layers.length);
-    preload((idx + 2) % layers.length);
-
-    function scheduleNext() {
-      const dur = isFinite(nextLayer.duration) && nextLayer.duration > 0
-        ? nextLayer.duration * 1000
-        : SAFETY_MS;
-      const wait = Math.max(2200, dur - PRELOAD_LEAD);
-      startProgress(wait);
-      timer = setTimeout(advance, wait);
-    }
-
-    if (nextLayer.readyState >= 1 && isFinite(nextLayer.duration)) {
-      scheduleNext();
-    } else {
-      const onMeta = () => { nextLayer.removeEventListener('loadedmetadata', onMeta); scheduleNext(); };
-      nextLayer.addEventListener('loadedmetadata', onMeta);
-      timer = setTimeout(() => {
-        nextLayer.removeEventListener('loadedmetadata', onMeta);
-        advance();
-      }, SAFETY_MS);
-      startProgress(SAFETY_MS);
-    }
-  }
-
-  if ('IntersectionObserver' in window) {
-    const obs = new IntersectionObserver(([e]) => {
-      inView = e.isIntersecting;
-      const v = layers[current];
-      if (!v) return;
-      if (inView) v.play().catch(() => {});
-      else v.pause();
-    }, { rootMargin: '200px 0px' });
-    obs.observe(deck);
-  } else {
-    inView = true;
-  }
-
-  document.addEventListener('visibilitychange', () => {
-    const v = layers[current];
-    if (!v) return;
-    if (document.hidden) v.pause();
-    else if (inView) v.play().catch(() => {});
-  });
-
-  show(0);
-})();
-
-/* ── Image cache warmup — load + idle sonrası lazy image URL'lerini
-   <link rel="prefetch"> ile browser HTTP cache'ine düşür. Native lazy
-   loading davranışı korunur (img.loading attribute'una dokunulmaz), ama
-   img viewport'a yaklaştığında dosya cache'ten anında gelir — paint
-   chain jank'i olmaz. Sıralı bir kuyruktan gönderilir, network bursu yok. */
-(function warmupImageCache() {
-  const idle = window.requestIdleCallback || ((cb) => setTimeout(cb, 1500));
-  function warm() {
-    idle(() => {
-      const imgs = [...document.querySelectorAll('img[loading="lazy"]')]
-        .filter(img => img.src && !img.complete);
-      let i = 0;
-      function next() {
-        if (i >= imgs.length) return;
-        const img = imgs[i++];
-        const link = document.createElement('link');
-        link.rel = 'prefetch';
-        link.as = 'image';
-        link.href = img.currentSrc || img.src;
-        document.head.appendChild(link);
-        /* 80ms aralıkla — paralel burst yok, scroll smooth kalır */
-        setTimeout(next, 80);
+        label.textContent = t('submit', 'Mesaj Gönder');
+        setStatus(t('error', 'Gönderilemedi. Lütfen tekrar deneyin veya doğrudan e-posta atın.'), 'err');
       }
-      next();
-    }, { timeout: 4000 });
-  }
-  if (document.readyState === 'complete') warm();
-  else window.addEventListener('load', warm, { once: true });
-})();
-
-/* ── Scroll-aware particle pause — kullanıcı aktif scroll ederken
-   particle render'ı bir frame skip et, main thread'i scroll'a bırak.
-   Scroll durunca otomatik devam. Gözle algılanmaz ama jank ortadan kalkar. */
-(function initScrollAwarePerf() {
-  if (!window.matchMedia('(min-width: 0px)').matches) return;
-  let scrollIdleTimer = 0;
-  window.addEventListener('scroll', () => {
-    document.documentElement.classList.add('is-scrolling');
-    clearTimeout(scrollIdleTimer);
-    scrollIdleTimer = setTimeout(() => {
-      document.documentElement.classList.remove('is-scrolling');
-    }, 140);
-  }, { passive: true });
+    });
+  })();
 })();
