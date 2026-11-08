@@ -17,10 +17,12 @@
   };
 
   /* ── hero name: split into characters for the load sequence ── */
+  let chIndex = 0;
   $$('[data-split]').forEach(el => {
     const text = el.textContent.trim();
     el.textContent = '';
-    [...text].forEach((c, i) => {
+    [...text].forEach(c => {
+      const i = chIndex++;
       const s = document.createElement('span');
       s.className = c === ' ' ? 'ch ch-sp' : 'ch';
       s.textContent = c === ' ' ? ' ' : c;

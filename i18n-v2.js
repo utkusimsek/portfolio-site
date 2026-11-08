@@ -7,6 +7,7 @@
     nav: { work: "İşler", about: "Hakkımda", skills: "Araçlar", contact: "İletişim", cta: "Yazın" },
     hero: {
       intro: "Yat, ürün ve kent mobilyası tasarlıyorum. İlk eskizden üretime hazır modele kadar formun nedenini çizgiyle anlatıyorum.",
+      role: "Endüstriyel<br>tasarımcı",
       featured: "Diploma projesi",
       featuredMeta: "KLAN Studio için, 2023",
       open: "Projeyi aç",
@@ -54,6 +55,7 @@
     nav: { work: "Work", about: "About", skills: "Tools", contact: "Contact", cta: "Write to me" },
     hero: {
       intro: "I design yachts, products and street furniture, explaining why every form is the way it is, from the first sketch to a production-ready model.",
+      role: "Industrial<br>designer",
       featured: "Diploma project",
       featuredMeta: "For KLAN Studio, 2023",
       open: "Open project",
