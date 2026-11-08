@@ -156,7 +156,14 @@
       media.addEventListener('pointerleave', () => { ts = 0; lens.classList.remove('is-on'); kick(); });
     });
     // content moves under a still pointer while scrolling: re-check what's below it
+    const grid = document.getElementById('workGrid');
+    let nearGrid = false;
+    if (grid) {
+      grid.addEventListener('pointerenter', () => { nearGrid = true; });
+      grid.addEventListener('pointerleave', () => { nearGrid = false; });
+    }
     addEventListener('scroll', () => {
+      if (!nearGrid && !ts) return;
       const over = document.elementFromPoint(tx, ty);
       const on = !!(over && over.closest('.work-media'));
       if (on !== (ts === 1)) { ts = on ? 1 : 0; lens.classList.toggle('is-on', on); kick(); }

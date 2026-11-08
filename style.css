@@ -356,7 +356,7 @@ a:hover .arrow-dot, button:hover .arrow-dot { transform: rotate(45deg); }
   position: absolute; inset: 0; z-index: -1;
   background:
     linear-gradient(180deg, rgba(8, 30, 48, .38) 0%, rgba(8, 30, 48, 0) 28%),
-    linear-gradient(0deg, rgba(8, 30, 48, .52) 0%, rgba(8, 30, 48, .08) 42%, rgba(8, 30, 48, 0) 60%);
+    linear-gradient(0deg, rgba(8, 30, 48, .22) 0%, rgba(8, 30, 48, 0) 40%);
 }
 
 .hero-intro {
@@ -407,34 +407,60 @@ a:hover .arrow-dot, button:hover .arrow-dot { transform: rotate(45deg); }
   font-size: var(--fs-s);
   font-weight: 500;
 }
-.status-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--buoy); box-shadow: 0 0 0 0 rgba(240, 96, 46, .6); animation: buoy 2.6s ease-out infinite; }
+.status-dot { position: relative; width: 8px; height: 8px; border-radius: 50%; background: var(--buoy); }
+.status-dot::after { content: ""; position: absolute; inset: -1px; border-radius: 50%; border: 2px solid var(--buoy); animation: buoy 2.6s ease-out infinite; }
 .status-sep { width: 1px; height: 16px; background: rgba(255, 255, 255, .45); }
-@keyframes buoy { 0% { box-shadow: 0 0 0 0 rgba(240, 96, 46, .55); } 70%, 100% { box-shadow: 0 0 0 9px rgba(240, 96, 46, 0); } }
+@keyframes buoy { 0% { transform: scale(1); opacity: .7; } 70%, 100% { transform: scale(2.6); opacity: 0; } }
 
-.hero-name {
+/* notch: page-coloured cut-out under the name, inverted corners above and right */
+.hero-notch {
+  --R: var(--r-frame);
   position: absolute;
-  left: clamp(18px, 3vw, 44px);
-  bottom: clamp(18px, 2.8vw, 40px);
+  left: 0;
+  bottom: 0;
+  z-index: 2;
+  display: flex;
+  align-items: flex-end;
+  gap: clamp(18px, 2.2vw, 32px);
+  padding: clamp(14px, 1.6vw, 22px) clamp(22px, 2.6vw, 40px) clamp(10px, 1.1vw, 16px) clamp(20px, 3.4vw, 48px);
+  background: var(--haze);
+  color: var(--ink);
+  border-top-right-radius: var(--R);
+}
+.hero-notch::before,
+.hero-notch::after {
+  content: "";
+  position: absolute;
+  width: var(--R);
+  height: var(--R);
+  background: radial-gradient(circle at 100% 0, transparent calc(var(--R) - .6px), var(--haze) var(--R));
+  pointer-events: none;
+}
+.hero-notch::before { left: 0; bottom: 100%; }
+.hero-notch::after { left: 100%; bottom: 0; }
+.hero-name {
   margin: 0;
-  font-size: clamp(3.6rem, 8.8vw, 10rem);
+  font-size: clamp(3.2rem, 7.4vw, 8.75rem);
   font-weight: 600;
   font-variation-settings: "wdth" 75;
   letter-spacing: -.04em;
-  line-height: .84;
+  line-height: .86;
   white-space: nowrap;
-  pointer-events: none;
+  color: var(--ink);
 }
-.hero-name-row { display: flex; align-items: flex-start; gap: .22em; }
-.hero-name-line { display: block; }
-.hero-name-line--2 { padding-left: .62em; }
+.hero-name-line { display: block; padding-bottom: .1em; margin-bottom: -.1em; }
 .hero-role {
-  margin-top: .16em;
-  font-size: max(.95rem, .13em);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 0 0 clamp(8px, 1vw, 14px);
+  font-size: var(--fs-s);
   font-weight: 500;
-  font-variation-settings: "wdth" 100;
-  letter-spacing: -.005em;
-  line-height: 1.2;
+  line-height: 1.25;
+  color: var(--ink-2);
+  white-space: nowrap;
 }
+.hero-role-rule { width: clamp(28px, 3vw, 48px); height: 1px; background: var(--ink); opacity: .5; }
 .hero-name .ch { display: inline-block; }
 .hero-name .ch-sp { width: .18em; }
 
@@ -466,7 +492,7 @@ html:not(.refract) .hero-lens { --lg-blur: 3px; --lg-tint: rgba(255, 255, 255, .
 .js .hero-frame { clip-path: inset(3% 4% 3% 4% round var(--r-frame)); --hero-scale: 1.14; }
 .js .hero-intro, .js .hero-card, .js .hero-status, .js .hero-role { opacity: 0; transform: translateY(14px); }
 .js .hero-name .ch { transform: translateY(105%); }
-.js .hero-name-line { overflow: hidden; padding-bottom: .04em; }
+.js .hero-name-line { overflow: hidden; }
 .js .nav { opacity: 0; transform: translateY(-10px); }
 
 .is-loaded .hero-frame { clip-path: inset(0 0 0 0 round var(--r-frame)); transition: clip-path 1.3s var(--ease); }
@@ -477,7 +503,7 @@ html:not(.refract) .hero-lens { --lg-blur: 3px; --lg-tint: rgba(255, 255, 255, .
 .is-loaded .hero-intro { transition-delay: .9s; }
 .is-loaded .hero-card { transition-delay: 1.05s; }
 .is-loaded .hero-status { transition-delay: 1.2s; }
-.is-loaded .hero-role { opacity: .9; transition-delay: .8s; }
+.is-loaded .hero-role { transition-delay: .85s; }
 .is-loaded .nav { opacity: 1; transform: none; transition: opacity .8s var(--ease) .6s, transform .8s var(--ease) .6s, color .4s; }
 .is-loaded .hero-card:hover { transform: translateY(-3px); transition-delay: 0s; }
 
@@ -485,8 +511,12 @@ html:not(.refract) .hero-lens { --lg-blur: 3px; --lg-tint: rgba(255, 255, 255, .
   .hero-frame { min-height: 560px; }
   .hero-intro { top: 96px; max-width: 24ch; }
   .hero-card { display: none; }
-  .hero-name { font-size: 19vw; left: 16px; bottom: 18px; }
-  .hero-status { left: 16px; right: auto; bottom: calc(19vw * .84 * 2 + 34px); height: 38px; padding: 0 14px 0 12px; font-size: var(--fs-xs); }
+  .hero-notch { flex-direction: column; align-items: flex-start; gap: 8px; padding: 14px 20px 8px 16px; --R: 22px; }
+  .hero-role { order: -1; margin: 0; font-size: var(--fs-xs); }
+  .hero-role br { display: none; }
+  .hero-role-rule { width: 22px; }
+  .hero-name { font-size: 17.5vw; }
+  .hero-status { left: 16px; right: auto; bottom: calc(17.5vw * .86 + 66px); height: 38px; padding: 0 14px 0 12px; font-size: var(--fs-xs); }
   .hero-lens { display: none; }
 }
 
@@ -535,8 +565,8 @@ html:not(.refract) .hero-lens { --lg-blur: 3px; --lg-tint: rgba(255, 255, 255, .
   position: relative;
   z-index: 1;
   display: inline-flex;
-  align-items: baseline;
-  gap: 4px;
+  align-items: center;
+  gap: 3px;
   height: 42px;
   padding: 0 18px;
   border-radius: 999px;
@@ -546,7 +576,7 @@ html:not(.refract) .hero-lens { --lg-blur: 3px; --lg-tint: rgba(255, 255, 255, .
   transition: color .3s;
 }
 .seg button[aria-selected="true"] { color: var(--ink); }
-.seg sup { font-size: 10px; font-weight: 600; color: var(--ink-3); top: -.5em; }
+.seg sup { position: relative; top: -.5em; font-size: 10px; font-weight: 600; line-height: 1; color: var(--ink-3); font-variant-numeric: tabular-nums; }
 .seg-thumb {
   position: absolute;
   top: 5px; bottom: 5px; left: 0;

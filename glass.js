@@ -24,9 +24,9 @@
   // bevel: rim width in px ('r' = fraction of the short side), scale: bend in px,
   // ab: chromatic spread in px, frost: post-refraction blur
   const KINDS = {
-    nav:    { bevel: 16, scale: 34, ab: 3, frost: .3 },
-    pill:   { bevel: 14, scale: 28, ab: 3, frost: .3 },
-    card:   { bevel: 22, scale: 40, ab: 4, frost: .4 },
+    nav:    { bevel: 16, scale: 34, ab: 0, frost: .3 },
+    pill:   { bevel: 14, scale: 28, ab: 0, frost: .3 },
+    card:   { bevel: 22, scale: 40, ab: 0, frost: .4 },
     lens:   { bevel: .42, scale: 70, ab: 9, frost: .2 },
     cursor: { bevel: .46, scale: 46, ab: 6, frost: .2 }
   };
@@ -123,10 +123,10 @@
     const disp = (s, res) => `<feDisplacementMap in="SourceGraphic" in2="map" scale="${s}" xChannelSelector="R" yChannelSelector="G" result="${res}"/>`;
     return `<filter id="${id}" color-interpolation-filters="sRGB" x="-${px.toFixed(3)}%" y="-${py.toFixed(3)}%" width="${(100 + 2 * px).toFixed(3)}%" height="${(100 + 2 * py).toFixed(3)}%">
       <feImage href="${url}" x="0" y="0" width="${w}" height="${h}" preserveAspectRatio="none" result="map"/>
-      ${disp(k.scale + k.ab, 'dR')}<feColorMatrix in="dR" type="matrix" values="1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0" result="r"/>
+      ${k.ab <= 0 ? disp(k.scale, 'rgb') : `${disp(k.scale + k.ab, 'dR')}<feColorMatrix in="dR" type="matrix" values="1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0" result="r"/>
       ${disp(k.scale, 'dG')}<feColorMatrix in="dG" type="matrix" values="0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 0" result="g"/>
       ${disp(Math.max(0, k.scale - k.ab), 'dB')}<feColorMatrix in="dB" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 0" result="b"/>
-      <feBlend in="r" in2="g" mode="screen" result="rg"/><feBlend in="rg" in2="b" mode="screen" result="rgb"/>
+      <feBlend in="r" in2="g" mode="screen" result="rg"/><feBlend in="rg" in2="b" mode="screen" result="rgb"/>`}
       <feGaussianBlur in="rgb" stdDeviation="${k.frost}"/>
     </filter>`;
   }

@@ -14,16 +14,16 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=lg4" />
+  <link rel="stylesheet" href="style.css?v=lg5" />
 
   <script>document.documentElement.classList.add('js');</script>
   <script defer src="i18n.js?v=lg1"></script>
-  <script defer src="i18n-v2.js?v=lg4"></script>
+  <script defer src="i18n-v2.js?v=lg5"></script>
   <script defer src="protect.js"></script>
   <script defer src="vendor/lenis.min.js"></script>
-  <script defer src="glass.js?v=lg2"></script>
-  <script defer src="script.js?v=lg4"></script>
-  <script defer src="motion.js?v=lg2"></script>
+  <script defer src="glass.js?v=lg5"></script>
+  <script defer src="script.js?v=lg5"></script>
+  <script defer src="motion.js?v=lg5"></script>
 </head>
 <body data-i18n-pagetitle="pageTitle.home" class="page-home">
 
@@ -90,13 +90,14 @@
           <span data-i18n="v2.hero.place">İzmir ve Bodrum</span>
         </div>
 
-        <h1 class="hero-name" id="heroName" aria-label="Halil Utku Şimşek">
-          <span class="hero-name-row">
-            <span class="hero-name-line" data-split>Utku</span>
-            <span class="hero-role" data-i18n="v2.hero.role">Endüstriyel<br>tasarımcı</span>
-          </span>
-          <span class="hero-name-line hero-name-line--2" data-split>Şimşek</span>
-        </h1>
+        <!-- The frame is cut away under the name: the notch is page-coloured and
+             its inverted corners keep the image's rounded edge flowing around it -->
+        <div class="hero-notch">
+          <h1 class="hero-name" id="heroName" aria-label="Halil Utku Şimşek">
+            <span class="hero-name-line" data-split>Utku Şimşek</span>
+          </h1>
+          <p class="hero-role"><span class="hero-role-rule" aria-hidden="true"></span><span data-i18n="v2.hero.role">Endüstriyel <br>tasarımcı</span></p>
+        </div>
 
         <!-- Liquid-glass lens: follows the pointer, bends the sea underneath -->
         <div class="hero-lens lg" id="heroLens" data-refract="lens" aria-hidden="true"></div>
@@ -207,7 +208,7 @@
 
           <a class="work-card" href="salmakis-popup.html" data-cat="yacht">
             <figure class="work-media">
-              <img src="assets/gulet/melda-cover.png" alt="Princess Melda 42,5m motor yat" loading="lazy" decoding="async">
+              <img src="assets/gulet/melda-cover.webp" alt="Princess Melda 42,5m motor yat" loading="lazy" decoding="async">
             </figure>
             <div class="work-cap">
               <h3 data-i18n="proj.salm.title">42,5m Motor Yat &amp; 45m Gulet</h3>
@@ -217,7 +218,7 @@
 
           <a class="work-card" href="bumper-popup.html" data-cat="product">
             <figure class="work-media">
-              <img src="assets/bumper-cover.jpg" alt="Çarpışan araç tasarımı, siyah" loading="lazy" decoding="async">
+              <img src="assets/bumper-cover.webp" alt="Çarpışan araç tasarımı, siyah" loading="lazy" decoding="async">
             </figure>
             <div class="work-cap">
               <h3 data-i18n="proj.bumper.title">Çarpışan Araç Tasarımı</h3>
@@ -254,7 +255,7 @@
           <video class="reel-video" muted playsinline preload="none" data-src="assets/videos/showcase-06.mp4"></video>
           <video class="reel-video" muted playsinline preload="none" data-src="assets/videos/showcase-05.mp4"></video>
         </div>
-        <div class="reel-bar lg" data-refract="pill">
+        <div class="reel-bar lg">
           <button class="reel-play" id="reelPlay" aria-label="Duraklat" data-i18n-aria="v2.reel.pause">
             <svg class="i-pause" viewBox="0 0 16 16" aria-hidden="true"><rect x="4" y="3" width="2.6" height="10" rx="1"/><rect x="9.4" y="3" width="2.6" height="10" rx="1"/></svg>
             <svg class="i-play" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3.2v9.6a.6.6 0 0 0 .9.5l7.6-4.8a.6.6 0 0 0 0-1L5.9 2.7a.6.6 0 0 0-.9.5Z"/></svg>
