@@ -18,7 +18,8 @@
       title: "Seçili işler",
       intro: "Denizde, masada ve sokakta kullanılan on bir proje.",
       all: "Tümü", yacht: "Yat", product: "Ürün", urban: "Kentsel",
-      filterAria: "Projeleri kategoriye göre süz"
+      filterAria: "Projeleri kategoriye göre süz",
+      view: "Aç"
     },
     reel: { title: "Renderdan harekete", pause: "Duraklat", play: "Oynat", clip: "Klip" },
     about: {
@@ -64,7 +65,8 @@
       title: "Selected work",
       intro: "Eleven projects used at sea, on the desk and in the street.",
       all: "All", yacht: "Yacht", product: "Product", urban: "Urban",
-      filterAria: "Filter projects by category"
+      filterAria: "Filter projects by category",
+      view: "View"
     },
     reel: { title: "From render to motion", pause: "Pause", play: "Play", clip: "Clip" },
     about: {
