@@ -783,10 +783,12 @@ html:not(.refract) .hero-lens { --lg-blur: 3px; --lg-tint: rgba(255, 255, 255, .
   border-radius: var(--r-frame);
   padding: clamp(36px, 6vw, 96px) clamp(20px, 5vw, 80px);
   background:
-    radial-gradient(120% 80% at 80% 0%, #9DC3E2 0%, rgba(157, 195, 226, 0) 60%),
+    linear-gradient(90deg, rgba(127, 175, 214, .28) 0%, rgba(127, 175, 214, 0) 55%),
+    url("assets/contact-sky.webp") center 78% / cover no-repeat,
     linear-gradient(180deg, #7FAFD6 0%, #A9CAE5 38%, #D9E7F2 78%, #EEF3F7 100%);
   isolation: isolate;
 }
+.sky-clouds { display: none; }
 .sky-clouds { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
 .sky-clouds i {
   position: absolute;
