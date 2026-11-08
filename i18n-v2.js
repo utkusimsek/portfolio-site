@@ -6,7 +6,7 @@
   I18N.tr.v2 = {
     nav: { work: "İşler", about: "Hakkımda", skills: "Araçlar", contact: "İletişim", cta: "Yazın" },
     hero: {
-      intro: "Yat, ürün ve kent mobilyası tasarlıyorum. İlk eskizden üretime hazır modele kadar formun nedenini çizgiyle anlatıyorum.",
+      intro: "Yat, ürün ve kent mobilyası tasarlıyorum.<span>İlk eskizden üretime hazır modele.</span>",
       role: "Endüstriyel <br>tasarımcı",
       featured: "Diploma projesi",
       featuredMeta: "KLAN Studio için, 2023",
@@ -54,7 +54,7 @@
   I18N.en.v2 = {
     nav: { work: "Work", about: "About", skills: "Tools", contact: "Contact", cta: "Write to me" },
     hero: {
-      intro: "I design yachts, products and street furniture, explaining why every form is the way it is, from the first sketch to a production-ready model.",
+      intro: "I design yachts, products and street furniture.<span>From first sketch to production-ready model.</span>",
       role: "Industrial <br>designer",
       featured: "Diploma project",
       featuredMeta: "For KLAN Studio, 2023",
