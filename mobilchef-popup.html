@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="style.css?v=lg5"/>
-  <link rel="stylesheet" href="project.css?v=lg5"/>
+  <link rel="stylesheet" href="project.css?v=g1"/>
   <style>
     /* Mobilchef gallery — tüm görseller cover, hiç padding yok → kırpma izi/bg leak olmaz */
     .proj-gallery .gallery-item { aspect-ratio: 16/9; }
@@ -45,6 +45,7 @@
   <script>document.documentElement.classList.add('js');</script>
   <script defer src="i18n.js?v=lg1"></script>
   <script defer src="i18n-v2.js?v=lg5"></script>
+  <script defer src="i18n-gallery.js?v=g1"></script>
   <script defer src="vendor/lenis.min.js"></script>
   <script defer src="glass.js?v=lg5"></script>
   <script defer src="project.js?v=lg5"></script>
@@ -138,85 +139,41 @@
   </section>
 
   <!-- ── Gallery grid ── -->
-  <section class="proj-gallery">
+  <section class="proj-gallery g2">
     <div class="proj-container">
-
-      <!-- Lifestyle: kentsel sahne, lüks SUV ile çekiş -->
-      <div class="gallery-row gallery-full reveal-up">
-        <div class="gallery-item gallery-cover mc-wide">
-          <img src="assets/mobilchef-urban.webp" alt="Mobilchef Ekobox L220 — Modern Apartman Önünde" loading="lazy" decoding="async">
-          <div class="gallery-caption">Kentsel Sahne — Konut Bölgesinde Mobil Satış Noktası</div>
+      <div class="gch">
+        <header class="gch-head reveal-up"><h2 data-i18n="g.mobilchef.c0t">Fiberglas gövde</h2><p data-i18n="g.mobilchef.c0x">Ekobox L220 yuvarlatılmış köşeleri ve tek parça hissi veren beyaz fiberglas kabuğuyla kompakt bir mobil mutfak. Stüdyo görünüşleri oranı, satış penceresini ve şaseyi sade biçimde okutur.</p></header>
+        <div class="grow reveal-up">
+          <figure class="gfig" style="--ar:2.5189"><div class="gframe gallery-item"><img src="assets/mobilchef-cover-t.webp" alt="Üç çeyrek stüdyo görünüşü" width="2000" height="794" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.mobilchef.i0t">Üç çeyrek stüdyo görünüşü</b><span data-i18n="g.mobilchef.i0d">Kapı cephesi, kapalı satış paneli ve açılır tezgâh birlikte; yuvarlatılmış kenarlar gövdeyi tek parça gösterir.</span></figcaption></figure>
+          <figure class="gfig" style="--ar:1.3070"><div class="gframe gallery-item"><img src="assets/mobilchef-render-side-t.webp" alt="Yan profil" width="1192" height="912" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.mobilchef.i1t">Yan profil</b><span data-i18n="g.mobilchef.i1d">Satış paneli kapalı, tezgâh açık; tek dingil ve çeki oku ile kompakt şase oranı yandan net okunur.</span></figcaption></figure>
+        </div>
+        <div class="grow reveal-up">
+          <figure class="gfig" style="--ar:0.8149"><div class="gframe gallery-item"><img src="assets/mobilchef-render-front-t.webp" alt="Kapı cephesi" width="713" height="875" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.mobilchef.i2t">Kapı cephesi</b><span data-i18n="g.mobilchef.i2d">Kemerli servis kapısı gövdeye gömülü, logo üst ortada; çevresindeki kabartma çerçeve kapıyı cepheden ayırır.</span></figcaption></figure>
+          <figure class="gfig" style="--ar:0.8158"><div class="gframe gallery-item"><img src="assets/mobilchef-render-back-t.webp" alt="Çeki oku tarafı" width="713" height="874" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.mobilchef.i3t">Çeki oku tarafı</b><span data-i18n="g.mobilchef.i3d">Kemerli pencere, kapıyla aynı formu tekrar eder; altta çeki oku, kriko tekeri ve şase bağlantıları görülür.</span></figcaption></figure>
         </div>
       </div>
-
-      <!-- Lifestyle ikili: çekiş halinde + alternatif görüntü -->
-      <div class="gallery-row gallery-half reveal-up">
-        <div class="gallery-item gallery-cover">
-          <img src="assets/mobilchef-tow.webp" alt="Mobilchef Ekobox L220 — Otomobille Çekiş Halinde" loading="lazy" decoding="async">
-          <div class="gallery-caption">Çekiş Halinde — Standart Otomobille Mobil Operasyon</div>
+      <div class="gch">
+        <header class="gch-head reveal-up"><h2 data-i18n="g.mobilchef.c1t">Alternatif yüzey karakteri</h2><p data-i18n="g.mobilchef.c1x">Aynı oranlar üzerinde koyu çerçeveli, metal görünümlü bir kabuk denendi. Kentsel sahnelerde ünite park halinde, çekiş konumunda ve yandan görülür.</p></header>
+        <div class="grow reveal-up">
+          <figure class="gfig" style="--ar:1.3537"><div class="gframe gallery-item"><img src="assets/mobilchef-form-study-t.webp" alt="Form çalışması" width="1462" height="1080" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.mobilchef.i4t">Form çalışması</b><span data-i18n="g.mobilchef.i4d">Gümüş yan yüzey ve siyah çerçeveli uç cepheyle alternatif kabuk; satış penceresi yatay çizgili bir kepenkle kapanır.</span></figcaption></figure>
         </div>
-        <div class="gallery-item gallery-cover">
-          <img src="assets/mobilchef-street.webp" alt="Mobilchef Ekobox L220 — Sokak Görünümü" loading="lazy" decoding="async">
-          <div class="gallery-caption">Sokak Görünümü — Bütüncül Gövde, Sade Form</div>
-        </div>
-      </div>
-
-      <!-- Açılır satış paneli — ana fonksiyon -->
-      <div class="gallery-row gallery-full reveal-up">
-        <div class="gallery-item gallery-cover mc-wide">
-          <img src="assets/mobilchef-awning.webp" alt="Mobilchef Ekobox L220 — Açılır Satış Penceresi" loading="lazy" decoding="async">
-          <div class="gallery-caption">Açılır Satış Penceresi — Operasyon Konumunda</div>
+        <div class="grow reveal-up">
+          <figure class="gfig" style="--ar:0.8000"><div class="gframe gallery-item"><img src="assets/mobilchef-street.webp" alt="Sokakta park halinde" width="1600" height="2000" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.mobilchef.i5t">Sokakta park halinde</b><span data-i18n="g.mobilchef.i5d">Koyu kabuklu ünite konut önünde, otomobile bağlı; kompakt boyu yaya geçidi ve kaldırım ölçeğinde rahat okunur.</span></figcaption></figure>
+          <figure class="gfig" style="--ar:0.8000"><div class="gframe gallery-item"><img src="assets/mobilchef-urban.webp" alt="Akşam, gümüş kabuk" width="1600" height="2000" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.mobilchef.i6t">Akşam, gümüş kabuk</b><span data-i18n="g.mobilchef.i6d">Aynı ünite gümüş bir kaplamayla akşam ışığında; arka kenardaki kırmızı lambalar ve kemerli kapı karanlıkta da seçilir.</span></figcaption></figure>
+          <figure class="gfig" style="--ar:0.8000"><div class="gframe gallery-item"><img src="assets/mobilchef-side-detail.webp" alt="Yandan, oran dengesi" width="1600" height="2000" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.mobilchef.i7t">Yandan, oran dengesi</b><span data-i18n="g.mobilchef.i7d">Satış penceresi gövdenin üst yarısını kaplar, alt panel sade kalır; tek dingil ünitenin ortasına yakın oturur.</span></figcaption></figure>
         </div>
       </div>
-
-      <!-- Açılır panel detay ikili -->
-      <div class="gallery-row gallery-half reveal-up">
-        <div class="gallery-item gallery-cover">
-          <img src="assets/mobilchef-awning-top.webp" alt="Mobilchef Ekobox L220 — Üstten Açılır Panel" loading="lazy" decoding="async">
-          <div class="gallery-caption">Üstten — Açılır Tente ve Servis Düzeni</div>
+      <div class="gch">
+        <header class="gch-head reveal-up"><h2 data-i18n="g.mobilchef.c2t">Açılır satış paneli</h2><p data-i18n="g.mobilchef.c2x">Üstten açılan panel hem satış penceresini açar hem de servis alanına gölge veren bir tente olur. Kapalı ve açık durum aynı açıdan karşılaştırılabilir.</p></header>
+        <div class="grow reveal-up">
+          <figure class="gfig" style="--ar:0.8000"><div class="gframe gallery-item"><img src="assets/mobilchef-tow.webp" alt="Çekiş halinde, panel kapalı" width="1600" height="2000" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.mobilchef.i8t">Çekiş halinde, panel kapalı</b><span data-i18n="g.mobilchef.i8d">Yol konumunda kepenk kapalı ve gövde düz bir kutu gibi; satış işlevi tamamen kabuğun içinde saklanır.</span></figcaption></figure>
+          <figure class="gfig" style="--ar:0.8000"><div class="gframe gallery-item"><img src="assets/mobilchef-awning.webp" alt="Panel açık, satış konumu" width="1600" height="2000" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.mobilchef.i9t">Panel açık, satış konumu</b><span data-i18n="g.mobilchef.i9d">Aynı açıdan panel yukarı kalkmış; açılan pencere tezgâh olur, kapak tente gibi servis alanının üstünü örter.</span></figcaption></figure>
         </div>
-        <div class="gallery-item gallery-cover">
-          <img src="assets/mobilchef-rear-detail.webp" alt="Mobilchef Ekobox L220 — Arka Detay" loading="lazy" decoding="async">
-          <div class="gallery-caption">Arka Detay — Servis Penceresi ve Krom Aksesuarlar</div>
-        </div>
-      </div>
-
-      <!-- Yan görünüm — proporsiyon çalışması -->
-      <div class="gallery-row gallery-full reveal-up">
-        <div class="gallery-item gallery-cover mc-wide">
-          <img src="assets/mobilchef-side-detail.webp" alt="Mobilchef Ekobox L220 — Yandan Görünüm" loading="lazy" decoding="async">
-          <div class="gallery-caption">Yandan — Oran Dengesi ve Yüzey Karakteri</div>
+        <div class="grow reveal-up">
+          <figure class="gfig" style="--ar:0.8000"><div class="gframe gallery-item"><img src="assets/mobilchef-rear-detail.webp" alt="Yakın plan, açık panel" width="1600" height="2000" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.mobilchef.i10t">Yakın plan, açık panel</b><span data-i18n="g.mobilchef.i10d">İnce dikmeler kapağı taşır; parlak metal yan yüzey, siyah köşe profilleri ve kapı menteşeleri yakından görülür.</span></figcaption></figure>
+          <figure class="gfig" style="--ar:0.8000"><div class="gframe gallery-item"><img src="assets/mobilchef-awning-top.webp" alt="Üstten, tente ve çatı" width="1600" height="2000" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.mobilchef.i11t">Üstten, tente ve çatı</b><span data-i18n="g.mobilchef.i11d">Yukarıdan bakışta açık kapak kaldırıma doğru uzanır; çatı yüzeyi ve yuvarlatılmış kenar profili tek parça okunur.</span></figcaption></figure>
         </div>
       </div>
-
-      <!-- Stüdyo render: temiz form analizi -->
-      <div class="gallery-row gallery-full reveal-up">
-        <div class="gallery-item gallery-bg-light mc-studio mc-wide">
-          <img src="assets/mobilchef-render-side.webp" alt="Mobilchef Ekobox L220 — Stüdyo Yan Render" loading="lazy" decoding="async">
-          <div class="gallery-caption gallery-caption-dark">Stüdyo Render — Yan Profil, Açılır Panel Açık</div>
-        </div>
-      </div>
-
-      <!-- Stüdyo: ön + arka studio -->
-      <div class="gallery-row gallery-half reveal-up">
-        <div class="gallery-item gallery-bg-light mc-studio">
-          <img src="assets/mobilchef-render-front.webp" alt="Mobilchef Ekobox L220 — Önden Stüdyo" loading="lazy" decoding="async">
-          <div class="gallery-caption gallery-caption-dark">Önden — Logo Yerleşimi ve Servis Kapısı</div>
-        </div>
-        <div class="gallery-item gallery-bg-light mc-studio">
-          <img src="assets/mobilchef-render-back.webp" alt="Mobilchef Ekobox L220 — Arkadan Stüdyo" loading="lazy" decoding="async">
-          <div class="gallery-caption gallery-caption-dark">Arkadan — Şase Yapısı ve Çekiş Kolu</div>
-        </div>
-      </div>
-
-      <!-- Form çalışması: alternatif gövde varyasyonu -->
-      <div class="gallery-row gallery-full reveal-up">
-        <div class="gallery-item gallery-bg-light mc-studio">
-          <img src="assets/mobilchef-form-study.webp" alt="Mobilchef Ekobox L220 — Form Çalışması" loading="lazy" decoding="async">
-          <div class="gallery-caption gallery-caption-dark">Form Çalışması — Alternatif Yüzey Karakteri</div>
-        </div>
-      </div>
-
     </div>
   </section>
 

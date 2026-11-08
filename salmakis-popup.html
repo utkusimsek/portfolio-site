@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="style.css?v=lg5"/>
-  <link rel="stylesheet" href="project.css?v=lg5"/>
+  <link rel="stylesheet" href="project.css?v=g1"/>
   <style>
     /* Salmakis gallery — aspect-ratios match each image's native ratio
        so cover-fit doesn't crop the yacht subjects. */
@@ -75,6 +75,7 @@
   <script>document.documentElement.classList.add('js');</script>
   <script defer src="i18n.js?v=lg1"></script>
   <script defer src="i18n-v2.js?v=lg5"></script>
+  <script defer src="i18n-gallery.js?v=g1"></script>
   <script defer src="vendor/lenis.min.js"></script>
   <script defer src="glass.js?v=lg5"></script>
   <script defer src="project.js?v=lg5"></script>
@@ -168,86 +169,44 @@
   </section>
 
   <!-- ── Gallery grid ── -->
-  <section class="proj-gallery">
+  <section class="proj-gallery g2">
     <div class="proj-container">
-
-      <!-- ─── Princess Melda (42,5m Motor Yat) ─── -->
-      <div class="gallery-divider reveal-up" data-i18n="salm.divMelda">Princess Melda · 42,5m Motor Yat</div>
-
-      <!-- Cinematic 3/4 angle render -->
-      <div class="gallery-row gallery-full reveal-up">
-        <div class="gallery-item gallery-cover salm-wide">
-          <img src="assets/gulet/yanaci.webp" alt="Princess Melda — Yan Açı" loading="lazy" decoding="async">
-          <div class="gallery-caption" data-i18n="salm.capYanAci">Princess Melda — Yan Açı</div>
+      <div class="gch">
+        <header class="gch-head reveal-up"><h2 data-i18n="g.salmakis.c0t">Princess Melda dış form</h2><p data-i18n="g.salmakis.c0x">42,5 metrelik motor yatın dış formu ve güverte kurgusu; farklı açılar, katmanlı üst yapının ve açık yaşam alanlarının birlikte nasıl okunduğunu gösteriyor.</p></header>
+        <div class="grow reveal-up">
+          <figure class="gfig" style="--ar:2.1239"><div class="gframe gallery-item is-dark"><img src="assets/gulet/yanaci.webp" alt="Yandan, havadan bakış" width="2400" height="1130" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.salmakis.i0t">Yandan, havadan bakış</b><span data-i18n="g.salmakis.i0d">Uzun gövde, üç katlı üst yapı ve kıç plaj platformu; flybridge üzerindeki jakuzi ve bar alanı yukarıdan okunabiliyor.</span></figcaption></figure>
+        </div>
+        <div class="grow reveal-up">
+          <figure class="gfig" style="--ar:1.7844"><div class="gframe gallery-item is-dark"><img src="assets/gulet/melda1.webp" alt="Üstten, güverte planlaması" width="2400" height="1345" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.salmakis.i1t">Üstten, güverte planlaması</b><span data-i18n="g.salmakis.i1d">Flybridge&#x27;deki jakuzi, oturma grupları ve bar ile baş güvertedeki oturma cebi; yaşam alanlarının boy boyunca dağılımı görülüyor.</span></figcaption></figure>
+          <figure class="gfig" style="--ar:1.7791"><div class="gframe gallery-item is-dark"><img src="assets/gulet/melda8.webp" alt="Kıç 3/4 görünüm" width="2400" height="1349" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.salmakis.i2t">Kıç 3/4 görünüm</b><span data-i18n="g.salmakis.i2d">Kıç plaj platformu, üst güvertedeki ikinci jakuzi ve basamaklı kademeler; katların suya doğru nasıl indiği görülüyor.</span></figcaption></figure>
         </div>
       </div>
-
-      <!-- Top + Front 3/4 half-width -->
-      <div class="gallery-row gallery-half reveal-up">
-        <div class="gallery-item gallery-cover">
-          <img src="assets/gulet/melda1.webp" alt="Princess Melda — Üstten" loading="lazy" decoding="async">
-          <div class="gallery-caption" data-i18n="salm.capMeldaTop">Üstten — Güverte Planlaması</div>
-        </div>
-        <div class="gallery-item gallery-cover">
-          <img src="assets/gulet/melda8.webp" alt="Princess Melda — Ön 3/4" loading="lazy" decoding="async">
-          <div class="gallery-caption" data-i18n="salm.capMelda8">Ön 3/4 — Form Çalışması</div>
+      <div class="gch">
+        <header class="gch-head reveal-up"><h2 data-i18n="g.salmakis.c1t">İç mekân kurgusu</h2><p data-i18n="g.salmakis.c1x">Kabinler, salon, banyolar ve köprü üstü aynı ahşap ve koyu tonlu malzeme diliyle kurgulandı; amaç tüm hacimlerde tutarlı bir atmosfer.</p></header>
+        <div class="grow reveal-up solo-side">
+          <figure class="gfig" style="--ar:0.7521"><div class="gframe gallery-item"><img src="assets/gulet/interior-grid.webp" alt="İç mekân render seçkisi" width="2400" height="3191" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.salmakis.i3t">İç mekân render seçkisi</b><span data-i18n="g.salmakis.i3d">Master kabin, salon, giyinme odaları, misafir kabinleri, banyolar, köprü üstü ve dış güverteler tek bir paftada.</span></figcaption></figure>
         </div>
       </div>
-
-      <!-- Interior collage (tall) -->
-      <div class="gallery-row gallery-full reveal-up">
-        <div class="gallery-item gallery-cover salm-tall">
-          <img src="assets/gulet/interior-grid.webp" alt="Princess Melda — İç Mekân Kurgusu" loading="lazy" decoding="async">
-          <div class="gallery-caption" data-i18n="salm.capInterior">İç Mekân Kurgusu — Kabinler, Salon &amp; Köprü</div>
+      <div class="gch">
+        <header class="gch-head reveal-up"><h2 data-i18n="g.salmakis.c2t">45 metre gulet</h2><p data-i18n="g.salmakis.c2x">Geleneksel gulet tipolojisini çağdaş bir üst yapı ve kanat formlu bumbalarla yeniden yorumlayan konsept; eskizden render&#x27;a aynı silüet.</p></header>
+        <div class="grow reveal-up">
+          <figure class="gfig" style="--ar:1.7765"><div class="gframe gallery-item is-dark"><img src="assets/gulet/tasarim23.webp" alt="Gün batımında gulet" width="2400" height="1351" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.salmakis.i4t">Gün batımında gulet</b><span data-i18n="g.salmakis.i4d">İki direk ve kanat formlu bumbalar silüeti taşıyor; alçak, koyu gövde üzerindeki modern üst yapı geleneksel tipolojiye yeni bir yorum getiriyor.</span></figcaption></figure>
+        </div>
+        <div class="grow reveal-up">
+          <figure class="gfig" style="--ar:1.6416"><div class="gframe gallery-item is-dark"><img src="assets/gulet/gulet1.webp" alt="Üstten, direk ve güverte" width="2400" height="1462" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.salmakis.i5t">Üstten, direk ve güverte</b><span data-i18n="g.salmakis.i5d">Ahşap güverte, merkezdeki üst yapı ve baştaki tender; direklerin güverte organizasyonuyla ilişkisi bu açıdan netleşiyor.</span></figcaption></figure>
+          <figure class="gfig" style="--ar:1.6195"><div class="gframe gallery-item"><img src="assets/gulet/sketch-gulet-t.webp" alt="Gulet silüet eskizi" width="2039" height="1259" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.salmakis.i6t">Gulet silüet eskizi</b><span data-i18n="g.salmakis.i6d">Kanat biçimli bumbalar ve kıça doğru uzanan gövde hattı ilk olarak bu eskizde belirlendi.</span></figcaption></figure>
         </div>
       </div>
-
-      <!-- ─── 45m Gulet ─── -->
-      <div class="gallery-divider reveal-up" data-i18n="salm.divGulet">Salmakis · 45m Gulet</div>
-
-      <!-- Sunset hero gulet (16:9 native) -->
-      <div class="gallery-row gallery-full reveal-up">
-        <div class="gallery-item gallery-cover">
-          <img src="assets/gulet/tasarim23.webp" alt="45m Gulet — Gün Batımı" loading="lazy" decoding="async">
-          <div class="gallery-caption" data-i18n="salm.capGuletSunset">45m Gulet — Gün Batımında Direkler</div>
+      <div class="gch">
+        <header class="gch-head reveal-up"><h2 data-i18n="g.salmakis.c3t">Motor yat konsepti</h2><p data-i18n="g.salmakis.c3x">Daha keskin, katmanlı bir motor yat dili için yapılan form arayışı; eskizdeki Y biçimli taşıyıcı ve uzun kıç hattı render&#x27;larda korunuyor.</p></header>
+        <div class="grow reveal-up">
+          <figure class="gfig" style="--ar:2.6304"><div class="gframe gallery-item"><img src="assets/gulet/sketch-motor.webp" alt="Motor yat form eskizi" width="2299" height="874" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.salmakis.i7t">Motor yat form eskizi</b><span data-i18n="g.salmakis.i7d">Katmanlı güverteler, Y biçimli taşıyıcı ve kıça uzanan platform; render&#x27;lara taşınan ana fikir bu çizimde kuruldu.</span></figcaption></figure>
+        </div>
+        <div class="grow reveal-up tall-row">
+          <figure class="gfig" style="--ar:0.5626"><div class="gframe gallery-item"><img src="assets/gulet/tasarim19.webp" alt="Konsept, 3/4 görünüm" width="849" height="1509" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.salmakis.i8t">Konsept, 3/4 görünüm</b><span data-i18n="g.salmakis.i8d">Keskin kırımlı koyu gövde ve kanat gibi açılan üst yapı, gün batımı ışığında yüzey geçişlerini öne çıkarıyor.</span></figcaption></figure>
+          <figure class="gfig" style="--ar:0.5628"><div class="gframe gallery-item"><img src="assets/gulet/tasarim20.webp" alt="Konsept, yan profil" width="851" height="1512" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.salmakis.i9t">Konsept, yan profil</b><span data-i18n="g.salmakis.i9d">Yandan bakışta uzun kıç platformu ve kademeli üst yapı, eskizdeki yatay ve alçak oranları koruyor.</span></figcaption></figure>
         </div>
       </div>
-
-      <!-- Gulet top-down (~5:3 native) -->
-      <div class="gallery-row gallery-full reveal-up">
-        <div class="gallery-item gallery-cover salm-medium">
-          <img src="assets/gulet/gulet1.webp" alt="45m Gulet — Üstten" loading="lazy" decoding="async">
-          <div class="gallery-caption" data-i18n="salm.capGuletTop">Üstten — Direk &amp; Güverte Hatları</div>
-        </div>
-      </div>
-
-      <!-- ─── Konsept Çalışmaları & Eskizler ─── -->
-      <div class="gallery-divider reveal-up" data-i18n="salm.divConcept">Konsept &amp; Eskiz Çalışmaları</div>
-
-      <!-- Modern motor yacht concept variants -->
-      <div class="gallery-row gallery-half reveal-up">
-        <div class="gallery-item gallery-cover salm-portrait">
-          <img src="assets/gulet/tasarim19.webp" alt="Konsept — Modern Motor Yat 3/4" loading="lazy" decoding="async">
-          <div class="gallery-caption" data-i18n="salm.capConcept1">Konsept Varyasyonu — 3/4 Görünüm</div>
-        </div>
-        <div class="gallery-item gallery-cover salm-portrait">
-          <img src="assets/gulet/tasarim20.webp" alt="Konsept — Modern Motor Yat Yandan" loading="lazy" decoding="async">
-          <div class="gallery-caption" data-i18n="salm.capConcept2">Konsept Varyasyonu — Yandan</div>
-        </div>
-      </div>
-
-      <!-- Sketches half-width (light bg, contained) -->
-      <div class="gallery-row gallery-half reveal-up">
-        <div class="gallery-item gallery-bg-light">
-          <img src="assets/gulet/sketch-motor.webp" alt="Eskiz — Motor Yat" loading="lazy" decoding="async">
-          <div class="gallery-caption gallery-caption-dark" data-i18n="salm.capSketchMotor">Eskiz — Motor Yat Form Arayışı</div>
-        </div>
-        <div class="gallery-item gallery-bg-light">
-          <img src="assets/gulet/sketch-gulet.webp" alt="Eskiz — Gulet" loading="lazy" decoding="async">
-          <div class="gallery-caption gallery-caption-dark" data-i18n="salm.capSketchGulet">Eskiz — Gulet Silüet Çalışması</div>
-        </div>
-      </div>
-
     </div>
   </section>
 

@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="style.css?v=lg5"/>
-  <link rel="stylesheet" href="project.css?v=lg5"/>
+  <link rel="stylesheet" href="project.css?v=g1"/>
   <style>
     .proj-gallery .gallery-row { gap: 18px; margin-bottom: 18px; }
     .proj-gallery .gallery-half .gallery-item.g-tall { aspect-ratio: 4 / 5; }
@@ -22,6 +22,7 @@
   <script>document.documentElement.classList.add('js');</script>
   <script defer src="i18n.js?v=lg1"></script>
   <script defer src="i18n-v2.js?v=lg5"></script>
+  <script defer src="i18n-gallery.js?v=g1"></script>
   <script defer src="i18n-projects.js?v=lg6"></script>
   <script defer src="vendor/lenis.min.js"></script>
   <script defer src="glass.js?v=lg5"></script>
@@ -105,77 +106,43 @@
   </section>
 
   <!-- ── Gallery ── -->
-  <section class="proj-gallery">
+  <section class="proj-gallery g2">
     <div class="proj-container">
-
-      <div class="gallery-row gallery-half reveal-up">
-        <div class="gallery-item g-tall">
-          <img src="assets/marble-vanity.webp" alt="80 inç çift lavabo, ceviz gövde" loading="lazy" decoding="async">
-          <div class="gallery-caption" data-i18n="marble.capVanity">80 inç çift lavabo, ceviz gövde</div>
+      <div class="gch">
+        <header class="gch-head reveal-up"><h2 data-i18n="g.marble.c0t">Banyo için taş</h2><p data-i18n="g.marble.c0x">Lavabo, küvet ve ayaklı lavabo tek bir taş kütlesi gibi okunsun diye hazneler gövdeye oyuldu. Damarlar kesimden önce yerleştirildi, böylece desen yüzeyden hazneye kesintisiz akar.</p></header>
+        <div class="grow reveal-up">
+          <figure class="gfig" style="--ar:0.7981"><div class="gframe gallery-item"><img src="assets/marble-vanity.webp" alt="80 inç çift lavabo" width="1277" height="1600" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.marble.i0t">80 inç çift lavabo</b><span data-i18n="g.marble.i0d">Calacatta Viola tezgâh ceviz gövdenin üstünde asılı duruyor; iki hazne tezgâha oyuldu, ahşap kapaklar taşın ağırlığını dengeler.</span></figcaption></figure>
+          <figure class="gfig" style="--ar:0.8000"><div class="gframe gallery-item"><img src="assets/marble-vanity-detail.webp" alt="Hazne ve damar sürekliliği" width="1280" height="1600" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.marble.i1t">Hazne ve damar sürekliliği</b><span data-i18n="g.marble.i1d">Yakından bakınca damarın ön yüzden tezgâha ve hazneye kırılmadan döndüğü görülür; bu, kesimden önce plakada planlandı.</span></figcaption></figure>
         </div>
-        <div class="gallery-item g-tall">
-          <img src="assets/marble-vanity-detail.webp" alt="Entegre hazneler ve damar sürekliliği" loading="lazy" decoding="async">
-          <div class="gallery-caption" data-i18n="marble.capVanityDetail">Entegre hazneler ve damar sürekliliği</div>
-        </div>
-      </div>
-
-      <div class="gallery-row gallery-full reveal-up">
-        <div class="gallery-item g-drawing">
-          <img src="assets/marble-drawing-powder.webp" alt="Teknik çizim: powder bath lavabosu, honed Calacatta Vagli" loading="lazy" decoding="async">
-          <div class="gallery-caption" data-i18n="marble.capDrawingPowder">Teknik çizim: powder bath lavabosu, honed Calacatta Vagli</div>
+        <div class="grow reveal-up">
+          <figure class="gfig" style="--ar:0.8000"><div class="gframe gallery-item is-dark"><img src="assets/marble-bathtub.webp" alt="Tek parça küvet" width="1280" height="1600" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.marble.i2t">Tek parça küvet</b><span data-i18n="g.marble.i2d">Oval küvet tek bir bloktan oyuldu; koyu damarlı taş, gri beton duvar ve siyah jaluzi önünde heykel gibi durur.</span></figcaption></figure>
+          <figure class="gfig" style="--ar:0.7494"><div class="gframe gallery-item is-dark"><img src="assets/marble-pedestal.webp" alt="Ayaklı lavabo" width="1199" height="1600" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.marble.i3t">Ayaklı lavabo</b><span data-i18n="g.marble.i3d">Hazneli tezgâh yivli bir mermer gövdeye oturur; yivler damarı dikey çizgilere bölerek ayağı tezgâhtan ayırır.</span></figcaption></figure>
         </div>
       </div>
-
-      <div class="gallery-row gallery-half reveal-up">
-        <div class="gallery-item g-tall">
-          <img src="assets/marble-bathtub.webp" alt="Tek parça mermer küvet" loading="lazy" decoding="async">
-          <div class="gallery-caption" data-i18n="marble.capBathtub">Tek parça mermer küvet</div>
+      <div class="gch">
+        <header class="gch-head reveal-up"><h2 data-i18n="g.marble.c1t">Yaşam alanında mermer</h2><p data-i18n="g.marble.c1x">Şömine, mutfak adası ve mobilyada taş, odanın ana nesnesi olarak ele alındı. Basamaklı çerçeve, şelale kenarlı ada ve blok sehpa sade geometriyle damarı öne çıkarır.</p></header>
+        <div class="grow reveal-up">
+          <figure class="gfig" style="--ar:1.7910"><div class="gframe gallery-item"><img src="assets/marble-cover.webp" alt="Basamaklı şömine, damarlı beyaz" width="2400" height="1340" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.marble.i4t">Basamaklı şömine, damarlı beyaz</b><span data-i18n="g.marble.i4d">İç içe kademeli çerçeve ocağa doğru derinleşir; kalın parçalar damarın köşelerden dönmesine izin verir.</span></figcaption></figure>
+          <figure class="gfig" style="--ar:1.4974"><div class="gframe gallery-item"><img src="assets/marble-fireplace-stepped.webp" alt="Basamaklı şömine, sıcak ton" width="2300" height="1536" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.marble.i5t">Basamaklı şömine, sıcak ton</b><span data-i18n="g.marble.i5d">Aynı kademeli kurgu daha sıcak tonlu bir taşla; ocak tabanı ve çerçeve tek dilde, sade bir oturma odasına uyarlandı.</span></figcaption></figure>
         </div>
-        <div class="gallery-item g-tall">
-          <img src="assets/marble-pedestal.webp" alt="Ayaklı mermer lavabo" loading="lazy" decoding="async">
-          <div class="gallery-caption" data-i18n="marble.capPedestal">Ayaklı mermer lavabo</div>
+        <div class="grow reveal-up">
+          <figure class="gfig" style="--ar:1.7341"><div class="gframe gallery-item"><img src="assets/marble-kitchen.webp" alt="Mermer mutfak adası" width="2400" height="1384" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.marble.i6t">Mermer mutfak adası</b><span data-i18n="g.marble.i6d">Ada şelale kenarla yere iner, aynı taş tezgâh ve duvar panelinde devam eder; koyu ahşap dolaplar taşı çerçeveler.</span></figcaption></figure>
         </div>
-      </div>
-
-      <div class="gallery-row gallery-full reveal-up">
-        <div class="gallery-item gallery-cover">
-          <img src="assets/marble-workshop.webp" alt="Atölye: küvetin işlenmesi (görselleştirme)" loading="lazy" decoding="async">
-          <div class="gallery-caption" data-i18n="marble.capWorkshop">Atölye: küvetin işlenmesi (görselleştirme)</div>
+        <div class="grow reveal-up">
+          <figure class="gfig" style="--ar:1.7910"><div class="gframe gallery-item"><img src="assets/marble-sideboard.webp" alt="Mermer kapaklı konsol" width="2400" height="1340" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.marble.i7t">Mermer kapaklı konsol</b><span data-i18n="g.marble.i7d">Dört kapakta kitap açılımı yerleştirilen damar ortada simetrik bir desen kurar; parlak siyah çerçeve ve ahşap ayaklar onu taşır.</span></figcaption></figure>
+          <figure class="gfig" style="--ar:1.3996"><div class="gframe gallery-item"><img src="assets/marble-coffee-table.webp" alt="Blok orta sehpa" width="2000" height="1429" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.marble.i8t">Blok orta sehpa</b><span data-i18n="g.marble.i8d">Sehpa kenar detayı olmayan düz bir taş blok; bütün ifade damar dokusuna ve kesimin temizliğine bırakıldı.</span></figcaption></figure>
         </div>
       </div>
-
-      <div class="gallery-row gallery-full reveal-up">
-        <div class="gallery-item gallery-cover">
-          <img src="assets/marble-sideboard.webp" alt="Mermer kapaklı konsol, kitap açılımı damar" loading="lazy" decoding="async">
-          <div class="gallery-caption" data-i18n="marble.capSideboard">Mermer kapaklı konsol, kitap açılımı damar</div>
+      <div class="gch">
+        <header class="gch-head reveal-up"><h2 data-i18n="g.marble.c2t">Çizimden atölyeye</h2><p data-i18n="g.marble.c2x">Görünüş, kesit ve hazne detayları atölyenin doğrudan kesime geçebileceği sadelikte çizildi. Tasarım ile üretim arasında yorum payı bırakmamak hedeflendi.</p></header>
+        <div class="grow reveal-up">
+          <figure class="gfig" style="--ar:1.6327"><div class="gframe gallery-item"><img src="assets/marble-drawing-powder.webp" alt="Powder bath lavabo çizimi" width="2400" height="1470" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.marble.i9t">Powder bath lavabo çizimi</b><span data-i18n="g.marble.i9d">Honed Calacatta Vagli lavabo için görünüş, kesit ve plan; taşma, sifon ve batarya mesafeleri tek paftada.</span></figcaption></figure>
+          <figure class="gfig" style="--ar:1.0059"><div class="gframe gallery-item"><img src="assets/marble-drawing-bath2.webp" alt="Bathroom 2 çift lavabo çizimi" width="2400" height="2386" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.marble.i10t">Bathroom 2 çift lavabo çizimi</b><span data-i18n="g.marble.i10d">1852 mm tezgâhın planı ve ön görünüşü; hazne, batarya delikleri ve yivli kapak bölümleri milimetre ve inç olarak ölçülendirildi.</span></figcaption></figure>
+        </div>
+        <div class="grow reveal-up">
+          <figure class="gfig" style="--ar:1.7910"><div class="gframe gallery-item"><img src="assets/marble-workshop.webp" alt="Atölyede yivli küvet" width="2400" height="1340" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.marble.i11t">Atölyede yivli küvet</b><span data-i18n="g.marble.i11d">Plaka rafları ve tezgâhlar arasında palet üstünde yivli bir küvet; ürünü üretim ortamında ölçeğiyle gösteren bir görselleştirme.</span></figcaption></figure>
         </div>
       </div>
-
-      <div class="gallery-row gallery-half reveal-up">
-        <div class="gallery-item">
-          <img src="assets/marble-coffee-table.webp" alt="Blok mermer orta sehpa" loading="lazy" decoding="async">
-          <div class="gallery-caption" data-i18n="marble.capCoffeeTable">Blok mermer orta sehpa</div>
-        </div>
-        <div class="gallery-item">
-          <img src="assets/marble-fireplace-stepped.webp" alt="Basamaklı şömine çerçevesi" loading="lazy" decoding="async">
-          <div class="gallery-caption" data-i18n="marble.capFireplaceStepped">Basamaklı şömine çerçevesi</div>
-        </div>
-      </div>
-
-      <div class="gallery-row gallery-full reveal-up">
-        <div class="gallery-item gallery-cover">
-          <img src="assets/marble-kitchen.webp" alt="Mermer mutfak adası" loading="lazy" decoding="async">
-          <div class="gallery-caption" data-i18n="marble.capKitchen">Mermer mutfak adası</div>
-        </div>
-      </div>
-
-      <div class="gallery-row gallery-full reveal-up">
-        <div class="gallery-item g-drawing g-drawing-sq">
-          <img src="assets/marble-drawing-bath2.webp" alt="Teknik çizim: Bathroom 2 lavabo ve kesitler" loading="lazy" decoding="async">
-          <div class="gallery-caption" data-i18n="marble.capDrawingBath">Teknik çizim: Bathroom 2 lavabo ve kesitler</div>
-        </div>
-      </div>
-
     </div>
   </section>
 

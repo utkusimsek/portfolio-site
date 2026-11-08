@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="style.css?v=lg5"/>
-  <link rel="stylesheet" href="project.css?v=lg5"/>
+  <link rel="stylesheet" href="project.css?v=g1"/>
   <style>
     /* Foldesk gallery — proje varsayılanını kullan (koyu zemin + cover),
        sadece nefes payı için biraz daha geniş gap. Tüm kartlar tek bir
@@ -47,6 +47,7 @@
   <script>document.documentElement.classList.add('js');</script>
   <script defer src="i18n.js?v=lg1"></script>
   <script defer src="i18n-v2.js?v=lg5"></script>
+  <script defer src="i18n-gallery.js?v=g1"></script>
   <script defer src="vendor/lenis.min.js"></script>
   <script defer src="glass.js?v=lg5"></script>
   <script defer src="project.js?v=lg5"></script>
@@ -139,61 +140,32 @@
   </section>
 
   <!-- ── Gallery grid ── -->
-  <section class="proj-gallery">
+  <section class="proj-gallery g2">
     <div class="proj-container">
-
-      <!-- Cinematic lifestyle render -->
-      <div class="gallery-row gallery-full reveal-up">
-        <div class="gallery-item gallery-cover">
-          <img src="assets/foldesk-lifestyle.webp" alt="Foldesk Lamp — Çalışma Alanı" loading="lazy" decoding="async">
-          <div class="gallery-caption" data-i18n="fold.capLifestyle">Çalışma Alanı — Açık Konfigürasyon</div>
+      <div class="gch">
+        <header class="gch-head reveal-up"><h2 data-i18n="g.foldesk.c0t">Açıktan kapalıya</h2><p data-i18n="g.foldesk.c0x">Foldesk masanın kenarına bağlanıyor ve ihtiyaca göre açılıp toplanıyor. Kollar tek tek katlandıkça lamba geniş bir aydınlatma düzeninden ince bir çubuğa dönüşüyor.</p></header>
+        <div class="grow reveal-up">
+          <figure class="gfig" style="--ar:1.8028"><div class="gframe gallery-item"><img src="assets/foldesk-lifestyle.webp" alt="Çalışma alanında" width="1920" height="1065" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.foldesk.i0t">Çalışma alanında</b><span data-i18n="g.foldesk.i0d">Mengeneyle masa kenarına bağlı lamba; bir kol açık, diğeri dik konumda beklerken LED bar masaya bakıyor.</span></figcaption></figure>
+        </div>
+        <div class="grow reveal-up">
+          <figure class="gfig" style="--ar:1.7894"><div class="gframe gallery-item"><img src="assets/foldesk-side.webp" alt="Katlanma sırasında" width="1920" height="1073" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.foldesk.i1t">Katlanma sırasında</b><span data-i18n="g.foldesk.i1d">Bir kol barın arkasına katlanmış, diğeri hâlâ dik; menteşeler kolların sırayla toplanmasına izin veriyor.</span></figcaption></figure>
+          <figure class="gfig" style="--ar:1.7550"><div class="gframe gallery-item"><img src="assets/foldesk-controls.webp" alt="Tamamen toplanmış" width="1920" height="1094" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.foldesk.i2t">Tamamen toplanmış</b><span data-i18n="g.foldesk.i2d">İki kol da barın arkasında; ortadaki güç tuşu, iki yandaki simetrik düğmeler ve parlaklık göstergeleri önde kalıyor.</span></figcaption></figure>
         </div>
       </div>
-
-      <!-- Wide isometric render -->
-      <div class="gallery-row gallery-full reveal-up">
-        <div class="gallery-item">
-          <img src="assets/foldesk-render.webp" alt="Foldesk Lamp — Genel Render" class="crop-zoom" loading="lazy" decoding="async">
-          <div class="gallery-caption" data-i18n="fold.capRender">3D Render — Çift Kollu Konfigürasyon</div>
+      <div class="gch">
+        <header class="gch-head reveal-up"><h2 data-i18n="g.foldesk.c1t">Çift kol, çok eksen</h2><p data-i18n="g.foldesk.c1x">İki bağımsız kol, çok eksenli menteşeleriyle ışık başlıklarını farklı yükseklik ve açılara taşıyor. Aynı gövde okuma, çizim ve detay çalışması için ayrı ayarlanabiliyor.</p></header>
+        <div class="grow reveal-up">
+          <figure class="gfig" style="--ar:1.7860"><div class="gframe gallery-item"><img src="assets/foldesk-render.webp" alt="Çift kollu konfigürasyon" width="1920" height="1075" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.foldesk.i3t">Çift kollu konfigürasyon</b><span data-i18n="g.foldesk.i3d">Kollar iki yana açılmış; sol başlık alçakta odaklı ışık verirken sağ kol yükselip başlığı yukarı taşıyor.</span></figcaption></figure>
+          <figure class="gfig" style="--ar:1.5471"><div class="gframe gallery-item"><img src="assets/foldesk-tech-t.webp" alt="Menteşe hareketi" width="1609" height="1040" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.foldesk.i4t">Menteşe hareketi</b><span data-i18n="g.foldesk.i4d">İki kol yarı açık konumda; kolların bar üzerindeki eklemlerden dönerek açıldığı ve katlandığı görülüyor.</span></figcaption></figure>
         </div>
       </div>
-
-      <!-- Wide side / folded view -->
-      <div class="gallery-row gallery-full reveal-up">
-        <div class="gallery-item">
-          <img src="assets/foldesk-side.webp" alt="Foldesk Lamp — Yandan" class="crop-zoom" loading="lazy" decoding="async">
-          <div class="gallery-caption" data-i18n="fold.capSide">Yandan — Katlanmış Kompakt Pozisyon</div>
+      <div class="gch">
+        <header class="gch-head reveal-up"><h2 data-i18n="g.foldesk.c2t">Katlanmış form</h2><p data-i18n="g.foldesk.c2x">Toplandığında kollar ve başlıklar LED barın arkasına yerleşiyor. Geriye masada çok az yer kaplayan, kontrolleri önde kalan ince bir profil kalıyor.</p></header>
+        <div class="grow reveal-up">
+          <figure class="gfig" style="--ar:2.2261"><div class="gframe gallery-item"><img src="assets/foldesk-front-t.webp" alt="Önden, katlanmış" width="1910" height="858" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.foldesk.i5t">Önden, katlanmış</b><span data-i18n="g.foldesk.i5d">LED bar, cetvel gibi ölçek çizgileri ve kontrol tuşlarıyla; altında masaya bağlanan mengene duruyor.</span></figcaption></figure>
+          <figure class="gfig" style="--ar:2.2545"><div class="gframe gallery-item"><img src="assets/foldesk-top-t.webp" alt="Üstten, katlanmış" width="1754" height="778" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.foldesk.i6t">Üstten, katlanmış</b><span data-i18n="g.foldesk.i6d">Katlanmış kollar ve başlıklar barın genişliği içinde kalıyor; lamba toplandığında masada yalnızca ince bir şerit kaplıyor.</span></figcaption></figure>
         </div>
       </div>
-
-      <!-- Wide controls / LED bar detail -->
-      <div class="gallery-row gallery-full reveal-up">
-        <div class="gallery-item">
-          <img src="assets/foldesk-controls.webp" alt="Foldesk Lamp — Kontrol Yüzeyi" class="crop-zoom" loading="lazy" decoding="async">
-          <div class="gallery-caption" data-i18n="fold.capControls">Kontrol Yüzeyi — LED Bar &amp; Düğmeler</div>
-        </div>
-      </div>
-
-      <!-- Front + Top half-width -->
-      <div class="gallery-row gallery-half reveal-up">
-        <div class="gallery-item">
-          <img src="assets/foldesk-front.webp" alt="Foldesk Lamp — Önden" class="crop-zoom" loading="lazy" decoding="async">
-          <div class="gallery-caption" data-i18n="fold.capFront">Önden Görünüm — LED Bar &amp; Mengene</div>
-        </div>
-        <div class="gallery-item">
-          <img src="assets/foldesk-top.webp" alt="Foldesk Lamp — Üstten" class="crop-zoom" loading="lazy" decoding="async">
-          <div class="gallery-caption" data-i18n="fold.capTop">Üstten — Katlanmış Form</div>
-        </div>
-      </div>
-
-      <!-- Hinge / mechanism detail -->
-      <div class="gallery-row gallery-full reveal-up">
-        <div class="gallery-item">
-          <img src="assets/foldesk-tech.webp" alt="Foldesk Lamp — Menteşe Mekanizması" loading="lazy" decoding="async">
-          <div class="gallery-caption" data-i18n="fold.capTech">Menteşe Mekanizması — Çok Eksenli Eklem Sistemi</div>
-        </div>
-      </div>
-
     </div>
   </section>
 

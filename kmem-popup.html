@@ -11,10 +11,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="style.css?v=lg5"/>
-  <link rel="stylesheet" href="project.css?v=lg5"/>
+  <link rel="stylesheet" href="project.css?v=g1"/>
   <script>document.documentElement.classList.add('js');</script>
   <script defer src="i18n.js?v=lg1"></script>
   <script defer src="i18n-v2.js?v=lg5"></script>
+  <script defer src="i18n-gallery.js?v=g1"></script>
   <script defer src="vendor/lenis.min.js"></script>
   <script defer src="glass.js?v=lg5"></script>
   <script defer src="project.js?v=lg5"></script>
@@ -105,33 +106,21 @@
   </section>
 
   <!-- ── Gallery grid ── -->
-  <section class="proj-gallery">
+  <section class="proj-gallery g2">
     <div class="proj-container">
-
-      <!-- Full-width hero — Taksim render -->
-      <div class="gallery-row gallery-full reveal-up">
-        <div class="gallery-item">
-          <img src="assets/kmem-cover.webp" alt="KMEM Pop-up Mağaza — Taksim" loading="lazy" decoding="async">
-          <div class="gallery-caption" data-i18n="kmem.capCover">Tarihi Doku İçinde — Taksim</div>
+      <div class="gch">
+        <header class="gch-head reveal-up"><h2 data-i18n="g.kmem.c0t">İki kentsel bağlam</h2><p data-i18n="g.kmem.c0x">Dairesel pop-up mağaza tarihi bir meydanda ve açık hava AVM&#x27;de gösteriliyor. İki sahnede de merkezdeki barista istasyonu ve dört yöne açılan cepheler insanları kendine çekiyor.</p></header>
+        <div class="grow reveal-up">
+          <figure class="gfig" style="--ar:1.0000"><div class="gframe gallery-item"><img src="assets/kmem-cover.webp" alt="Tarihi doku içinde" width="1920" height="1920" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.kmem.i0t">Tarihi doku içinde</b><span data-i18n="g.kmem.i0d">Taksim&#x27;de nostaljik tramvay ve taş yapının önünde; kavisli oturma bankı ve kara tahta duvar mağazayı bir buluşma noktasına çeviriyor.</span></figcaption></figure>
+          <figure class="gfig" style="--ar:1.0000"><div class="gframe gallery-item"><img src="assets/kmem-urban.webp" alt="Açık hava AVM" width="1920" height="1920" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.kmem.i1t">Açık hava AVM</b><span data-i18n="g.kmem.i1d">Gün batımında servis cephesi tam açık; kahve paketleriyle dolu silindirik raf ve üstündeki menü ekranları her yönden görülüyor.</span></figcaption></figure>
         </div>
       </div>
-
-      <!-- Second urban render full-width -->
-      <div class="gallery-row gallery-full reveal-up">
-        <div class="gallery-item">
-          <img src="assets/kmem-urban.webp" alt="KMEM Pop-up Mağaza — Açık Hava AVM" loading="lazy" decoding="async">
-          <div class="gallery-caption" data-i18n="kmem.capUrban">Açık Hava AVM — Kullanıcı Deneyimi</div>
+      <div class="gch">
+        <header class="gch-head reveal-up"><h2 data-i18n="g.kmem.c1t">Plan ve görünüşler</h2><p data-i18n="g.kmem.c1x">Teknik görünüşler dairesel planın ön cephede düz bir servis tezgâhına nasıl açıldığını gösteriyor. Kavisli bank plana ayrı bir modül olarak ekleniyor.</p></header>
+        <div class="grow reveal-up">
+          <figure class="gfig" style="--ar:2.3733"><div class="gframe gallery-item"><img src="assets/kmem-tech.webp" alt="Plan ve cephe görünüşleri" width="1920" height="809" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.kmem.i2t">Plan ve cephe görünüşleri</b><span data-i18n="g.kmem.i2d">Üst planlar, ön cephe ve iki yan görünüş; merkezdeki raf kulesi, ekipman dizilimi ve çatıdaki fanlı üniteler bir arada okunuyor.</span></figcaption></figure>
         </div>
       </div>
-
-      <!-- Technical views — plan sheet -->
-      <div class="gallery-row gallery-full reveal-up">
-        <div class="gallery-item gallery-bg-dark">
-          <img src="assets/kmem-tech.webp" alt="KMEM Pop-up Mağaza — Teknik Görünümler" loading="lazy" decoding="async">
-          <div class="gallery-caption" data-i18n="kmem.capTech">Teknik Görünümler — Cephe ve Kesit</div>
-        </div>
-      </div>
-
     </div>
   </section>
 

@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="style.css?v=lg5"/>
-  <link rel="stylesheet" href="project.css?v=lg5"/>
+  <link rel="stylesheet" href="project.css?v=g1"/>
   <!-- Google model-viewer — interactive 3D component (~70KB, lazy) -->
   <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js" defer></script>
   <style>
@@ -169,6 +169,7 @@
   <script>document.documentElement.classList.add('js');</script>
   <script defer src="i18n.js?v=lg1"></script>
   <script defer src="i18n-v2.js?v=lg5"></script>
+  <script defer src="i18n-gallery.js?v=g1"></script>
   <script defer src="vendor/lenis.min.js"></script>
   <script defer src="glass.js?v=lg5"></script>
   <script defer src="project.js?v=lg5"></script>
@@ -265,41 +266,28 @@
   </section>
 
   <!-- ── Gallery grid ── -->
-  <section class="proj-gallery">
+  <section class="proj-gallery g2">
     <div class="proj-container">
-
-      <!-- Front large -->
-      <div class="gallery-row gallery-full reveal-up">
-        <div class="gallery-item gallery-bg-light bumper-tall">
-          <img src="assets/bumper-front.webp" alt="Çarpışan Araç Tasarımı — Önden" loading="lazy" decoding="async">
-          <div class="gallery-caption gallery-caption-dark" data-i18n="bumper.capFront">Ön Cephe — LED Aydınlatma Detayı</div>
+      <div class="gch">
+        <header class="gch-head reveal-up"><h2 data-i18n="g.bumper.c0t">Pistte kullanım</h2><p data-i18n="g.bumper.c0x">Araç, kapalı bir çarpışan araba pistinde iki çocukla gösteriliyor. Geniş elastomer tampon ring ve alçak kabin girişi, farklı yaş grupları için kurgulanan kullanımı özetliyor.</p></header>
+        <div class="grow reveal-up">
+          <figure class="gfig" style="--ar:1.7910"><div class="gframe gallery-item"><img src="assets/bumper-side.webp" alt="İki kişilik sürüş" width="1920" height="1072" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.bumper.i0t">İki kişilik sürüş</b><span data-i18n="g.bumper.i0d">Arkadan bakışta karakter çizgileri, mavi LED şerit ve gövdeyi çevreleyen elastomer tampon ring birlikte okunuyor.</span></figcaption></figure>
         </div>
       </div>
-
-      <!-- Side + Top half-width -->
-      <div class="gallery-row gallery-half reveal-up">
-        <div class="gallery-item gallery-bg-light">
-          <img src="assets/bumper-side.webp" alt="Çarpışan Araç Tasarımı — Yandan" loading="lazy" decoding="async">
-          <div class="gallery-caption gallery-caption-dark" data-i18n="bumper.capSide">Yandan — Akıcı Yüzey Geçişleri & Karakter Çizgisi</div>
-        </div>
-        <div class="gallery-item gallery-bg-light">
-          <img src="assets/bumper-top.webp" alt="Çarpışan Araç Tasarımı — Üstten" loading="lazy" decoding="async">
-          <div class="gallery-caption gallery-caption-dark" data-i18n="bumper.capTop">Üstten — Tek Parça Kabin & Geniş Giriş Açıklığı</div>
+      <div class="gch">
+        <header class="gch-head reveal-up"><h2 data-i18n="g.bumper.c1t">Gövde formu</h2><p data-i18n="g.bumper.c1x">Stüdyo renderları otomotiv yüzey dilini tek parça kabin üzerinde gösteriyor. Ön ve arka tampon hatları, yan karakter çizgisiyle tutarlı bir bütün kuruyor.</p></header>
+        <div class="grow reveal-up">
+          <figure class="gfig" style="--ar:1.7778"><div class="gframe gallery-item is-dark"><img src="assets/bumper-top.webp" alt="Yan profil" width="1920" height="1080" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.bumper.i1t">Yan profil</b><span data-i18n="g.bumper.i1d">Alçak burun, açık kokpit ve yükselen sırt dayanağı; elastomer tampon ring gövdenin tabanını baştan sona sarıyor.</span></figcaption></figure>
+          <figure class="gfig" style="--ar:1.7778"><div class="gframe gallery-item is-dark"><img src="assets/bumper-tech.webp" alt="Arka üç çeyrek görünüş" width="1920" height="1080" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.bumper.i2t">Arka üç çeyrek görünüş</b><span data-i18n="g.bumper.i2d">Dalgalı sırt hattı, ince LED stop lambaları ve arka tampon hatları bu açıdan birlikte görülüyor.</span></figcaption></figure>
         </div>
       </div>
-
-      <!-- Grid + Tech half-width -->
-      <div class="gallery-row gallery-half reveal-up">
-        <div class="gallery-item gallery-bg-light">
-          <img src="assets/bumper-grid.webp" alt="Çarpışan Araç Tasarımı — Izgara Detayı" loading="lazy" decoding="async">
-          <div class="gallery-caption gallery-caption-dark" data-i18n="bumper.capGrid">Ön Izgara — Karakteristik Marka Detayı</div>
-        </div>
-        <div class="gallery-item gallery-bg-dark">
-          <img src="assets/bumper-tech.webp" alt="Çarpışan Araç Tasarımı — Teknik" loading="lazy" decoding="async">
-          <div class="gallery-caption" data-i18n="bumper.capTech">Teknik Görünüm — Elastomer Tampon Ring Sistemi</div>
+      <div class="gch">
+        <header class="gch-head reveal-up"><h2 data-i18n="g.bumper.c2t">Ön yüz ve model</h2><p data-i18n="g.bumper.c2x">Izgara ve ince LED farlar aracın kimliğini taşıyor. Aynı ön yüz dili atölyedeki fiziksel modelde de görülüyor.</p></header>
+        <div class="grow reveal-up">
+          <figure class="gfig" style="--ar:1.7778"><div class="gframe gallery-item is-dark"><img src="assets/bumper-grid.webp" alt="Aydınlatmalı ön ızgara" width="1920" height="1080" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.bumper.i3t">Aydınlatmalı ön ızgara</b><span data-i18n="g.bumper.i3d">Dikey çubuklu ızgarayı çevreleyen LED hat ve yuvarlak farlar, karanlık pistte aracı tanınır kılıyor.</span></figcaption></figure>
+          <figure class="gfig" style="--ar:0.5581"><div class="gframe gallery-item"><img src="assets/bumper-front.webp" alt="Atölyede fiziksel model" width="1920" height="3440" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.bumper.i4t">Atölyede fiziksel model</b><span data-i18n="g.bumper.i4d">Siyah gövde ve yeşil ızgara parçalarıyla fiziksel model; tek parça kabin formunu gerçek bir hacim olarak gösteriyor.</span></figcaption></figure>
         </div>
       </div>
-
     </div>
   </section>
 

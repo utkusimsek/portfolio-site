@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="style.css?v=lg5"/>
-  <link rel="stylesheet" href="project.css?v=lg5"/>
+  <link rel="stylesheet" href="project.css?v=g1"/>
   <!-- Google model-viewer — interactive 3D component (~70KB, lazy) -->
   <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js" defer></script>
   <style>
@@ -140,6 +140,7 @@
   <script>document.documentElement.classList.add('js');</script>
   <script defer src="i18n.js?v=lg1"></script>
   <script defer src="i18n-v2.js?v=lg5"></script>
+  <script defer src="i18n-gallery.js?v=g1"></script>
   <script defer src="vendor/lenis.min.js"></script>
   <script defer src="glass.js?v=lg5"></script>
   <script defer src="project.js?v=lg5"></script>
@@ -233,53 +234,33 @@
   </section>
 
   <!-- ── Gallery grid ── -->
-  <section class="proj-gallery">
+  <section class="proj-gallery g2">
     <div class="proj-container">
-
-      <!-- Hero lifestyle render -->
-      <div class="gallery-row gallery-full reveal-up">
-        <div class="gallery-item gallery-cover">
-          <img src="assets/crea-cover.webp" alt="Crea Light — Çalışma Ortamı" loading="lazy" decoding="async">
-          <div class="gallery-caption" data-i18n="crea.capCover">Çalışma Ortamı — Monitör Üstü Yerleşim</div>
+      <div class="gch">
+        <header class="gch-head reveal-up"><h2 data-i18n="g.crea.c0t">Ekranın üstünde</h2><p data-i18n="g.crea.c0x">Crea Light, uzun süre bilgisayar başında çalışan ve özellikle 40 yaş üstü kullanıcılar için tasarlandı. Işık monitörün üstünden masaya ve klavyeye iniyor, ekrana yansımıyor.</p></header>
+        <div class="grow reveal-up">
+          <figure class="gfig" style="--ar:1.7778"><div class="gframe gallery-item"><img src="assets/crea-cover.webp" alt="Çalışma ortamında" width="1920" height="1080" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.crea.i0t">Çalışma ortamında</b><span data-i18n="g.crea.i0d">Lamba monitörün üst kenarında; ışık masaya ve klavyeye düşerken ekran ve kullanıcının gözü parlamadan korunuyor.</span></figcaption></figure>
         </div>
       </div>
-
-      <!-- Product 3D render -->
-      <div class="gallery-row gallery-full reveal-up">
-        <div class="gallery-item gallery-bg-light crea-wide">
-          <img src="assets/crea-render.webp" alt="Crea Light — 3D Render" loading="lazy" decoding="async">
-          <div class="gallery-caption gallery-caption-dark" data-i18n="crea.capRender">3D Render — Genel Görünüm</div>
+      <div class="gch">
+        <header class="gch-head reveal-up"><h2 data-i18n="g.crea.c1t">Uzayan gövde ve kontroller</h2><p data-i18n="g.crea.c1x">Teleskobik gövde farklı ekran genişliklerine uyacak şekilde uzuyor. Güç, renk sıcaklığı ve parlaklık kontrolleri ortadaki tutucu blokta, elin kolayca bulacağı yerde toplandı.</p></header>
+        <div class="grow reveal-up">
+          <figure class="gfig" style="--ar:2.6152"><div class="gframe gallery-item"><img src="assets/crea-render-t.webp" alt="Teleskobik gövde" width="1828" height="699" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.crea.i1t">Teleskobik gövde</b><span data-i18n="g.crea.i1d">Işık çubuğu iki parçadan oluşuyor; dış kovan kayarak gövdeyi uzatıyor, böylece lamba farklı ekran boyutlarına uyuyor.</span></figcaption></figure>
+        </div>
+        <div class="grow reveal-up">
+          <figure class="gfig" style="--ar:3.1217"><div class="gframe gallery-item"><img src="assets/crea-front.webp" alt="Önden kontroller" width="1642" height="526" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.crea.i2t">Önden kontroller</b><span data-i18n="g.crea.i2d">Güç ve renk sıcaklığı tuşları ile parlaklık düğmesi tutucu blokta; altta kamerayı kapatan sürgülü klips görünüyor.</span></figcaption></figure>
         </div>
       </div>
-
-      <!-- Front view — extra wide -->
-      <div class="gallery-row gallery-full reveal-up">
-        <div class="gallery-item gallery-bg-light crea-wide">
-          <img src="assets/crea-front.webp" alt="Crea Light — Önden" loading="lazy" decoding="async">
-          <div class="gallery-caption gallery-caption-dark" data-i18n="crea.capFront">Önden Görünüm — Kontrol Düğmeleri</div>
+      <div class="gch">
+        <header class="gch-head reveal-up"><h2 data-i18n="g.crea.c2t">Bağlantı ve iç yapı</h2><p data-i18n="g.crea.c2x">Menteşeli tutucu lambayı monitöre sabitlerken ışık açısının ayarlanmasına izin veriyor. Kamera kapatıcı, pil ve Type-C bağlantı ince alüminyum profilin içine yerleştirildi.</p></header>
+        <div class="grow reveal-up">
+          <figure class="gfig" style="--ar:1.1422"><div class="gframe gallery-item"><img src="assets/crea-side.webp" alt="Menteşeli bağlantı" width="514" height="450" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.crea.i3t">Menteşeli bağlantı</b><span data-i18n="g.crea.i3d">Yandan kesit: iki eklemli kol, ışık gövdesini monitöre oturan tutucuya bağlıyor ve açısının ayarlanmasını sağlıyor.</span></figcaption></figure>
+          <figure class="gfig" style="--ar:2.5098"><div class="gframe gallery-item"><img src="assets/crea-top.webp" alt="Üstten görünüm" width="640" height="255" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.crea.i4t">Üstten görünüm</b><span data-i18n="g.crea.i4d">İnce ışık çubuğu ve ortadaki tutucu plaka; kamera kapatıcı gövdeye taşma yapmadan bu blokla bütünleşiyor.</span></figcaption></figure>
+        </div>
+        <div class="grow reveal-up">
+          <figure class="gfig" style="--ar:1.9383"><div class="gframe gallery-item is-dark"><img src="assets/crea-tech.webp" alt="Patlak görünüm" width="1601" height="826" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.crea.i5t">Patlak görünüm</b><span data-i18n="g.crea.i5d">Parlaklık bezeli, pil, Type-C port, LED şerit, tutucu profil ve kamera kapatıcı; her bileşen tek eksende sıralanıyor.</span></figcaption></figure>
         </div>
       </div>
-
-      <!-- Side + Top half-width -->
-      <div class="gallery-row gallery-half reveal-up">
-        <div class="gallery-item gallery-bg-light crea-square">
-          <img src="assets/crea-side.webp" alt="Crea Light — Yandan" loading="lazy" decoding="async">
-          <div class="gallery-caption gallery-caption-dark" data-i18n="crea.capSide">Yandan — Bağlantı Mekanizması</div>
-        </div>
-        <div class="gallery-item gallery-bg-light crea-square">
-          <img src="assets/crea-top.webp" alt="Crea Light — Üstten" loading="lazy" decoding="async">
-          <div class="gallery-caption gallery-caption-dark" data-i18n="crea.capTop">Üstten — Kamera Kapatıcı Detayı</div>
-        </div>
-      </div>
-
-      <!-- Exploded technical view -->
-      <div class="gallery-row gallery-full reveal-up">
-        <div class="gallery-item gallery-bg-dark">
-          <img src="assets/crea-tech.webp" alt="Crea Light — Patlak Görünüm" loading="lazy" decoding="async">
-          <div class="gallery-caption" data-i18n="crea.capTech">Patlak Görünüm — Bileşen Analizi</div>
-        </div>
-      </div>
-
     </div>
   </section>
 

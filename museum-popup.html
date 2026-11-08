@@ -11,13 +11,14 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="style.css?v=lg5"/>
-  <link rel="stylesheet" href="project.css?v=lg5"/>
+  <link rel="stylesheet" href="project.css?v=g1"/>
   <style>
     .proj-gallery .gallery-row { gap: 18px; margin-bottom: 18px; }
   </style>
   <script>document.documentElement.classList.add('js');</script>
   <script defer src="i18n.js?v=lg1"></script>
   <script defer src="i18n-v2.js?v=lg5"></script>
+  <script defer src="i18n-gallery.js?v=g1"></script>
   <script defer src="i18n-projects.js?v=lg6"></script>
   <script defer src="vendor/lenis.min.js"></script>
   <script defer src="glass.js?v=lg5"></script>
@@ -101,74 +102,39 @@
   </section>
 
   <!-- ── Gallery ── -->
-  <section class="proj-gallery">
+  <section class="proj-gallery g2">
     <div class="proj-container">
-
-      <div class="gallery-row gallery-full reveal-up">
-        <div class="gallery-item gallery-cover">
-          <img src="assets/museum-axis.webp" alt="Galeri aksı: vitrin ailesi birlikte" loading="lazy" decoding="async">
-          <div class="gallery-caption" data-i18n="museum.capAxis">Galeri aksı: vitrin ailesi birlikte</div>
+      <div class="gch">
+        <header class="gch-head reveal-up"><h2 data-i18n="g.museum.c0t">Galeride bir aile</h2><p data-i18n="g.museum.c0x">Vitrinler tek tek değil, bir galeri aksı boyunca birlikte düşünüldü. Ceviz kaide, ince çerçeveli cam ve gizli ışık her tipte tekrar ettiği için salon tek bir sistem gibi okunur.</p></header>
+        <div class="grow reveal-up">
+          <figure class="gfig" style="--ar:1.7910"><div class="gframe gallery-item"><img src="assets/museum-axis.webp" alt="Galeri aksı" width="1800" height="1005" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.museum.i0t">Galeri aksı</b><span data-i18n="g.museum.i0d">Masa, duvar ve kaide vitrinleri aynı salonda; ortak ceviz gövde ve cam dil farklı boydaki tipleri tek bir aileye bağlar.</span></figcaption></figure>
+        </div>
+        <div class="grow reveal-up">
+          <figure class="gfig" style="--ar:1.7910"><div class="gframe gallery-item"><img src="assets/museum-visitors-wall.webp" alt="Duvar vitrini önünde" width="2400" height="1340" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.museum.i1t">Duvar vitrini önünde</b><span data-i18n="g.museum.i1d">Bir çocuk ile iki yetişkin aynı vitrine bakıyor; tabla yüksekliği ve cam derinliği farklı göz hizalarına göre ayarlandı.</span></figcaption></figure>
+          <figure class="gfig" style="--ar:1.7910"><div class="gframe gallery-item"><img src="assets/museum-visitors-table.webp" alt="Masa vitrini, ziyaretçi ölçeğinde" width="2400" height="1340" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.museum.i2t">Masa vitrini, ziyaretçi ölçeğinde</b><span data-i18n="g.museum.i2d">Ziyaretçiler eğilip belgeleri yakından okuyor; eğimli kumaş tabla fotoğraf ve evrakı göze doğru kaldırır.</span></figcaption></figure>
         </div>
       </div>
-
-      <div class="gallery-row gallery-half reveal-up">
-        <div class="gallery-item">
-          <img src="assets/museum-wall-doc.webp" alt="Büyük duvar vitrini: belge" loading="lazy" decoding="async">
-          <div class="gallery-caption" data-i18n="museum.capWallDoc">Büyük duvar vitrini: belge</div>
+      <div class="gch">
+        <header class="gch-head reveal-up"><h2 data-i18n="g.museum.c1t">Duvar vitrinleri</h2><p data-i18n="g.museum.c1x">Belge, tekstil ve kostüm gibi dik okunan eserler duvara yaslanan derin kasalarda sergilenir. Işık üst profilde gizlenir, arka yüzeydeki keten doku eseri sakin bir zemine oturtur.</p></header>
+        <div class="grow reveal-up">
+          <figure class="gfig" style="--ar:1.7910"><div class="gframe gallery-item is-dark"><img src="assets/museum-wall-doc.webp" alt="Büyük duvar vitrini" width="1800" height="1005" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.museum.i3t">Büyük duvar vitrini</b><span data-i18n="g.museum.i3d">Saat, telefon, belge, tablo ve vazo tek kasada; üstteki spotlar her esere ayrı ışık düşürür, ceviz gövde koyu duvarla bütünleşir.</span></figcaption></figure>
+          <figure class="gfig" style="--ar:1.7910"><div class="gframe gallery-item"><img src="assets/museum-wall-textile.webp" alt="Ayaklı tekstil vitrini" width="1800" height="1005" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.museum.i4t">Ayaklı tekstil vitrini</b><span data-i18n="g.museum.i4d">Portreli halı tam boyuyla asılı; ince ceviz çerçeve ve tek parça cam büyük tekstilin önünde neredeyse kaybolur.</span></figcaption></figure>
         </div>
-        <div class="gallery-item">
-          <img src="assets/museum-wall-textile.webp" alt="Ayaklı duvar vitrini: tekstil" loading="lazy" decoding="async">
-          <div class="gallery-caption" data-i18n="museum.capWallTextile">Ayaklı duvar vitrini: tekstil</div>
-        </div>
-      </div>
-
-      <div class="gallery-row gallery-half reveal-up">
-        <div class="gallery-item">
-          <img src="assets/museum-table.webp" alt="Yatay masa vitrini: gemi modeli" loading="lazy" decoding="async">
-          <div class="gallery-caption" data-i18n="museum.capTable">Yatay masa vitrini: gemi modeli</div>
-        </div>
-        <div class="gallery-item">
-          <img src="assets/museum-costume.webp" alt="Kostüm vitrini" loading="lazy" decoding="async">
-          <div class="gallery-caption" data-i18n="museum.capCostume">Kostüm vitrini</div>
+        <div class="grow reveal-up">
+          <figure class="gfig" style="--ar:1.7910"><div class="gframe gallery-item"><img src="assets/museum-costume.webp" alt="Kostüm vitrini" width="1800" height="1005" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.museum.i5t">Kostüm vitrini</b><span data-i18n="g.museum.i5d">Takım elbise insan boyunda, cam kasada sergileniyor; üst kapaktaki ışık noktaları kumaşın dokusunu gölgesiz gösterir.</span></figcaption></figure>
         </div>
       </div>
-
-      <div class="gallery-row gallery-full reveal-up">
-        <div class="gallery-item gallery-cover">
-          <img src="assets/museum-visitors-table.webp" alt="Ziyaretçi ölçeğinde masa vitrini" loading="lazy" decoding="async">
-          <div class="gallery-caption" data-i18n="museum.capVisitorsTable">Ziyaretçi ölçeğinde masa vitrini</div>
+      <div class="gch">
+        <header class="gch-head reveal-up"><h2 data-i18n="g.museum.c2t">Masa, kaide ve sütun</h2><p data-i18n="g.museum.c2x">Odanın ortasındaki eserler için yükseklik eserin ölçüsüne göre değişir: model için alçak masa ve kaide, saat ve tekil eser için çevresinden dolaşılan uzun sütun.</p></header>
+        <div class="grow reveal-up">
+          <figure class="gfig" style="--ar:1.7910"><div class="gframe gallery-item"><img src="assets/museum-table.webp" alt="Yatay masa vitrini" width="1800" height="1005" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.museum.i6t">Yatay masa vitrini</b><span data-i18n="g.museum.i6d">Uzun gemi modeli lacivert kumaş tablada; cam fanus modelin boyuna göre uzatıldı, ceviz gövde tabanı ağır ve sakin tutar.</span></figcaption></figure>
+          <figure class="gfig" style="--ar:1.7910"><div class="gframe gallery-item"><img src="assets/museum-plinth-low.webp" alt="Kare kaide, alçak" width="1800" height="1005" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.museum.i7t">Kare kaide, alçak</b><span data-i18n="g.museum.i7d">Platform modeli dört yandan görülebilen küp camın içinde; alçak kaide üstten bakışa ve detay okumaya izin verir.</span></figcaption></figure>
+        </div>
+        <div class="grow reveal-up">
+          <figure class="gfig" style="--ar:1.7910"><div class="gframe gallery-item"><img src="assets/museum-column-hex.webp" alt="Uzun sütun vitrini" width="1800" height="1005" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.museum.i8t">Uzun sütun vitrini</b><span data-i18n="g.museum.i8d">Ayaklı saat dar ve yüksek bir cam sütunda; ışık üst kapakta çevresel dizilir, eser her yönden aynı aydınlıkta kalır.</span></figcaption></figure>
+          <figure class="gfig" style="--ar:1.7910"><div class="gframe gallery-item"><img src="assets/museum-column-single.webp" alt="Tekil eser sütunu" width="1800" height="1005" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.museum.i9t">Tekil eser sütunu</b><span data-i18n="g.museum.i9d">Oyma ahşap pano ceviz kaidenin üstünde, odanın ortasında; ziyaretçi eserin çevresinde dolaşarak arka yüzünü de görür.</span></figcaption></figure>
         </div>
       </div>
-
-      <div class="gallery-row gallery-half reveal-up">
-        <div class="gallery-item">
-          <img src="assets/museum-plinth-low.webp" alt="Kare kaide, alçak" loading="lazy" decoding="async">
-          <div class="gallery-caption" data-i18n="museum.capPlinthLow">Kare kaide, alçak</div>
-        </div>
-        <div class="gallery-item">
-          <img src="assets/museum-plinth-high.webp" alt="Kare kaide, yüksek" loading="lazy" decoding="async">
-          <div class="gallery-caption" data-i18n="museum.capPlinthHigh">Kare kaide, yüksek</div>
-        </div>
-      </div>
-
-      <div class="gallery-row gallery-half reveal-up">
-        <div class="gallery-item">
-          <img src="assets/museum-column-hex.webp" alt="Uzun sütun, altıgen kaide" loading="lazy" decoding="async">
-          <div class="gallery-caption" data-i18n="museum.capColumnHex">Uzun sütun, altıgen kaide</div>
-        </div>
-        <div class="gallery-item">
-          <img src="assets/museum-column-single.webp" alt="Tekil eser: çevresinden dolaşılan sütun" loading="lazy" decoding="async">
-          <div class="gallery-caption" data-i18n="museum.capColumnSingle">Tekil eser: çevresinden dolaşılan sütun</div>
-        </div>
-      </div>
-
-      <div class="gallery-row gallery-full reveal-up">
-        <div class="gallery-item gallery-cover">
-          <img src="assets/museum-visitors-wall.webp" alt="Duvar vitrini önünde izleme mesafesi" loading="lazy" decoding="async">
-          <div class="gallery-caption" data-i18n="museum.capVisitorsWall">Duvar vitrini önünde izleme mesafesi</div>
-        </div>
-      </div>
-
     </div>
   </section>
 

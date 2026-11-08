@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="style.css?v=lg5"/>
-  <link rel="stylesheet" href="project.css?v=lg5"/>
+  <link rel="stylesheet" href="project.css?v=g1"/>
   <!-- Google model-viewer — interactive 3D component (~70KB, lazy) -->
   <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js" defer></script>
   <style>
@@ -172,6 +172,7 @@
   <script>document.documentElement.classList.add('js');</script>
   <script defer src="i18n.js?v=lg1"></script>
   <script defer src="i18n-v2.js?v=lg5"></script>
+  <script defer src="i18n-gallery.js?v=g1"></script>
   <script defer src="vendor/lenis.min.js"></script>
   <script defer src="glass.js?v=lg5"></script>
   <script defer src="project.js?v=lg5"></script>
@@ -269,37 +270,24 @@
   </section>
 
   <!-- ── Gallery grid ── -->
-  <section class="proj-gallery">
+  <section class="proj-gallery g2">
     <div class="proj-container">
-
-      <!-- Studio shot — temiz ürün -->
-      <div class="gallery-row gallery-full reveal-up">
-        <div class="gallery-item gallery-bg-dark">
-          <img src="assets/bumper2-studio.webp" alt="Sportif Çarpışan Oto — Stüdyo Çekimi" loading="lazy" decoding="async">
-          <div class="gallery-caption" data-i18n="bumper2.capStudio">Stüdyo Çekimi — Form Diline Net Bakış</div>
+      <div class="gch">
+        <header class="gch-head reveal-up"><h2 data-i18n="g.bumper2.c0t">Ön ve arka karakter</h2><p data-i18n="g.bumper2.c0x">İki araç biri önden biri arkadan konumlanarak formun iki ucunu birlikte gösteriyor. İnce LED farlar ve dairesel stop lambaları sportif karakteri taşıyor.</p></header>
+        <div class="grow reveal-up">
+          <figure class="gfig" style="--ar:1.7910"><div class="gframe gallery-item"><img src="assets/bumper2-studio.webp" alt="Stüdyoda form" width="1920" height="1072" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.bumper2.i0t">Stüdyoda form</b><span data-i18n="g.bumper2.i0d">Parlak kırmızı gövde, alçak burun ve geniş omuz çizgileri nötr gri zeminde net okunuyor; arkadaki araçta dairesel stop lambaları görülüyor.</span></figcaption></figure>
+        </div>
+        <div class="grow reveal-up">
+          <figure class="gfig" style="--ar:1.7910"><div class="gframe gallery-item is-dark"><img src="assets/bumper2-night.webp" alt="Gece lunaparkta" width="1920" height="1072" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.bumper2.i1t">Gece lunaparkta</b><span data-i18n="g.bumper2.i1d">Aynı ikili renkli lunapark ışıkları altında; ön LED şeritler ve arka dairesel lambalar kalabalık arka planda da seçiliyor.</span></figcaption></figure>
         </div>
       </div>
-
-      <!-- Night + Couple half-width -->
-      <div class="gallery-row gallery-half reveal-up">
-        <div class="gallery-item gallery-bg-dark">
-          <img src="assets/bumper2-night.webp" alt="Sportif Çarpışan Oto — Gece Lunapark" loading="lazy" decoding="async">
-          <div class="gallery-caption" data-i18n="bumper2.capNight">Gece Operasyonu — LED Görünürlüğü</div>
-        </div>
-        <div class="gallery-item gallery-bg-dark">
-          <img src="assets/bumper2-couple.webp" alt="Sportif Çarpışan Oto — Çift Kullanım" loading="lazy" decoding="async">
-          <div class="gallery-caption" data-i18n="bumper2.capCouple">Çift Kullanım — Geniş Oturma Alanı</div>
+      <div class="gch">
+        <header class="gch-head reveal-up"><h2 data-i18n="g.bumper2.c1t">Sürüş deneyimi</h2><p data-i18n="g.bumper2.c1x">Geniş oturma alanı iki kişiyi, direksiyon konumu tek sürücüyü rahat taşıyacak şekilde planlandı. Lunapark sahneleri bu ergonomiyi kullanımda gösteriyor.</p></header>
+        <div class="grow reveal-up">
+          <figure class="gfig" style="--ar:1.7910"><div class="gframe gallery-item is-dark"><img src="assets/bumper2-couple.webp" alt="İki kişilik kullanım" width="1920" height="1072" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.bumper2.i2t">İki kişilik kullanım</b><span data-i18n="g.bumper2.i2d">Yetişkin bir çift tek koltukta rahatça oturuyor; çevresel tampon araçla zemin arasında sürekli bir koruma bandı oluşturuyor.</span></figcaption></figure>
+          <figure class="gfig" style="--ar:1.7910"><div class="gframe gallery-item"><img src="assets/bumper2-solo.webp" alt="Tek sürücü" width="1920" height="1072" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.bumper2.i3t">Tek sürücü</b><span data-i18n="g.bumper2.i3d">Direksiyon yükselen kaputa yakın konumlanıyor; sürücü dik ve rahat bir pozisyonda aracı yönlendiriyor.</span></figcaption></figure>
         </div>
       </div>
-
-      <!-- Solo lifestyle -->
-      <div class="gallery-row gallery-full reveal-up">
-        <div class="gallery-item gallery-bg-dark">
-          <img src="assets/bumper2-solo.webp" alt="Sportif Çarpışan Oto — Tek Sürücü" loading="lazy" decoding="async">
-          <div class="gallery-caption" data-i18n="bumper2.capSolo">Sürüş Konforu — Ergonomik Direksiyon Pozisyonu</div>
-        </div>
-      </div>
-
     </div>
   </section>
 

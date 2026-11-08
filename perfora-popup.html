@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="style.css?v=lg5"/>
-  <link rel="stylesheet" href="project.css?v=lg5"/>
+  <link rel="stylesheet" href="project.css?v=g1"/>
   <style>
     .proj-gallery .gallery-row { gap: 18px; margin-bottom: 18px; }
     .proj-gallery .gallery-half .gallery-item.g-tall { aspect-ratio: 4 / 5; }
@@ -39,6 +39,7 @@
   <script>document.documentElement.classList.add('js');</script>
   <script defer src="i18n.js?v=lg1"></script>
   <script defer src="i18n-v2.js?v=lg5"></script>
+  <script defer src="i18n-gallery.js?v=g1"></script>
   <script defer src="i18n-projects.js?v=lg6"></script>
   <script defer src="vendor/lenis.min.js"></script>
   <script defer src="glass.js?v=lg5"></script>
@@ -122,45 +123,31 @@
   </section>
 
   <!-- ── Gallery ── -->
-  <section class="proj-gallery">
+  <section class="proj-gallery g2">
     <div class="proj-container">
-
-      <div class="gallery-row gallery-half reveal-up">
-        <div class="gallery-item g-video">
-          <video src="assets/videos/perfora-tanitim.mp4" poster="assets/perfora-video-poster.webp" muted loop playsinline autoplay preload="metadata" aria-label="Tanıtım filmi"></video>
-          <div class="gallery-caption" data-i18n="perfora.capVideo">Tanıtım filmi</div>
-        </div>
-        <div class="gallery-item g-video g-contain">
-          <img src="assets/perfora-texture.webp" alt="Desen dikişi: önce ve sonra" loading="lazy" decoding="async">
-          <div class="gallery-caption" data-i18n="perfora.capTexture">Desen dikişi: önce ve sonra</div>
+      <div class="gch">
+        <header class="gch-head reveal-up"><h2 data-i18n="g.perfora.c0t">Araç ve arayüz</h2><p data-i18n="g.perfora.c0x">Perfora, elle tekrar tekrar çizdiğim desenleri tek bir Rhino aracına toplamak için doğdu. Desen seçilir, tuvaldeki kontrolcüler sürüklenir ve sonuç tek tuşla modele uygulanır.</p></header>
+        <div class="grow reveal-up">
+          <figure class="gfig" style="--ar:0.5625"><div class="gframe gallery-item"><video src="assets/videos/perfora-tanitim.mp4" poster="assets/perfora-video-poster.webp" muted loop playsinline autoplay preload="metadata" aria-label="Tanıtım filmi"></video></div><figcaption><b data-i18n="g.perfora.i0t">Tanıtım filmi</b><span data-i18n="g.perfora.i0d">Kendi hazırladığım dikey film; düğüm kurmadan, yalnızca parametrelerle gradyanlı bir delik paneli oluşturuluyor.</span></figcaption></figure>
+          <figure class="gfig" style="--ar:1.6013"><div class="gframe gallery-item is-dark"><img src="assets/perfora-studio.webp" alt="Perfora Studio, Rhino içinde" width="972" height="607" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.perfora.i1t">Perfora Studio, Rhino içinde</b><span data-i18n="g.perfora.i1d">Solda desen kartları, ortada nokta kontrolcülü tuval, sağda dizilim ve delik ayarları; delik sayısı ve açıklık oranı canlı izleniyor.</span></figcaption></figure>
         </div>
       </div>
-
-      <div class="gallery-row gallery-full reveal-up">
-        <div class="gallery-item g-contain">
-          <img src="assets/perfora-facets.webp" alt="Faset kütüphanesi: piramit, elmas, küp yığını" loading="lazy" decoding="async">
-          <div class="gallery-caption" data-i18n="perfora.capFacets">Faset kütüphanesi: piramit, elmas, küp yığını</div>
+      <div class="gch">
+        <header class="gch-head reveal-up"><h2 data-i18n="g.perfora.c1t">Desen kütüphanesi</h2><p data-i18n="g.perfora.c1x">Faset, kafes ve çizgi desenleri aynı ayar sistemini paylaşıyor. Her desenin boyutu ya da derinliği bir eksen, nokta veya eğriyle yönetilebiliyor.</p></header>
+        <div class="grow reveal-up">
+          <figure class="gfig" style="--ar:1.8089"><div class="gframe gallery-item is-dark"><img src="assets/perfora-facets.webp" alt="Faset desenleri" width="1780" height="984" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.perfora.i2t">Faset desenleri</b><span data-i18n="g.perfora.i2d">Üçgen piramit, elmas tırtıl, küp yığını gibi sekiz faset; düz plakada, daire panelde ve silindir üzerinde.</span></figcaption></figure>
+        </div>
+        <div class="grow reveal-up">
+          <figure class="gfig" style="--ar:1.8634"><div class="gframe gallery-item"><img src="assets/perfora-library.webp" alt="Parametrik çizgi desenleri" width="1800" height="966" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.perfora.i3t">Parametrik çizgi desenleri</b><span data-i18n="g.perfora.i3d">On sekiz desenin çizgi önizlemesi; her birinin adı, boyut ya da derinliği yöneten eksen, nokta veya eğri kontrolünü belirtiyor.</span></figcaption></figure>
         </div>
       </div>
-
-      <div class="gallery-row gallery-full reveal-up">
-        <div class="gallery-item g-contain">
-          <img src="assets/perfora-library.webp" alt="Parametrik doku çizgileri" loading="lazy" decoding="async">
-          <div class="gallery-caption" data-i18n="perfora.capLibrary">Parametrik doku çizgileri</div>
+      <div class="gch">
+        <header class="gch-head reveal-up"><h2 data-i18n="g.perfora.c2t">Yüzeyde ve üretimde</h2><p data-i18n="g.perfora.c2x">Desen düz panelin yanında eğri yüzeylere de sarılıyor ve üretime hazır parçalara bölünebiliyor. Bu bölüm, sarmanın ve dilimlemenin gerçek geometride nasıl sonuç verdiğini gösteriyor.</p></header>
+        <div class="grow reveal-up">
+          <figure class="gfig" style="--ar:0.6109"><div class="gframe gallery-item is-dark"><img src="assets/perfora-texture.webp" alt="Dikiş düzeltmesi" width="1168" height="1912" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.perfora.i4t">Dikiş düzeltmesi</b><span data-i18n="g.perfora.i4d">Silindire sarılan üç desen, 1.2.5 sürümünden önce ve sonra; desenin birleşme çizgisindeki kopukluk giderildi.</span></figcaption></figure>
+          <figure class="gfig" style="--ar:1.1255"><div class="gframe gallery-item is-dark"><img src="assets/perfora-slicing.webp" alt="Dilimleme" width="1076" height="956" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.perfora.i5t">Dilimleme</b><span data-i18n="g.perfora.i5d">Dalgalı duvar paneli, şezlong ve düğüm formu kesilebilir dilimlere ayrılıyor; parçalar numaralı olarak düz yerleşime açılıyor.</span></figcaption></figure>
         </div>
       </div>
-
-      <div class="gallery-row gallery-half reveal-up">
-        <div class="gallery-item g-contain">
-          <img src="assets/perfora-slicing.webp" alt="Dilimleme: dalgalı panel ve şezlong" loading="lazy" decoding="async">
-          <div class="gallery-caption" data-i18n="perfora.capSlicing">Dilimleme: dalgalı panel ve şezlong</div>
-        </div>
-        <div class="gallery-item g-contain">
-          <img src="assets/perfora-studio.webp" alt="Perfora Studio, Rhino içinde" loading="lazy" decoding="async">
-          <div class="gallery-caption" data-i18n="perfora.capStudio">Perfora Studio, Rhino içinde</div>
-        </div>
-      </div>
-
     </div>
   </section>
 

@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="style.css?v=lg5"/>
-  <link rel="stylesheet" href="project.css?v=lg5"/>
+  <link rel="stylesheet" href="project.css?v=g1"/>
   <style>
     /* Ekofish gallery — all source images are 5:3 (1.67), so we match exactly:
        no cropping, no letterboxing — pixel-perfect fit. */
@@ -48,6 +48,7 @@
   <script>document.documentElement.classList.add('js');</script>
   <script defer src="i18n.js?v=lg1"></script>
   <script defer src="i18n-v2.js?v=lg5"></script>
+  <script defer src="i18n-gallery.js?v=g1"></script>
   <script defer src="vendor/lenis.min.js"></script>
   <script defer src="glass.js?v=lg5"></script>
   <script defer src="project.js?v=lg5"></script>
@@ -138,57 +139,35 @@
   </section>
 
   <!-- ── Gallery grid ── -->
-  <section class="proj-gallery">
+  <section class="proj-gallery g2">
     <div class="proj-container">
-
-      <!-- Hero render -->
-      <div class="gallery-row gallery-full reveal-up">
-        <div class="gallery-item">
-          <img src="assets/eko-cover.webp" alt="Ekofish 200ft — Render" loading="lazy" decoding="async">
-          <div class="gallery-caption" data-i18n="eko.capCover">Genel Render — 60.9m Trol Gemisi</div>
+      <div class="gch">
+        <header class="gch-head reveal-up"><h2 data-i18n="g.ekofish.c0t">Gemi ve yerleşim</h2><p data-i18n="g.ekofish.c0x">60,9 metrelik trol gemisi; baş tarafta yaşam ve kontrol hacimleri, kıçta avlanma ve ayıklama ekipmanı olacak şekilde iki bölgeye ayrıldı.</p></header>
+        <div class="grow reveal-up">
+          <figure class="gfig" style="--ar:1.6667"><div class="gframe gallery-item"><img src="assets/eko-cover.webp" alt="Genel görünüm" width="1920" height="1152" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.ekofish.i0t">Genel görünüm</b><span data-i18n="g.ekofish.i0d">Baş tarafta güneş panelli üst yapı ve drone alanı, kıçta vinç, ayırma havuzu ve separatör; iki bölge tek gövdede birleşiyor.</span></figcaption></figure>
+        </div>
+        <div class="grow reveal-up">
+          <figure class="gfig" style="--ar:1.6667"><div class="gframe gallery-item is-dark"><img src="assets/eko-top.webp" alt="Üstten, sistem bileşenleri" width="1920" height="1152" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.ekofish.i1t">Üstten, sistem bileşenleri</b><span data-i18n="g.ekofish.i1d">Kreyn vinç, balık ayırma separatörü, ayırma havuzu, radar, güneş panelleri, drone park alanı ve hidrolik kapaklı depolama işaretli.</span></figcaption></figure>
         </div>
       </div>
-
-      <!-- Top-down components diagram -->
-      <div class="gallery-row gallery-full reveal-up">
-        <div class="gallery-item">
-          <img src="assets/eko-top.webp" alt="Ekofish 200ft — Üstten Görünüm" loading="lazy" decoding="async">
-          <div class="gallery-caption" data-i18n="eko.capTop">Üstten Görünüm — Sistem Bileşenleri</div>
+      <div class="gch">
+        <header class="gch-head reveal-up"><h2 data-i18n="g.ekofish.c1t">Seçici avlanma</h2><p data-i18n="g.ekofish.c1x">Tasarımın çıkış noktası, yalnızca av ölçüsündeki balığı tutmak; AUV&#x27;larla tespit, kontrollü dip trolü ve boyuta göre ayıklama bir zincir olarak kurgulandı.</p></header>
+        <div class="grow reveal-up">
+          <figure class="gfig" style="--ar:1.6652"><div class="gframe gallery-item is-dark"><img src="assets/eko-process.webp" alt="Avlanma detayları" width="1920" height="1153" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.ekofish.i2t">Avlanma detayları</b><span data-i18n="g.ekofish.i2d">Dört adımda süreç: sensörlerle balık tespiti, AUV kontrollü dip trolü, ayıklama düzeneği ve ölçü dışı balıkların denize tahliyesi.</span></figcaption></figure>
+        </div>
+        <div class="grow reveal-up">
+          <figure class="gfig" style="--ar:1.6652"><div class="gframe gallery-item"><img src="assets/eko-sorting.webp" alt="Avlama sırası" width="1920" height="1153" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.ekofish.i3t">Avlama sırası</b><span data-i18n="g.ekofish.i3d">Vinçle gelen ağ separatöre boşaltılıyor; balıklar boyuna göre ayrılıp soğutmalı havuzda bekletiliyor, ardından soğuk zincirle dağıtılıyor.</span></figcaption></figure>
         </div>
       </div>
-
-      <!-- Underwater fishing process -->
-      <div class="gallery-row gallery-full reveal-up">
-        <div class="gallery-item">
-          <img src="assets/eko-process.webp" alt="Avlanma Süreci" loading="lazy" decoding="async">
-          <div class="gallery-caption" data-i18n="eko.capProcess">Avlanma Süreci — Su Altı Operasyonu</div>
+      <div class="gch">
+        <header class="gch-head reveal-up"><h2 data-i18n="g.ekofish.c2t">Sistemler ve teknik çizim</h2><p data-i18n="g.ekofish.c2x">Güneş panelleri, insansız araçlar, vinç ve ray sistemli havuz güverteye entegre edildi; teknik çizim bu bileşenlerin gemideki yerini tanımlıyor.</p></header>
+        <div class="grow reveal-up">
+          <figure class="gfig" style="--ar:1.6652"><div class="gframe gallery-item is-dark"><img src="assets/eko-features.webp" alt="Sistem özellikleri" width="1920" height="1153" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.ekofish.i4t">Sistem özellikleri</b><span data-i18n="g.ekofish.i4d">Ray sistemiyle kapanan havuz, kıçtan suya inen AUV&#x27;lar, üst güvertedeki güneş panelleri ve hava ile deniz koşullarını izleyen drone.</span></figcaption></figure>
+        </div>
+        <div class="grow reveal-up">
+          <figure class="gfig" style="--ar:1.6652"><div class="gframe gallery-item"><img src="assets/eko-tech.webp" alt="Teknik çizim" width="1920" height="1153" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.ekofish.i5t">Teknik çizim</b><span data-i18n="g.ekofish.i5d">Yan, ön ve üst görünüşler; renk kodlu lejant güneş panellerini, depolama ve geri dönüşüm havuzlarını, separatörü, araçları ve vinci ayırıyor.</span></figcaption></figure>
         </div>
       </div>
-
-      <!-- System features panel — full width so 4 sub-panels are readable -->
-      <div class="gallery-row gallery-full reveal-up">
-        <div class="gallery-item">
-          <img src="assets/eko-features.webp" alt="Sistem Özellikleri" loading="lazy" decoding="async">
-          <div class="gallery-caption" data-i18n="eko.capFeatures">Sistem Özellikleri</div>
-        </div>
-      </div>
-
-      <!-- Sorting sequence — full width -->
-      <div class="gallery-row gallery-full reveal-up">
-        <div class="gallery-item">
-          <img src="assets/eko-sorting.webp" alt="Avlama Sırası" loading="lazy" decoding="async">
-          <div class="gallery-caption" data-i18n="eko.capSorting">Avlama &amp; Ayıklama Sırası</div>
-        </div>
-      </div>
-
-      <!-- Technical line drawing -->
-      <div class="gallery-row gallery-full reveal-up">
-        <div class="gallery-item gallery-bg-light">
-          <img src="assets/eko-tech.webp" alt="Teknik Çizim" loading="lazy" decoding="async">
-          <div class="gallery-caption gallery-caption-dark" data-i18n="eko.capTech">Teknik Çizim — Ölçek 1:300</div>
-        </div>
-      </div>
-
     </div>
   </section>
 

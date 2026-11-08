@@ -11,11 +11,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="style.css?v=lg5"/>
-  <link rel="stylesheet" href="project.css?v=lg5"/>
+  <link rel="stylesheet" href="project.css?v=g1"/>
   <!-- Cache-bust: yeni 3D viewer + i18n key'leri için -->
   <script>document.documentElement.classList.add('js');</script>
   <script defer src="i18n.js?v=lg1"></script>
   <script defer src="i18n-v2.js?v=lg5"></script>
+  <script defer src="i18n-gallery.js?v=g1"></script>
   <script defer src="vendor/lenis.min.js"></script>
   <script defer src="glass.js?v=lg5"></script>
   <script defer src="project.js?v=lg5"></script>
@@ -241,51 +242,37 @@
   </section>
 
   <!-- ── Gallery grid ── -->
-  <section class="proj-gallery">
+  <section class="proj-gallery g2">
     <div class="proj-container">
-
-      <!-- Full-width cover — two boats aerial -->
-      <div class="gallery-row gallery-full reveal-up">
-        <div class="gallery-item">
-          <img src="assets/pb-cover.webp" alt="İki tekne — havadan" loading="lazy" decoding="async">
+      <div class="gch">
+        <header class="gch-head reveal-up"><h2 data-i18n="g.45ftpowerboat.c0t">Denizde iki hâl</h2><p data-i18n="g.45ftpowerboat.c0x">Aynı tekne, hafta sonu kullanımının iki ucunda: çatısı açılmış bir gezinti teknesi ve hardtop altında korunaklı bir kokpit.</p></header>
+        <div class="grow reveal-up">
+          <figure class="gfig" style="--ar:1.7778"><div class="gframe gallery-item"><img src="assets/pb-cover.webp" alt="İki konfigürasyon yan yana" width="1920" height="1080" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.45ftpowerboat.i0t">İki konfigürasyon yan yana</b><span data-i18n="g.45ftpowerboat.i0d">Solda çatı panelleri açılmış, sağda hardtop kapalı iki tekne; aynı gövdenin farklı kullanım senaryolarına nasıl uyduğunu tek karede gösteriyor.</span></figcaption></figure>
         </div>
       </div>
-
-      <!-- Aerial close-up + exploded view -->
-      <div class="gallery-row gallery-half reveal-up">
-        <div class="gallery-item">
-          <img src="assets/pb-aerial.webp" alt="Havadan yakın çekim" loading="lazy" decoding="async">
-        </div>
-        <div class="gallery-item gallery-bg-dark">
-          <img src="assets/pb-exploded.webp" alt="Patlak görünüm" loading="lazy" decoding="async">
-          <div class="gallery-caption" data-i18n="pb.capExploded">Patlak Görünüm — Bileşen Analizi</div>
+      <div class="gch">
+        <header class="gch-head reveal-up"><h2 data-i18n="g.45ftpowerboat.c1t">Form ve bileşenler</h2><p data-i18n="g.45ftpowerboat.c1x">Keskin kırımlı gövde dili baştan kıça tek bir hat olarak okunuyor; patlak görünüm bu kabuğun altındaki katmanları ve motor yerleşimini açıyor.</p></header>
+        <div class="grow reveal-up">
+          <figure class="gfig" style="--ar:0.8202"><div class="gframe gallery-item is-dark"><img src="assets/pb-aerial.webp" alt="Baştan yakın bakış" width="1136" height="1385" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.45ftpowerboat.i1t">Baştan yakın bakış</b><span data-i18n="g.45ftpowerboat.i1d">Baş güneşlenme minderi, rüzgâr camı ve kokpit; gövdedeki kırık çizgiler ve LED&#x27;li cam açıklıkları formun karakterini belirliyor.</span></figcaption></figure>
+          <figure class="gfig" style="--ar:0.8755"><div class="gframe gallery-item is-dark"><img src="assets/pb-exploded.webp" alt="Patlak görünüm" width="1259" height="1438" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.45ftpowerboat.i2t">Patlak görünüm</b><span data-i18n="g.45ftpowerboat.i2d">Çatı panelleri, hardtop, ikiz dıştan takma motorlar, güverte, iç mekân modülü ve iç yapısıyla gövde ayrı katmanlar halinde.</span></figcaption></figure>
         </div>
       </div>
-
-      <!-- Two side profiles (white bg) -->
-      <div class="gallery-row gallery-half reveal-up">
-        <div class="gallery-item gallery-bg-light">
-          <img src="assets/pb-side1.webp" alt="Yan profil — cam kapalı" loading="lazy" decoding="async">
-          <div class="gallery-caption" data-i18n="pb.capSide1">Yan Profil — Cam Kapalı</div>
-        </div>
-        <div class="gallery-item gallery-bg-light">
-          <img src="assets/pb-side2.webp" alt="Yan profil — spor" loading="lazy" decoding="async">
-          <div class="gallery-caption" data-i18n="pb.capSide2">Yan Profil — Spor Konfigürasyon</div>
+      <div class="gch">
+        <header class="gch-head reveal-up"><h2 data-i18n="g.45ftpowerboat.c2t">Kapalı ve açık profil</h2><p data-i18n="g.45ftpowerboat.c2x">Hareketli çatı ve yukarı kalkan yan camlar sayesinde tekne hava koşuluna göre kapalı ya da açık bir siluete geçebiliyor.</p></header>
+        <div class="grow reveal-up">
+          <figure class="gfig" style="--ar:2.8836"><div class="gframe gallery-item"><img src="assets/pb-side1.webp" alt="Yan profil, camlar kapalı" width="917" height="318" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.45ftpowerboat.i3t">Yan profil, camlar kapalı</b><span data-i18n="g.45ftpowerboat.i3d">Hardtop ve yan camlar kapalıyken kokpit tamamen korunaklı; çatı hattı baş korkuluğa kadar akıyor.</span></figcaption></figure>
+          <figure class="gfig" style="--ar:2.0421"><div class="gframe gallery-item"><img src="assets/pb-side2-t.webp" alt="Yan profil, spor konfigürasyon" width="921" height="451" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.45ftpowerboat.i4t">Yan profil, spor konfigürasyon</b><span data-i18n="g.45ftpowerboat.i4d">Yan camlar indirilip tek ayaklı çatıyla bırakıldığında tekne daha alçak ve açık bir siluete kavuşuyor.</span></figcaption></figure>
         </div>
       </div>
-
-      <!-- Two deck plans (white bg) -->
-      <div class="gallery-row gallery-half reveal-up">
-        <div class="gallery-item gallery-bg-light">
-          <img src="assets/pb-deck-open.webp" alt="Güverte planı — açık" loading="lazy" decoding="async">
-          <div class="gallery-caption gallery-caption-dark" data-i18n="pb.capDeckOpen">Ana Güverte — Açık Konfigürasyon</div>
+      <div class="gch">
+        <header class="gch-head reveal-up"><h2 data-i18n="g.45ftpowerboat.c3t">Güverte yerleşimi</h2><p data-i18n="g.45ftpowerboat.c3x">Üstten görünümler, baş güneşlenme alanından kıç platforma kadar 14 metrelik güvertenin nasıl bölündüğünü gösteriyor.</p></header>
+        <div class="grow reveal-up solo-cap" style="--maxw:998px">
+          <figure class="gfig" style="--ar:2.8366"><div class="gframe gallery-item"><img src="assets/pb-deck-open-t.webp" alt="Üstten, hardtop kapalı" width="868" height="306" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.45ftpowerboat.i5t">Üstten, hardtop kapalı</b><span data-i18n="g.45ftpowerboat.i5d">Hardtop kokpiti örterken baş güneşlenme alanı, yan geçişler ve kıç platform açıkta kalıyor; tik kaplama güverteyi çevreliyor.</span></figcaption></figure>
         </div>
-        <div class="gallery-item gallery-bg-light">
-          <img src="assets/pb-deck-cabin.webp" alt="Güverte planı — kapalı kabin" loading="lazy" decoding="async">
-          <div class="gallery-caption gallery-caption-dark" data-i18n="pb.capDeckCabin">Alt Güverte — Kabin</div>
+        <div class="grow reveal-up solo-cap" style="--maxw:998px">
+          <figure class="gfig" style="--ar:3.0035"><div class="gframe gallery-item"><img src="assets/pb-deck-cabin.webp" alt="Üstten, kokpit yerleşimi" width="868" height="289" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.45ftpowerboat.i6t">Üstten, kokpit yerleşimi</b><span data-i18n="g.45ftpowerboat.i6d">Çatı kaldırıldığında dümen istasyonu, oturma grubu ve masa ile kıçtaki güneşlenme alanının kokpitle ilişkisi okunuyor.</span></figcaption></figure>
         </div>
       </div>
-
     </div>
   </section>
 

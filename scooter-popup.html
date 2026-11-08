@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="style.css?v=lg5"/>
-  <link rel="stylesheet" href="project.css?v=lg5"/>
+  <link rel="stylesheet" href="project.css?v=g1"/>
   <!-- Google model-viewer — interactive 3D component (~70KB, lazy) -->
   <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js" defer></script>
   <style>
@@ -121,6 +121,7 @@
   <script>document.documentElement.classList.add('js');</script>
   <script defer src="i18n.js?v=lg1"></script>
   <script defer src="i18n-v2.js?v=lg5"></script>
+  <script defer src="i18n-gallery.js?v=g1"></script>
   <script defer src="vendor/lenis.min.js"></script>
   <script defer src="glass.js?v=lg5"></script>
   <script defer src="project.js?v=lg5"></script>
@@ -211,37 +212,23 @@
   </section>
 
   <!-- ── Gallery grid ── -->
-  <section class="proj-gallery">
+  <section class="proj-gallery g2">
     <div class="proj-container">
-
-      <!-- Full-width site / context render — uses cover crop (landscape-ish) -->
-      <div class="gallery-row gallery-full reveal-up">
-        <div class="gallery-item gallery-cover">
-          <img src="assets/scooter-site.webp" alt="Scooter Port — Sahil Yerleşimi" loading="lazy" decoding="async">
-          <div class="gallery-caption" data-i18n="scoot.capSite">Sahil Yerleşimi — Akıllı Şehir Bağlamı</div>
+      <div class="gch">
+        <header class="gch-head reveal-up"><h2 data-i18n="g.scooter.c0t">Kentte yerleşim</h2><p data-i18n="g.scooter.c0x">İstasyon park ve sahil gibi farklı kentsel mekânlara uyacak şekilde tasarlandı. Aynı modüler kolon tek başına da sıralı yerleşimde de kullanılabiliyor.</p></header>
+        <div class="grow reveal-up">
+          <figure class="gfig" style="--ar:1.0000"><div class="gframe gallery-item"><img src="assets/scooter-cover.webp" alt="Parkta tek istasyon" width="1920" height="1920" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.scooter.i0t">Parkta tek istasyon</b><span data-i18n="g.scooter.i0d">Her iki yanında birer scooter bulunan istasyon; reklam paneli ve LED kenar hatları yaya yoluna dönük.</span></figcaption></figure>
+          <figure class="gfig" style="--ar:1.0515"><div class="gframe gallery-item"><img src="assets/scooter-site.webp" alt="Sahil yerleşimi" width="1246" height="1185" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.scooter.i1t">Sahil yerleşimi</b><span data-i18n="g.scooter.i1d">Dört istasyon sahil yolu boyunca bisiklet yolunun yanında sıralanıyor; her birinde bir scooter park halinde.</span></figcaption></figure>
         </div>
       </div>
-
-      <!-- General render + Front view side by side, contained -->
-      <div class="gallery-row gallery-half reveal-up">
-        <div class="gallery-item gallery-bg-dark">
-          <img src="assets/scooter-render.webp" alt="Scooter Port — Render" loading="lazy" decoding="async">
-          <div class="gallery-caption" data-i18n="scoot.capRender">Şarj İstasyonu — Genel Render</div>
-        </div>
-        <div class="gallery-item gallery-bg-dark">
-          <img src="assets/scooter-front.webp" alt="Scooter Port — Önden Görünüm" loading="lazy" decoding="async">
-          <div class="gallery-caption" data-i18n="scoot.capFront">Önden Görünüm — Çift Yön Şarj</div>
+      <div class="gch">
+        <header class="gch-head reveal-up"><h2 data-i18n="g.scooter.c1t">Gövde ve sistem</h2><p data-i18n="g.scooter.c1x">Tek kolon üstte reklam ve bilgi panelini, altta iki yöne açılan şarj yuvalarını taşıyor. Kesit görünüş, güneş enerjisi bataryasının gövde içindeki yerini gösteriyor.</p></header>
+        <div class="grow reveal-up">
+          <figure class="gfig" style="--ar:0.9160"><div class="gframe gallery-item"><img src="assets/scooter-render.webp" alt="Üç çeyrek görünüş" width="1200" height="1310" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.scooter.i2t">Üç çeyrek görünüş</b><span data-i18n="g.scooter.i2d">Açılır cam kapaklı reklam paneli ve kolonu saran cyan ve yeşil LED hatlar; scooter yan yuvaya dik olarak yerleşiyor.</span></figcaption></figure>
+          <figure class="gfig" style="--ar:1.1421"><div class="gframe gallery-item"><img src="assets/scooter-front.webp" alt="Önden görünüş" width="1045" height="915" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.scooter.i3t">Önden görünüş</b><span data-i18n="g.scooter.i3d">Kolon altta ikiye ayrılarak iki scooter için simetrik yuva oluşturuyor; çift yönlü şarj bu bölünmeden doğuyor.</span></figcaption></figure>
+          <figure class="gfig" style="--ar:1.1844"><div class="gframe gallery-item"><img src="assets/scooter-tech.webp" alt="Kesit görünüş" width="1291" height="1090" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.scooter.i4t">Kesit görünüş</b><span data-i18n="g.scooter.i4d">Dış kabuk açıldığında reklam panosu, ünite şartel sistemi ve güneş enerjisi depolama bataryası görülüyor.</span></figcaption></figure>
         </div>
       </div>
-
-      <!-- Tech / annotated view full-width, contained -->
-      <div class="gallery-row gallery-full reveal-up">
-        <div class="gallery-item gallery-bg-dark">
-          <img src="assets/scooter-tech.webp" alt="Scooter Port — Teknik Görünüm" loading="lazy" decoding="async">
-          <div class="gallery-caption" data-i18n="scoot.capTech">Teknik Görünüm — Sistem Bileşenleri</div>
-        </div>
-      </div>
-
     </div>
   </section>
 
