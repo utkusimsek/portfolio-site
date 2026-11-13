@@ -1,4 +1,4 @@
-/* i18n-projects — copy for the 2026-11 project pages (museum, marble, perfora).
+/* i18n-projects — copy for the 2026-11 project pages (museum, marble, perfora, flatride, robot).
    Extends the global I18N dictionary; load after i18n.js. */
 (function () {
   if (typeof I18N === 'undefined') return;
@@ -6,12 +6,16 @@
   Object.assign(I18N.tr.pageTitle, {
     museum: "Müze Vitrin Sistemi — Halil Utku Şimşek",
     marble: "Mermer Koleksiyonu — Halil Utku Şimşek",
-    perfora: "Perfora — Halil Utku Şimşek"
+    perfora: "Perfora — Halil Utku Şimşek",
+    flatride: "Dönerli Aile Ünitesi — Halil Utku Şimşek",
+    robot: "Havalimanı Karşılama Robotu — Halil Utku Şimşek"
   });
   Object.assign(I18N.en.pageTitle, {
     museum: "Museum Showcase System — Halil Utku Şimşek",
     marble: "Marble Collection — Halil Utku Şimşek",
-    perfora: "Perfora — Halil Utku Şimşek"
+    perfora: "Perfora — Halil Utku Şimşek",
+    flatride: "Rotating Family Ride — Halil Utku Şimşek",
+    robot: "Airport Greeting Robot — Halil Utku Şimşek"
   });
 
   I18N.tr.museum = {
@@ -165,6 +169,136 @@
     f2Title: "Surface wrapping and relief", f2Desc: "The lattice sits on the surface at its physical size; the pattern is debossed, embossed or cut through, and tips can taper like cones.",
     f3Title: "Pattern library", f3Desc: "Holes, Voronoi shells, triangle lattices, facets and slices share one settings system, and saved presets carry over to other projects.",
     f4Title: "Perfora Studio", f4Desc: "A web-based panel inside Rhino: pattern cards on the left, a draggable canvas in the middle, parameters on the right and one-click apply."
+  };
+
+  /* ── Dönerli Aile Ünitesi (flat ride) ── */
+  I18N.tr.flatride = {
+    card: "Dönerli Aile Ünitesi", cardMeta: "Lunapark aracı",
+    breadcrumb: "Dönerli Aile Ünitesi",
+    badge: "Lunapark Aracı",
+    year: "Flat ride · 4 × 2 kişi",
+    title: "Dönerli Aile Ünitesi<br/><em>Dört gondollu lunapark aracı</em>",
+    overview: "<strong>Önce gövde, sonra şasi</strong><br/><br/>Lunapark araçlarında gövde tasarımı çoğu zaman şasi mühendisliğinin ardından gelir. Bu projede sıra tersine çevrildi: dört gondolun oranı, oturma ergonomisi ve ışık imzası önce kurgulandı; X şasi bu forma göre çözüldü.<br/><br/>Ünite tek bir tahrikle iki eksende hareket eder. Merkezî göbek X şasiyi döndürürken her gondol kendi kaidesinde eğimlenir; katmanlı hareket böylece ek bir motor gerektirmeden elde edilir.",
+    stat1: "Gondol", stat2: "Kişi kapasite", stat3: "Cıvatalı çelik şasi", stat4: "Işık imzası",
+    f1Title: "Tek tahrik, iki eksen", f1Desc: "Merkezî göbek X şasiyi döndürür, gondollar kendi kaidelerinde eğimlenir. Dönüş ve eğim tek bir motordan gelir.",
+    f2Title: "Tek parça fiberglas kabuk", f2Desc: "Sırtlık, yan koruma ve ön maske sürekli bir yüzey olarak çözüldü; kabuk otomotiv boyasıyla kaplanır.",
+    f3Title: "Kucak bariyeri ve yüksek sırtlık", f3Desc: "Kromaj borudan kucak bariyeri oturma pozisyonunda kilitlenir ve iki tarafta tutamak barındırır. Yüksek sırtlık iki kişilik oturma alanını yanal ivmeye karşı destekler.",
+    f4Title: "LED imza", f4Desc: "Işık hattı ön maskede ve yan omuz çizgisinde yer alır; gece görünürlüğü ve marka kimliği aynı elemanla sağlanır."
+  };
+  I18N.en.flatride = {
+    card: "Rotating Family Ride", cardMeta: "Amusement ride",
+    breadcrumb: "Rotating Family Ride",
+    badge: "Amusement Ride",
+    year: "Flat ride · 4 × 2 riders",
+    title: "Rotating Family Ride<br/><em>A four-gondola amusement ride</em>",
+    overview: "<strong>Body first, chassis second</strong><br/><br/>In amusement rides the body design usually follows the chassis engineering. This project reversed the order: the proportions of the four gondolas, the seating ergonomics and the light signature were set first, and the X chassis was resolved around that form.<br/><br/>The unit moves on two axes from a single drive. The central hub rotates the X chassis while each gondola tilts on its own base, so the layered motion needs no additional motor.",
+    stat1: "Gondolas", stat2: "Rider capacity", stat3: "Bolted steel chassis", stat4: "Light signature",
+    f1Title: "One drive, two axes", f1Desc: "The central hub rotates the X chassis and the gondolas tilt on their own bases. Rotation and tilt come from a single motor.",
+    f2Title: "One-piece fibreglass shell", f2Desc: "Backrest, side protection and front mask are resolved as one continuous surface, finished in automotive paint.",
+    f3Title: "Lap bar and high backrest", f3Desc: "The chromed tubular lap bar locks in the seated position and carries a grab handle on each side. The high backrest supports the two-seat bench against lateral acceleration.",
+    f4Title: "LED signature", f4Desc: "The light line runs across the front mask and the side shoulder line, so night visibility and brand identity come from the same element."
+  };
+
+  /* ── Havalimanı Karşılama Robotu ── */
+  I18N.tr.robot = {
+    card: "Havalimanı Karşılama Robotu", cardMeta: "Servis robotu",
+    breadcrumb: "Karşılama Robotu",
+    badge: "Servis Robotu",
+    year: "2026 · Havalimanı Terminali",
+    title: "Karşılama Robotu<br/><em>Havalimanı yolcu karşılama ve yönlendirme ünitesi</em>",
+    overview: "<strong>Tabela yerine karşılayan bir ünite</strong><br/><br/>Büyük terminallerde yolcunun ilk teması bir tabela ya da kalabalık bir bankodur. Bu proje, gelen yolcuyu adım hizasında karşılayan, konuşan ve yönlendiren mobil bir karşılama ünitesi öneriyor.<br/><br/>Form dili bilinçli olarak yumuşak tutuldu: geniş tabanlı damla gövde, yuvarlatılmış omuz hattı ve küre başlık insansı ama tehditkâr olmayan bir siluet kuruyor. Göğüs ekranı yolcunun göz hizasının hemen altında, okunması kolay bir açıda konumlandı.",
+    stat1: "Boy", stat2: "Dokunmatik ekran", stat3: "Li-ion çalışma süresi", stat4: "Omni-yönlü tahrik",
+    statNum3: "~12 saat",
+    f1Title: "Damla taban", f1Desc: "Geniş taban ağırlık merkezini yerde tutar ve üniteyi devrilmeye karşı güvenli kılar. Tahrik, omni-yönlü üç tekerlekle sağlanır.",
+    f2Title: "Ayrık kol modülleri", f2Desc: "Kollar gövdeden ayrık modüller olarak çözüldü; işaret etme jesti ve bagaj yönlendirmesi için hareket serbestliği artarken sıkışma riski azaldı.",
+    f3Title: "Küre başlık ve ışık hattı", f3Desc: "Başlık, bakış yönünü okunur kılan tek hareketli parçadır. Kol ve başlıktaki mavi ışık hattı hazır, meşgul ve şarj durumlarını gösterir.",
+    f4Title: "Algılama ve etkileşim", f4Desc: "LiDAR, derinlik kamerası ve ultrasonik sensörler yaklaşan yolcuyu algılar. 15,6 inç öne eğimli ekran ve altı mikrofonlu dizi çok dilli karşılamayı taşır."
+  };
+  I18N.en.robot = {
+    card: "Airport Greeting Robot", cardMeta: "Service robot",
+    breadcrumb: "Greeting Robot",
+    badge: "Service Robot",
+    year: "2026 · Airport Terminal",
+    title: "Greeting Robot<br/><em>A passenger greeting and wayfinding unit for airports</em>",
+    overview: "<strong>A unit that greets, instead of a sign</strong><br/><br/>In large terminals a passenger's first contact is a sign or a crowded desk. This project proposes a mobile greeting unit that meets arriving passengers at walking pace, speaks to them and shows them the way.<br/><br/>The form language was kept deliberately soft: a wide teardrop body, a rounded shoulder line and a spherical head build a silhouette that is humanlike but not threatening. The chest display sits just below the passenger's eye level at an easy reading angle.",
+    stat1: "Height", stat2: "Touch display", stat3: "Li-ion runtime", stat4: "Omnidirectional drive",
+    statNum3: "~12 h",
+    f1Title: "Teardrop base", f1Desc: "The wide base keeps the centre of gravity low and makes the unit safe against tipping. Drive comes from three omnidirectional wheels.",
+    f2Title: "Separate arm modules", f2Desc: "The arms are resolved as modules set apart from the body, which gives more freedom for pointing gestures and luggage guidance while reducing pinch risk.",
+    f3Title: "Spherical head and light line", f3Desc: "The head is the single moving part that makes the gaze direction readable. The blue light line on the arms and head shows ready, busy and charging states.",
+    f4Title: "Sensing and interaction", f4Desc: "LiDAR, a depth camera and ultrasonic sensors detect an approaching passenger. A 15.6-inch forward-tilted display and a six-microphone array carry the multilingual greeting."
+  };
+
+  /* Gallery chapters and captions for the two pages above (same shape as i18n-gallery.js) */
+  I18N.tr.g = I18N.tr.g || {};
+  I18N.en.g = I18N.en.g || {};
+  I18N.tr.g.flatride = {
+    c0t: "Hareket ve düzen",
+    c0x: "Dört gondol, merkezî bir göbeğe bağlanan X şasinin uçlarına yerleşir. Göbek şasiyi döndürürken gondollar kendi kaidelerinde eğimlenir.",
+    i0t: "Dört gondollu düzen",
+    i0d: "X şasi ve merkezî göbek; her kolun ucunda iki kişilik bir gondol kendi kaidesi üzerinde durur.",
+    c1t: "Gondol ve kabin",
+    c1x: "Gondol tek parça bir fiberglas kabuktur. Sırtlık, yan koruma ve ön maske aynı yüzeyin devamı olarak çözüldü; emniyet ve ışık bu kabuğa eklenir.",
+    i1t: "İki kişilik kabin",
+    i1d: "Yüksek sırtlıklı iki koltuk ve kromaj kucak bariyeri; ön maskedeki LED imza gondolun yüzünü kurar.",
+    i2t: "Yan görünüş",
+    i2d: "Kabuk kesiti ve LED imza hattı; sarı iç şerit kesiti vurgular ve kabinin derinliğini dışarıdan okunur kılar.",
+    c2t: "Lunaparkta",
+    c2x: "Ünite bir family flat ride olarak kurgulandı: bariyer çemberinin içinde döner, yolcular bariyer kapısından alınır.",
+    i3t: "Lunapark yerleşimi",
+    i3d: "Bariyer çemberi ve yükleme alanı; dört gondol aynı anda sekiz yolcu taşır.",
+    i4t: "Dönüş sırasında eğim",
+    i4d: "Gündüz kullanımı; şasi dönerken gondollar kendi kaidelerinde eğimlenir.",
+    i5t: "Yükleme",
+    i5d: "Araç durduğunda yolcular bariyer kapısından gondollara erişir."
+  };
+  I18N.en.g.flatride = {
+    c0t: "Motion and layout",
+    c0x: "Four gondolas sit at the ends of an X chassis joined to a central hub. As the hub rotates the chassis, each gondola tilts on its own base.",
+    i0t: "Four-gondola layout",
+    i0d: "The X chassis and central hub; a two-seat gondola stands on its own base at the end of each arm.",
+    c1t: "Gondola and cabin",
+    c1x: "The gondola is a one-piece fibreglass shell. Backrest, side protection and front mask continue as one surface; safety and lighting are added to that shell.",
+    i1t: "Two-seat cabin",
+    i1d: "Two high-backed seats and a chromed lap bar; the LED signature on the front mask gives the gondola its face.",
+    i2t: "Side view",
+    i2d: "The shell section and LED signature line; the yellow inner stripe marks the section and makes the cabin depth readable from outside.",
+    c2t: "In the park",
+    c2x: "The unit is planned as a family flat ride: it turns inside a ring of barriers and riders board through the barrier gate.",
+    i3t: "Park layout",
+    i3d: "The barrier ring and loading area; four gondolas carry eight riders at a time.",
+    i4t: "Tilt during rotation",
+    i4d: "Daytime use; the gondolas tilt on their own bases as the chassis turns.",
+    i5t: "Loading",
+    i5d: "When the ride stops, riders reach the gondolas through the barrier gate."
+  };
+  I18N.tr.g.robot = {
+    c0t: "Geliş salonunda",
+    c0x: "Robot, yaklaşan yolcuyu iki metre mesafeden algılar ve gövdesini ona döndürür. Ekranda çok dilli karşılama mesajı, sesle de uçuş ve kapı bilgisi verir; gerektiğinde yolcuya pasaport kontrolüne kadar eşlik eder.",
+    i0t: "Yolcu akışında karşılama konumu",
+    i0d: "Ünite geliş salonunun ortasında, yürüyen yolcuların arasında durur; göğüs ekranındaki karşılama mesajı uzaktan okunur.",
+    c1t: "Form ve oran",
+    c1x: "Gövde üç kütleye ayrıldı: dengeyi taşıyan damla taban, ekranı barındıran gövde ve iletişimi kuran küre başlık. ABS/PC kabuk mat gümüş, trimler siyahtır.",
+    i1t: "Ön görünüş",
+    i1d: "Ekran ve gövde hizası; kollar gövdenin iki yanında ayrık modüller olarak durur.",
+    i2t: "Perspektif",
+    i2d: "Omuz ve baş geçişi; yuvarlatılmış omuz hattı küre başlığa yumuşak bir boyunla bağlanır.",
+    i3t: "Yan görünüş",
+    i3d: "Öne eğimli duruş; ekran okuma açısına yatarken taban ağırlığı geride tutar."
+  };
+  I18N.en.g.robot = {
+    c0t: "In the arrivals hall",
+    c0x: "The robot detects an approaching passenger from two metres away and turns its body towards them. It shows a multilingual greeting on the display and gives flight and gate information by voice; when needed it accompanies the passenger as far as passport control.",
+    i0t: "Greeting position in the passenger flow",
+    i0d: "The unit stands in the middle of the arrivals hall among walking passengers; the greeting on its chest display reads from a distance.",
+    c1t: "Form and proportion",
+    c1x: "The body is split into three masses: the teardrop base that carries the balance, the torso that holds the display and the spherical head that makes contact. The ABS/PC shell is matt silver with black trim.",
+    i1t: "Front view",
+    i1d: "Display and body alignment; the arms sit as separate modules on either side of the torso.",
+    i2t: "Perspective",
+    i2d: "The shoulder-to-head transition; the rounded shoulder line meets the spherical head through a soft neck.",
+    i3t: "Side view",
+    i3d: "The forward-leaning stance; the display tilts to a reading angle while the base keeps the weight back."
   };
 
   if (I18N.tr.v2 && I18N.tr.v2.work) I18N.tr.v2.work.interior = "İç mekân";

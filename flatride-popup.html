@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8"/>
+  <script>if(location.protocol==="http:"&&!/^(localhost|127\.|192\.168\.)/.test(location.hostname))location.replace("https:"+location.href.slice(5));</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dönerli Aile Ünitesi — Halil Utku Şimşek</title>
+  <link rel="icon" type="image/webp" href="assets/logo.webp"/>
+  <link rel="icon" type="image/png" sizes="any" href="assets/logo.png"/>
+  <link rel="apple-touch-icon" href="assets/logo.png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css?v=lg6"/>
+  <link rel="stylesheet" href="project.css?v=g2"/>
+  <style>
+    .proj-gallery .gallery-row { gap: 18px; margin-bottom: 18px; }
+  </style>
+  <script>document.documentElement.classList.add('js');try{var t=localStorage.getItem('hus-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.dataset.theme=t;document.documentElement.style.colorScheme=t}catch(e){}</script>
+  <script defer src="theme.js?v=1"></script>
+  <script defer src="i18n.js?v=lg1"></script>
+  <script defer src="i18n-v2.js?v=lg5"></script>
+  <script defer src="i18n-gallery.js?v=g1"></script>
+  <script defer src="i18n-projects.js?v=lg7"></script>
+  <script defer src="vendor/lenis.min.js"></script>
+  <script defer src="glass.js?v=lg5"></script>
+  <script defer src="project.js?v=lg5"></script>
+  <script defer src="motion.js?v=lg5"></script>
+  <script defer src="protect.js"></script>
+</head>
+<body data-i18n-pagetitle="pageTitle.flatride" class="light page-project">
+
+  <header class="nav-wrap" id="nav">
+    <nav class="nav lg" data-refract="nav" aria-label="Ana menü">
+      <a class="nav-logo" href="index.html" aria-label="Ana sayfa">
+        <img src="assets/logo.webp" alt="" width="22" height="25">
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html#work" data-i18n="v2.nav.work">İşler</a></li>
+        <li><a href="index.html#about" data-i18n="v2.nav.about">Hakkımda</a></li>
+        <li><a href="index.html#skills" data-i18n="v2.nav.skills">Araçlar</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="lang-toggle" id="langToggle" data-i18n-aria="nav.langAria" aria-label="Dil değiştir">
+          <span class="lang-current">EN</span>
+        </button>
+        <button class="theme-toggle" id="themeToggle" type="button" data-i18n-aria="nav.themeAria" aria-label="Tema değiştir" aria-pressed="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <mask id="ttMask"><rect x="-4" y="-4" width="32" height="32" fill="#fff"/><circle class="tt-bite" cx="17.5" cy="6.5" r="7" fill="#000"/></mask>
+            <g mask="url(#ttMask)"><circle class="tt-core" cx="12" cy="12" r="9"/></g>
+            <g class="tt-rays"><path d="M12 1.6v2.2M12 20.2v2.2M1.6 12h2.2M20.2 12h2.2M4.65 4.65l1.55 1.55M17.8 17.8l1.55 1.55M4.65 19.35l1.55-1.55M17.8 6.2l1.55-1.55"/></g>
+          </svg>
+        </button>
+        <a class="nav-cta" href="index.html#contact">
+          <span data-i18n="v2.nav.cta">Yazın</span>
+          <span class="arrow-dot" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M5 11 11 5M6 5h5v5" /></svg></span>
+        </a>
+        <button class="burger" id="burger" aria-label="Menü" aria-expanded="false" aria-controls="mobileMenu">
+          <span></span><span></span>
+        </button>
+      </div>
+    </nav>
+    <div class="mobile-menu lg" id="mobileMenu" hidden>
+      <a href="index.html#work" data-i18n="v2.nav.work">İşler</a>
+      <a href="index.html#about" data-i18n="v2.nav.about">Hakkımda</a>
+      <a href="index.html#skills" data-i18n="v2.nav.skills">Araçlar</a>
+      <a href="index.html#contact" data-i18n="v2.nav.contact">İletişim</a>
+    </div>
+  </header>
+
+  <!-- ── Hero ── -->
+  <section class="proj-hero">
+    <div class="proj-hero-img">
+      <img src="assets/flatride-cover.webp" alt="Dönerli Aile Ünitesi" class="proj-cover-img" fetchpriority="high">
+      <div class="proj-hero-overlay"></div>
+    </div>
+    <div class="proj-hero-content reveal-up">
+      <div class="proj-breadcrumb">
+        <a href="index.html" data-i18n="proj_detail.breadcrumbHome">Ana Sayfa</a>
+        <span>›</span>
+        <a href="index.html#work" data-i18n="proj_detail.breadcrumbProjects">Projeler</a>
+        <span>›</span>
+        <span data-i18n="flatride.breadcrumb">Dönerli Aile Ünitesi</span>
+      </div>
+      <div class="proj-badge-row">
+        <span class="proj-badge" data-i18n="flatride.badge">Lunapark Aracı</span>
+        <span class="proj-badge-year" data-i18n="flatride.year">Flat ride · 4 × 2 kişi</span>
+      </div>
+      <h1 class="proj-title" data-i18n="flatride.title">Dönerli Aile Ünitesi<br/><em>Dört gondollu lunapark aracı</em></h1>
+      <div class="proj-tags">
+        <span>Rhino 3D</span><span>KeyShot</span><span>Fiberglas kabuk</span><span>Çelik X şasi</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Overview ── -->
+  <section class="proj-section">
+    <div class="proj-container">
+      <div class="proj-overview reveal-up">
+        <div class="proj-overview-label" data-i18n="proj_detail.overviewLabel">Proje Özeti</div>
+        <p class="proj-overview-text" data-i18n="flatride.overview"><strong>Önce gövde, sonra şasi</strong><br/><br/>Lunapark araçlarında gövde tasarımı çoğu zaman şasi mühendisliğinin ardından gelir. Bu projede sıra tersine çevrildi: dört gondolun oranı, oturma ergonomisi ve ışık imzası önce kurgulandı; X şasi bu forma göre çözüldü.<br/><br/>Ünite tek bir tahrikle iki eksende hareket eder. Merkezî göbek X şasiyi döndürürken her gondol kendi kaidesinde eğimlenir; katmanlı hareket böylece ek bir motor gerektirmeden elde edilir.</p>
+      </div>
+
+      <div class="proj-stats reveal-up">
+        <div class="proj-stat"><span class="proj-stat-num">4</span><span class="proj-stat-label" data-i18n="flatride.stat1">Gondol</span></div>
+        <div class="proj-stat"><span class="proj-stat-num">8</span><span class="proj-stat-label" data-i18n="flatride.stat2">Kişi kapasite</span></div>
+        <div class="proj-stat"><span class="proj-stat-num">X</span><span class="proj-stat-label" data-i18n="flatride.stat3">Cıvatalı çelik şasi</span></div>
+        <div class="proj-stat"><span class="proj-stat-num">LED</span><span class="proj-stat-label" data-i18n="flatride.stat4">Işık imzası</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Gallery ── -->
+  <section class="proj-gallery g2">
+    <div class="proj-container">
+      <div class="gch">
+        <header class="gch-head reveal-up"><h2 data-i18n="g.flatride.c0t">Hareket ve düzen</h2><p data-i18n="g.flatride.c0x">Dört gondol, merkezî bir göbeğe bağlanan X şasinin uçlarına yerleşir. Göbek şasiyi döndürürken gondollar kendi kaidelerinde eğimlenir.</p></header>
+        <div class="grow reveal-up">
+          <figure class="gfig" style="--ar:1.7908"><div class="gframe gallery-item"><img src="assets/flatride-studio.webp" alt="Dört gondollu düzen" width="1404" height="784" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.flatride.i0t">Dört gondollu düzen</b><span data-i18n="g.flatride.i0d">X şasi ve merkezî göbek; her kolun ucunda iki kişilik bir gondol kendi kaidesi üzerinde durur.</span></figcaption></figure>
+        </div>
+      </div>
+      <div class="gch">
+        <header class="gch-head reveal-up"><h2 data-i18n="g.flatride.c1t">Gondol ve kabin</h2><p data-i18n="g.flatride.c1x">Gondol tek parça bir fiberglas kabuktur. Sırtlık, yan koruma ve ön maske aynı yüzeyin devamı olarak çözüldü; emniyet ve ışık bu kabuğa eklenir.</p></header>
+        <div class="grow reveal-up">
+          <figure class="gfig" style="--ar:1.0000"><div class="gframe gallery-item"><img src="assets/flatride-gondola.webp" alt="İki kişilik kabin" width="1600" height="1600" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.flatride.i1t">İki kişilik kabin</b><span data-i18n="g.flatride.i1d">Yüksek sırtlıklı iki koltuk ve kromaj kucak bariyeri; ön maskedeki LED imza gondolun yüzünü kurar.</span></figcaption></figure>
+          <figure class="gfig" style="--ar:1.1080"><div class="gframe gallery-item is-dark"><img src="assets/flatride-side.webp" alt="Yan görünüş" width="1600" height="1444" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.flatride.i2t">Yan görünüş</b><span data-i18n="g.flatride.i2d">Kabuk kesiti ve LED imza hattı; sarı iç şerit kesiti vurgular ve kabinin derinliğini dışarıdan okunur kılar.</span></figcaption></figure>
+        </div>
+      </div>
+      <div class="gch">
+        <header class="gch-head reveal-up"><h2 data-i18n="g.flatride.c2t">Lunaparkta</h2><p data-i18n="g.flatride.c2x">Ünite bir family flat ride olarak kurgulandı: bariyer çemberinin içinde döner, yolcular bariyer kapısından alınır.</p></header>
+        <div class="grow reveal-up">
+          <figure class="gfig" style="--ar:1.7908"><div class="gframe gallery-item"><img src="assets/flatride-park.webp" alt="Lunapark yerleşimi" width="1404" height="784" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.flatride.i3t">Lunapark yerleşimi</b><span data-i18n="g.flatride.i3d">Bariyer çemberi ve yükleme alanı; dört gondol aynı anda sekiz yolcu taşır.</span></figcaption></figure>
+        </div>
+        <div class="grow reveal-up">
+          <figure class="gfig" style="--ar:1.7768"><div class="gframe gallery-item"><img src="assets/flatride-day.webp" alt="Dönüş sırasında eğim" width="1672" height="941" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.flatride.i4t">Dönüş sırasında eğim</b><span data-i18n="g.flatride.i4d">Gündüz kullanımı; şasi dönerken gondollar kendi kaidelerinde eğimlenir.</span></figcaption></figure>
+          <figure class="gfig" style="--ar:1.7768"><div class="gframe gallery-item"><img src="assets/flatride-load.webp" alt="Yükleme" width="1672" height="941" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.flatride.i5t">Yükleme</b><span data-i18n="g.flatride.i5d">Araç durduğunda yolcular bariyer kapısından gondollara erişir.</span></figcaption></figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Key features ── -->
+  <section class="proj-section proj-features-section">
+    <div class="proj-container">
+      <h2 class="proj-section-title reveal-up" data-i18n="proj_detail.featuresTitle">Tasarım Özellikleri</h2>
+      <div class="proj-features reveal-up">
+        <div class="proj-feature">
+          <h4 data-i18n="flatride.f1Title">Tek tahrik, iki eksen</h4>
+          <p data-i18n="flatride.f1Desc">Merkezî göbek X şasiyi döndürür, gondollar kendi kaidelerinde eğimlenir. Dönüş ve eğim tek bir motordan gelir.</p>
+        </div>
+        <div class="proj-feature">
+          <h4 data-i18n="flatride.f2Title">Tek parça fiberglas kabuk</h4>
+          <p data-i18n="flatride.f2Desc">Sırtlık, yan koruma ve ön maske sürekli bir yüzey olarak çözüldü; kabuk otomotiv boyasıyla kaplanır.</p>
+        </div>
+        <div class="proj-feature">
+          <h4 data-i18n="flatride.f3Title">Kucak bariyeri ve yüksek sırtlık</h4>
+          <p data-i18n="flatride.f3Desc">Kromaj borudan kucak bariyeri oturma pozisyonunda kilitlenir ve iki tarafta tutamak barındırır. Yüksek sırtlık iki kişilik oturma alanını yanal ivmeye karşı destekler.</p>
+        </div>
+        <div class="proj-feature">
+          <h4 data-i18n="flatride.f4Title">LED imza</h4>
+          <p data-i18n="flatride.f4Desc">Işık hattı ön maskede ve yan omuz çizgisinde yer alır; gece görünürlüğü ve marka kimliği aynı elemanla sağlanır.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Back link ── -->
+  <section class="proj-back-section">
+    <div class="proj-container">
+      <a href="index.html#work" class="proj-back-btn reveal-up" data-i18n="proj_detail.back">← Tüm Projelere Dön</a>
+    </div>
+  </section>
+
+  <!-- ── Footer ── -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <img src="assets/logo.webp" alt="HUŞ Logo" class="site-logo-img footer-logo-img" loading="lazy" decoding="async">
+      <p data-i18n="proj_detail.footer">© 2026 Halil Utku Şimşek — Tüm hakları saklıdır.</p>
+      <a href="telif.html" class="footer-legal" data-i18n="footer.legal">Telif Hakkı</a>
+    </div>
+  </footer>
+
+  <script>
+    /* Cover img Ken Burns */
+    const coverImg = document.querySelector('.proj-cover-img');
+    if(coverImg){ coverImg.addEventListener('load',()=>coverImg.classList.add('loaded')); if(coverImg.complete) coverImg.classList.add('loaded'); }
+
+    /* theme toggle removed: the site is light-only */
+
+    /* Nav scroll */
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>40),{passive:true});
+
+    /* Scroll reveal */
+    const io = new IntersectionObserver(entries=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in-view'); io.unobserve(e.target); }});
+    },{ threshold:0.1, rootMargin:'0px 0px -50px 0px' });
+    document.querySelectorAll('.reveal-up').forEach(el=>io.observe(el));
+
+    /* Gallery lightbox */
+    document.querySelectorAll('.gallery-item img').forEach(img=>{
+      img.style.cursor='zoom-in';
+      img.addEventListener('click',()=>{
+        const overlay=document.createElement('div');
+        overlay.className='lightbox-overlay';
+        overlay.innerHTML=`<div class="lightbox-inner"><img src="${img.src}" alt="${img.alt}" loading="lazy" decoding="async"><button class="lightbox-close">✕</button></div>`;
+        document.body.appendChild(overlay);
+        requestAnimationFrame(()=>overlay.classList.add('active'));
+        const close=()=>{ overlay.classList.remove('active'); setTimeout(()=>overlay.remove(),300); };
+        overlay.querySelector('.lightbox-close').addEventListener('click',close);
+        overlay.addEventListener('click',e=>{ if(e.target===overlay) close(); });
+      });
+    });
+  </script>
+</body>
+</html>

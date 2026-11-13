@@ -436,6 +436,34 @@ html body .legal-back { border-radius: 999px; }
 /* a lone low-resolution strip: do not blow it past its pixels */
 .grow.solo-cap .gfig { flex: 0 1 auto; width: min(100%, var(--maxw)); margin-inline: auto; }
 
+/* ═════════════════════════════════════════════════════════════════════════
+   NIGHT — project pages in the dark theme (tokens live in style.css).
+   Image plates stay pale: many drawings and renders are cut out on
+   transparency and were drawn for a light ground.
+   ═════════════════════════════════════════════════════════════════════════ */
+html[data-theme="dark"] .proj-badge { color: #0B1C2A; }
+html[data-theme="dark"] .proj-back-btn,
+html[data-theme="dark"] .proj-back-btn:hover,
+html[data-theme="dark"] body.light .proj-back-btn,
+html[data-theme="dark"] body.light .proj-back-btn:hover { color: var(--night); }
+html[data-theme="dark"] .gallery-item { background: #E9EEF2; }
+html[data-theme="dark"] .gallery-item.gallery-bg-dark { background: #0d2233; }
+html[data-theme="dark"] .proj-gallery.g2 .gframe.gallery-item { background: #E9EEF2 !important; }
+html[data-theme="dark"] .proj-gallery.g2 .gframe.is-dark { background: #0d2233 !important; }
+html[data-theme="dark"] .gallery-caption,
+html[data-theme="dark"] body.light .gallery-caption {
+  background: rgba(12, 23, 38, .66);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, .12), 0 6px 18px -10px rgba(0, 0, 0, .6);
+}
+html[data-theme="dark"] body .proj-3d-stage,
+html[data-theme="dark"] body.light .proj-3d-stage { background: radial-gradient(120% 90% at 50% 0%, #22395A 0%, #15263D 62%, #0E1A2B 100%); }
+html[data-theme="dark"] body .proj-3d-loading { background: rgba(12, 23, 38, .55); }
+html[data-theme="dark"] body .proj-3d-loading-spinner { border-color: rgba(255, 255, 255, .12); border-top-color: var(--sea); }
+html[data-theme="dark"] .lightbox-overlay { background: rgba(7, 15, 27, .8); }
+html[data-theme="dark"] .lightbox-inner img { box-shadow: 0 30px 80px -30px rgba(0, 0, 0, .8); }
+html[data-theme="dark"] .lightbox-close { background: rgba(20, 35, 56, .78); box-shadow: inset 0 1px 1px rgba(255, 255, 255, .14), 0 6px 18px -8px rgba(0, 0, 0, .6); }
+html[data-theme="dark"] .footer .footer-logo-img { filter: brightness(0) invert(.85); }
+
 @media (max-width: 760px) {
   .gch-head { grid-template-columns: 1fr; }
   .grow { flex-direction: column; }

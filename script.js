@@ -268,6 +268,7 @@
     const load = () => {
       if (loaded) return;
       loaded = true;
+      host.setAttribute('data-theme', document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light');
       const s = document.createElement('script');
       s.src = 'https://www.google.com/recaptcha/api.js';
       s.async = true; s.defer = true;

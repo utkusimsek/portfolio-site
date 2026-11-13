@@ -17,7 +17,7 @@
     tools: "Her gün çalıştığım araçlar",
     work: {
       title: "Seçili işler",
-      intro: "Denizde, masada, sokakta ve müzede kullanılan on dört proje.",
+      intro: "Denizde, masada, sokakta ve müzede kullanılan on altı proje.",
       all: "Tümü", yacht: "Yat", product: "Ürün", urban: "Kentsel",
       filterAria: "Projeleri kategoriye göre süz",
       view: "Aç"
@@ -65,7 +65,7 @@
     tools: "Tools I use every day",
     work: {
       title: "Selected work",
-      intro: "Fourteen projects used at sea, on the desk, in the street and in the gallery.",
+      intro: "Sixteen projects used at sea, on the desk, in the street and in the gallery.",
       all: "All", yacht: "Yacht", product: "Product", urban: "Urban",
       filterAria: "Filter projects by category",
       view: "View"

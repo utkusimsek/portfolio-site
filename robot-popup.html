@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8"/>
+  <script>if(location.protocol==="http:"&&!/^(localhost|127\.|192\.168\.)/.test(location.hostname))location.replace("https:"+location.href.slice(5));</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Havalimanı Karşılama Robotu — Halil Utku Şimşek</title>
+  <link rel="icon" type="image/webp" href="assets/logo.webp"/>
+  <link rel="icon" type="image/png" sizes="any" href="assets/logo.png"/>
+  <link rel="apple-touch-icon" href="assets/logo.png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css?v=lg6"/>
+  <link rel="stylesheet" href="project.css?v=g2"/>
+  <style>
+    .proj-gallery .gallery-row { gap: 18px; margin-bottom: 18px; }
+  </style>
+  <script>document.documentElement.classList.add('js');try{var t=localStorage.getItem('hus-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.dataset.theme=t;document.documentElement.style.colorScheme=t}catch(e){}</script>
+  <script defer src="theme.js?v=1"></script>
+  <script defer src="i18n.js?v=lg1"></script>
+  <script defer src="i18n-v2.js?v=lg5"></script>
+  <script defer src="i18n-gallery.js?v=g1"></script>
+  <script defer src="i18n-projects.js?v=lg7"></script>
+  <script defer src="vendor/lenis.min.js"></script>
+  <script defer src="glass.js?v=lg5"></script>
+  <script defer src="project.js?v=lg5"></script>
+  <script defer src="motion.js?v=lg5"></script>
+  <script defer src="protect.js"></script>
+</head>
+<body data-i18n-pagetitle="pageTitle.robot" class="light page-project">
+
+  <header class="nav-wrap" id="nav">
+    <nav class="nav lg" data-refract="nav" aria-label="Ana menü">
+      <a class="nav-logo" href="index.html" aria-label="Ana sayfa">
+        <img src="assets/logo.webp" alt="" width="22" height="25">
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html#work" data-i18n="v2.nav.work">İşler</a></li>
+        <li><a href="index.html#about" data-i18n="v2.nav.about">Hakkımda</a></li>
+        <li><a href="index.html#skills" data-i18n="v2.nav.skills">Araçlar</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="lang-toggle" id="langToggle" data-i18n-aria="nav.langAria" aria-label="Dil değiştir">
+          <span class="lang-current">EN</span>
+        </button>
+        <button class="theme-toggle" id="themeToggle" type="button" data-i18n-aria="nav.themeAria" aria-label="Tema değiştir" aria-pressed="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <mask id="ttMask"><rect x="-4" y="-4" width="32" height="32" fill="#fff"/><circle class="tt-bite" cx="17.5" cy="6.5" r="7" fill="#000"/></mask>
+            <g mask="url(#ttMask)"><circle class="tt-core" cx="12" cy="12" r="9"/></g>
+            <g class="tt-rays"><path d="M12 1.6v2.2M12 20.2v2.2M1.6 12h2.2M20.2 12h2.2M4.65 4.65l1.55 1.55M17.8 17.8l1.55 1.55M4.65 19.35l1.55-1.55M17.8 6.2l1.55-1.55"/></g>
+          </svg>
+        </button>
+        <a class="nav-cta" href="index.html#contact">
+          <span data-i18n="v2.nav.cta">Yazın</span>
+          <span class="arrow-dot" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M5 11 11 5M6 5h5v5" /></svg></span>
+        </a>
+        <button class="burger" id="burger" aria-label="Menü" aria-expanded="false" aria-controls="mobileMenu">
+          <span></span><span></span>
+        </button>
+      </div>
+    </nav>
+    <div class="mobile-menu lg" id="mobileMenu" hidden>
+      <a href="index.html#work" data-i18n="v2.nav.work">İşler</a>
+      <a href="index.html#about" data-i18n="v2.nav.about">Hakkımda</a>
+      <a href="index.html#skills" data-i18n="v2.nav.skills">Araçlar</a>
+      <a href="index.html#contact" data-i18n="v2.nav.contact">İletişim</a>
+    </div>
+  </header>
+
+  <!-- ── Hero ── -->
+  <section class="proj-hero">
+    <div class="proj-hero-img">
+      <img src="assets/robot-cover.webp" alt="Havalimanı Karşılama Robotu" class="proj-cover-img" fetchpriority="high">
+      <div class="proj-hero-overlay"></div>
+    </div>
+    <div class="proj-hero-content reveal-up">
+      <div class="proj-breadcrumb">
+        <a href="index.html" data-i18n="proj_detail.breadcrumbHome">Ana Sayfa</a>
+        <span>›</span>
+        <a href="index.html#work" data-i18n="proj_detail.breadcrumbProjects">Projeler</a>
+        <span>›</span>
+        <span data-i18n="robot.breadcrumb">Karşılama Robotu</span>
+      </div>
+      <div class="proj-badge-row">
+        <span class="proj-badge" data-i18n="robot.badge">Servis Robotu</span>
+        <span class="proj-badge-year" data-i18n="robot.year">2026 · Havalimanı Terminali</span>
+      </div>
+      <h1 class="proj-title" data-i18n="robot.title">Karşılama Robotu<br/><em>Havalimanı yolcu karşılama ve yönlendirme ünitesi</em></h1>
+      <div class="proj-tags">
+        <span>Rhino 3D</span><span>KeyShot</span><span>İnsan-robot etkileşimi</span><span>CMF</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Overview ── -->
+  <section class="proj-section">
+    <div class="proj-container">
+      <div class="proj-overview reveal-up">
+        <div class="proj-overview-label" data-i18n="proj_detail.overviewLabel">Proje Özeti</div>
+        <p class="proj-overview-text" data-i18n="robot.overview"><strong>Tabela yerine karşılayan bir ünite</strong><br/><br/>Büyük terminallerde yolcunun ilk teması bir tabela ya da kalabalık bir bankodur. Bu proje, gelen yolcuyu adım hizasında karşılayan, konuşan ve yönlendiren mobil bir karşılama ünitesi öneriyor.<br/><br/>Form dili bilinçli olarak yumuşak tutuldu: geniş tabanlı damla gövde, yuvarlatılmış omuz hattı ve küre başlık insansı ama tehditkâr olmayan bir siluet kuruyor. Göğüs ekranı yolcunun göz hizasının hemen altında, okunması kolay bir açıda konumlandı.</p>
+      </div>
+
+      <div class="proj-stats reveal-up">
+        <div class="proj-stat"><span class="proj-stat-num">1.450 mm</span><span class="proj-stat-label" data-i18n="robot.stat1">Boy</span></div>
+        <div class="proj-stat"><span class="proj-stat-num">15,6″</span><span class="proj-stat-label" data-i18n="robot.stat2">Dokunmatik ekran</span></div>
+        <div class="proj-stat"><span class="proj-stat-num" data-i18n="robot.statNum3">~12 saat</span><span class="proj-stat-label" data-i18n="robot.stat3">Li-ion çalışma süresi</span></div>
+        <div class="proj-stat"><span class="proj-stat-num">1,2 m/s</span><span class="proj-stat-label" data-i18n="robot.stat4">Omni-yönlü tahrik</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Gallery ── -->
+  <section class="proj-gallery g2">
+    <div class="proj-container">
+      <div class="gch">
+        <header class="gch-head reveal-up"><h2 data-i18n="g.robot.c0t">Geliş salonunda</h2><p data-i18n="g.robot.c0x">Robot, yaklaşan yolcuyu iki metre mesafeden algılar ve gövdesini ona döndürür. Ekranda çok dilli karşılama mesajı, sesle de uçuş ve kapı bilgisi verir; gerektiğinde yolcuya pasaport kontrolüne kadar eşlik eder.</p></header>
+        <div class="grow reveal-up">
+          <figure class="gfig" style="--ar:1.7917"><div class="gframe gallery-item"><img src="assets/robot-cover.webp" alt="Yolcu akışında karşılama konumu" width="1600" height="893" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.robot.i0t">Yolcu akışında karşılama konumu</b><span data-i18n="g.robot.i0d">Ünite geliş salonunun ortasında, yürüyen yolcuların arasında durur; göğüs ekranındaki karşılama mesajı uzaktan okunur.</span></figcaption></figure>
+        </div>
+      </div>
+      <div class="gch">
+        <header class="gch-head reveal-up"><h2 data-i18n="g.robot.c1t">Form ve oran</h2><p data-i18n="g.robot.c1x">Gövde üç kütleye ayrıldı: dengeyi taşıyan damla taban, ekranı barındıran gövde ve iletişimi kuran küre başlık. ABS/PC kabuk mat gümüş, trimler siyahtır.</p></header>
+        <div class="grow reveal-up">
+          <figure class="gfig" style="--ar:0.6667"><div class="gframe gallery-item is-dark"><img src="assets/robot-front.webp" alt="Ön görünüş" width="1024" height="1536" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.robot.i1t">Ön görünüş</b><span data-i18n="g.robot.i1d">Ekran ve gövde hizası; kollar gövdenin iki yanında ayrık modüller olarak durur.</span></figcaption></figure>
+          <figure class="gfig" style="--ar:0.6667"><div class="gframe gallery-item is-dark"><img src="assets/robot-persp.webp" alt="Perspektif" width="1024" height="1536" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.robot.i2t">Perspektif</b><span data-i18n="g.robot.i2d">Omuz ve baş geçişi; yuvarlatılmış omuz hattı küre başlığa yumuşak bir boyunla bağlanır.</span></figcaption></figure>
+          <figure class="gfig" style="--ar:0.6667"><div class="gframe gallery-item is-dark"><img src="assets/robot-side.webp" alt="Yan görünüş" width="1024" height="1536" loading="lazy" decoding="async"></div><figcaption><b data-i18n="g.robot.i3t">Yan görünüş</b><span data-i18n="g.robot.i3d">Öne eğimli duruş; ekran okuma açısına yatarken taban ağırlığı geride tutar.</span></figcaption></figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Key features ── -->
+  <section class="proj-section proj-features-section">
+    <div class="proj-container">
+      <h2 class="proj-section-title reveal-up" data-i18n="proj_detail.featuresTitle">Tasarım Özellikleri</h2>
+      <div class="proj-features reveal-up">
+        <div class="proj-feature">
+          <h4 data-i18n="robot.f1Title">Damla taban</h4>
+          <p data-i18n="robot.f1Desc">Geniş taban ağırlık merkezini yerde tutar ve üniteyi devrilmeye karşı güvenli kılar. Tahrik, omni-yönlü üç tekerlekle sağlanır.</p>
+        </div>
+        <div class="proj-feature">
+          <h4 data-i18n="robot.f2Title">Ayrık kol modülleri</h4>
+          <p data-i18n="robot.f2Desc">Kollar gövdeden ayrık modüller olarak çözüldü; işaret etme jesti ve bagaj yönlendirmesi için hareket serbestliği artarken sıkışma riski azaldı.</p>
+        </div>
+        <div class="proj-feature">
+          <h4 data-i18n="robot.f3Title">Küre başlık ve ışık hattı</h4>
+          <p data-i18n="robot.f3Desc">Başlık, bakış yönünü okunur kılan tek hareketli parçadır. Kol ve başlıktaki mavi ışık hattı hazır, meşgul ve şarj durumlarını gösterir.</p>
+        </div>
+        <div class="proj-feature">
+          <h4 data-i18n="robot.f4Title">Algılama ve etkileşim</h4>
+          <p data-i18n="robot.f4Desc">LiDAR, derinlik kamerası ve ultrasonik sensörler yaklaşan yolcuyu algılar. 15,6 inç öne eğimli ekran ve altı mikrofonlu dizi çok dilli karşılamayı taşır.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Back link ── -->
+  <section class="proj-back-section">
+    <div class="proj-container">
+      <a href="index.html#work" class="proj-back-btn reveal-up" data-i18n="proj_detail.back">← Tüm Projelere Dön</a>
+    </div>
+  </section>
+
+  <!-- ── Footer ── -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <img src="assets/logo.webp" alt="HUŞ Logo" class="site-logo-img footer-logo-img" loading="lazy" decoding="async">
+      <p data-i18n="proj_detail.footer">© 2026 Halil Utku Şimşek — Tüm hakları saklıdır.</p>
+      <a href="telif.html" class="footer-legal" data-i18n="footer.legal">Telif Hakkı</a>
+    </div>
+  </footer>
+
+  <script>
+    /* Cover img Ken Burns */
+    const coverImg = document.querySelector('.proj-cover-img');
+    if(coverImg){ coverImg.addEventListener('load',()=>coverImg.classList.add('loaded')); if(coverImg.complete) coverImg.classList.add('loaded'); }
+
+    /* theme toggle removed: the site is light-only */
+
+    /* Nav scroll */
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>40),{passive:true});
+
+    /* Scroll reveal */
+    const io = new IntersectionObserver(entries=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in-view'); io.unobserve(e.target); }});
+    },{ threshold:0.1, rootMargin:'0px 0px -50px 0px' });
+    document.querySelectorAll('.reveal-up').forEach(el=>io.observe(el));
+
+    /* Gallery lightbox */
+    document.querySelectorAll('.gallery-item img').forEach(img=>{
+      img.style.cursor='zoom-in';
+      img.addEventListener('click',()=>{
+        const overlay=document.createElement('div');
+        overlay.className='lightbox-overlay';
+        overlay.innerHTML=`<div class="lightbox-inner"><img src="${img.src}" alt="${img.alt}" loading="lazy" decoding="async"><button class="lightbox-close">✕</button></div>`;
+        document.body.appendChild(overlay);
+        requestAnimationFrame(()=>overlay.classList.add('active'));
+        const close=()=>{ overlay.classList.remove('active'); setTimeout(()=>overlay.remove(),300); };
+        overlay.querySelector('.lightbox-close').addEventListener('click',close);
+        overlay.addEventListener('click',e=>{ if(e.target===overlay) close(); });
+      });
+    });
+  </script>
+</body>
+</html>

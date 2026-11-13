@@ -278,6 +278,25 @@ a:hover .arrow-dot, button:hover .arrow-dot { transform: rotate(45deg); }
 .lang-toggle:hover { background: rgba(255, 255, 255, .16); }
 .nav-wrap.is-light .lang-toggle:hover { background: rgba(11, 28, 42, .06); }
 .lang-current { display: inline-block; transition: transform .24s var(--ease), opacity .24s; }
+
+/* theme toggle — sun morphs into a crescent (theme.js) */
+.theme-toggle {
+  display: grid;
+  place-items: center;
+  width: 44px; height: 44px;
+  border-radius: 999px;
+  transition: background-color .25s;
+}
+.theme-toggle:hover { background: rgba(255, 255, 255, .16); }
+.nav-wrap.is-light .theme-toggle:hover { background: rgba(11, 28, 42, .06); }
+.theme-toggle svg { width: 20px; height: 20px; overflow: visible; transition: transform .8s var(--ease-spring); }
+.tt-core { fill: currentColor; transform-box: fill-box; transform-origin: center; transform: scale(.56); transition: transform .7s var(--ease); }
+.tt-bite { transform-box: fill-box; transform-origin: center; transform: translate(10px, -10px); transition: transform .7s var(--ease); }
+.tt-rays { stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; transform-box: view-box; transform-origin: 12px 12px; transition: transform .6s var(--ease), opacity .4s; }
+html[data-theme="dark"] .theme-toggle svg { transform: rotate(-24deg); }
+html[data-theme="dark"] .tt-core { transform: scale(1); }
+html[data-theme="dark"] .tt-bite { transform: none; transition-delay: .06s; }
+html[data-theme="dark"] .tt-rays { transform: rotate(90deg) scale(.4); opacity: 0; }
 .lang-current.flipping { transform: rotateX(90deg); opacity: 0; }
 .nav-cta {
   display: inline-flex;
@@ -324,7 +343,7 @@ a:hover .arrow-dot, button:hover .arrow-dot { transform: rotate(45deg); }
   .nav-cta { display: none; }
   .burger { display: block; }
   .nav { height: 52px; gap: 6px; padding: 0 5px 0 14px; }
-  .nav .lang-toggle, .nav .burger { height: 42px; width: 42px; min-width: 42px; }
+  .nav .lang-toggle, .nav .burger, .nav .theme-toggle { height: 42px; width: 42px; min-width: 42px; }
   .burger span:first-child { top: 17px; }
   .burger span:last-child { top: 24px; }
 }
@@ -1020,6 +1039,113 @@ html.motion-on { scroll-behavior: auto; }
 html:not(.refract) .cursor-lens { --lg-blur: 6px; --lg-tint: rgba(255, 255, 255, .18); }
 .cursor-lens span { position: relative; z-index: 2; }
 @media (hover: hover) and (pointer: fine) { .motion-on .work-media { cursor: none; } }
+
+/* ═════════════════════════════════════════════════════════════════════════
+   NIGHT — dark theme. Deep Aegean night blue rather than black: the same
+   sea-and-sky system read after sunset. Tokens flip; the few places that
+   paint white-on-ink or ink-on-white get explicit partners below.
+   ═════════════════════════════════════════════════════════════════════════ */
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --haze:   #0C1726;   /* page: night sea */
+  --paper:  #132236;   /* raised surfaces */
+  --ink:    #E6EDF4;
+  --ink-2:  #A4B3C3;
+  --ink-3:  #6F8397;
+  --sea:    #7FB4DF;   /* moonlit Aegean */
+  --spray:  #1A2C44;
+  --buoy:   #FF6A3D;
+  --line:   rgba(186, 212, 236, .12);
+  --night:  #0C1726;   /* text on light fills */
+  --bg2: #101E31;
+  --glass-bg: rgba(19, 34, 54, .55);
+  --glass-bg-hover: rgba(26, 44, 68, .7);
+  --glass-border: rgba(255, 255, 255, .1);
+  --glass-border-hi: rgba(255, 255, 255, .18);
+  --glass-shadow: 0 10px 30px -12px rgba(0, 0, 0, .5);
+  --glass-shadow-lg: 0 24px 60px -20px rgba(0, 0, 0, .6);
+}
+html[data-theme="dark"] ::selection { background: var(--sea); color: var(--night); }
+html[data-theme="dark"] .skip-link { color: var(--night); }
+
+/* glass resting on the page (not on photos): darker body, quieter rim */
+html[data-theme="dark"] .nav-wrap.is-light .nav {
+  --lg-tint: rgba(16, 30, 48, .58);
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, .14),
+    inset 0 0 0 1px rgba(255, 255, 255, .06),
+    0 0 0 1px rgba(0, 0, 0, .22),
+    0 14px 34px -14px rgba(0, 0, 0, .6);
+}
+html[data-theme="dark"] .nav-wrap.is-light .nav::before,
+html[data-theme="dark"] .mobile-menu::before,
+html[data-theme="dark"] .contact-form::before,
+html[data-theme="dark"] .contact-links .pill::before,
+html[data-theme="dark"] .about-portrait figcaption::before { opacity: .35; }
+html[data-theme="dark"] .nav-wrap.is-light .nav-logo img { filter: brightness(0) invert(.93); }
+html[data-theme="dark"] .nav-wrap.is-light .nav-links a:hover,
+html[data-theme="dark"] .nav-wrap.is-light .nav-links a.is-active,
+html[data-theme="dark"] .nav-wrap.is-light .lang-toggle:hover,
+html[data-theme="dark"] .nav-wrap.is-light .theme-toggle:hover { background: rgba(255, 255, 255, .08); }
+html[data-theme="dark"] .nav-cta { color: #0B1C2A; }
+html[data-theme="dark"] .nav-cta .arrow-dot { background: #0B1C2A; color: #fff; }
+html[data-theme="dark"] .nav-wrap.is-light .nav-cta { color: var(--night); }
+html[data-theme="dark"] .nav-wrap.is-light .nav-cta .arrow-dot { background: var(--night); color: var(--ink); }
+html[data-theme="dark"] .mobile-menu {
+  --lg-tint: rgba(14, 27, 44, .84);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, .12), 0 0 0 1px rgba(0, 0, 0, .25), 0 24px 50px -20px rgba(0, 0, 0, .7);
+}
+html[data-theme="dark"] .mobile-menu a:hover { background: rgba(255, 255, 255, .06); }
+
+html[data-theme="dark"] .arrow-dot { color: var(--night); }
+html[data-theme="dark"] .arrow-dot--light { background: var(--night); color: var(--ink); }
+
+/* work filter */
+html[data-theme="dark"] .seg { background: rgba(255, 255, 255, .05); box-shadow: inset 0 1px 2px rgba(0, 0, 0, .35); }
+html[data-theme="dark"] .seg-thumb {
+  background: #21385A;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, .16), 0 0 0 .5px rgba(0, 0, 0, .3), 0 6px 14px -6px rgba(0, 0, 0, .6);
+}
+
+html[data-theme="dark"] .reel-play { color: #0B1C2A; }
+html[data-theme="dark"] .about-portrait figcaption { --lg-tint: rgba(12, 23, 38, .55); }
+html[data-theme="dark"] .tools-list img { mix-blend-mode: normal; filter: grayscale(1) invert(1); }
+
+/* contact: the same sky after dusk */
+html[data-theme="dark"] .contact-sky {
+  background:
+    radial-gradient(55% 45% at 80% 16%, rgba(168, 200, 232, .16), rgba(168, 200, 232, 0) 70%),
+    linear-gradient(180deg, rgba(8, 18, 33, .93) 0%, rgba(13, 30, 53, .84) 48%, rgba(23, 49, 82, .74) 100%),
+    url("assets/contact-sky.webp") center 78% / cover no-repeat,
+    #0E1E33;
+}
+html[data-theme="dark"] .contact-copy .lede { color: rgba(230, 237, 244, .78); }
+html[data-theme="dark"] .contact-links .pill { --lg-tint: rgba(255, 255, 255, .07); }
+html[data-theme="dark"] .contact-links .pill:hover { --lg-tint: rgba(255, 255, 255, .13); }
+html[data-theme="dark"] .contact-form {
+  --lg-tint: rgba(11, 22, 38, .5);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, .12), inset 0 0 0 1px rgba(255, 255, 255, .05), 0 24px 60px -24px rgba(0, 0, 0, .6);
+}
+html[data-theme="dark"] .field input, html[data-theme="dark"] .field textarea {
+  background: rgba(255, 255, 255, .06);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, .3), 0 0 0 1px rgba(255, 255, 255, .07);
+}
+html[data-theme="dark"] .field input:focus, html[data-theme="dark"] .field textarea:focus { background: rgba(255, 255, 255, .1); box-shadow: 0 0 0 2px var(--sea); }
+html[data-theme="dark"] .btn-primary { color: var(--night); }
+html[data-theme="dark"] .btn-primary.is-sent { background: #3FA884; }
+html[data-theme="dark"] .form-status[data-state="ok"] { color: #6FD3AE; }
+html[data-theme="dark"] .form-status[data-state="err"] { color: #FF9B7A; }
+html[data-theme="dark"] .protect-toast, html[data-theme="dark"] .copyright-toast { background: rgba(230, 237, 244, .94); color: var(--night); }
+
+/* ─── theme switch choreography ───
+   View Transitions: the new theme opens as a circle from the toggle (theme.js).
+   Elsewhere: a short colour cross-fade. */
+html.vt-theme::view-transition-old(root),
+html.vt-theme::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
+html.vt-theme::view-transition-new(root) { z-index: 2; }
+html.theme-fade :not(.theme-toggle *), html.theme-fade *::before, html.theme-fade *::after {
+  transition: background-color .6s var(--ease), color .6s var(--ease), border-color .6s var(--ease), box-shadow .6s var(--ease), fill .6s, stroke .6s !important;
+}
 
 /* ─── reduced motion ─── */
 @media (prefers-reduced-motion: reduce) {
