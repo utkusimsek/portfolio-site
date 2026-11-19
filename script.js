@@ -311,4 +311,36 @@
       }
     });
   })();
+
+  /* ── rail strip: words split into letters, object <-> key hover, entrance ── */
+  (() => {
+    const plate = $('#railPlate');
+    if (!plate) return;
+    let n = 0;
+    $$('.rail-word', plate).forEach(word => {
+      const src = $('.rail-src', word), out = $('.rail-chars', word);
+      const base = n;
+      const build = () => {
+        out.innerHTML = [...src.textContent.trim()].map((c, i) => `<span style="--i:${base + i}">${c === ' ' ? '' : c}</span>`).join('');
+      };
+      build();
+      n += 12;
+      new MutationObserver(build).observe(src, { childList: true, characterData: true, subtree: true });
+    });
+
+    const items = $$('[data-k]', plate);
+    items.forEach(el => {
+      el.style.setProperty('--k', el.dataset.k);
+      const k = el.dataset.k;
+      const set = on => items.forEach(o => { if (o.dataset.k === k) o.classList.toggle('is-hot', on); });
+      el.addEventListener('pointerenter', () => set(true));
+      el.addEventListener('pointerleave', () => set(false));
+    });
+
+    if (!('IntersectionObserver' in window)) { plate.classList.add('is-in'); return; }
+    const io = new IntersectionObserver(es => {
+      if (es.some(e => e.isIntersecting)) { plate.classList.add('is-in'); io.disconnect(); }
+    }, { threshold: .3 });
+    io.observe(plate);
+  })();
 })();

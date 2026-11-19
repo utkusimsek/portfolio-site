@@ -48,6 +48,7 @@
       formTitle: "Mesaj gönderin"
     },
     mc: { title: "Mobilchef Ekobox L220", meta: "Mobil ünite tasarımı" },
+    rail: { word: "Masadan denize", w1: "MASADAN", w2: "DENİZE", nts: "Ölçeksiz gösterim" },
     footer: { top: "Başa dön" }
   };
 
@@ -96,6 +97,7 @@
       formTitle: "Send a message"
     },
     mc: { title: "Mobilchef Ekobox L220", meta: "Mobile unit design" },
+    rail: { word: "From desk to sea", w1: "FROM DESK", w2: "TO SEA", nts: "Not to scale" },
     footer: { top: "Back to top" }
   };
 })();

@@ -568,6 +568,128 @@ html:not(.refract) .hero-lens { --lg-blur: 3px; --lg-tint: rgba(255, 255, 255, .
 @media (max-width: 760px) { .tools { grid-template-columns: 1fr; gap: 16px; } .tools-list { justify-content: flex-start; } }
 
 /* ═════════════════════════════════════════════════════════════════════════
+   RAIL — the product family threaded on one bar, letters spaced along it
+   (from the Beo Minisaw board). The plate stays pale in both themes, like
+   the project image plates, because the cut-outs were drawn for a light
+   ground. Everything inside scales with the plate width (cqw).
+   ═════════════════════════════════════════════════════════════════════════ */
+.rail { padding-top: clamp(40px, 6vw, 88px); }
+.rail-plate {
+  --rail-ink: #0B1C2A;
+  --rail-ink-2: #56636F;
+  position: relative;
+  border-radius: var(--r-frame);
+  background: linear-gradient(180deg, #FBFCFD 0%, #EEF2F5 100%);
+  box-shadow: inset 0 0 0 1px rgba(11, 28, 42, .06), 0 30px 60px -44px rgba(11, 28, 42, .35);
+  overflow: hidden;
+}
+.rail-scroll { overflow: hidden; }
+.rail-track {
+  container-type: inline-size;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1.1cqw;
+  aspect-ratio: 100 / 20;
+  padding-inline: 3.6%;
+}
+.rail-bar {
+  position: absolute;
+  left: 2.4%; right: 2.4%;
+  top: 50%;
+  height: 3.7cqw;
+  transform: translateY(-50%);
+  border-radius: 999px;
+  background: linear-gradient(180deg, #3B4652 0%, #2A343F 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .12), inset 0 -1px 0 rgba(0, 0, 0, .25), 0 10px 22px -14px rgba(11, 28, 42, .55);
+  transform-origin: left center;
+}
+/* the words take the free stretches of bar between object groups */
+.rail-word {
+  position: relative;
+  z-index: 1;
+  flex: 1 1 0;
+  min-width: 0;
+  align-self: center;
+  padding-inline: 1.4cqw;
+  color: rgba(255, 255, 255, .8);
+  font-size: max(1.04cqw, 9px);
+  font-weight: 500;
+  line-height: 1;
+  pointer-events: none;
+}
+.rail-src { display: none; }
+/* one fixed pitch for every word, shrinking only when a word lacks room */
+.rail-chars { display: flex; justify-content: center; }
+.rail-chars span { flex: 0 1 1.75em; min-width: .75em; text-align: center; }
+.rail-obj {
+  position: relative;
+  z-index: 1;
+  flex: none;
+  height: calc(var(--h) * 1cqw);
+  aspect-ratio: var(--ar);
+  display: block;
+  outline-offset: 6px;
+}
+.rail-obj img {
+  width: 100%; height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 1.4cqw 1.2cqw rgba(11, 28, 42, .22));
+  transition: transform .7s var(--ease), filter .7s var(--ease);
+}
+.rail-obj:hover img, .rail-obj.is-hot img { transform: translateY(-.7cqw); filter: drop-shadow(0 2.4cqw 1.8cqw rgba(11, 28, 42, .26)); }
+.rail-tag {
+  position: absolute;
+  left: 50%; bottom: calc(100% + 10px);
+  transform: translate(-50%, 6px);
+  white-space: nowrap;
+  padding: 7px 12px;
+  border-radius: 999px;
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  color: #fff;
+  background: rgba(11, 28, 42, .86);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .3s var(--ease), transform .45s var(--ease);
+}
+.rail-obj:hover .rail-tag, .rail-obj:focus-visible .rail-tag, .rail-obj.is-hot .rail-tag { opacity: 1; transform: translate(-50%, 0); }
+
+/* künye strip: numbered key + scale note, as on a presentation board */
+.rail-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px 32px;
+  padding: 14px clamp(18px, 2.4vw, 32px) 16px;
+  border-top: 1px solid rgba(11, 28, 42, .08);
+  font-size: var(--fs-xs);
+  color: var(--rail-ink-2);
+}
+.rail-key { display: flex; flex-wrap: wrap; gap: 6px clamp(14px, 2vw, 28px); margin: 0; padding: 0; list-style: none; }
+.rail-key a { display: inline-flex; gap: 7px; align-items: baseline; transition: color .25s; }
+.rail-key b { font-weight: 600; color: var(--rail-ink); font-variant-numeric: tabular-nums; }
+.rail-key li.is-hot a, .rail-key a:hover { color: var(--rail-ink); }
+.rail-nts { flex: none; letter-spacing: .02em; }
+
+/* entrance: the bar draws, letters settle, objects are set down one by one */
+.js .rail-bar { transform: translateY(-50%) scaleX(0); }
+.js .rail-chars span { opacity: 0; transform: translateY(40%); }
+.js .rail-obj img { opacity: 0; transform: translateY(2.4cqw); }
+.rail-plate.is-in .rail-bar { transform: translateY(-50%) scaleX(1); transition: transform 1.3s cubic-bezier(.19, 1, .22, 1); }
+.rail-plate.is-in .rail-chars span { opacity: 1; transform: none; transition: opacity .7s var(--ease), transform .7s var(--ease); transition-delay: calc(.35s + var(--i) * 40ms); }
+.rail-plate.is-in .rail-obj img { opacity: 1; transform: none; transition: opacity .9s var(--ease), transform 1s var(--ease), filter .7s var(--ease); transition-delay: calc(.25s + var(--k) * 110ms); }
+.rail-plate.is-in .rail-obj:hover img, .rail-plate.is-in .rail-obj.is-hot img { transform: translateY(-.7cqw); transition-delay: 0s; }
+
+@media (max-width: 760px) {
+  .rail-scroll { overflow-x: auto; scrollbar-width: none; -webkit-mask-image: linear-gradient(90deg, #000 85%, transparent); mask-image: linear-gradient(90deg, #000 85%, transparent); }
+  .rail-scroll::-webkit-scrollbar { display: none; }
+  .rail-track { width: 680px; }
+  .rail-foot { flex-direction: column; gap: 10px; }
+  .rail-key { display: grid; grid-template-columns: 1fr 1fr; }
+}
+
+/* ═════════════════════════════════════════════════════════════════════════
    WORK
    ═════════════════════════════════════════════════════════════════════════ */
 .work { padding-top: clamp(80px, 11vw, 160px); }
@@ -1109,6 +1231,11 @@ html[data-theme="dark"] .seg-thumb {
 
 html[data-theme="dark"] .reel-play { color: #0B1C2A; }
 html[data-theme="dark"] .about-portrait figcaption { --lg-tint: rgba(12, 23, 38, .55); }
+html[data-theme="dark"] .rail-plate {
+  background: linear-gradient(180deg, #E4EAEF 0%, #D2DAE2 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .7), 0 30px 70px -40px rgba(0, 0, 0, .7);
+}
+html[data-theme="dark"] .rail-foot { border-top-color: rgba(11, 28, 42, .1); }
 html[data-theme="dark"] .tools-list img { mix-blend-mode: normal; filter: grayscale(1) invert(1); }
 
 /* contact: the same sky after dusk */
