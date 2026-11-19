@@ -593,6 +593,8 @@ html:not(.refract) .hero-lens { --lg-blur: 3px; --lg-tint: rgba(255, 255, 255, .
   aspect-ratio: 100 / 20;
   padding-inline: 3.6%;
 }
+.rail-row { display: contents; }   /* desktop: one row, so only the first bar is drawn */
+@media (min-width: 761px) { .rail-row + .rail-row .rail-bar { display: none; } }
 .rail-bar {
   position: absolute;
   left: 2.4%; right: 2.4%;
@@ -682,9 +684,14 @@ html:not(.refract) .hero-lens { --lg-blur: 3px; --lg-tint: rgba(255, 255, 255, .
 .rail-plate.is-in .rail-obj:hover img, .rail-plate.is-in .rail-obj.is-hot img { transform: translateY(-.7cqw); transition-delay: 0s; }
 
 @media (max-width: 760px) {
-  .rail-scroll { overflow-x: auto; scrollbar-width: none; -webkit-mask-image: linear-gradient(90deg, #000 85%, transparent); mask-image: linear-gradient(90deg, #000 85%, transparent); }
-  .rail-scroll::-webkit-scrollbar { display: none; }
-  .rail-track { width: 680px; }
+  /* phones: the one bar becomes three short ones — desk, street, sea */
+  .rail-track { display: grid; gap: 8cqw; aspect-ratio: auto; padding: 9cqw 0 8cqw; }
+  .rail-row { display: flex; position: relative; align-items: center; justify-content: space-between; gap: 3cqw; padding-inline: 6cqw; }
+  .rail-row--street { justify-content: space-around; }
+  .rail-row .rail-bar { left: 3cqw; right: 3cqw; height: 6cqw; }
+  .rail-obj { height: calc(var(--hm) * 1cqw); }
+  .rail-word { font-size: 3cqw; padding-inline: 2cqw; }
+  .rail-obj:hover img, .rail-obj.is-hot img, .rail-plate.is-in .rail-obj:hover img { transform: none; }
   .rail-foot { flex-direction: column; gap: 10px; }
   .rail-key { display: grid; grid-template-columns: 1fr 1fr; }
 }
